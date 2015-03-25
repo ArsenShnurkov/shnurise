@@ -4,7 +4,7 @@
 
 EAPI="5"
 
-inherit eutils mono-utils
+inherit eutils dotnet
 
 DESCRIPTION="mypad text editor"
 LICENSE="MIT"
