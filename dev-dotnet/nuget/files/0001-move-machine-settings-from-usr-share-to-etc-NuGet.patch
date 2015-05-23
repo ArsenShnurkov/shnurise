@@ -1,0 +1,95 @@
+From 22ec508d3f881c3108e0f1a5022df5496ff35547 Mon Sep 17 00:00:00 2001
+From: Arsen Shnurkov <Arsen.Shnurkov@gmail.com>
+Date: Sat, 23 May 2015 11:04:04 +0300
+Subject: [PATCH] move machine settings from /usr/share to /etc/NuGet
+
+---
+ src/Core/Configuration/ConfigurationDefaults.cs | 28 ++++++++++++++++++++++++-
+ src/Core/Configuration/Settings.cs              | 23 ++++++++++++++++++++
+ 2 files changed, 50 insertions(+), 1 deletion(-)
+
+diff --git a/src/Core/Configuration/ConfigurationDefaults.cs b/src/Core/Configuration/ConfigurationDefaults.cs
+index e79cae7..147c649 100644
+--- a/src/Core/Configuration/ConfigurationDefaults.cs
++++ b/src/Core/Configuration/ConfigurationDefaults.cs
+@@ -16,9 +16,35 @@ namespace NuGet
+         private List<PackageSource> _defaultPackageSources;
+         private string _defaultPushSource;
+ 
++	///<remarks>
++	/// http://stackoverflow.com/questions/5116977/how-to-check-the-os-version-at-runtime-e-g-windows-or-linux-without-using-a-con
++	///</remarks>
++        private static bool IsLinux
++        {
++            get
++            {
++                int p = (int) Environment.OSVersion.Platform;
++                return (p == 4) || (p == 6) || (p == 128);
++            }
++        }
++
++        public static string GetConfigDir()
++        {
++    	    var baseDirectory = String.Empty;
++    	    if (IsLinux)
++    	    {
++    		baseDirectory = Path.DirectorySeparatorChar + "etc" + Path.DirectorySeparatorChar + "NuGet";
++	    }
++	    else
++	    {
++                baseDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "NuGet");
++	    }
++	    return baseDirectory;
++        }
++
+         private static ConfigurationDefaults InitializeInstance()
+         {
+-            var baseDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "NuGet");
++            var baseDirectory = GetConfigDir();
+             PhysicalFileSystem fileSystem = new PhysicalFileSystem(baseDirectory);
+             return new ConfigurationDefaults(fileSystem, ConfigurationDefaultsFile);
+         }
+diff --git a/src/Core/Configuration/Settings.cs b/src/Core/Configuration/Settings.cs
+index 4ac3ab6..65f7ae2 100644
+--- a/src/Core/Configuration/Settings.cs
++++ b/src/Core/Configuration/Settings.cs
+@@ -114,6 +114,10 @@ namespace NuGet
+                     machineWideSettings.Settings.Select(
+                         s => new Settings(s._fileSystem, s._fileName, s._isMachineWideSettings)));
+             }
++            else
++            {
++                LoadMachineSpecificSettings(validSettingFiles, fileSystem, configFileName);
++            }
+ 
+             if (validSettingFiles.IsEmpty())
+             {
+@@ -175,6 +179,25 @@ namespace NuGet
+             }
+         }
+ 
++        private static void LoadMachineSpecificSettings(
++            List<Settings> validSettingFiles,
++            IFileSystem fileSystem,
++            string configFileName)
++        {
++            string etcPath = ConfigurationDefaults.GetConfigDir();
++            if (Directory.Exists(etcPath))
++            {
++                var etcSettingsFilePath = Path.Combine(etcPath, Constants.SettingsFileName);
++                var etcSettings = ReadSettings(
++                    fileSystem ?? new PhysicalFileSystem(Directory.GetCurrentDirectory()), 
++                    etcSettingsFilePath);
++                if (etcSettings != null)
++                {
++                    validSettingFiles.Add(etcSettings);
++                }
++            }
++        }
++
+         /// <summary>
+         /// Loads the machine wide settings.
+         /// </summary>
+-- 
+2.0.5
+
