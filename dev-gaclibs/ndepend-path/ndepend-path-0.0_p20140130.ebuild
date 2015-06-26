@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -6,7 +6,7 @@ EAPI="5"
 
 inherit git-2 dotnet
 
-DESCRIPTION="C# framework to handle all sorts of paths operations: File, Directory, Absolute, Drive Letter, UNC, Relative, prefixed"
+DESCRIPTION="C# framework for paths operations: File, Directory, Absolute, Drive Letter, UNC, Relative, prefixed"
 LICENSE="MIT"
 HOMEPAGE="https://github.com/psmacchia/NDepend.Path"
 EGIT_REPO_URI="https://github.com/psmacchia/NDepend.Path.git"

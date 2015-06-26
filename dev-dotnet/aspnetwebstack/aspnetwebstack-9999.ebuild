@@ -1,9 +1,9 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI="5"
-inherit eutils git-2
+inherit eutils git-2 dotnet
 
 DESCRIPTION="Mono copy of the Microsoft ASP.NET Web Stack (MVC, Razor etc)"
 HOMEPAGE="https://github.com/martinjt/aspnetwebstack"
@@ -26,10 +26,9 @@ DEPEND="${RDEPEND}
 	x11-misc/shared-mime-info
 	x11-terms/xterm
 	"
-	
+
 S="${WORKDIR}/${PN}-${P}"
 
 src_compile() {
-   xbuild  Runtime.sln
+	exbuild  Runtime.sln
 }
-

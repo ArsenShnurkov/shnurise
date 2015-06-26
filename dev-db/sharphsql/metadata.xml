@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<herd>dotnet</herd>
+<use>
+	<flag name='debug'>Create .mdb files for release configuration</flag>
+	<flag name='test'>automatically turned on when FEATURES=test is set</flag>
+	<flag name='gac'>sign assembly with strongname and install into gac</flag>
+	<flag name='nupkg'>build ,nuget package and install into distributive-dependent path</flag>
+</use>
+</pkgmetadata>

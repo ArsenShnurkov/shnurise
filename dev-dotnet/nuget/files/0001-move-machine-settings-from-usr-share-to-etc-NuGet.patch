@@ -53,14 +53,11 @@ diff --git a/src/Core/Configuration/Settings.cs b/src/Core/Configuration/Setting
 index 4ac3ab6..65f7ae2 100644
 --- a/src/Core/Configuration/Settings.cs
 +++ b/src/Core/Configuration/Settings.cs
-@@ -114,6 +114,10 @@ namespace NuGet
+@@ -114,6 +114,7 @@ namespace NuGet
                      machineWideSettings.Settings.Select(
                          s => new Settings(s._fileSystem, s._fileName, s._isMachineWideSettings)));
              }
-+            else
-+            {
-+                LoadMachineSpecificSettings(validSettingFiles, fileSystem, configFileName);
-+            }
++            LoadMachineSpecificSettings(validSettingFiles, fileSystem, configFileName);
  
              if (validSettingFiles.IsEmpty())
              {

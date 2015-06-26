@@ -3,7 +3,6 @@
 # $Header: $
 
 EAPI="5"
-USE_DOTNET="net45"
 
 inherit dotnet eutils
 
@@ -16,7 +15,7 @@ LICENSE="Apache-2.0"
 SLOT="0"
 
 KEYWORDS="x86 amd64"
-IUSE=""
+IUSE="debug"
 
 # Mask 3.2.0 because of mcs compiler bug : http://stackoverflow.com/a/17926731/238232
 # it fixed in 3.2.3

@@ -1,14 +1,14 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI="5"
 
-inherit eutils mono-utils
+inherit eutils dotnet
 
 DESCRIPTION="ICSharpCode.TextEditor library"
 LICENSE="MIT"
-HOMEPAGE="https://github.com/ArsenShnurkov/ICSharpCode.TextEditor/"
+HOMEPAGE="https://github.com/ArsenShnurkov/ICSharpCode.TextEditor"
 SRC_URI="https://github.com/ArsenShnurkov/ICSharpCode.TextEditor/archive/ICSharpCode-TextEditor-1.0.1.tar.gz"
 
 SLOT="0"
