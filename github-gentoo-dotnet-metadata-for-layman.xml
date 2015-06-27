@@ -2,9 +2,9 @@
     <repo quality="experimental" status="unofficial">
         <name>dotnet</name>
         <description>gentoo-dotnet bleeding edge overlay</description>
-        <homepage>https://github.com/getnoo/dotnet/packages</homepage>
+        <homepage>https://github.com/gentoo/dotnet/packages</homepage>
         <owner>Heater</owner>
-        <source type="git">https://github.com/getnoo/dotnet.git</source>
-        <feed>https://github.com/getnoo/dotnet/commits/master.atom</feed>
+        <source type="git">https://github.com/gentoo/dotnet.git</source>
+        <feed>https://github.com/gentoo/dotnet/commits/master.atom</feed>
     </repo>
 </repositories>
