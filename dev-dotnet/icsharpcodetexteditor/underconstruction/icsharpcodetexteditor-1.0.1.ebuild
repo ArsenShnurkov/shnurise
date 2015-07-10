@@ -20,7 +20,9 @@ KEYWORDS="amd64 ppc x86"
 DEPEND="|| ( >=dev-lang/mono-3.4.0 <dev-lang/mono-9999 )	"
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}/${PROJECTNAME}-${EGIT_COMMIT}"
+PATCHDIR="${FILESDIR}"
+
+S="${WORKDIR}/ICSharpCode.TextEditor-ICSharpCode-TextEditor-${PV}/"
 
 METAFILETOBUILD=ICSharpCode.TextEditor.sln
 
@@ -48,10 +50,10 @@ src_compile() {
 	fi
 	if use nupkg; then
 		elog "Building nuget package because USE=nupkg specified"
-		elog "nuget pack ${FILESDIR}/ICSharpCode.TextEditor.nuspec -BasePath "${S}" -OutputDirectory ${WORKDIR} -NonInteractive -Verbosity detailed"
-		nuget pack ${FILESDIR}/ICSharpCode.TextEditor.nuspec -BasePath "${S}" -OutputDirectory ${WORKDIR} -NonInteractive -Verbosity detailed
-		# Successfully created package '/var/tmp/portage/dev-dotnet/icsharpcodetexteditor-1.0.1-r20150630/work/ICSharpCode.TextEditor.dll.4.0.2.6466.nupkg'.
-		#                               /var/tmp/portage/dev-dotnet/icsharpcodetexteditor-1.0.1-r20150630/work/*.nupkg
+		CURRENT_DIRECTORY=`pwd`
+		elog "Current directory is ${CURRENT_DIRECTORY}"
+		elog "nuget pack ${FILESDIR}/ICSharpCode.TextEditor.nuspec -BasePath "${S}" -OutputDirectory ${WORKDIR} -NonInteractive -Verbose -Verbosity detailed"
+		nuget pack ${FILESDIR}/ICSharpCode.TextEditor.nuspec -BasePath "${S}" -OutputDirectory ${WORKDIR} -NonInteractive -Verbose -Verbosity detailed
 	fi
 }
 
@@ -60,17 +62,12 @@ src_install() {
 		egacinstall Project/bin/Release/ICSharpCode.TextEditor.dll
 	fi
 	if use nupkg; then
-		if [ -d "/var/calculate/remote/distfiles" ]; then
-			# Control will enter here if the directory exist.
-			# this is necessary to handle calculate linux profiles feature (for corporate users)
-			elog "Installing .nupgk into /var/calculate/remote/distfiles/NuGet"
+		if [ ! -d "/var/calculate/remote/distfiles" ]; then
+			# Control will enter here if $DIRECTORY doesn't exist.
 			insinto /var/calculate/remote/distfiles/NuGet
 		else
-			# this is for all normal gentoo-based distributions
-			elog "Installing .nupgk into /usr/local/nuget/nupkg"
 			insinto /usr/local/nuget/nupkg
 		fi
-		# star (*.nupkg) is used because of ".dll.4.0.2.6466" substring, see comment in src_compile() section
-		doins "${WORKDIR}/ICSharpCode.TextEditor.dll.4.0.2.6466.nupkg"
+		doins ICSharpCode.TextEditor.nupkg
 	fi
 }

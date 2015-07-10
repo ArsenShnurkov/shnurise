@@ -18,9 +18,22 @@ SLOT="0"
 IUSE="debug"
 
 KEYWORDS="amd64 ppc x86"
-DEPEND="|| ( >=dev-lang/mono-4 <dev-lang/mono-9999 )
-	dev-dotnet/icsharpcodetexteditor"
-RDEPEND="${DEPEND}"
+
+ALLPEND="|| ( >=dev-lang/mono-4 <dev-lang/mono-9999 )
+	dev-dotnet/icsharpcodetexteditor
+	"
+
+# The DEPEND ebuild variable should specify any dependencies which are 
+# required to unpack, patch, compile or install the package
+DEPEND="${ALLPEND}
+	dev-dotnet/nuget
+	"
+
+# The RDEPEND ebuild variable should specify any dependencies which are 
+# required at runtime. 
+# when installing from a binary package, only RDEPEND will be checked.
+RDEPEND="${ALLPEND}
+	"
 
 
 S="${WORKDIR}/${PROJECTNAME}-${EGIT_COMMIT}"
@@ -30,6 +43,8 @@ METAFILETOBUILD=MyPad.sln
 
 src_prepare() {
 	elog "Patching"
+#	elog "NuGet restore"
+#	/usr/bin/nuget restore ${METAFILETOBUILD} || die
 }
 
 src_compile() {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package>
   <metadata>
-    <id>ICSharpCode.TextEditor.dll</id>
-    <version>4.0.2.6466</version>
+    <id>ICSharpCode.TextEditor</id>
+    <version>3.2.2</version>
     <authors>ic#code</authors>
     <owners>ic#code</owners>
     <licenseUrl>http://opensource.org/licenses/lgpl-2.1.php</licenseUrl>
