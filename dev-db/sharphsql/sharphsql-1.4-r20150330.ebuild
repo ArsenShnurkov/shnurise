@@ -25,7 +25,7 @@ RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${PROJECTNAME}-${EGIT_COMMIT}"
 
-METAFILETOBUILD=${PROJECTNAME}.sln
+METAFILETOBUILD=src/${PROJECTNAME}.sln
 
 src_compile() {
 	# https://bugzilla.xamarin.com/show_bug.cgi?id=9340
@@ -34,6 +34,11 @@ src_compile() {
 	else
 		exbuild /p:DebugSymbols=False ${METAFILETOBUILD}
 	fi
+	if use nupkg; then
+		elog "Building nuget package because USE=nupkg specified"
+		elog "nuget pack ${FILESDIR}/SharpHSQL.csproj.nuspec -BasePath "${S}" -OutputDirectory ${WORKDIR} -NonInteractive -Verbosity detailed"
+		nuget pack "${FILESDIR}/SharpHSQL.csproj.nuspec" -Properties Configuration=Release -BasePath "${S}" -OutputDirectory "${WORKDIR}" -NonInteractive -Verbosity detailed
+	fi
 }
 
 src_install() {
@@ -41,5 +46,18 @@ src_install() {
 		elog "Installing assemblies"
 		egacinstall src/SharpHSQL/bin/Release/SharpHsql.dll
 #		doins Source/PashConsole/bin/Release/*.mdb
+	fi
+	if use nupkg; then
+		if [ -d "/var/calculate/remote/distfiles" ]; then
+			# Control will enter here if the directory exist.
+			# this is necessary to handle calculate linux profiles feature (for corporate users)
+			elog "Installing .nupkg into /var/calculate/remote/packages/NuGet"
+			insinto /var/calculate/remote/packages/NuGet
+		else
+			# this is for all normal gentoo-based distributions
+			elog "Installing .nupgk into /usr/local/nuget/nupkg"
+			insinto /usr/local/nuget/nupkg
+		fi
+		doins "${WORKDIR}/SharpHSQL.1.0.3.nupkg"
 	fi
 }
