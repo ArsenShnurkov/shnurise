@@ -49,7 +49,7 @@ src_compile() {
 	if use nupkg; then
 		elog "Building nuget package because USE=nupkg specified"
 		elog "nuget pack ${FILESDIR}/ICSharpCode.TextEditor.nuspec -BasePath "${S}" -OutputDirectory ${WORKDIR} -NonInteractive -Verbosity detailed"
-		nuget pack ${FILESDIR}/ICSharpCode.TextEditor.nuspec -BasePath "${S}" -OutputDirectory ${WORKDIR} -NonInteractive -Verbosity detailed
+		nuget pack "${FILESDIR}/ICSharpCode.TextEditor.nuspec" -BasePath "${S}" -OutputDirectory "${WORKDIR}" -NonInteractive -Verbosity detailed
 		# Successfully created package '/var/tmp/portage/dev-dotnet/icsharpcodetexteditor-1.0.1-r20150630/work/ICSharpCode.TextEditor.dll.4.0.2.6466.nupkg'.
 		#                               /var/tmp/portage/dev-dotnet/icsharpcodetexteditor-1.0.1-r20150630/work/*.nupkg
 	fi
@@ -71,7 +71,6 @@ src_install() {
 			insinto /usr/local/nuget/nupkg
 		fi
 		# star (*.nupkg) is used because of ".dll.4.0.2.6466" substring, see comment in src_compile() section
-#		newins "${WORKDIR}/ICSharpCode.TextEditor.3.2.2.nupkg" ICSharpCode.TextEditor.3.2.2.nupkg
 		doins "${WORKDIR}/ICSharpCode.TextEditor.3.2.2.nupkg"
 	fi
 }

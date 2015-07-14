@@ -7,14 +7,13 @@
     <owners>Mark Tutt</owners>
     <licenseUrl>http://www.codeproject.com/info/cpol10.aspx</licenseUrl>
     <projectUrl>http://www.codeproject.com/Articles/1136/SharpHSQL-An-SQL-engine-written-in-C</projectUrl>
-    <iconUrl>https://raw.githubusercontent.com/ArsenShnurkov/shnurise/master/dev-db/sharphsql/hsqldb.jpg</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/ArsenShnurkov/shnurise/master/dev-db/sharphsql/files/hsqldb.jpg</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>C# port of Java HSQLDB</description>
     <releaseNotes>small patches for mono</releaseNotes>
     <copyright>Mark Tutt</copyright>
   </metadata>
   <files>
-    <!-- * is for .dll and .mdb -->
-    <file src="src/SharpHSQL/bin/$Configuration$/SharpHSQL.*" target="lib/net40/" />
+    <file src="src/SharpHSQL/bin/$Configuration$/SharpHSQL.dll" target="lib/net40/SharpHSQL.dll" />
   </files>
 </package>

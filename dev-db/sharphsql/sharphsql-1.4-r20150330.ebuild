@@ -44,8 +44,8 @@ src_compile() {
 src_install() {
 	if use gac; then
 		elog "Installing assemblies"
-		egacinstall src/SharpHSQL/bin/Release/SharpHsql.dll
-#		doins Source/PashConsole/bin/Release/*.mdb
+		egacinstall src/SharpHSQL/bin/Release/SharpHSQL.dll
+#		doins src/SharpHSQL/bin/Release/*.mdb
 	fi
 	if use nupkg; then
 		if [ -d "/var/calculate/remote/distfiles" ]; then
@@ -55,7 +55,7 @@ src_install() {
 			insinto /var/calculate/remote/packages/NuGet
 		else
 			# this is for all normal gentoo-based distributions
-			elog "Installing .nupgk into /usr/local/nuget/nupkg"
+			elog "Installing .nupkg into /usr/local/nuget/nupkg"
 			insinto /usr/local/nuget/nupkg
 		fi
 		doins "${WORKDIR}/SharpHSQL.1.0.3.nupkg"
