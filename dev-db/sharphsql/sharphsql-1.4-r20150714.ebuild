@@ -16,7 +16,7 @@ IUSE="debug test gac nupkg"
 
 PROJECTNAME="SharpHSQL"
 HOMEPAGE="https://github.com/ArsenShnurkov/${PROJECTNAME}"
-EGIT_COMMIT="55734ef6c294207d07a1b220fd7f52899a3bc881"
+EGIT_COMMIT="cf0e0a369d35f0f43efa4b412d6f69fb33ae6261"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${P}-${PR}.zip"
 
 KEYWORDS="~x86 ~amd64 ~ppc"

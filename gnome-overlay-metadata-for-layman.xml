@@ -1,0 +1,10 @@
+﻿<repositories version="1.0"> 
+    <repo quality="experimental" status="unofficial"> 
+        <name>gnome</name> 
+        <description>gnome unnoficial overlay</description> 
+        <homepage>https://github.com/ArsenShnurkov/gnome/packages</homepage> 
+        <owner><name>Arsen Shnurkov</name><email>Arsen.Shnurkov@gmail.com</email></owner> 
+        <source type="git">https://github.com/ArsenShnurkov/gnome.git</source> 
+        <feed>https://github.com/ArsenShnurkov/gnome/commits/master.atom</feed> 
+    </repo> 
+</repositories>
