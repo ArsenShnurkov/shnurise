@@ -3,7 +3,7 @@
 # $Id$
 
 EAPI=5
-inherit autotools dotnet
+inherit dotnet
 
 NAME="slntools"
 HOMEPAGE="https://github.com/ArsenShnurkov/${NAME}"
@@ -17,14 +17,15 @@ SLOT=0
 DESCRIPTION="Validator.nu HTML Parser, a HTML5 parser, port from Java Version 1.4 to C#"
 LICENSE="MIT" # https://github.com/jamietre/HtmlParserSharp/blob/master/LICENSE.txt
 KEYWORDS="~amd64 ~x86"
-IUSE=""
+IUSE="developer nupkg debug"
 
 RDEPEND=">=dev-lang/mono-4.0.2.5"
 DEPEND="${RDEPEND}
 	sys-apps/sed"
 
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
-SLN_FILE="${S}/Main/SLNTools.sln"
+SLN_FILE=SLNTools.sln
+METAFILETOBUILD="${S}/Main/${SLN_FILE}"
 
 src_unpack()
 {
@@ -47,29 +48,71 @@ src_prepare() {
 	# http://stackoverflow.com/questions/23824961/c-sharp-to-mono-getconsolewindow-exception
 	epatch "${FILESDIR}/console-window-width.patch"
 
-	nuget restore "${SLN_FILE}" || die
+	nuget restore "${METAFILETOBUILD}" || die
 }
 
 src_compile() {
-	exbuild "${SLN_FILE}"
+	ARGS=""
+	ARGSN=""
+
+	if use debug; then
+		ARGS="${ARGS} /p:Configuration=Debug"
+		ARGSN="${ARGSN} Configuration=Debug"
+	else
+		ARGS="${ARGS} /p:Configuration=Release"
+		ARGSN="${ARGSN} Configuration=Release"
+	fi
+
+	if use developer; then
+		ARGS="${ARGS} /p:DebugSymbols=True"
+	else
+		ARGS="${ARGS} /p:DebugSymbols=False"
+	fi
+
+	exbuild ${ARGS} ${METAFILETOBUILD}
+
+	if use nupkg; then
+		nuget pack "${FILESDIR}/${SLN_FILE}.nuspec" -Properties ${ARGSN} -BasePath "${S}" -OutputDirectory "${WORKDIR}" -NonInteractive -Verbosity detailed
+	fi
 }
 
 src_install() {
 	default
+
+	DIR=""
+	if use debug; then
+		DIR="Debug"
+	else
+		DIR="Release"
+	fi
 
 	# insinto "/usr/$(get_libdir)"	
 	insinto "/usr/share/slntools/"
 
 	# || die is not necessary after doins,
 	# see examples at https://devmanual.gentoo.org/ebuild-writing/functions/src_install/index.html
-	doins Main/SLNTools.exe/bin/Release/CWDev.SLNTools.Core.dll
-	doins Main/SLNTools.exe/bin/Release/CWDev.SLNTools.Core.dll.mdb
-	doins Main/SLNTools.exe/bin/Release/CWDev.SLNTools.UIKit.dll
-	doins Main/SLNTools.exe/bin/Release/CWDev.SLNTools.UIKit.dll.mdb
-	doins Main/SLNTools.exe/bin/Release/SLNTools.exe
-	doins Main/SLNTools.exe/bin/Release/SLNTools.exe.mdb
+	doins Main/SLNTools.exe/bin/${DIR}/CWDev.SLNTools.Core.dll
+	doins Main/SLNTools.exe/bin/${DIR}/CWDev.SLNTools.Core.dll.mdb
+	doins Main/SLNTools.exe/bin/${DIR}/CWDev.SLNTools.UIKit.dll
+	doins Main/SLNTools.exe/bin/${DIR}/CWDev.SLNTools.UIKit.dll.mdb
+	doins Main/SLNTools.exe/bin/${DIR}/SLNTools.exe
+	doins Main/SLNTools.exe/bin/${DIR}/SLNTools.exe.mdb
 
 	make_wrapper slntools "mono /usr/share/slntools/SLNTools.exe"
+
+	if use nupkg; then
+		if [ -d "/var/calculate/remote/distfiles" ]; then
+			# Control will enter here if the directory exist.
+			# this is necessary to handle calculate linux profiles feature (for corporate users)
+			elog "Installing .nupkg into /var/calculate/remote/packages/NuGet"
+			insinto /var/calculate/remote/packages/NuGet
+		else
+			# this is for all normal gentoo-based distributions
+			elog "Installing .nupkg into /usr/local/nuget/nupkg"
+			insinto /usr/local/nuget/nupkg
+		fi
+		doins "${WORKDIR}/SLNTools.1.1.3.nupkg"
+	fi
 }
 
 # Usage:
