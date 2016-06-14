@@ -15,10 +15,11 @@ EGIT_COMMIT="24903d58cddab7d0ff17fc96a8bb25f66e6eea56"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${P}-${PR}.zip"
 
 SLOT="0"
-IUSE="debug gac nupkg"
 KEYWORDS="amd64 ppc x86"
 DEPEND="|| ( >=dev-lang/mono-3.4.0 <dev-lang/mono-9999 )	"
 RDEPEND="${DEPEND}"
+USE_DOTNET="net45"
+IUSE="${USE_DOTNET} debug developer gac nupkg"
 
 S="${WORKDIR}/${PROJECTNAME}-${EGIT_COMMIT}"
 
@@ -41,18 +42,8 @@ METAFILETOBUILD=ICSharpCode.TextEditor.sln
 #}
 
 src_compile() {
-	if use debug; then
-		exbuild /p:DebugSymbols=True ${METAFILETOBUILD}
-	else
-		exbuild /p:DebugSymbols=False ${METAFILETOBUILD}
-	fi
-	if use nupkg; then
-		elog "Building nuget package because USE=nupkg specified"
-		elog "nuget pack ${FILESDIR}/ICSharpCode.TextEditor.nuspec -BasePath "${S}" -OutputDirectory ${WORKDIR} -NonInteractive -Verbosity detailed"
-		nuget pack "${FILESDIR}/ICSharpCode.TextEditor.nuspec" -BasePath "${S}" -OutputDirectory "${WORKDIR}" -NonInteractive -Verbosity detailed
-		# Successfully created package '/var/tmp/portage/dev-dotnet/icsharpcodetexteditor-1.0.1-r20150630/work/ICSharpCode.TextEditor.dll.4.0.2.6466.nupkg'.
-		#                               /var/tmp/portage/dev-dotnet/icsharpcodetexteditor-1.0.1-r20150630/work/*.nupkg
-	fi
+	exbuild ${METAFILETOBUILD}
+	enupkg "${FILESDIR}/ICSharpCode.TextEditor.nuspec"
 }
 
 src_install() {
