@@ -1,8 +1,8 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
-EAPI="5"
+EAPI="6"
 
 inherit eutils dotnet
 
@@ -11,11 +11,11 @@ LICENSE="MIT"
 
 PROJECTNAME="mypad-winforms-texteditor"
 HOMEPAGE="https://github.com/ArsenShnurkov/${PROJECTNAME}"
-EGIT_COMMIT="7925b93a287125a04dd58617feb0385abe2e7b35"
+EGIT_COMMIT="2e188318be0827f732ee71831646d7e1a4b63876"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${P}-${PR}.zip"
 
-SLOT="0"
-IUSE="debug"
+SLOT="1"
+IUSE="debug developer"
 
 KEYWORDS="amd64 ppc x86"
 
@@ -35,29 +35,41 @@ DEPEND="${ALLPEND}
 RDEPEND="${ALLPEND}
 	"
 
-
 S="${WORKDIR}/${PROJECTNAME}-${EGIT_COMMIT}"
 
 # METAFILETOBUILD=${PROJECTNAME}.sln
 METAFILETOBUILD=MyPad.sln
 
+pkg_preinst() {
+	gnome2_icon_savelist
+}
+
 src_prepare() {
 #	elog "Patching"
 	elog "NuGet restore"
 	/usr/bin/nuget restore ${METAFILETOBUILD} || die
+	eapply_user
 }
 
 src_compile() {
 	# https://bugzilla.xamarin.com/show_bug.cgi?id=9340
-	if use debug; then
-		exbuild /p:DebugSymbols=True ${METAFILETOBUILD}
-	else
-		exbuild /p:DebugSymbols=False ${METAFILETOBUILD}
-	fi
+	exbuild ${METAFILETOBUILD}
 }
 
 src_install() {
+	local ICON_NAME=AtomFeedIcon.svg
+	local FULL_ICON_NAME=MyPad/Resources/${AtomFeedIcon.svg}
 	elog "Installing executable"
-	insinto /usr/lib/mypad/
-	make_wrapper mypad "mono /usr/lib/mypad/mypad.exe"
+	insinto /usr/lib/mypad-${PV}/
+	make_wrapper mypad "mono /usr/lib/mypad-${PV}/mypad.exe"
+	newicon -s scalable "${FULL_ICON_NAME}" "${ICON_NAME}"
+	make_desktop_entry "/usr/lib/mypad-${PV}/mypad.exe" "${DESCRIPTION}" "/usr/share/icons/hicolor/scalable/apps/${ICON_NAME}"
+}
+
+pkg_postinst() {
+	gnome2_icon_cache_update
+}
+
+pkg_postrm() {
+	gnome2_icon_cache_update
 }
