@@ -4,7 +4,7 @@
 
 EAPI="6"
 
-inherit eutils dotnet
+inherit eutils gnome2-utils dotnet
 
 DESCRIPTION="mypad text editor"
 LICENSE="MIT"
@@ -60,13 +60,42 @@ src_compile() {
 }
 
 src_install() {
-	local ICON_NAME=AtomFeedIcon.svg
-	local FULL_ICON_NAME=MyPad/Resources/${ICON_NAME}
+	local BINDIR=""
+	if use debug; then
+		BINDIR=MyPad/bin/Debug
+	else
+		BINDIR=MyPad/bin/Release
+	fi
+
 	elog "Installing executable"
 	insinto /usr/lib/mypad-${PV}/
-	make_wrapper mypad "mono /usr/lib/mypad-${PV}/mypad.exe"
+	newins "${BINDIR}/MyPad.exe" MyPad.exe
+	make_wrapper mypad "mono /usr/lib/mypad-${PV}/MyPad.exe"
+	# Don't dlls should be in GAC ?
+	doins "${BINDIR}/NDepend.Path.dll"
+	doins "${BINDIR}/NDepend.Path.Interfaces.dll"
+
+	elog "Installing syntax coloring schemes for editor"
+	dodir /usr/lib/mypad-${PV}/Modes
+	insinto /usr/lib/mypad-${PV}/Modes
+	doins $BINDIR/Modes/*.xshd
+
+	elog "Preparing data directory"
+	# actually this should be in the user home folder
+	dodir /usr/lib/mypad-${PV}/Data
+
+	elog "Configuring templating engine"
+	# actually this should be in the user home folder
+	dosym /usr/lib/mypad-${PV} /usr/lib/mypad-${PV}/bin
+	insinto /usr/lib/mypad-${PV}
+	doins $BINDIR/*.aspx
+	doins $BINDIR/*.config
+
+	elog "Installing desktop icon"
+	local ICON_NAME=AtomFeedIcon.svg
+	local FULL_ICON_NAME=MyPad/Resources/${ICON_NAME}
 	newicon -s scalable "${FULL_ICON_NAME}" "${ICON_NAME}"
-	make_desktop_entry "/usr/lib/mypad-${PV}/mypad.exe" "${DESCRIPTION}" "/usr/share/icons/hicolor/scalable/apps/${ICON_NAME}"
+	make_desktop_entry "/usr/bin/mypad" "${DESCRIPTION}" "/usr/share/icons/hicolor/scalable/apps/${ICON_NAME}"
 }
 
 pkg_postinst() {
