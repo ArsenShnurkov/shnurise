@@ -1,9 +1,9 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 # @ECLASS: dotnet.eclass
-# @MAINTAINER: heather@cynede.net
+# @MAINTAINER: cynede@gentoo.org
 # @BLURB: common settings and functions for mono and dotnet related packages
 # @DESCRIPTION:
 # The dotnet eclass contains common environment settings that are useful for
@@ -24,6 +24,10 @@ inherit eutils versionator mono-env
 # Use flags added to IUSE
 
 DEPEND+=" dev-lang/mono"
+IUSE+=" debug developer"
+
+# SRC_URI+=" https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+# I was unable to setup it this ^^ way
 
 # SET default use flags according on DOTNET_TARGETS
 for x in ${USE_DOTNET}; do
@@ -38,12 +42,13 @@ done
 # @FUNCTION: dotnet_pkg_setup
 # @DESCRIPTION:  This function set FRAMEWORK
 dotnet_pkg_setup() {
+	EBUILD_FRAMEWORK=""
 	for x in ${USE_DOTNET} ; do
 		case ${x} in
-			net45) if use net45; then F="4.5"; fi;;
-			net40) if use net40; then F="4.0"; fi;;
-			net35) if use net35; then F="3.5"; fi;;
-			net20) if use net20; then F="2.0"; fi;;
+			net45) EBF="4.5"; if use net45; then F="${EBF}";fi;;
+			net40) EBF="4.0"; if use net40; then F="${EBF}";fi;;
+			net35) EBF="3.5"; if use net35; then F="${EBF}";fi;;
+			net20) EBF="2.0"; if use net20; then F="${EBF}";fi;;
 		esac
 		if [[ -z ${FRAMEWORK} ]]; then
 			if [[ ${F} ]]; then
@@ -52,9 +57,22 @@ dotnet_pkg_setup() {
 		else
 			version_is_at_least "${F}" "${FRAMEWORK}" || FRAMEWORK="${F}"
 		fi
+		if [[ -z ${EBUILD_FRAMEWORK} ]]; then
+			if [[ ${EBF} ]]; then
+				EBUILD_FRAMEWORK="${EBF}";
+			fi
+		else
+			version_is_at_least "${EBF}" "${EBUILD_FRAMEWORK}" || EBUILD_FRAMEWORK="${EBF}"
+		fi
 	done
 	if [[ -z ${FRAMEWORK} ]]; then
-		FRAMEWORK="4.0"
+		if [[ -z ${EBUILD_FRAMEWORK} ]]; then
+			FRAMEWORK="4.0"
+			elog "Ebuild doesn't contain USE_DOTNET="
+		else
+			FRAMEWORK="${EBUILD_FRAMEWORK}"
+			elog "User did not set any netNN use-flags in make.conf or profile, .ebuild demands USE_DOTNET=""${USE_DOTNET}"""
+		fi
 	fi
 	einfo " -- USING .NET ${FRAMEWORK} FRAMEWORK -- "
 }
@@ -78,58 +96,55 @@ export XDG_CONFIG_HOME="${T}"
 
 unset MONO_AOT_CACHE
 
+# @FUNCTION: exbuild_raw
+# @DESCRIPTION: run xbuild with given parameters
+exbuild_raw() {
+	elog """$@"""
+	xbuild "$@" || die
+}
+
 # @FUNCTION: exbuild
 # @DESCRIPTION: run xbuild with Release configuration and configurated FRAMEWORK
 exbuild() {
-	ARGS=""
-
 	if use debug; then
-		ARGS="${ARGS} /p:Configuration=Debug"
+		CARGS=/p:Configuration=Debug
 	else
-		ARGS="${ARGS} /p:Configuration=Release"
+		CARGS=/p:Configuration=Release
 	fi
 
 	if use developer; then
-		ARGS="${ARGS} /p:DebugSymbols=True"
+		SARGS=/p:DebugSymbols=True
 	else
-		ARGS="${ARGS} /p:DebugSymbols=False"
+		SARGS=/p:DebugSymbols=False
 	fi
 
-	einfo "xbuild /tv:4.0 /p:TargetFrameworkVersion=v""${FRAMEWORK}"" ""${ARGS}"" ""$@"""
-	xbuild /tv:4.0 /p:TargetFrameworkVersion=v"${FRAMEWORK}" "${ARGS}" "$@" || die
+	if [[ -z ${TOOLS_VERSION} ]]; then
+		TOOLS_VERSION=4.0
+	fi
+
+	PARAMETERS="/v:detailed /tv:${TOOLS_VERSION} ""/p:TargetFrameworkVersion=v${FRAMEWORK}"" ""${CARGS}"" ""${SARGS}"" ""$@"""
+	exbuild_raw ${PARAMETERS}
 }
 
-# @FUNCTION: enuspec
-# @DESCRIPTION: run nuget pack
-enuspec() {
-	if use nupkg; then
-		ARGSN=""
-	
-		if use debug; then
-			ARGSN="${ARGSN} Configuration=Debug"
-		else
-			ARGSN="${ARGSN} Configuration=Release"
+# @FUNCTION: exbuild_strong
+# @DESCRIPTION: run xbuild with default key signing
+exbuild_strong() {
+	# http://stackoverflow.com/questions/7903321/only-sign-assemblies-with-strong-name-during-release-build
+	if use gac; then
+		if [[ -z ${SNK_FILENAME} ]]; then
+			# elog ${BASH_SOURCE}
+			SNK_FILENAME=/var/lib/layman/dotnet/eclass/mono.snk
+			# sn - Digitally sign/verify/compare strongnames on CLR assemblies. 
+			# man sn = http://linux.die.net/man/1/sn
 		fi
-		nuget pack -Properties ${ARGSN} -BasePath "${S}" -OutputDirectory "${WORKDIR}" -NonInteractive -Verbosity detailed "$@" || die
+		KARGS1=/p:SignAssembly=true 
+		KARGS2=/p:AssemblyOriginatorKeyFile=${SNK_FILENAME}
+	else
+		KARGS1=
+		KARGS2=
 	fi
-}
-
-# @FUNCTION: enupkg
-# @DESCRIPTION: installs .nupkg into local repository
-enupkg() {
-	if use nupkg; then
-		if [ -d "/var/calculate/remote/distfiles" ]; then
-			# Control will enter here if the directory exist.
-			# this is necessary to handle calculate linux profiles feature (for corporate users)
-			elog "Installing .nupkg into /var/calculate/remote/packages/NuGet"
-			insinto /var/calculate/remote/packages/NuGet
-		else
-			# this is for all normal gentoo-based distributions
-			elog "Installing .nupkg into /usr/local/nuget/nupkg"
-			insinto /usr/local/nuget/nupkg
-		fi
-		doins "$@"
-	fi
+	PARAMETERS=" ""${KARGS1}"" ""${KARGS2}"" ""$@"""
+	exbuild "${PARAMETERS}"
 }
 
 # @FUNCTION: egacinstall

@@ -11,7 +11,7 @@ LICENSE="MIT"
 
 PROJECTNAME="mypad-winforms-texteditor"
 HOMEPAGE="https://github.com/ArsenShnurkov/${PROJECTNAME}"
-EGIT_COMMIT="2e188318be0827f732ee71831646d7e1a4b63876"
+EGIT_COMMIT="c1c79094eb5339309e3767f64d4e87f6214e7faa"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${P}-${PR}.zip"
 
 SLOT="1"
@@ -47,8 +47,8 @@ pkg_preinst() {
 
 src_prepare() {
 #	elog "Patching"
-	eapply "${FILESDIR}/0001-remove-project-from-solution.patch"
 	eapply "${FILESDIR}/0001-.csproj-dependency-.nupkg-dependency.patch"
+	eapply "${FILESDIR}/0001-remove-project-from-solution.patch"
 	elog "NuGet restore"
 	/usr/bin/nuget restore ${METAFILETOBUILD} || die
 	eapply_user
@@ -61,7 +61,7 @@ src_compile() {
 
 src_install() {
 	local ICON_NAME=AtomFeedIcon.svg
-	local FULL_ICON_NAME=MyPad/Resources/${AtomFeedIcon.svg}
+	local FULL_ICON_NAME=MyPad/Resources/${ICON_NAME}
 	elog "Installing executable"
 	insinto /usr/lib/mypad-${PV}/
 	make_wrapper mypad "mono /usr/lib/mypad-${PV}/mypad.exe"

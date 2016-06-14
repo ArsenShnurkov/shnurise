@@ -1,6 +1,6 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-module.eclass,v 1.36 2012/09/27 16:35:41 axs Exp $
+# $Id$
 
 # @ECLASS: gtk-sharp-module.eclass
 # @MAINTAINER:
@@ -101,6 +101,8 @@ case ${GTK_SHARP_MODULE} in
 					"${WORKDIR}/${TARBALL}-2.12.11.patch"
 				)
 				;;
+		esac
+		case ${PVR} in
 			2.12.1*)
 				EAUTORECONF="YES"
 				add_bdepend "=sys-devel/automake-1.10*"
@@ -145,7 +147,7 @@ esac
 case ${PF} in
 	#gtk-sharp tarball
 	gtk-sharp-docs*)
-		add_depend ">=virtual/monodoc-2.0"
+		add_depend ">=dev-lang/mono-2.0"
 		;;
 	gtk-sharp-gapi*)
 		add_rdepend "!<=dev-dotnet/gtk-sharp-2.12.7:2"
@@ -283,7 +285,7 @@ S="${WORKDIR}/${TARBALL}-${PV}"
 # @ECLASS-VARIABLE: SRC_URI
 # @DESCRIPTION:
 # Default value: mirror://gnome/sources/${TARBALL}/${PV_MAJOR}/${TARBALL}-${PV}.tar.bz2
-if TARBALL="gtk-sharp"; then
+if [[ ${TARBALL} == "gtk-sharp" ]]; then
 	SRC_URI="${SRC_URI}
 		http://download.mono-project.com/sources/gtk-sharp212/${TARBALL}-${PV}.tar.bz2"
 else
@@ -535,13 +537,13 @@ gtk-sharp-module_src_configure() {
 # @FUNCTION: gtk-sharp-module_src_compile
 # @DESCRIPTION:
 # Calls emake in the subdir of the module.
-# Sets CSC=/usr/bin/gmcs. Deletes top_srcdir Makefiles to prevent recursing in
+# Sets CSC=/usr/bin/mcs. Deletes top_srcdir Makefiles to prevent recursing in
 # case we missed some dll references.
 # Is exported.
 gtk-sharp-module_src_compile() {
 	rm -f "${S}"/Makefile* &> /dev/null
 	cd "${S}/${GTK_SHARP_MODULE_DIR}"
-	emake CSC=/usr/bin/gmcs || die "emake failed"
+	emake CSC=/usr/bin/mcs || die "emake failed"
 }
 
 # @FUNCTION: gtk-sharp-module_src_install

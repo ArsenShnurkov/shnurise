@@ -1,33 +1,22 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 # @ECLASS: nuget.eclass
-# @MAINTAINER: Heather@Cynede.net
+# @MAINTAINER: cynede@gentoo.org
 # @BLURB: Common functionality for nuget apps
-# @DESCRIPTION: Common functionality needed by fake build system.
+# @DESCRIPTION: my idea of nuget was following:
+# introduce nuget IUSE flag for packages that are on nuget to download them from nuget. (if sources fails with some reason or dependies is complicated or if user just want binaries).
+# or maybe even introduce few packages that just downloads and instulls from nuget, reason is obviously - easy maintaince
 
-inherit dotnet
-
-# @ECLASS_VARIABLE: NUGET_DEPEND
-# @DESCRIPTION Set false to net depend on nuget
-: ${NUGET_NO_DEPEND:=}
-
-if [[ -n $NUGET_NO_DEPEND ]]; then
-	DEPEND+=" dev-dotnet/nuget"
-fi
-
-NPN=${PN/_/.}
-if [[ $PV == *_alpha* ]]
-then
-	NPV=${PVR/_/-}
-else
-	NPV=${PVR}
-fi
+inherit nupkg
 
 # @FUNCTION: nuget_src_unpack
-# @DESCRIPTION: Runs nuget.
+# @DESCRIPTION: Runs nuget
+# Here is usage example where nuget is alternative way: https://github.com/gentoo/dotnet/blob/master/dev-dotnet/fake
+# Src_compile does nothing and src_install just installs sources from nuget_src_unpack
 nuget_src_unpack() {
+	default
 	nuget install "${NPN}" -Version "${NPV}" -OutputDirectory "${P}"
 }
 

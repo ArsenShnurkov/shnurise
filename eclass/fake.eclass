@@ -1,9 +1,9 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 # @ECLASS: fake.eclass
-# @MAINTAINER: Heather@Cynede.net
+# @MAINTAINER: cynede@gentoo.org
 # @BLURB: Common functionality for fake apps
 # @DESCRIPTION: Common functionality needed by fake build system.
 
