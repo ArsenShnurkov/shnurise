@@ -1,0 +1,40 @@
+From f95c11b9f4fb9236041bf3d5f2616b562fb6e3c1 Mon Sep 17 00:00:00 2001
+From: ArsenShnurkov <Arsen.Shnurkov@gmail.com>
+Date: Fri, 10 Jul 2015 14:33:32 +0300
+Subject: [PATCH] remove project from solution
+
+---
+ MyPad.sln | 10 ----------
+ 1 file changed, 10 deletions(-)
+
+diff --git a/MyPad.sln b/MyPad.sln
+index e7d4999..3b4a42e 100644
+--- a/MyPad.sln
++++ b/MyPad.sln
+@@ -9,8 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution
+ 		LICENSE.md = LICENSE.md
+ 	EndProjectSection
+ EndProject
+-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICSharpCode.TextEditor", "..\ICSharpCode.TextEditor.git\Project\ICSharpCode.TextEditor.csproj", "{2D18BE89-D210-49EB-A9DD-2246FBB3DF6D}"
+-EndProject
+ Global
+ 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+ 		Debug|Any CPU = Debug|Any CPU
+@@ -19,14 +17,6 @@ Global
+ 		Release|x86 = Release|x86
+ 	EndGlobalSection
+ 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+-		{2D18BE89-D210-49EB-A9DD-2246FBB3DF6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+-		{2D18BE89-D210-49EB-A9DD-2246FBB3DF6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+-		{2D18BE89-D210-49EB-A9DD-2246FBB3DF6D}.Debug|x86.ActiveCfg = Debug|Any CPU
+-		{2D18BE89-D210-49EB-A9DD-2246FBB3DF6D}.Debug|x86.Build.0 = Debug|Any CPU
+-		{2D18BE89-D210-49EB-A9DD-2246FBB3DF6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+-		{2D18BE89-D210-49EB-A9DD-2246FBB3DF6D}.Release|Any CPU.Build.0 = Release|Any CPU
+-		{2D18BE89-D210-49EB-A9DD-2246FBB3DF6D}.Release|x86.ActiveCfg = Release|Any CPU
+-		{2D18BE89-D210-49EB-A9DD-2246FBB3DF6D}.Release|x86.Build.0 = Release|Any CPU
+ 		{7ED3012C-DB58-48C7-B59E-72C963418170}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+ 		{7ED3012C-DB58-48C7-B59E-72C963418170}.Debug|Any CPU.Build.0 = Debug|Any CPU
+ 		{7ED3012C-DB58-48C7-B59E-72C963418170}.Debug|x86.ActiveCfg = Debug|x86
+-- 
+2.7.4
+

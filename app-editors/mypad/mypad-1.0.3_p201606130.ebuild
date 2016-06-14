@@ -15,7 +15,8 @@ EGIT_COMMIT="2e188318be0827f732ee71831646d7e1a4b63876"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${P}-${PR}.zip"
 
 SLOT="1"
-IUSE="debug developer"
+IUSE="net45 debug developer"
+USE_DOTNET="net45"
 
 KEYWORDS="amd64 ppc x86"
 
@@ -46,6 +47,8 @@ pkg_preinst() {
 
 src_prepare() {
 #	elog "Patching"
+	eapply "${FILESDIR}/0001-remove-project-from-solution.patch"
+	eapply "${FILESDIR}/0001-.csproj-dependency-.nupkg-dependency.patch"
 	elog "NuGet restore"
 	/usr/bin/nuget restore ${METAFILETOBUILD} || die
 	eapply_user
