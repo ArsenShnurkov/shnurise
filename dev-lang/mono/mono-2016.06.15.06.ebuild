@@ -37,7 +37,7 @@ DEPEND="${COMMONDEPEND}
 "
 
 MAKEOPTS="${MAKEOPTS} -j1" #nowarn
-S="${WORKDIR}/${PN}-$(get_version_component_range 1-3)"
+S="${WORKDIR}/${PN}-4.5.2"
 
 pkg_pretend() {
 	# https://github.com/gentoo/gentoo/blob/f200e625bda8de696a28338318c9005b69e34710/eclass/linux-info.eclass#L686
