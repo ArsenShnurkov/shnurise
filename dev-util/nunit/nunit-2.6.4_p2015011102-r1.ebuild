@@ -21,7 +21,7 @@ USE_DOTNET="net45"
 IUSE="net45 developer debug gac nupkg doc"
 
 RDEPEND=">=dev-lang/mono-4.0.2.5
-	dev-dotnet/nant[nupkg]
+	dev-util/nant[nupkg]
 "
 DEPEND="${RDEPEND}
 "
@@ -36,12 +36,25 @@ METAFILETOBUILD="${S}/${FILE_TO_BUILD}"
 src_prepare() {
 	chmod -R +rw "${S}" || die
 	enuget_restore "${METAFILETOBUILD}"
+	
+	if use debug; then
+		DIR="Debug"
+	else
+		DIR="Release"
+	fi
+	sed -i '/x86/d' "${S}/nuget/"*.nuspec || die
+	sed -i '/log4net/d' "${S}/nuget/"*.nuspec || die
+	sed -i 's#\\#/#g' "${S}/nuget/"*.nuspec || die
+	sed -i "s#\${package.version}#$(get_version_component_range 1-3)#g" "${S}/nuget/"*.nuspec || die
+	sed -i "s#\${project.base.dir}##g" "${S}/nuget/"*.nuspec || die
+	sed -i "s#\${current.build.dir}#bin/${DIR}#g" "${S}/nuget/"*.nuspec || die
+	default
 }
 
 src_compile() {
 	exbuild "${METAFILETOBUILD}"
-	enuspec "${FILESDIR}/nunit-${PV}.nuspec"
-	enuspec "${FILESDIR}/nunit-runners-${PV}.nuspec"
+	enuspec "${S}/nuget/nunit.nuspec"
+	enuspec "${S}/nuget/nunit.runners.nuspec"
 }
 
 src_install() {
@@ -81,6 +94,6 @@ src_install() {
 		doins license.txt
 	fi
 
-	enupkg "${WORKDIR}/nunit-${PV}.nupkg"
-	enupkg "${WORKDIR}/nunit-runners-${PV}.nupkg"
+	enupkg "${WORKDIR}/NUnit.$(get_version_component_range 1-3).nupkg"
+	enupkg "${WORKDIR}/NUnit.Runners.$(get_version_component_range 1-3).nupkg"
 }
