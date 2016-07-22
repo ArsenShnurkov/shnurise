@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="project">
+		<email>dotnet@gentoo.org</email>
+		<description>Gentoo Dotnet Project</description>
+	</maintainer>
+	<use>
+	</use>
+	<longdescription lang="en">
+		NRefactory supports analysis of C# source code: it includes a parser, abstract syntax tree, type system, semantic analysis (resolver), code completion, and several refactorings.
+	</longdescription>
+	<longdescription lang="ru">
+		Инструмент для переработки кода на языке C#.
+    </longdescription>
+</pkgmetadata>

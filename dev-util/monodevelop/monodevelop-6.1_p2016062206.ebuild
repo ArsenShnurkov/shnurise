@@ -22,6 +22,8 @@ COMMON_DEPEND="
 	>=dev-lang/mono-3.2.8
 	>=dev-dotnet/gtk-sharp-2.12.21:2
 	>=dev-dotnet/nuget-2.8.7
+	>=dev-dotnet/microsoft-aspnet-mvc-5.2.3
+	>=dev-dotnet/icsharpcode-nrefactory-5.5.1
 	dev-dotnet/referenceassemblies-pcl
 	net-libs/libssh2
 	gnome? ( >=dev-dotnet/gnome-sharp-2.24.2-r1 )"
@@ -102,7 +104,7 @@ src_configure() {
 
 	# add verbosity into package restoring
 	# actually this will printout stacktraces without usefull facts
-	sed -i -E -e 's#nuget restore#nuget restore -verbosity detailed#g' "${S}/Makefile" || die
+	# sed -i -E -e 's#nuget restore#nuget restore -verbosity detailed#g' "${S}/Makefile" || die
 
 	# fix of https://github.com/gentoo/dotnet/issues/38
 	sed -i -E -e 's#(EXE_PATH=")(.*)(/lib/monodevelop/bin/MonoDevelop.exe")#\1'${EPREFIX}'/usr\3#g' "${S}/monodevelop" || die

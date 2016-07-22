@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="project">
+		<email>dotnet@gentoo.org</email>
+		<description>Gentoo Dotnet Project</description>
+	</maintainer>
+	<use>
+	</use>
+	<longdescription lang="en">
+		core runtime assemblies shared between ASP.NET MVC and ASP.NET Web Pages
+	</longdescription>
+	<longdescription lang="ru">
+		Сборки для ASP .NET MVC. Нужны для создания сайтов на C#.
+    </longdescription>
+</pkgmetadata>

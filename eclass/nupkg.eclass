@@ -69,7 +69,8 @@ enuget_download_rogue_binary() {
 </config></configuration>
 EOF
 	einfo "Installing rogue binary '$1' into '${S}/packages'"
-	nuget install "$1" -Version "$2" -OutputDirectory "${S}/packages"
+	mkdir -p "${S}"
+	nuget install "$1" -Version "$2" -ConfigFile "${T}/NuGet/NuGet.Config" -OutputDirectory "${S}/packages"
 }
 
 # @FUNCTION: enuspec
