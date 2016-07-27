@@ -24,6 +24,8 @@ COMMON_DEPEND="
 	>=dev-dotnet/nuget-2.8.7
 	>=dev-dotnet/microsoft-aspnet-mvc-5.2.3
 	>=dev-dotnet/icsharpcode-nrefactory-5.5.1
+	>=dev-dotnet/libgit2sharp-0.22
+	>=dev-dotnet/cecil-0.9.5.4
 	dev-dotnet/referenceassemblies-pcl
 	net-libs/libssh2
 	gnome? ( >=dev-dotnet/gnome-sharp-2.24.2-r1 )"
@@ -58,6 +60,10 @@ src_unpack() {
 	cd "${WORKDIR}"
 	unpack "${P}.tar.bz2"
 
+	# LibGit2Sharp is now portage dependency
+	rm -rf "${S}/external/libgit2" || die
+	rm -rf "${S}/external/libgit2sharp" || die
+
 	# roslyn dlls are missing from monodevelop tarball
 	cd "${S}/external"
 	unpack "roslyn-${ROSLYN_COMMIT}.zip"
@@ -83,6 +89,8 @@ src_prepare() {
 	# copy missing binaries
 	mkdir -p "${S}"/external/cecil/Test/libs/nunit-2.5.10/ || die
 	cp -fR "${T}"/NUnit-2.5.10.11092/bin/net-2.0/framework/* "${S}"/external/cecil/Test/libs/nunit-2.5.10/ || die
+
+	sed -i 's=0.9.5.4=0.9.6.20160209=g' ./contrib/ICSharpCode.Decompiler/packages.config
 
 	default
 }
