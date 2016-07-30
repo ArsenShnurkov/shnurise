@@ -25,7 +25,7 @@ COMMON_DEPEND="
 	>=dev-dotnet/microsoft-aspnet-mvc-5.2.3
 	>=dev-dotnet/icsharpcode-nrefactory-5.5.1
 	>=dev-dotnet/libgit2sharp-0.22
-	>=dev-dotnet/cecil-0.9.5.4
+	>=dev-util/nunit-3.0.1:3
 	dev-dotnet/referenceassemblies-pcl
 	net-libs/libssh2
 	gnome? ( >=dev-dotnet/gnome-sharp-2.24.2-r1 )"
@@ -43,6 +43,7 @@ RDEPEND="${COMMON_DEPEND}
 	!<dev-util/monodevelop-debugger-mdb-$(get_version_component_range 1-2)
 	!<dev-util/monodevelop-vala-$(get_version_component_range 1-2)"
 DEPEND="${COMMON_DEPEND}
+	>=dev-util/nunit-2.6.4:2
 	dev-util/intltool
 	virtual/pkgconfig
 	sys-devel/gettext
