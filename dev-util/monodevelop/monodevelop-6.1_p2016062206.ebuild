@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 inherit fdo-mime gnome2-utils dotnet versionator eutils
 
 ROSLYN_COMMIT="16e117c2400d0ab930e7d89512f9894a169a0e6e"
@@ -24,7 +24,7 @@ COMMON_DEPEND="
 	>=dev-dotnet/nuget-2.8.7
 	>=dev-dotnet/microsoft-aspnet-mvc-5.2.3
 	>=dev-dotnet/icsharpcode-nrefactory-5.5.1
-	>=dev-dotnet/libgit2sharp-0.22
+	>=dev-dotnet/libgit2sharp-0.22[gac]
 	>=dev-util/nunit-3.0.1:3
 	dev-dotnet/referenceassemblies-pcl
 	net-libs/libssh2
@@ -108,8 +108,8 @@ src_configure() {
 
 	# Main.sln file is created on the fly during the previous econf call
 	# that is why file is patched in src_configure instead of src_prepare
-	# https://github.com/mrward/xdt/issues/4
-	# epatch -p2 "${FILESDIR}/mrward-xdt-issue-4.patch"
+
+	eapply "${FILESDIR}/6.1-remove-GitLib2Sharp-project-from-Main.sln.patch"
 
 	# add verbosity into package restoring
 	# actually this will printout stacktraces without usefull facts

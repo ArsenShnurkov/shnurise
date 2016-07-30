@@ -1,0 +1,13 @@
+diff --git a/main/Main.sln b/main/Main.sln
+index e318d77..9712d0d 100644
+--- a/Main.sln
++++ b/Main.sln
+@@ -255,8 +255,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICSharpCode.NRefactory.CSha
+ EndProject
+ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuiUnit_NET_4_5", "external\guiunit\src\framework\GuiUnit_NET_4_5.csproj", "{D12F0F7B-8DE3-43EC-BA49-41052D065A9B}"
+ EndProject
+-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibGit2Sharp", "external\libgit2sharp\LibGit2Sharp\LibGit2Sharp.csproj", "{EE6ED99F-CB12-4683-B055-D28FC7357A34}"
+-EndProject
+ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{5D3F7E65-E55B-45CA-A83B-D1E10040281E}"
+ EndProject
+ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mdhost", "src\tools\mdhost\mdhost.csproj", "{BFE8691A-D323-4622-9021-7B8B27F81599}"
