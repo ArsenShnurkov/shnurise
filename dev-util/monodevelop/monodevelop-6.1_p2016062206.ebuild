@@ -43,6 +43,7 @@ RDEPEND="${COMMON_DEPEND}
 	!<dev-util/monodevelop-debugger-mdb-$(get_version_component_range 1-2)
 	!<dev-util/monodevelop-vala-$(get_version_component_range 1-2)"
 DEPEND="${COMMON_DEPEND}
+	>=dev-util/mono-packaging-tools-0.1.3_p2016082301-r1
 	>=dev-util/nunit-2.6.4:2
 	dev-util/intltool
 	virtual/pkgconfig
@@ -109,7 +110,15 @@ src_configure() {
 	# Main.sln file is created on the fly during the previous econf call
 	# that is why file is patched in src_configure instead of src_prepare
 
-	eapply "${FILESDIR}/6.1-remove-GitLib2Sharp-project-from-Main.sln.patch"
+	sed -i '/TextStylePolicy/d' "${S}/Main.sln" || die
+	sed -i '/XmlFormattingPolicy/d' "${S}/Main.sln" || die
+	/usr/bin/mpt-sln --sln-file "${S}/Main.sln" --remove-proj FSharpBinding || die
+	/usr/bin/mpt-sln --sln-file "${S}/Main.sln" --remove-proj MonoDevelop.FSharp || die
+	/usr/bin/mpt-sln --sln-file "${S}/Main.sln" --remove-proj MonoDevelop.FSharp.Shared || die
+	/usr/bin/mpt-sln --sln-file "${S}/Main.sln" --remove-proj MonoDevelop.FSharp.Gui || die
+	/usr/bin/mpt-sln --sln-file "${S}/Main.sln" --remove-proj MonoDevelop.FSharpInteractive.Service || die
+	/usr/bin/mpt-sln --sln-file "${S}/Main.sln" --remove-proj MonoDevelop.FSharp.Tests || die
+	/usr/bin/mpt-sln --sln-file "${S}/Main.sln" --remove-proj GitLib2Sharp || die || die
 
 	# add verbosity into package restoring
 	# actually this will printout stacktraces without usefull facts
