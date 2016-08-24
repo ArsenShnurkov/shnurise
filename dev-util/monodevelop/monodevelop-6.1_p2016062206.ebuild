@@ -118,7 +118,7 @@ src_configure() {
 	/usr/bin/mpt-sln --sln-file "${S}/Main.sln" --remove-proj MonoDevelop.FSharp.Gui || die
 	/usr/bin/mpt-sln --sln-file "${S}/Main.sln" --remove-proj MonoDevelop.FSharpInteractive.Service || die
 	/usr/bin/mpt-sln --sln-file "${S}/Main.sln" --remove-proj MonoDevelop.FSharp.Tests || die
-	/usr/bin/mpt-sln --sln-file "${S}/Main.sln" --remove-proj GitLib2Sharp || die || die
+	/usr/bin/mpt-sln --sln-file "${S}/Main.sln" --remove-proj GitLib2Sharp || die
 
 	# add verbosity into package restoring
 	# actually this will printout stacktraces without usefull facts
