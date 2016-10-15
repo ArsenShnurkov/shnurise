@@ -1,0 +1,18 @@
+# Copyright 1999-2015 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+net20 - .NET 2.0 Framework
+net35 - .NET 3.5 Framework
+net40 - .NET 4.0 Framework
+net45 - .NET 4.5 Framework
+fake - F# Make build system
+
+nuget - Grab binary from nuget
+# is nuget use necessary now, when we have source-compiled version of nuget from ebuild?
+
+gac - register library assemblies in the gac (where ebuild requests that)
+pkg-config - install .pc file
+nupkg - build binary package for local repository
+machine - register ADO .NET data provider in the machine.config (where ebuild requests that)
+developer - create .mdb files
+debug - build Debug configuration instead of Release default
