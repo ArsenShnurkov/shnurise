@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile install prepare setup
+DEPEND=|| ( >=dev-lang/mono-4 <dev-lang/mono-9999 ) || ( dev-dotnet/icsharpcodetexteditor[nupkg] dev-dotnet/icsharpcodetexteditor[gac] ) dev-dotnet/nuget dev-lang/mono
+DESCRIPTION=mypad text editor
+EAPI=5
+HOMEPAGE=https://github.com/ArsenShnurkov/mypad-winforms-texteditor
+IUSE=debug debug developer
+KEYWORDS=amd64 ppc x86
+LICENSE=MIT
+RDEPEND=|| ( >=dev-lang/mono-4 <dev-lang/mono-9999 ) || ( dev-dotnet/icsharpcodetexteditor[nupkg] dev-dotnet/icsharpcodetexteditor[gac] )
+SLOT=0
+SRC_URI=https://github.com/ArsenShnurkov/mypad-winforms-texteditor/archive/7925b93a287125a04dd58617feb0385abe2e7b35.zip -> mypad-1.0.2-r20150710.zip
+_eclass_exported_funcs=pkg_setup:dotnet src_prepare:- src_compile:- src_install:-
+_eclasses_=dotnet	a6f2dd84e753d8176c07f4d2b383982b	eutils	b83a2420b796f7c6eff682679d08fe25	mono-env	e47f8cb975077b13cdc8db6bab66860c	multilib	165fc17c38d1b11dac2008280dab6e80	toolchain-funcs	1b1da0c45c555989dc5d832b54880783	versionator	99ae9d758cbe7cfed19170e7d48f5a9c
+_md5_=7fc59a436e56f2d9eab325ae2052e2b4

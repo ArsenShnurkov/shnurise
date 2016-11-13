@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile install prepare setup
+DEPEND=dev-lang/mono
+DESCRIPTION=C# version of lex (Garden Point Lex)
+EAPI=6
+HOMEPAGE=https://github.com/dbremner/gppg
+IUSE=+net45 debug debug developer net45
+KEYWORDS=~amd64 ~ppc ~x86
+LICENSE=BSD
+RESTRICT=mirror
+SLOT=0
+SRC_URI=https://github.com/ArsenShnurkov/shnurise-tarballs/archive/dev-util/gppg-dbremner/gppg-dbremner-1.5.2_p2015112101.tar.gz
+_eclass_exported_funcs=pkg_setup:dotnet src_prepare:- src_compile:- src_install:-
+_eclasses_=dotnet	a6f2dd84e753d8176c07f4d2b383982b	eutils	b83a2420b796f7c6eff682679d08fe25	mono-env	e47f8cb975077b13cdc8db6bab66860c	multilib	165fc17c38d1b11dac2008280dab6e80	toolchain-funcs	1b1da0c45c555989dc5d832b54880783	versionator	99ae9d758cbe7cfed19170e7d48f5a9c
+_md5_=8ef351704122b31b564a5ddfa4256bd9
