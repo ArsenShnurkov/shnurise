@@ -3,6 +3,10 @@
 # $Id$
 
 EAPI=6
+
+KEYWORDS="~amd64 ~x86"
+RESTRICT="mirror"
+
 SLOT="0"
 
 USE_DOTNET="net45"
@@ -14,12 +18,10 @@ NAME="Pliant"
 HOMEPAGE="https://github.com/patrickhuber/${NAME}"
 EGIT_COMMIT="dd03ca2942d999a8eb2e30a51b3ccf8d3c70602d"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
-RESTRICT="mirror"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="modified Earley parser in C# inspired by the Marpa Parser project"
 LICENSE="MIT" # https://github.com/patrickhuber/Pliant/blob/master/LICENSE.md
-KEYWORDS="~amd64 ~ppc ~x86"
 
 COMMON_DEPEND=">=dev-lang/mono-4.0.2.5
 "
