@@ -122,8 +122,7 @@ exbuild() {
 		TOOLS_VERSION=4.0
 	fi
 
-	PARAMETERS="/v:detailed /tv:${TOOLS_VERSION} ""/p:TargetFrameworkVersion=v${FRAMEWORK}"" ""${CARGS}"" ""${SARGS}"" ""$@"""
-	exbuild_raw ${PARAMETERS}
+	exbuild_raw "/v:detailed" "/tv:${TOOLS_VERSION}" "/p:TargetFrameworkVersion=v${FRAMEWORK}" "${CARGS}" "${SARGS}" "$@"
 }
 
 # @FUNCTION: exbuild_strong
@@ -143,19 +142,7 @@ exbuild_strong() {
 		KARGS1=
 		KARGS2=
 	fi
-	PARAMETERS=" ""${KARGS1}"" ""${KARGS2}"" ""$@"""
-	exbuild "${PARAMETERS}"
-}
-
-# @FUNCTION: egacinstall
-# @DESCRIPTION:  install package to GAC
-egacinstall() {
-	use !prefix && has "${EAPI:-0}" 0 1 2 && ED="${D}"
-	gacutil -i "${1}" \
-		-root "${ED}"/usr/$(get_libdir) \
-		-gacdir /usr/$(get_libdir) \
-		-package ${2:-${GACPN:-${PN}}} \
-		|| die "installing ${1} into the Global Assembly Cache failed"
+	exbuild "${KARGS1}" "${KARGS2}" "$@"
 }
 
 # @FUNCTION: dotnet_multilib_comply
