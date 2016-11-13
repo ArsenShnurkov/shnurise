@@ -1,7 +1,7 @@
 ﻿<repositories version="1.0">
     <repo quality="experimental" status="unofficial">
         <name>shnurise</name>
-        <description>shnurise unnoficial overlay</description>
+        <description>packages for mono environment and other</description>
         <homepage>https://github.com/ArsenShnurkov/shnurise</homepage>
         <owner><name>Arsen Shnurkov</name><email>Arsen.Shnurkov@gmail.com</email></owner>
         <source type="git">https://github.com/ArsenShnurkov/shnurise.git</source>
