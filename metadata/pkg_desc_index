@@ -19,6 +19,7 @@ dev-util/gplex-dbremner 1.2.2_p2015112101: C# version of lex (Garden Point Lex)
 dev-util/gppg-dbremner 1.5.2_p2015112101: C# version of lex (Garden Point Lex)
 dev-util/monodevelop 5.9.5.9 5.10.0.609 6.1_p2016062206 9999: Integrated Development Environment for .NET
 dev-util/nunit 2.6.4_p2015011102-r1: NUnit test suite for mono applications
+dev-util/repository-analyser 1.0.0.0: modified Earley parser in C# inspired by the Marpa Parser project
 games-strategy/freeorion 0.4.6_rc2: A free turn-based space empire and galactic conquest game
 net-libs/xulrunner 39.0.3-r20150824: Mozilla runtime package that can be used to bootstrap XUL+XPCOM applications
 www-apps/orchard 1.7.3: CMS written with CSharp
