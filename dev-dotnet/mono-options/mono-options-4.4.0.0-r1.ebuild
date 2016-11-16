@@ -3,22 +3,23 @@
 # $Id$
 
 EAPI=6
-
-# Watch the order of these!
-inherit nupkg
-
 KEYWORDS="~amd64 ~x86"
-IUSE="+gac +nupkg"
+RESTRICT="mirror"
+
+USE_DOTNET="net45"
+IUSE="+${USE_DOTNET}"
+
+inherit gac nupkg
+
+SRC_URI="https://github.com/ArsenShnurkov/shnurise-tarballs/raw/master/mono-4.5.2_p2016061606.tar.bz2"
+S="${WORKDIR}/mono-4.5.2"
+
 SLOT="0"
 
-DESCRIPTION="A Getopt::Long-inspired option parsing library for C#"
+DESCRIPTION="A Getopt.Long-inspired option parsing library for CSharp"
 HOMEPAGE="http://tirania.org/blog/archive/2008/Oct-14.html"
 LICENSE="MIT"
 
-S="${WORKDIR}/mono-4.5.2"
-SRC_URI="https://github.com/ArsenShnurkov/shnurise-tarballs/raw/master/mono-4.5.2_p2016061606.tar.bz2
-	"
-RESTRICT="mirror"
 
 CDEPEND=""
 DEPEND="${CDEPEND}
@@ -27,10 +28,17 @@ DEPEND="${CDEPEND}
 RDEPEND="${CDEPEND}
 	"
 
+get_dlldir() {
+	echo /usr/lib64/mono/mono-options
+}
+
+NUSPEC_VERSION=${PV}
+ASSEMBLY_VERSION=${PV}
+
 src_configure() {
 	# dont' call default configure for the whole mono package, because it is slow
 	cat <<-METADATA >AssemblyInfo.cs || die
-			[assembly: System.Reflection.AssemblyVersion("4.4.0.0")]
+			[assembly: System.Reflection.AssemblyVersion("${ASSEMBLY_VERSION}")]
 		METADATA
 }
 
@@ -46,21 +54,26 @@ src_compile() {
 }
 
 src_install() {
-	insinto "${libdir}"
+	insinto "$(get_dlldir)/slot-${SLOT}"
 	doins "Mono.Options.dll"
 
-	enupkg "${WORKDIR}/Mono.Options.4.4.0.0.nupkg"
+	dosym "slot-${SLOT}/Mono.Options.dll" "$(get_dlldir)/Mono.Options.dll"
+
+	einstall_pc_file ${PN} ${ASSEMBLY_VERSION} Mono.Options
+
+	enupkg "${WORKDIR}/Mono.Options.${NUSPEC_VERSION}.nupkg"
 }
 
 pkg_postinst() {
 	if use gac; then
 		einfo "adding to GAC"
-		gacutil -i "${libdir}/Mono.Options.dll" || die
+		gacutil -i "$(get_dlldir)/slot-${SLOT}/Mono.Options.dll" || die
 	fi
 }
 
 pkg_prerm() {
 	if use gac; then
+		# TODO determine version for uninstall from slot-N dir
 		einfo "removing from GAC"
 		gacutil -u Mono.Options
 		# don't die, it there is no such assembly in GAC

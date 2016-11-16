@@ -1,0 +1,130 @@
+--- a/src/Orchard.Web/Core/Orchard.Core.csproj
++++ b/src/Orchard.Web/Core/Orchard.Core.csproj
+@@ -64,6 +63,7 @@
+     </Reference>
+     <Reference Include="System.Xml" />
+     <Reference Include="System.Xml.Linq" />
++    <Reference Include="System.Data" />
+   </ItemGroup>
+   <ItemGroup>
+     <Compile Include="Common\Controllers\ErrorController.cs" />
+--- a/src/Orchard.Web/Modules/Orchard.Users/Orchard.Users.csproj
++++ b/src/Orchard.Web/Modules/Orchard.Users/Orchard.Users.csproj
+@@ -48,6 +48,7 @@
+   <ItemGroup>
+     <Reference Include="Microsoft.CSharp" />
+     <Reference Include="System" />
++    <Reference Include="System.Data" />
+     <Reference Include="System.ComponentModel.DataAnnotations">
+       <RequiredTargetFramework>3.5</RequiredTargetFramework>
+     </Reference>
+--- a/src/Orchard.Web/Modules/Orchard.Packaging/Orchard.Packaging.csproj
++++ b/src/Orchard.Web/Modules/Orchard.Packaging/Orchard.Packaging.csproj
+@@ -41,6 +41,7 @@
+     <WarningLevel>4</WarningLevel>
+   </PropertyGroup>
+   <ItemGroup>
++    <Reference Include="System.Data" />
+     <Reference Include="Microsoft.CSharp" />
+     <Reference Include="NuGet.Core, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+       <HintPath>..\..\..\..\lib\nuget\NuGet.Core.dll</HintPath>
+--- a/src/Orchard.Web/Modules/Orchard.Media/Orchard.Media.csproj
++++ b/src/Orchard.Web/Modules/Orchard.Media/Orchard.Media.csproj
+@@ -50,6 +50,7 @@
+       <HintPath>..\..\..\..\lib\dotnetzip\Ionic.Zip.dll</HintPath>
+     </Reference>
+     <Reference Include="System" />
++    <Reference Include="System.Data" />
+     <Reference Include="System.ComponentModel.DataAnnotations" />
+     <Reference Include="System.Web" />
+     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+--- a/src/Orchard.Web/Modules/Orchard.Tags/Orchard.Tags.csproj
++++ b/src/Orchard.Web/Modules/Orchard.Tags/Orchard.Tags.csproj
+@@ -44,6 +44,7 @@
+   <ItemGroup>
+     <Reference Include="Microsoft.CSharp" />
+     <Reference Include="System" />
++    <Reference Include="System.Data" />
+     <Reference Include="System.ComponentModel.DataAnnotations" />
+     <Reference Include="System.Web" />
+     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+--- a/src/Orchard.Web/Modules/Orchard.Widgets/Orchard.Widgets.csproj
++++ b/src/Orchard.Web/Modules/Orchard.Widgets/Orchard.Widgets.csproj
+@@ -47,6 +47,7 @@
+   <ItemGroup>
+     <Reference Include="Microsoft.CSharp" />
+     <Reference Include="System" />
++    <Reference Include="System.Data" />
+     <Reference Include="System.ComponentModel.DataAnnotations" />
+     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+       <SpecificVersion>False</SpecificVersion>
+--- a/src/Orchard.Web/Modules/Orchard.Roles/Orchard.Roles.csproj
++++ b/src/Orchard.Web/Modules/Orchard.Roles/Orchard.Roles.csproj
+@@ -48,6 +48,7 @@
+   <ItemGroup>
+     <Reference Include="Microsoft.CSharp" />
+     <Reference Include="System" />
++    <Reference Include="System.Data" />
+     <Reference Include="System.ComponentModel.DataAnnotations" />
+     <Reference Include="System.Web" />
+     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+--- a/src/Orchard.Web/Modules/Orchard.Comments/Orchard.Comments.csproj
++++ b/src/Orchard.Web/Modules/Orchard.Comments/Orchard.Comments.csproj
+@@ -48,6 +48,7 @@
+   <ItemGroup>
+     <Reference Include="Microsoft.CSharp" />
+     <Reference Include="System" />
++    <Reference Include="System.Data" />
+     <Reference Include="System.ComponentModel.DataAnnotations">
+       <RequiredTargetFramework>3.5</RequiredTargetFramework>
+     </Reference>
+--- a/src/Orchard.Web/Modules/Orchard.Search/Orchard.Search.csproj
++++ b/src/Orchard.Web/Modules/Orchard.Search/Orchard.Search.csproj
+@@ -47,6 +47,7 @@
+   <ItemGroup>
+     <Reference Include="Microsoft.CSharp" />
+     <Reference Include="System" />
++    <Reference Include="System.Data" />
+     <Reference Include="System.ComponentModel.DataAnnotations" />
+     <Reference Include="System.Core">
+       <RequiredTargetFramework>3.5</RequiredTargetFramework>
+--- a/src/Orchard.Web/Modules/Orchard.Messaging/Orchard.Messaging.csproj
++++ b/src/Orchard.Web/Modules/Orchard.Messaging/Orchard.Messaging.csproj
+@@ -40,6 +40,7 @@
+   </PropertyGroup>
+   <ItemGroup>
+     <Reference Include="System" />
++    <Reference Include="System.Data" />
+     <Reference Include="System.ComponentModel.DataAnnotations" />
+     <Reference Include="Microsoft.CSharp" />
+     <Reference Include="System.Web" />
+--- a/src/Orchard.Web/Modules/Orchard.Indexing/Orchard.Indexing.csproj
++++ b/src/Orchard.Web/Modules/Orchard.Indexing/Orchard.Indexing.csproj
+@@ -46,6 +46,7 @@
+   <ItemGroup>
+     <Reference Include="Microsoft.CSharp" />
+     <Reference Include="System" />
++    <Reference Include="System.Data" />
+     <Reference Include="System.Core" />
+     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+       <SpecificVersion>False</SpecificVersion>
+--- a/src/Orchard.Web/Modules/Orchard.Blogs/Orchard.Blogs.csproj
++++ b/src/Orchard.Web/Modules/Orchard.Blogs/Orchard.Blogs.csproj
+@@ -48,6 +48,7 @@
+   <ItemGroup>
+     <Reference Include="Microsoft.CSharp" />
+     <Reference Include="System" />
++    <Reference Include="System.Data" />
+     <Reference Include="System.ComponentModel.DataAnnotations">
+       <RequiredTargetFramework>3.5</RequiredTargetFramework>
+     </Reference>
+--- a/src/Orchard.Web/Modules/Orchard.Taxonomies/Orchard.Taxonomies.csproj
++++ b/src/Orchard.Web/Modules/Orchard.Taxonomies/Orchard.Taxonomies.csproj
+@@ -46,6 +46,7 @@
+   <ItemGroup>
+     <Reference Include="Microsoft.CSharp" />
+     <Reference Include="System" />
++    <Reference Include="System.Data" />
+     <Reference Include="System.ComponentModel.DataAnnotations">
+       <RequiredTargetFramework>3.5</RequiredTargetFramework>
+     </Reference>

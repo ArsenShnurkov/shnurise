@@ -1,0 +1,61 @@
+--- src/Orchard.sln
++++ src/Orchard.sln
+@@ -173,7 +173,7 @@
+ EndProject
+ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orchard.ImportExport", "Orchard.Web\Modules\Orchard.ImportExport\Orchard.ImportExport.csproj", "{FE5C5947-D2D5-42C5-992A-13D672946135}"
+ EndProject
+-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orchard.Warmup", "Orchard.Web\Modules\Orchard.WarmUp\Orchard.Warmup.csproj", "{9CD5C81F-5828-4384-8474-2E2BE71D5EDD}"
++Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orchard.Warmup", "Orchard.Web\Modules\Orchard.Warmup\Orchard.Warmup.csproj", "{9CD5C81F-5828-4384-8474-2E2BE71D5EDD}"
+ EndProject
+ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orchard.WarmupStarter", "Orchard.WarmupStarter\Orchard.WarmupStarter.csproj", "{5C0D5249-AEF5-4BB6-8F5F-057B91AC2D7A}"
+ EndProject
+--- src/Orchard.Tests/Orchard.Framework.Tests.csproj
++++ src/Orchard.Tests/Orchard.Framework.Tests.csproj
+@@ -243,7 +243,7 @@
+     <Compile Include="Environment\RunningShellTableTests.cs" />
+     <Compile Include="Environment\StubHostEnvironment.cs" />
+     <Compile Include="Environment\Utility\Build.cs" />
+-    <Compile Include="Environment\Warmup\WarmupUtilityTests.cs" />
++    <Compile Include="Environment\WarmUp\WarmUpUtilityTests.cs" />
+     <Compile Include="FileSystems\AppData\AppDataFolderTests.cs" />
+     <Compile Include="Environment\Configuration\DefaultTenantManagerTests.cs" />
+     <Compile Include="Environment\DefaultCompositionStrategyTests.cs" />
+--- src/Orchard.Web/Modules/Orchard.Blogs/Orchard.Blogs.csproj
++++ src/Orchard.Web/Modules/Orchard.Blogs/Orchard.Blogs.csproj
+@@ -85,10 +85,10 @@
+     <Compile Include="Handlers\BlogPartArchiveHandler.cs" />
+     <Compile Include="Models\BlogPartArchiveRecord.cs" />
+     <Compile Include="Permissions.cs" />
+-    <Compile Include="Routing\ArchiveConstraint.cs" />
+-    <Compile Include="Routing\IArchiveConstraint.cs" />
+-    <Compile Include="Routing\RsdConstraint.cs" />
+-    <Compile Include="Routing\IRsdConstraint.cs" />
++    <Compile Include="Routing\ArchiveConstraint.CS" />
++    <Compile Include="Routing\IArchiveConstraint.CS" />
++    <Compile Include="Routing\RsdConstraint.CS" />
++    <Compile Include="Routing\IRsdConstraint.CS" />
+     <Compile Include="Security\BlogAuthorizationEventHandler.cs" />
+     <Compile Include="Services\ArchiveService.cs" />
+     <Compile Include="Services\BlogService.cs" />
+--- src/Orchard.Web/Modules/Orchard.Recipes/Orchard.Recipes.csproj
++++ src/Orchard.Web/Modules/Orchard.Recipes/Orchard.Recipes.csproj
+@@ -67,7 +67,7 @@
+     <Compile Include="RecipeHandlers\CommandRecipeHandler.cs" />
+     <Compile Include="RecipeHandlers\DataRecipeHandler.cs" />
+     <Compile Include="RecipeHandlers\FeatureRecipeHandler.cs" />
+-    <Compile Include="RecipeHandlers\MetadataRecipeHandler.cs" />
++    <Compile Include="RecipeHandlers\MetaDataRecipeHandler.cs" />
+     <Compile Include="RecipeHandlers\MigrationRecipeHandler.cs" />
+     <Compile Include="RecipeHandlers\ModuleRecipeHandler.cs" />
+     <Compile Include="RecipeHandlers\SettingsRecipeHandler.cs" />
+--- src/Orchard.Tests.Modules/Orchard.Tests.Modules.csproj
++++ src/Orchard.Tests.Modules/Orchard.Tests.Modules.csproj
+@@ -272,7 +272,7 @@
+       <Project>{79aed36e-abd0-4747-93d3-8722b042454b}</Project>
+       <Name>Orchard.Users</Name>
+     </ProjectReference>
+-    <ProjectReference Include="..\Orchard.Web\Modules\Orchard.WarmUp\Orchard.Warmup.csproj">
++    <ProjectReference Include="..\Orchard.Web\Modules\Orchard.Warmup\Orchard.Warmup.csproj">
+       <Project>{9CD5C81F-5828-4384-8474-2E2BE71D5EDD}</Project>
+       <Name>Orchard.Warmup</Name>
+     </ProjectReference>
