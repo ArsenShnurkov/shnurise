@@ -6,7 +6,7 @@ dev-db/sharphsql 1.4-r20150714: Small & embebdded database engine witten in C#, 
 dev-dotnet/aspnetwebstack 2014.10.27 9999: Mono copy of the Microsoft ASP.NET Web Stack (MVC, Razor etc)
 dev-dotnet/htmlparsersharp 1.0.0.0-r20150614: Validator.nu HTML Parser, a HTML5 parser, port from Java Version 1.4 to C#
 dev-dotnet/icsharpcode-nrefactory 5.5.1: NRefactory supports analysis of C# source code
-dev-dotnet/mono-options 4.4.0.0: A Getopt::Long-inspired option parsing library for C#
+dev-dotnet/mono-options 4.4.0.0-r1: A Getopt.Long-inspired option parsing library for CSharp
 dev-dotnet/newtonsoft-json 6.0.8: Json.NET is a popular high-performance JSON framework for .NET
 dev-dotnet/nuget 2.8.1-r1: Nuget - .NET Package Manager
 dev-dotnet/pliant 0.4.1_p2016081902: modified Earley parser in C# inspired by the Marpa Parser project
@@ -21,3 +21,4 @@ dev-util/monodevelop 5.9.5.9 5.10.0.609 6.1_p2016062206 9999: Integrated Develop
 dev-util/nunit 2.6.4_p2015011102-r1: NUnit test suite for mono applications
 games-strategy/freeorion 0.4.6_rc2: A free turn-based space empire and galactic conquest game
 net-libs/xulrunner 39.0.3-r20150824: Mozilla runtime package that can be used to bootstrap XUL+XPCOM applications
+www-apps/orchard 1.7.3: CMS written with CSharp

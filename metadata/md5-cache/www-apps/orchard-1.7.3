@@ -1,0 +1,15 @@
+DEFINED_PHASES=compile install prepare setup
+DEPEND=>=dev-lang/mono-4.9.0.729-r1 www-apache/mod_mono dev-dotnet/castle-core dev-dotnet/autofac dev-dotnet/autofac-configuration dev-lang/mono
+DESCRIPTION=CMS written with CSharp
+EAPI=6
+HOMEPAGE=http://www.orchardproject.net/
+IUSE=vhosts debug developer net45
+KEYWORDS=~amd64 ~x86
+LICENSE=BSD
+RDEPEND=>=dev-lang/mono-4.9.0.729-r1 www-apache/mod_mono dev-dotnet/castle-core dev-dotnet/autofac dev-dotnet/autofac-configuration
+RESTRICT=mirror
+SLOT=1.7.3
+SRC_URI=http://download-codeplex.sec.s-msft.com/Download/Release?ProjectName=orchard&DownloadId=820579&FileTime=130405900542070000&Build=21031 -> orchard-1.7.3.zip
+_eclass_exported_funcs=pkg_setup:dotnet src_prepare:- src_compile:- src_install:-
+_eclasses_=dotnet	a6f2dd84e753d8176c07f4d2b383982b	eutils	b83a2420b796f7c6eff682679d08fe25	mono-env	e47f8cb975077b13cdc8db6bab66860c	multilib	165fc17c38d1b11dac2008280dab6e80	toolchain-funcs	1b1da0c45c555989dc5d832b54880783	versionator	99ae9d758cbe7cfed19170e7d48f5a9c
+_md5_=a40864b753d1da0aeb4af8e7addeca05
