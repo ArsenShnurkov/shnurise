@@ -52,6 +52,7 @@ dev-dotnet/slntools:developer - enables debug information for any of debug and r
 dev-dotnet/slntools:nupkg - creates local nuget package
 dev-gaclibs/Autopsy-Formats-PeCoff:debug - Create .mdb files for release configuration
 dev-gaclibs/github-api:debug - Create .mdb files for release configuration
+dev-util/mono-packaging-tools:aot - compile to machine code and store to disk during install, to save time later during startups
 dev-util/monodevelop:git - Enable Git version control support
 dev-util/monodevelop:gnome - Enable support gnome support (unsetting this flag is unsupported)
 dev-util/monodevelop:qtcurve - Remove qtcurve check (unsupported)
