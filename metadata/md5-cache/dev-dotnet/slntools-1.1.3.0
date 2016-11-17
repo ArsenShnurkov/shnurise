@@ -1,0 +1,15 @@
+DEFINED_PHASES=compile install prepare setup
+DEPEND=>=dev-lang/mono-4.0.2.5 sys-apps/sed dev-lang/mono dev-lang/mono nupkg? ( dev-dotnet/nuget )
+DESCRIPTION=library for merging .sln files, and cli-tool
+EAPI=6
+HOMEPAGE=https://github.com/ArsenShnurkov/slntools
+IUSE=+net45 debug developer cli +gac +pkg-config +symlink debug developer net45 +nupkg
+KEYWORDS=~amd64 ~x86
+LICENSE=MIT
+RDEPEND=>=dev-lang/mono-4.0.2.5 dev-lang/mono nupkg? ( dev-dotnet/nuget )
+RESTRICT=mirror
+SLOT=0
+SRC_URI=https://github.com/ArsenShnurkov/slntools/archive/705869e96a2f0e401be03f8e8478df3e1f2b9373.zip -> slntools-1.1.3.0.zip
+_eclass_exported_funcs=pkg_setup:dotnet src_prepare:- src_compile:- src_install:-
+_eclasses_=dotnet	a6f2dd84e753d8176c07f4d2b383982b	eutils	b83a2420b796f7c6eff682679d08fe25	gac	24fc527806a0de6ca2df8947a5771f31	mono-env	e47f8cb975077b13cdc8db6bab66860c	multilib	165fc17c38d1b11dac2008280dab6e80	nupkg	48249a52685fd9ba095c2321d341842d	toolchain-funcs	1b1da0c45c555989dc5d832b54880783	versionator	99ae9d758cbe7cfed19170e7d48f5a9c
+_md5_=46dd3e04ec36b10997ff6e6cf9bd137f

@@ -10,7 +10,7 @@ dev-dotnet/mono-options 4.4.0.0-r1: A Getopt.Long-inspired option parsing librar
 dev-dotnet/newtonsoft-json 6.0.8: Json.NET is a popular high-performance JSON framework for .NET
 dev-dotnet/nuget 2.8.1-r1: Nuget - .NET Package Manager
 dev-dotnet/pliant 0.4.1_p2016081902: modified Earley parser in C# inspired by the Marpa Parser project
-dev-dotnet/slntools 1.1.3-r201508170: Validator.nu HTML Parser, a HTML5 parser, port from Java Version 1.4 to C#
+dev-dotnet/slntools 1.1.3.0: library for merging .sln files, and cli-tool
 dev-gaclibs/Autopsy-Formats-PeCoff 1.0: Safe and static parsing for PE/COFF/LIB formats
 dev-gaclibs/github-api 0.0-r20150331: C# API for github, based on RestSharp
 dev-gaclibs/ndepend-path 0.0_p20140130: C# framework for paths operations: File, Directory, Absolute, Drive Letter, UNC, Relative, prefixed
