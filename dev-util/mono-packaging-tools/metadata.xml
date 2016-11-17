@@ -11,7 +11,6 @@
 	</upstream>
 	<use>
 		<flag name='aot'>compile to machine code and store to disk during install, to save time later during startups</flag>
-		<flag name='pkg-config'>create .pc file(s) for .dll(s) installed to gac</flag>
 	</use>
 	<longdescription lang="en">
 		Various utils for packaging mono projects

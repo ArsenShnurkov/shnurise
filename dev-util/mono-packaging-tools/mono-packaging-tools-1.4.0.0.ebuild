@@ -13,7 +13,7 @@ USE_DOTNET="net45"
 # nupkg = create .nupkg file from .nuspec
 # gac = install into gac
 # pkg-config = register in pkg-config database
-IUSE="${USE_DOTNET} debug test +developer +aot +nupkg +gac +pkg-config doc"
+IUSE="+${USE_DOTNET} debug +developer test +aot doc"
 
 inherit gac nupkg
 
@@ -132,8 +132,6 @@ install_tool() {
 		DIR="Release"
 	fi
 
-	MONO=/usr/bin/mono
-
 	# installs .exe, .exe.config (if any), .mdb (if exists)
 	doins "$1"/bin/${DIR}/*.exe
 	if [ -f "$1"/bin/${DIR}/*.exe.config ]; then
@@ -142,7 +140,10 @@ install_tool() {
 	if use developer; then
 		doins "$1"/bin/${DIR}/*.mdb
 	fi
-	if use developer; then
+
+	MONO=/usr/bin/mono
+
+	if use debug; then
 		make_wrapper "$1" "${MONO} --debug /usr/share/${PN}/slot-${SLOT}/$1.exe"
 	else
 		make_wrapper "$1" "${MONO} /usr/share/${PN}/slot-${SLOT}/$1.exe"
