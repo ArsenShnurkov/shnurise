@@ -31,15 +31,14 @@ HOMEPAGE="http://arsenshnurkov.github.io/mono-packaging-tools"
 
 REPOSITORY_URL="https://github.com/ArsenShnurkov/${NAME}"
 
-EGIT_COMMIT="479e37328964b5a02370c19393f704e42e21005b"
-REVISION="$(get_revision ${EGIT_COMMIT}, ${BASE_COMMIT})"
+EGIT_COMMIT="216226944f94c5eb36207326c5c32b279e708a48"
 SRC_URI="${REPOSITORY_URL}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
 RESTRICT="mirror"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 SLOT="0"
 
-DESCRIPTION="mono packaging helpers"
+DESCRIPTION="Command line utilities for packaging mono assemblies with portage"
 LICENSE="GPL-3"
 LICENSE_URL="https://raw.githubusercontent.com/ArsenShnurkov/mono-packaging-tools/master/LICENSE"
 
