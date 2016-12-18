@@ -31,7 +31,7 @@ HOMEPAGE="http://arsenshnurkov.github.io/mono-packaging-tools"
 
 REPOSITORY_URL="https://github.com/ArsenShnurkov/${NAME}"
 
-EGIT_COMMIT="83631c356c763996c8e73aa829c93cb9db180ee8"
+EGIT_COMMIT="24192d6c79952f3d8a826f1842fb6627233d95e3"
 SRC_URI="${REPOSITORY_URL}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
 RESTRICT="mirror"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
