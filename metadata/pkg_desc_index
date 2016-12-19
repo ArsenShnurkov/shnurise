@@ -4,6 +4,7 @@ app-misc/aha 0.4.7.2: Ansi HTML Adapter
 app-office/projectlibre-bin 1.6.2: A free and open source desktop alternative to Microsoft Project
 dev-db/sharphsql 1.4-r20150714: Small & embebdded database engine witten in C#, port of the Hypersonic SQL v1.4 (HSQL) Java project
 dev-dotnet/aspnetwebstack 2014.10.27 9999: Mono copy of the Microsoft ASP.NET Web Stack (MVC, Razor etc)
+dev-dotnet/castle-core 4.0.0_beta1: including Castle DynamicProxy, Logging Services and DictionaryAdapter
 dev-dotnet/htmlparsersharp 1.0.0.0-r20150614: Validator.nu HTML Parser, a HTML5 parser, port from Java Version 1.4 to C#
 dev-dotnet/icsharpcode-nrefactory 5.5.1: NRefactory supports analysis of C# source code
 dev-dotnet/mono-options 4.4.0.0-r1: A Getopt.Long-inspired option parsing library for CSharp
