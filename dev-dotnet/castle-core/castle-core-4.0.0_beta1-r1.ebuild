@@ -3,7 +3,7 @@
 # $Id$
 
 EAPI=6
-SLOT="0"
+SLOT="4"
 
 USE_DOTNET="net45"
 IUSE="+${USE_DOTNET} +gac developer debug doc"
