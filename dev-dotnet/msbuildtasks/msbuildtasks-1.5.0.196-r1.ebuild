@@ -10,7 +10,7 @@ USE_DOTNET="net45"
 
 inherit gac dotnet
 
-SRC_URI="https://github.com/loresoft/msbuildtasks/archive/1.5.0.196.tar.gz -> ${PV}.tar.gz"
+SRC_URI="https://github.com/loresoft/msbuildtasks/archive/1.5.0.196.tar.gz -> ${PN}-${PV}.tar.gz"
 RESTRICT="mirror"
 S="${WORKDIR}/${PN}-${PV}"
 
@@ -46,6 +46,9 @@ src_install() {
 	fi
 	egacinstall "Source/MSBuild.Community.Tasks/bin/${DIR}/MSBuild.Community.Tasks.dll"
 	einstall_pc_file "${PN}" "${PV}" "MSBuild.Community.Tasks"
-	insinto "/usr/lib/mono/4.5"
+
+	insinto "/usr/lib/mono/xbuild/12.0/bin"
+	doins "Source/MSBuild.Community.Tasks/MSBuild.Community.Tasks.Targets"
+	insinto "/usr/lib/mono/xbuild/14.0/bin"
 	doins "Source/MSBuild.Community.Tasks/MSBuild.Community.Tasks.Targets"
 }
