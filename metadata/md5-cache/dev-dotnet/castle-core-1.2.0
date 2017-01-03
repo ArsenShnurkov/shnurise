@@ -1,5 +1,5 @@
 DEFINED_PHASES=compile install prepare setup
-DEPEND=>=dev-lang/mono-4.0.2.5 dev-lang/mono dev-lang/mono
+DEPEND=>=dev-lang/mono-4.0.2.5 >=dev-util/mono-packaging-tools-1.4.1.6 dev-lang/mono dev-lang/mono
 DESCRIPTION=including Castle DynamicProxy, Logging Services and DictionaryAdapter
 EAPI=6
 HOMEPAGE=http://www.castleproject.org/
@@ -8,8 +8,8 @@ KEYWORDS=~amd64 ~ppc ~x86
 LICENSE=Apache-2.0
 RDEPEND=>=dev-lang/mono-4.0.2.5 dev-lang/mono
 RESTRICT=mirror
-SLOT=0
-SRC_URI=https://github.com/castleproject/Core/archive/v4.0.0-beta001.tar.gz -> castle-core-4.0.0_beta1.tar.gz
+SLOT=1
+SRC_URI=https://github.com/castleproject/Castle.Core-READONLY/archive/44859cac767ff02dfc43911c4ce4a571625648b0.tar.gz -> castle-core-1.2.0.tar.gz
 _eclass_exported_funcs=pkg_setup:dotnet src_prepare:- src_compile:- src_install:-
 _eclasses_=dotnet	a6f2dd84e753d8176c07f4d2b383982b	eutils	b83a2420b796f7c6eff682679d08fe25	gac	24fc527806a0de6ca2df8947a5771f31	mono-env	e47f8cb975077b13cdc8db6bab66860c	multilib	165fc17c38d1b11dac2008280dab6e80	toolchain-funcs	1b1da0c45c555989dc5d832b54880783	versionator	99ae9d758cbe7cfed19170e7d48f5a9c
-_md5_=821a6bad56a0a16aac41471d2aa19b9a
+_md5_=47fe9fa4d2187a1093f844d3d7c5524c
