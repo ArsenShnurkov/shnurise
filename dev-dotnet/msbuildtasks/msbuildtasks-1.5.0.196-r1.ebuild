@@ -46,6 +46,9 @@ src_install() {
 	fi
 	egacinstall "Source/MSBuild.Community.Tasks/bin/${DIR}/MSBuild.Community.Tasks.dll"
 	einstall_pc_file "${PN}" "${PV}" "MSBuild.Community.Tasks"
-	insinto "/usr/lib/mono/4.5"
+
+	insinto "/usr/lib/mono/xbuild/12.0/bin"
+	doins "Source/MSBuild.Community.Tasks/MSBuild.Community.Tasks.Targets"
+	insinto "/usr/lib/mono/xbuild/14.0/bin"
 	doins "Source/MSBuild.Community.Tasks/MSBuild.Community.Tasks.Targets"
 }
