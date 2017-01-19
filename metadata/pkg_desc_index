@@ -19,7 +19,7 @@ dev-gaclibs/ndepend-path 0.0_p20140130: C# framework for paths operations: File,
 dev-lang/mono 4.5.2_p2016061506 4.6.2.6 4.8.0.309 4.9.0.729-r1 4.9.0.729-r3: Mono runtime and class libraries, a C# compiler/interpreter
 dev-util/gplex-dbremner 1.2.2_p2015112101: C# version of lex (Garden Point Lex)
 dev-util/gppg-dbremner 1.5.2_p2015112101: C# version of lex (Garden Point Lex)
-dev-util/mono-packaging-tools 1.4.1.5 1.4.1.6 1.4.2.0: Command line utilities for packaging mono assemblies with portage
+dev-util/mono-packaging-tools 1.4.1.5 1.4.1.6 1.4.2.0 1.4.2.1: Command line utilities for packaging mono assemblies with portage
 dev-util/monodevelop 5.9.5.9 5.10.0.609 6.1_p2016062206 9999: Integrated Development Environment for .NET
 dev-util/nunit 2.6.4_p2015011102-r1: NUnit test suite for mono applications
 dev-util/repository-analyser 1.0.0.0: modified Earley parser in C# inspired by the Marpa Parser project

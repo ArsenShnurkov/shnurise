@@ -12,4 +12,4 @@ SLOT=1
 SRC_URI=https://github.com/castleproject/Castle.Core-READONLY/archive/44859cac767ff02dfc43911c4ce4a571625648b0.tar.gz -> castle-core-1.2.0.tar.gz
 _eclass_exported_funcs=pkg_setup:dotnet src_prepare:- src_compile:- src_install:-
 _eclasses_=dotnet	a6f2dd84e753d8176c07f4d2b383982b	eutils	017377e73405d964cd0137088cddb9c3	gac	24fc527806a0de6ca2df8947a5771f31	mono-env	e47f8cb975077b13cdc8db6bab66860c	multilib	165fc17c38d1b11dac2008280dab6e80	toolchain-funcs	1b1da0c45c555989dc5d832b54880783	versionator	99ae9d758cbe7cfed19170e7d48f5a9c
-_md5_=47fe9fa4d2187a1093f844d3d7c5524c
+_md5_=c4e45ed626767b5bbd1f900b975244c5
