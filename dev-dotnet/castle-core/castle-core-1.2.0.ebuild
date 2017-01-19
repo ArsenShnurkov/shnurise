@@ -38,20 +38,7 @@ src_prepare() {
 }
 
 src_compile() {
-	if use debug; then
-		CARGS=/p:Configuration=Debug
-	else
-		CARGS=/p:Configuration=Release
-	fi
-
-	if use developer; then
-		SARGS=/p:DebugSymbols=True
-	else
-		SARGS=/p:DebugSymbols=False
-	fi
-
-	exbuild_raw /v:detailed /tv:4.0 /p:TargetFrameworkVersion=v4.5 \
-		${CARGS} ${SARGS} /p:VersionNumber=${PV}.0 \
+	exbuild_strong /p:VersionNumber=${PV}.0 \
 		"/p:RootPath=${S}/src" "src/Core-vs2008.sln"
 }
 
