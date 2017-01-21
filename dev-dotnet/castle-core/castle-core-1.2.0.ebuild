@@ -26,19 +26,21 @@ COMMON_DEPEND=">=dev-lang/mono-4.0.2.5
 RDEPEND="${COMMON_DEPEND}
 "
 DEPEND="${COMMON_DEPEND}
-	>=dev-util/mono-packaging-tools-1.4.1.6
+	>=dev-util/mono-packaging-tools-1.4.2.2
 "
 
 src_prepare() {
-	#eapply "${FILESDIR}/remove-warnings-as-errors-${PV}.patch"
-	#eapply "${FILESDIR}/add-version-property-handling.patch"
-	mpt-csproj --remove-warnings-as-errors ./src || die "removing warning-as-error failed"
-	mpt-csproj --remove-signing ./src || die "removing signing failed"
+	mpt-csproj ./src --remove-warnings-as-errors || die "removing warning-as-error failed"
+	mpt-csproj ./src --remove-signing || die "removing signing failed"
+	mpt-csproj ./src --inject-import='$(MSBuildToolsPath)\MSBuild.Community.Tasks.Targets' || die "injecting import falied"
+	mpt-csproj ./src --inject-versioning=VersionNumber || die "injecting versioning falied"
+	# https://github.com/castleproject/Core/raw/master/buildscripts/CastleKey.snk
+	mpt-csproj ./src/Castle.Core --inject-InternalsVisibleTo=Castle.Core.Tests --AssemblyOriginatorKeyFile=${FILESDIR}/CastleKey.snk || die
 	eapply_user
 }
 
 src_compile() {
-	exbuild_strong /p:VersionNumber=${PV}.0 \
+	exbuild /p:SignAssembly=true /p:AssemblyOriginatorKeyFile=${FILESDIR}/CastleKey.snk /p:VersionNumber=${PV}.0 \
 		"/p:RootPath=${S}/src" "src/Core-vs2008.sln"
 }
 
