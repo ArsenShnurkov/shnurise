@@ -26,7 +26,7 @@ COMMON_DEPEND=">=dev-lang/mono-4.0.2.5
 RDEPEND="${COMMON_DEPEND}
 "
 DEPEND="${COMMON_DEPEND}
-	>=dev-util/mono-packaging-tools-1.4.2.1
+	>=dev-util/mono-packaging-tools-1.4.2.2
 "
 
 src_prepare() {
