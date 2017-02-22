@@ -10,5 +10,5 @@ RDEPEND=|| ( >=dev-lang/mono-3.12.0 <dev-lang/mono-9999 )
 SLOT=0
 SRC_URI=https://github.com/ArsenShnurkov/Autopsy.Formats.PeCoff/archive/061d8a27b13db5a76cae4757bb902b2808494a83.zip -> Autopsy-Formats-PeCoff-1.0.zip
 _eclass_exported_funcs=pkg_setup:dotnet src_compile:- src_install:-
-_eclasses_=dotnet	a6f2dd84e753d8176c07f4d2b383982b	eutils	ea170b525f6a38a006be05c9d9429f13	mono-env	e47f8cb975077b13cdc8db6bab66860c	multilib	165fc17c38d1b11dac2008280dab6e80	toolchain-funcs	1b1da0c45c555989dc5d832b54880783	versionator	99ae9d758cbe7cfed19170e7d48f5a9c
+_eclasses_=dotnet	a6f2dd84e753d8176c07f4d2b383982b	eutils	708f85bc1bf00876604e223fb56e062a	mono-env	e47f8cb975077b13cdc8db6bab66860c	multilib	165fc17c38d1b11dac2008280dab6e80	toolchain-funcs	1b1da0c45c555989dc5d832b54880783	versionator	99ae9d758cbe7cfed19170e7d48f5a9c
 _md5_=ba12f4a25396b204b370b49ec464485c
