@@ -1,0 +1,15 @@
+DEFINED_PHASES=compile install prepare setup
+DEPEND=>=dev-lang/mono-4.0.2.5 dev-lang/mono dev-lang/mono dev-lang/mono nupkg? ( dev-dotnet/nuget )
+DESCRIPTION=modified Earley parser in C# inspired by the Marpa Parser project
+EAPI=6
+HOMEPAGE=https://github.com/patrickhuber/Pliant
+IUSE=+net45 +gac +nupkg developer debug doc +gac +pkg-config +symlink debug developer net45 debug developer net45 +nupkg
+KEYWORDS=~amd64 ~x86
+LICENSE=MIT
+RDEPEND=>=dev-lang/mono-4.0.2.5 dev-lang/mono nupkg? ( dev-dotnet/nuget )
+RESTRICT=mirror
+SLOT=0
+SRC_URI=https://github.com/patrickhuber/Pliant/archive/7a4b3a2c8d9416092293480464d502be7e0323e5.tar.gz -> pliant-0.4.2.1.tar.gz
+_eclass_exported_funcs=pkg_setup:dotnet src_prepare:- src_compile:- src_install:-
+_eclasses_=dotnet	a6f2dd84e753d8176c07f4d2b383982b	eutils	3c847a0129fed780bd709b98e426f89c	gac	24fc527806a0de6ca2df8947a5771f31	mono-env	e47f8cb975077b13cdc8db6bab66860c	multilib	0236be304ee52e7f179ed2f337075515	nupkg	48249a52685fd9ba095c2321d341842d	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee	versionator	c80ccf29e90adea7c5cae94b42eb76d0
+_md5_=8709c6725845f791c16ac492406166ee

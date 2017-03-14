@@ -11,7 +11,7 @@ dev-dotnet/mono-options 4.4.0.0-r1: A Getopt.Long-inspired option parsing librar
 dev-dotnet/msbuildtasks 1.5.0.196-r1: The MSBuild Community Tasks Project is an open source project for MSBuild tasks.
 dev-dotnet/newtonsoft-json 6.0.8: Json.NET is a popular high-performance JSON framework for .NET
 dev-dotnet/nuget 2.8.1-r1: Nuget - .NET Package Manager
-dev-dotnet/pliant 0.4.1_p2016081902: modified Earley parser in C# inspired by the Marpa Parser project
+dev-dotnet/pliant 0.4.1_p2016081902 0.4.2.1: modified Earley parser in C# inspired by the Marpa Parser project
 dev-dotnet/slntools 1.1.3.0: library for merging .sln files, and cli-tool
 dev-gaclibs/Autopsy-Formats-PeCoff 1.0: Safe and static parsing for PE/COFF/LIB formats
 dev-gaclibs/github-api 0.0-r20150331: C# API for github, based on RestSharp
