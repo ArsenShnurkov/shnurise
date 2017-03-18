@@ -10,5 +10,5 @@ RDEPEND=>=dev-lang/mono-4.0.2.5 dev-util/nant[nupkg] nupkg? ( dev-dotnet/nuget )
 SLOT=2
 SRC_URI=https://github.com/nunit/nunitv2/archive/1b549f4f8b067518c7b54a5b263679adb83ccda4.zip -> nunit-2.6.4_p2015011102-r1.zip
 _eclass_exported_funcs=pkg_setup:dotnet src_unpack:nuget src_prepare:- src_configure:nuget src_compile:- src_install:-
-_eclasses_=dotnet	a6f2dd84e753d8176c07f4d2b383982b	eutils	3c847a0129fed780bd709b98e426f89c	mono-env	e47f8cb975077b13cdc8db6bab66860c	multilib	0236be304ee52e7f179ed2f337075515	nuget	5753ec4af7657f5613186168f25be1c2	nupkg	48249a52685fd9ba095c2321d341842d	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee	versionator	c80ccf29e90adea7c5cae94b42eb76d0
+_eclasses_=dotnet	a6f2dd84e753d8176c07f4d2b383982b	epatch	122e1264e67c4f59a1482f2095e0b35d	estack	5ac2a138d0b33354b764d84f9e835db8	eutils	1ef31aee2bd63ffbfcae8a1843c9208d	ltprune	2770eed66a9b8ef944714cd0e968182e	mono-env	e47f8cb975077b13cdc8db6bab66860c	multilib	0236be304ee52e7f179ed2f337075515	nuget	5753ec4af7657f5613186168f25be1c2	nupkg	48249a52685fd9ba095c2321d341842d	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee	versionator	c80ccf29e90adea7c5cae94b42eb76d0
 _md5_=7a405db58fd9dd04a2f4a3d890157530
