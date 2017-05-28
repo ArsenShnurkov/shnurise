@@ -56,6 +56,4 @@ dev-util/mono-packaging-tools:aot - compile to machine code and store to disk du
 dev-util/monodevelop:git - Enable Git version control support
 dev-util/monodevelop:gnome - Enable support gnome support (unsetting this flag is unsupported)
 dev-util/monodevelop:qtcurve - Remove qtcurve check (unsupported)
-dev-util/nunit:developer - enables debug information for any of debug and release builds
-dev-util/nunit:nupkg - creates local nuget package
 net-libs/xulrunner:custom-optimization - Fine-tune custom compiler optimizations
