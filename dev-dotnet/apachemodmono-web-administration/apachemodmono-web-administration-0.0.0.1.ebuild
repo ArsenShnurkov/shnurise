@@ -15,7 +15,7 @@ inherit gac nupkg
 
 NAME=ApacheModmono.Web.Administration
 HOMEPAGE="https://github.com/ArsenShnurkov/${NAME}"
-EGIT_COMMIT="7f0b9abac134973deb82486982bf4e65be2243dd"
+EGIT_COMMIT="d720185fbb5fe1ef959d608c468ec3027c58164d"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
@@ -27,14 +27,17 @@ COMMON_DEPEND=">=dev-lang/mono-4.0.2.5
 RDEPEND="${COMMON_DEPEND}
 "
 DEPEND="${COMMON_DEPEND}
+	>=dev-dotnet/msbuildtasks-1.5.0.240
 "
+
+ASSEMBLY_VERSION="${PV}"
 
 src_prepare() {
 	eapply_user
 }
 
 src_compile() {
-	exbuild_strong "${NAME}.sln"
+	exbuild_strong /p:VersionNumber="${ASSEMBLY_VERSION}" "${NAME}.sln"
 }
 
 src_install() {
