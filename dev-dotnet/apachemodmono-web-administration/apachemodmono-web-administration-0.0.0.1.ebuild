@@ -46,6 +46,28 @@ src_install() {
 	else
 		DIR=Release
 	fi
-	egacinstall "${NAME}/bin/${DIR}/${NAME}.dll"
+	insinto "/usr/lib/mono/${EBUILD_FRAMEWORK}"
+	doins "${NAME}/bin/${DIR}/${NAME}.dll"
+	if use developer; then
+		doins "${NAME}/bin/${DIR}/${NAME}.dll.mdb"
+	fi
 	einstall_pc_file "${PN}" "${PV}" "${NAME}"
+}
+
+pkg_preinst()
+{
+	egacadd "${D}/usr/lib/mono/${EBUILD_FRAMEWORK}/${NAME}.dll"
+	rm "${D}/usr/lib/mono/${EBUILD_FRAMEWORK}/${NAME}.dll" || die
+	if use developer; then
+		rm "${D}/usr/lib/mono/${EBUILD_FRAMEWORK}/${NAME}.dll.mdb"
+	fi
+	rmdir "${D}/usr/lib/mono/${EBUILD_FRAMEWORK}" || die
+	rmdir "${D}/usr/lib/mono" || die
+	rmdir "${D}/usr/lib" || die
+	# rmdir "${D}/usr" - it is not empty, contains lib64
+}
+
+pkg_prerm()
+{
+	egacdel "${NAME}"
 }
