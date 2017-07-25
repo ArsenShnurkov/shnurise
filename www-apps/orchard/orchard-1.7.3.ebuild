@@ -27,6 +27,7 @@ CDEPEND="
 	dev-dotnet/castle-core
 	dev-dotnet/autofac
 	dev-dotnet/autofac-configuration
+	>=dev-dotnet/log4net-1.2.11-r2
 "
 DEPEND="${CDEPEND}"
 RDEPEND="${CDEPEND}"
@@ -43,7 +44,7 @@ src_prepare() {
 }
 
 src_compile() {
-	exbuild "${S}/src/Orchard.sln"
+	exbuild /p:TargetFrameworkVersion=v4.5 "${S}/src/Orchard.sln"
 }
 
 src_install() {
