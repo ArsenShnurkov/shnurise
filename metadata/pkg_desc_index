@@ -8,6 +8,7 @@ dev-dotnet/aspnetwebstack 2014.10.27 9999: Mono copy of the Microsoft ASP.NET We
 dev-dotnet/castle-core 1.2.0 4.0.0_beta1-r1: including Castle DynamicProxy, Logging Services and DictionaryAdapter
 dev-dotnet/htmlparsersharp 1.0.0.0-r20150614: Validator.nu HTML Parser, a HTML5 parser, port from Java Version 1.4 to C#
 dev-dotnet/icsharpcode-nrefactory 5.5.1: NRefactory supports analysis of C# source code
+dev-dotnet/msbuild-tasks-api 15.3: msbuild libraries for writing Task-derived classes
 dev-dotnet/msbuildtasks 1.5.0.196-r1: The MSBuild Community Tasks Project is an open source project for MSBuild tasks.
 dev-dotnet/newtonsoft-json 6.0.8: Json.NET is a popular high-performance JSON framework for .NET
 dev-dotnet/nhibernate-iesi-collections 4.0.2: C#, LinkedHashSet<T>, SynchronizedSet<T>, ReadOnlySet<T>
