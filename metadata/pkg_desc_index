@@ -5,6 +5,7 @@ app-office/projectlibre-bin 1.6.2: A free and open source desktop alternative to
 dev-db/sharphsql 1.4-r20150714: Small & embebdded database engine witten in C#, port of the Hypersonic SQL v1.4 (HSQL) Java project
 dev-dotnet/antlr3-runtime 3.2: C# runtime for ANTLR (ANother Tool for Language Recognition)
 dev-dotnet/aspnetwebstack 2014.10.27 9999: Mono copy of the Microsoft ASP.NET Web Stack (MVC, Razor etc)
+dev-dotnet/buildtools 1.0.27: Build tools that are necessary for building the .NET Core projects
 dev-dotnet/castle-core 1.2.0 4.0.0_beta1-r1: including Castle DynamicProxy, Logging Services and DictionaryAdapter
 dev-dotnet/htmlparsersharp 1.0.0.0-r20150614: Validator.nu HTML Parser, a HTML5 parser, port from Java Version 1.4 to C#
 dev-dotnet/icsharpcode-nrefactory 5.5.1: NRefactory supports analysis of C# source code
