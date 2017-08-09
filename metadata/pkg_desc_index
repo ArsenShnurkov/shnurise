@@ -17,6 +17,7 @@ dev-dotnet/nuget 2.8.1-r1: Nuget - .NET Package Manager
 dev-dotnet/pliant 0.4.1_p2016081902 0.4.2.1: modified Earley parser in C# inspired by the Marpa Parser project
 dev-dotnet/slntools 1.1.3.0: library for merging .sln files, and cli-tool
 dev-dotnet/system-collections-immutable 2.0.0_pre: part of CoreFX
+dev-dotnet/system-reflection-metadata 2.0.0_pre: part of CoreFX
 dev-gaclibs/Autopsy-Formats-PeCoff 1.0: Safe and static parsing for PE/COFF/LIB formats
 dev-gaclibs/github-api 0.0-r20150331: C# API for github, based on RestSharp
 dev-lang/mono 4.5.2_p2016061506 4.6.2.6 4.8.0.309 4.9.0.729-r1 4.9.0.729-r3: Mono runtime and class libraries, a C# compiler/interpreter
