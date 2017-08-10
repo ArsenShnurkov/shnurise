@@ -10,5 +10,5 @@ RDEPEND=|| ( >=dev-lang/mono-4 <dev-lang/mono-9999 ) || ( dev-dotnet/icsharpcode
 SLOT=0
 SRC_URI=https://github.com/ArsenShnurkov/mypad-winforms-texteditor/archive/7925b93a287125a04dd58617feb0385abe2e7b35.zip -> mypad-1.0.2-r20150710.zip
 _eclass_exported_funcs=pkg_setup:dotnet src_prepare:- src_compile:- src_install:-
-_eclasses_=dotnet	a6f2dd84e753d8176c07f4d2b383982b	epatch	8233751dc5105a6ae8fcd86ce2bb0247	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	9c113d6a64826c40154cad7be15d95ea	ltprune	2770eed66a9b8ef944714cd0e968182e	mono-env	e47f8cb975077b13cdc8db6bab66860c	multilib	97f470f374f2e94ccab04a2fb21d811e	toolchain-funcs	8fec6b1eb195836560e70b66d98fb163	versionator	c80ccf29e90adea7c5cae94b42eb76d0
+_eclasses_=dotnet	a6f2dd84e753d8176c07f4d2b383982b	epatch	8233751dc5105a6ae8fcd86ce2bb0247	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	9c113d6a64826c40154cad7be15d95ea	ltprune	2770eed66a9b8ef944714cd0e968182e	mono-env	e47f8cb975077b13cdc8db6bab66860c	multilib	97f470f374f2e94ccab04a2fb21d811e	toolchain-funcs	185a06792159ca143528e7010368e8af	versionator	c80ccf29e90adea7c5cae94b42eb76d0
 _md5_=7fc59a436e56f2d9eab325ae2052e2b4
