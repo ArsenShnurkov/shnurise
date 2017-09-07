@@ -9,6 +9,5 @@ LICENSE=MIT
 RDEPEND=>=dev-lang/mono-3.0
 SLOT=0
 SRC_URI=https://github.com/gitextensions/Git.hub/archive/46304b521bb26414a9f1e998a315cd35039a4837.zip -> github-api-0.0-r20150331.zip
-_eclass_exported_funcs=pkg_setup:dotnet src_prepare:- src_configure:- src_compile:- src_install:-
 _eclasses_=dotnet	a6f2dd84e753d8176c07f4d2b383982b	epatch	8233751dc5105a6ae8fcd86ce2bb0247	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	9c113d6a64826c40154cad7be15d95ea	ltprune	2770eed66a9b8ef944714cd0e968182e	mono-env	e47f8cb975077b13cdc8db6bab66860c	multilib	97f470f374f2e94ccab04a2fb21d811e	toolchain-funcs	185a06792159ca143528e7010368e8af	versionator	c80ccf29e90adea7c5cae94b42eb76d0
 _md5_=6070c7fe8a993217f73e0caa21c1ed82

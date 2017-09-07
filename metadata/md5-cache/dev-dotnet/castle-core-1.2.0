@@ -10,6 +10,5 @@ RDEPEND=>=dev-lang/mono-4.0.2.5 dev-lang/mono
 RESTRICT=mirror
 SLOT=1
 SRC_URI=https://github.com/castleproject/Castle.Core-READONLY/archive/44859cac767ff02dfc43911c4ce4a571625648b0.tar.gz -> castle-core-1.2.0.tar.gz
-_eclass_exported_funcs=pkg_setup:dotnet src_prepare:- src_compile:- src_install:-
 _eclasses_=dotnet	a6f2dd84e753d8176c07f4d2b383982b	epatch	8233751dc5105a6ae8fcd86ce2bb0247	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	9c113d6a64826c40154cad7be15d95ea	gac	24fc527806a0de6ca2df8947a5771f31	ltprune	2770eed66a9b8ef944714cd0e968182e	mono-env	e47f8cb975077b13cdc8db6bab66860c	multilib	97f470f374f2e94ccab04a2fb21d811e	toolchain-funcs	185a06792159ca143528e7010368e8af	versionator	c80ccf29e90adea7c5cae94b42eb76d0
 _md5_=359d0aabf4c5c6a1debf18e635b267a1
