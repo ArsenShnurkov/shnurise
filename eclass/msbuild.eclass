@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-# @ECLASS: dotnet.eclass
+# @ECLASS: msbuild.eclass
 # @MAINTAINER: cynede@gentoo.org
 # @BLURB: functions for working with msbuild command line utility
 # @DESCRIPTION:
@@ -13,8 +13,6 @@ case ${EAPI:-0} in
 	1|2|3) ;;
 	*) ;; #if [[ ${USE_DOTNET} ]]; then REQUIRED_USE="|| (${USE_DOTNET})"; fi;;
 esac
-
-inherit eutils versionator mono-env
 
 # Use flags added to IUSE
 
@@ -38,7 +36,7 @@ export LC_ALL=C
 # @DESCRIPTION: run msbuild with given parameters
 emsbuild_raw() {
 	elog """$@"""
-	msbuild "$@" || die
+	msbuild /p:MSBuildToolsPath=/usr/lib/mono/xbuild "$@" || die
 }
 
 # @FUNCTION: emsbuild
