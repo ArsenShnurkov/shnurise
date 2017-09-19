@@ -37,6 +37,7 @@ FW_DIR=src/Framework
 
 src_prepare() {
 	mkdir -p "${S}/packages/msbuild/" || die
+	cp "${FILESDIR}/MSFT.snk" "${S}/packages/msbuild/" || die
 	cp "${FILESDIR}/mono.snk" "${S}/packages/msbuild/" || die
 	eapply "${FILESDIR}/dir.props.diff"
 	eapply "${FILESDIR}/dir.targets.diff"
@@ -60,12 +61,14 @@ src_compile() {
 	fi
 
 	VER=15.3.0.0
-	KEY="${S}/packages/msbuild/mono.snk"
+	#KEY="${S}/packages/msbuild/MSFT.snk"
+	KEY2="${S}/packages/msbuild/mono.snk"
+	KEY="${KEY2}"
 
 	exbuild_raw /v:detailed /p:MonoBuild=true /p:TargetFrameworkVersion=v4.6 "/p:Configuration=${CONFIGURATION}" /p:${SARGS} "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:AssemblyOriginatorKeyFile=${KEY}" "${S}/${FW_DIR}/${FW_PROJ}.csproj"
-	sn -R "${S}/bin/${CONFIGURATION}/x86/Unix/Output/${FW_PROJ}.dll" "${KEY}" || die
+	sn -R "${S}/bin/${CONFIGURATION}/x86/Unix/Output/${FW_PROJ}.dll" "${KEY2}" || die
 	exbuild_raw /v:detailed /p:MonoBuild=true /p:TargetFrameworkVersion=v4.6 "/p:Configuration=${CONFIGURATION}" /p:${SARGS} "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:AssemblyOriginatorKeyFile=${KEY}" "${S}/${UT_DIR}/${UT_PROJ}.csproj"
-	sn -R "${S}/bin/${CONFIGURATION}/x86/Unix/Output/${UT_PROJ}.Core.dll" "${KEY}" || die
+	sn -R "${S}/bin/${CONFIGURATION}/x86/Unix/Output/${UT_PROJ}.Core.dll" "${KEY2}" || die
 }
 
 src_install() {
