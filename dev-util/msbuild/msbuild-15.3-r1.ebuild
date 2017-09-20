@@ -46,6 +46,8 @@ src_prepare() {
 	eapply "${FILESDIR}/dir.targets.diff"
 	eapply "${FILESDIR}/src-dir.targets.diff"
 	eapply "${FILESDIR}/tasks.patch"
+	sed -i 's/CurrentAssemblyVersion = "15.1.0.0"/CurrentAssemblyVersion = "15.3.0.0"/g' "${S}/src/Shared/Constants.cs" || die
+	sed -i 's/Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a/Microsoft.Build.Tasks.Core, Version=15.3.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756/g' "${S}/src/Tasks/Microsoft.Common.tasks" || die
 	cp "${FILESDIR}/mono-${PROJ1}.csproj" "${S}/${PROJ1_DIR}/" || die
 	cp "${FILESDIR}/mono-${PROJ2}.csproj" "${S}/${PROJ2_DIR}/" || die
 	eapply_user
@@ -88,8 +90,17 @@ src_install() {
 	egacinstall "${PROJ1_DIR}/bin/${CONFIGURATION}/${PROJ1}.dll"
 	einstall_pc_file "${PN}" "${PV}" "${PROJ1}"
 
+	insinto "/usr/share/${PN}/Roslyn"
+	doins "${FILESDIR}/Microsoft.CSharp.Core.targets"
 	insinto "/usr/share/${PN}"
 	newins "${PROJ2_DIR}/bin/${CONFIGURATION}/${PROJ2}.exe" MSBuild.exe
+	doins "${S}/src/Tasks/Microsoft.Common.tasks"
+	doins "${S}/src/Tasks/Microsoft.CSharp.targets"
+	doins "${S}/src/Tasks/Microsoft.CSharp.CurrentVersion.targets"
+	doins "${S}/src/Tasks/Microsoft.Common.targets"
+	doins "${S}/src/Tasks/Microsoft.Common.CurrentVersion.targets"
+	doins "${S}/src/Tasks/Microsoft.NETFramework.props"
+	doins "${S}/src/Tasks/Microsoft.NETFramework.CurrentVersion.props"
 
 	if use debug; then
 		make_wrapper msbuild "/usr/bin/mono --debug /usr/share/${PN}/MSBuild.exe"
