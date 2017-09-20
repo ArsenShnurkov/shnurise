@@ -613,7 +613,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
-    <Reference Include="Microsoft.Build.Framework, Version=15.3.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+    <Reference Include="Microsoft.Build.Framework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
       <Package>msbuild-tasks-api-15.3</Package>
     </Reference>
     <Reference Include="System.Threading.Tasks.Dataflow" />

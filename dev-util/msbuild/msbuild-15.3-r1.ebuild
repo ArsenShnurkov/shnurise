@@ -24,19 +24,28 @@ LICENSE="MIT" # https://github.com/mono/linux-packaging-msbuild/blob/master/LICE
 
 COMMON_DEPEND=">=dev-lang/mono-5.2.0.196
 	dev-dotnet/msbuild-tasks-api
+	dev-dotnet/system-reflection-metadata
+	dev-dotnet/system-collections-immutable
 "
 RDEPEND="${COMMON_DEPEND}
 "
 DEPEND="${COMMON_DEPEND}
+	dev-dotnet/buildtools
 	>=dev-dotnet/msbuildtasks-1.5.0.240
 "
 
+PROJ0=Microsoft.Build.Tasks
+PROJ0_DIR=src/Tasks
 PROJ1=Microsoft.Build
 PROJ1_DIR=src/Build
 PROJ2=MSBuild
 PROJ2_DIR=src/MSBuild
 
 src_prepare() {
+	eapply "${FILESDIR}/dir.props.diff"
+	eapply "${FILESDIR}/dir.targets.diff"
+	eapply "${FILESDIR}/src-dir.targets.diff"
+	eapply "${FILESDIR}/tasks.patch"
 	cp "${FILESDIR}/mono-${PROJ1}.csproj" "${S}/${PROJ1_DIR}/" || die
 	cp "${FILESDIR}/mono-${PROJ2}.csproj" "${S}/${PROJ2_DIR}/" || die
 	eapply_user
@@ -58,6 +67,9 @@ src_compile() {
 	VER=1.0.27.0
 	KEY="${FILESDIR}/mono.snk"
 
+	exbuild_raw /v:detailed  /p:MonoBuild=true /p:TargetFrameworkVersion=v4.6 "/p:Configuration=${CONFIGURATION}" /p:${SARGS} "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:AssemblyOriginatorKeyFile=${KEY}" "${S}/${PROJ0_DIR}/${PROJ0}.csproj"
+	sn -R "${S}/bin/${CONFIGURATION}/x86/Unix/Output/${PROJ0}.Core.dll" "${KEY}" || die
+
 	# exbuild_raw /v:detailed /p:TargetFrameworkVersion=v4.6 "/p:Configuration=${CONFIGURATION}" /p:${SARGS} "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:AssemblyOriginatorKeyFile=${KEY}" "${S}/${PROJ1_DIR}/mono-${PROJ1}.csproj"
 	exbuild_raw /v:detailed /p:TargetFrameworkVersion=v4.6 "/p:Configuration=${CONFIGURATION}" /p:${SARGS} "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:AssemblyOriginatorKeyFile=${KEY}" "${S}/${PROJ2_DIR}/mono-${PROJ2}.csproj"
 	sn -R "${PROJ1_DIR}/bin/${CONFIGURATION}/${PROJ1}.dll" "${KEY}" || die
@@ -69,6 +81,9 @@ src_install() {
 	else
 		CONFIGURATION=Release
 	fi
+
+	egacinstall "${S}/bin/${CONFIGURATION}/x86/Unix/Output/${PROJ0}.Core.dll"
+	einstall_pc_file "${PN}" "${PV}" "${PROJ0}"
 
 	egacinstall "${PROJ1_DIR}/bin/${CONFIGURATION}/${PROJ1}.dll"
 	einstall_pc_file "${PN}" "${PV}" "${PROJ1}"
