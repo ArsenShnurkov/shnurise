@@ -42,7 +42,7 @@ src_prepare() {
 	eapply "${FILESDIR}/dir.props.diff"
 	eapply "${FILESDIR}/dir.targets.diff"
 	eapply "${FILESDIR}/src-dir.targets.diff"
-	sed -i 's/CurrentAssemblyVersion = "15.1.0.0"/CurrentAssemblyVersion = "14.0.0.0"/g' "${S}/src/Shared/Constants.cs" || die
+	sed -i 's/CurrentAssemblyVersion = "15.1.0.0"/CurrentAssemblyVersion = "15.3.0.0"/g' "${S}/src/Shared/Constants.cs" || die
 	eapply_user
 }
 

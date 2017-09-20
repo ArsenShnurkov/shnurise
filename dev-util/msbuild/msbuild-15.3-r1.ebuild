@@ -24,8 +24,11 @@ LICENSE="MIT" # https://github.com/mono/linux-packaging-msbuild/blob/master/LICE
 
 COMMON_DEPEND=">=dev-lang/mono-5.2.0.196
 	dev-dotnet/msbuild-tasks-api
+	developer? ( dev-dotnet/msbuild-tasks-api[developer] )
 	dev-dotnet/system-reflection-metadata
+	developer? ( dev-dotnet/system-reflection-metadata[developer] )
 	dev-dotnet/system-collections-immutable
+	developer? ( dev-dotnet/system-collections-immutable[developer] )
 "
 RDEPEND="${COMMON_DEPEND}
 "
@@ -48,32 +51,38 @@ src_prepare() {
 	eapply "${FILESDIR}/tasks.patch"
 	sed -i 's/CurrentAssemblyVersion = "15.1.0.0"/CurrentAssemblyVersion = "15.3.0.0"/g' "${S}/src/Shared/Constants.cs" || die
 	sed -i 's/Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a/Microsoft.Build.Tasks.Core, Version=15.3.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756/g' "${S}/src/Tasks/Microsoft.Common.tasks" || die
+	sed -i 's/PublicKeyToken=b03f5f7f11d50a3a/PublicKeyToken=0738eb9f132ed756/g' "${S}/src/Build/Resources/Constants.cs" || die
 	cp "${FILESDIR}/mono-${PROJ1}.csproj" "${S}/${PROJ1_DIR}/" || die
 	cp "${FILESDIR}/mono-${PROJ2}.csproj" "${S}/${PROJ2_DIR}/" || die
 	eapply_user
 }
 
 src_compile() {
-	if use debug; then
-		CONFIGURATION=Debug
+	if use developer; then
+		SARGS=/p:DebugSymbols=True
 	else
-		CONFIGURATION=Release
+		SARGS=/p:DebugSymbols=False
 	fi
 
-	if use developer; then
-		SARGS=DebugSymbols=True
+	if use debug; then
+		CONFIGURATION=Debug
+		if use developer; then
+			SARGS=${SARGS} /p:DebugType=full
+		fi
 	else
-		SARGS=DebugSymbols=False
+		CONFIGURATION=Release
+		if use developer; then
+			SARGS=${SARGS} /p:DebugType=pdbonly
+		fi
 	fi
 
 	VER=1.0.27.0
 	KEY="${FILESDIR}/mono.snk"
 
-	exbuild_raw /v:detailed  /p:MonoBuild=true /p:TargetFrameworkVersion=v4.6 "/p:Configuration=${CONFIGURATION}" /p:${SARGS} "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:AssemblyOriginatorKeyFile=${KEY}" "${S}/${PROJ0_DIR}/${PROJ0}.csproj"
+	exbuild_raw /v:detailed  /p:MonoBuild=true /p:TargetFrameworkVersion=v4.6 "/p:Configuration=${CONFIGURATION}" ${SARGS} "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:AssemblyOriginatorKeyFile=${KEY}" "${S}/${PROJ0_DIR}/${PROJ0}.csproj"
 	sn -R "${S}/bin/${CONFIGURATION}/x86/Unix/Output/${PROJ0}.Core.dll" "${KEY}" || die
 
-	# exbuild_raw /v:detailed /p:TargetFrameworkVersion=v4.6 "/p:Configuration=${CONFIGURATION}" /p:${SARGS} "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:AssemblyOriginatorKeyFile=${KEY}" "${S}/${PROJ1_DIR}/mono-${PROJ1}.csproj"
-	exbuild_raw /v:detailed /p:TargetFrameworkVersion=v4.6 "/p:Configuration=${CONFIGURATION}" /p:${SARGS} "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:AssemblyOriginatorKeyFile=${KEY}" "${S}/${PROJ2_DIR}/mono-${PROJ2}.csproj"
+	exbuild_raw /v:detailed /p:TargetFrameworkVersion=v4.6 "/p:Configuration=${CONFIGURATION}" ${SARGS} "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:AssemblyOriginatorKeyFile=${KEY}" "${S}/${PROJ2_DIR}/mono-${PROJ2}.csproj"
 	sn -R "${PROJ1_DIR}/bin/${CONFIGURATION}/${PROJ1}.dll" "${KEY}" || die
 }
 
@@ -95,12 +104,15 @@ src_install() {
 	insinto "/usr/share/${PN}"
 	newins "${PROJ2_DIR}/bin/${CONFIGURATION}/${PROJ2}.exe" MSBuild.exe
 	doins "${S}/src/Tasks/Microsoft.Common.tasks"
+	doins "${S}/src/Tasks/Microsoft.Common.targets"
+	doins "${S}/src/Tasks/Microsoft.Common.overridetasks"
 	doins "${S}/src/Tasks/Microsoft.CSharp.targets"
 	doins "${S}/src/Tasks/Microsoft.CSharp.CurrentVersion.targets"
-	doins "${S}/src/Tasks/Microsoft.Common.targets"
 	doins "${S}/src/Tasks/Microsoft.Common.CurrentVersion.targets"
 	doins "${S}/src/Tasks/Microsoft.NETFramework.props"
 	doins "${S}/src/Tasks/Microsoft.NETFramework.CurrentVersion.props"
+	doins "${S}/src/Tasks/Microsoft.NETFramework.targets"
+	doins "${S}/src/Tasks/Microsoft.NETFramework.CurrentVersion.targets"
 
 	if use debug; then
 		make_wrapper msbuild "/usr/bin/mono --debug /usr/share/${PN}/MSBuild.exe"
