@@ -8,8 +8,8 @@ index 876a403..d9196e6 100644
    <ItemGroup Condition="'$(NetCoreBuild)' != 'true'">
 +    <Reference Include="System.Reflection.Metadata" />
 +    <Reference Include="System.Collections.Immutable" />
-+    <Reference Include="Microsoft.Build.Framework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
-+    <Reference Include="Microsoft.Build.Utilities.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
++    <Reference Include="Microsoft.Build.Framework, Version=15.3.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
++    <Reference Include="Microsoft.Build.Utilities.Core, Version=15.3.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
      <Reference Include="Microsoft.Build.Tasks.CodeAnalysis">
        <HintPath>$(CompilerToolsDir)\Microsoft.Build.Tasks.CodeAnalysis.dll</HintPath>
      </Reference>
