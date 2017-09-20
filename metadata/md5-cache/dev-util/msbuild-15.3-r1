@@ -1,14 +1,14 @@
 DEFINED_PHASES=compile install prepare setup
-DEPEND=>=dev-lang/mono-5.2.0.196 dev-dotnet/msbuild-tasks-api dev-dotnet/system-reflection-metadata dev-dotnet/system-collections-immutable dev-dotnet/buildtools >=dev-dotnet/msbuildtasks-1.5.0.240 dev-lang/mono dev-lang/mono
+DEPEND=>=dev-lang/mono-5.2.0.196 dev-dotnet/msbuild-tasks-api developer? ( dev-dotnet/msbuild-tasks-api[developer] ) dev-dotnet/system-reflection-metadata developer? ( dev-dotnet/system-reflection-metadata[developer] ) dev-dotnet/system-collections-immutable developer? ( dev-dotnet/system-collections-immutable[developer] ) dev-dotnet/buildtools >=dev-dotnet/msbuildtasks-1.5.0.240 dev-lang/mono dev-lang/mono
 DESCRIPTION=Microsoft Build Engine (MSBuild) is an XML-based platform for building applications
 EAPI=6
 HOMEPAGE=https://docs.microsoft.com/visualstudio/msbuild/msbuild
 IUSE=+net46 +gac developer debug doc +gac +pkg-config +symlink debug developer
 KEYWORDS=~amd64
 LICENSE=MIT
-RDEPEND=>=dev-lang/mono-5.2.0.196 dev-dotnet/msbuild-tasks-api dev-dotnet/system-reflection-metadata dev-dotnet/system-collections-immutable dev-lang/mono
+RDEPEND=>=dev-lang/mono-5.2.0.196 dev-dotnet/msbuild-tasks-api developer? ( dev-dotnet/msbuild-tasks-api[developer] ) dev-dotnet/system-reflection-metadata developer? ( dev-dotnet/system-reflection-metadata[developer] ) dev-dotnet/system-collections-immutable developer? ( dev-dotnet/system-collections-immutable[developer] ) dev-lang/mono
 RESTRICT=mirror
 SLOT=0
 SRC_URI=https://github.com/mono/linux-packaging-msbuild/archive/431c7ec5857a3ee5df758c09948719490025ef94.tar.gz -> linux-packaging-msbuild-mono-15.3.tar.gz
 _eclasses_=dotnet	a6f2dd84e753d8176c07f4d2b383982b	epatch	8233751dc5105a6ae8fcd86ce2bb0247	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	9c113d6a64826c40154cad7be15d95ea	gac	24fc527806a0de6ca2df8947a5771f31	ltprune	2770eed66a9b8ef944714cd0e968182e	mono-env	e47f8cb975077b13cdc8db6bab66860c	multilib	97f470f374f2e94ccab04a2fb21d811e	toolchain-funcs	185a06792159ca143528e7010368e8af	versionator	c80ccf29e90adea7c5cae94b42eb76d0
-_md5_=1373db069a1317e1a2318e52150296f9
+_md5_=6e7c2c66f232021158a425a2d61b1655
