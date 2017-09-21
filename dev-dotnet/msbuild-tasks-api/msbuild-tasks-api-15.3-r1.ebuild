@@ -15,7 +15,7 @@ inherit gac dotnet
 #https://github.com/mono/linux-packaging-msbuild/commit/0d8cee3f87b92cff425306d9c588fc6433fb6bf0
 GITHUB_ACCOUNT="mono"
 GITHUB_PROJECTNAME="linux-packaging-msbuild"
-EGIT_COMMIT="0d8cee3f87b92cff425306d9c588fc6433fb6bf0"
+EGIT_COMMIT="e08c20fd277b9de1e3a97c5bd9a5dcf95fcff926"
 SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EGIT_COMMIT}.tar.gz -> msbuild-${PV}.tar.gz"
 S="${WORKDIR}/${GITHUB_PROJECTNAME}-${EGIT_COMMIT}"
 
