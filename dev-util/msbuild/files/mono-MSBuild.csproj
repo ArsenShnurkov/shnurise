@@ -105,7 +105,7 @@
     <Compile Include="..\Shared\MSBuildNameIgnoreCaseComparer.cs" />
     <Compile Include="..\Shared\ReadOnlyEmptyCollection.cs" />
     <Compile Include="..\Shared\ReadOnlyEmptyDictionary.cs" />
-    <Compile Include="..\Shared\ReadOnlyEmptyList.cs" />
+    <!--Compile Include="..\Shared\ReadOnlyEmptyList.cs" /-->
     <Compile Include="..\Shared\NativeMethodsShared.cs" />
     <Compile Include="..\Shared\AssemblyUtilities.cs" />
     <Compile Include="..\Shared\ExceptionHandling.cs" />
