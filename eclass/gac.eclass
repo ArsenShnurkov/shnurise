@@ -13,7 +13,7 @@ case ${EAPI:-0} in
 	6) ;;
 esac
 
-IUSE+=" +gac symlink"
+IUSE+=" +gac"
 
 DEPEND+=" dev-lang/mono"
 RDEPEND+=" dev-lang/mono"
@@ -26,7 +26,7 @@ RDEPEND+=" dev-lang/mono"
 egacinstall() {
 	use !prefix && has "${EAPI:-0}" 0 1 2 && ED="${D}"
 	if use gac; then
-		if use symlink; then
+		if use pkg-config; then
 			gacutil -i "${1}" \
 				-root "${ED}"/usr/$(get_libdir) \
 				-gacdir /usr/$(get_libdir) \

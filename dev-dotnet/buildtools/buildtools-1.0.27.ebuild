@@ -8,7 +8,7 @@ KEYWORDS="~amd64"
 SLOT="0"
 
 USE_DOTNET="net45"
-IUSE="+${USE_DOTNET} +gac developer debug doc"
+IUSE="+${USE_DOTNET} +gac developer debug doc +symlink"
 
 inherit dotnet gac mono-pkg-config
 
@@ -71,5 +71,8 @@ src_install() {
 	egacinstall "${PROJ1_DIR}/bin/${CONFIGURATION}/${PROJ1}.dll"
 	einstall_pc_file "${PN}" "${PV}" "${PROJ1}"
 	insinto "/usr/lib/mono/xbuild"
-	doins "${S}/src/Microsoft.DotNet.Build.Tasks/PackageFiles/resources.targets" 
+	doins "${S}/src/Microsoft.DotNet.Build.Tasks/PackageFiles/resources.targets"
+	if use symlink; then
+		dosym "/usr/$(get_libdir)/mono/gac/${PROJ1}/1.0.27.0__0738eb9f132ed756/${PROJ1}.dll" "/usr/lib/mono/xbuild/"
+	fi
 }
