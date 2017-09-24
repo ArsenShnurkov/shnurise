@@ -22,6 +22,7 @@ HOMEPAGE="https://github.com/dotnet/buildtools"
 DESCRIPTION="Build tools that are necessary for building the .NET Core projects"
 LICENSE="MIT" # https://github.com/dotnet/buildtools/blob/master/LICENSE
 
+#	dev-dotnet/newtonsoft-json
 COMMON_DEPEND=">=dev-lang/mono-5.2.0.196
 	dev-dotnet/msbuild-tasks-api
 "

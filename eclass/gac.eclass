@@ -13,7 +13,7 @@ case ${EAPI:-0} in
 	6) ;;
 esac
 
-IUSE+=" +gac +pkg-config +symlink"
+IUSE+=" +gac symlink"
 
 DEPEND+=" dev-lang/mono"
 RDEPEND+=" dev-lang/mono"
@@ -24,13 +24,20 @@ RDEPEND+=" dev-lang/mono"
 # @FUNCTION: egacinstall
 # @DESCRIPTION:  install package to GAC
 egacinstall() {
+	use !prefix && has "${EAPI:-0}" 0 1 2 && ED="${D}"
 	if use gac; then
-		use !prefix && has "${EAPI:-0}" 0 1 2 && ED="${D}"
-		gacutil -i "${1}" \
-			-root "${ED}"/usr/$(get_libdir) \
-			-gacdir /usr/$(get_libdir) \
-			-package ${2:-${GACPN:-${PN}}} \
-			|| die "installing ${1} into the Global Assembly Cache failed"
+		if use symlink; then
+			gacutil -i "${1}" \
+				-root "${ED}"/usr/$(get_libdir) \
+				-gacdir /usr/$(get_libdir) \
+				-package ${2:-${GACPN:-${PN}}} \
+				|| die "installing ${1} into the Global Assembly Cache failed"
+		else
+			gacutil -i "${1}" \
+				-root "${ED}"/usr/$(get_libdir) \
+				-gacdir /usr/$(get_libdir) \
+				|| die "installing ${1} into the Global Assembly Cache failed"
+		fi
 	fi
 }
 
