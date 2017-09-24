@@ -61,9 +61,10 @@ src_compile() {
 src_install() {
 	insinto "$(deploy_dir)"
 	doins "$(output_filename)"
-	doins "Source/MSBuild.Community.Tasks/MSBuild.Community.Tasks.Targets"
-
 	einstall_pc_file "${PN}" "${PV}" "MSBuild.Community.Tasks"
+
+	insinto "/usr/lib/mono/xbuild"
+	doins "Source/MSBuild.Community.Tasks/MSBuild.Community.Tasks.Targets"
 }
 
 pkg_postinst()
