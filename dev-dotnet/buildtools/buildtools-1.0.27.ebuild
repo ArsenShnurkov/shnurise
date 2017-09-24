@@ -10,7 +10,7 @@ SLOT="0"
 USE_DOTNET="net45"
 IUSE="+${USE_DOTNET} +gac developer debug doc"
 
-inherit gac dotnet
+inherit dotnet gac mono-pkg-config
 
 GITHUB_ACCOUNT="dotnet"
 GITHUB_PROJECTNAME="buildtools"
@@ -25,6 +25,7 @@ LICENSE="MIT" # https://github.com/dotnet/buildtools/blob/master/LICENSE
 #	dev-dotnet/newtonsoft-json
 COMMON_DEPEND=">=dev-lang/mono-5.2.0.196
 	dev-dotnet/msbuild-tasks-api
+	=dev-dotnet/newtonsoft-json-6.0.8[gac]
 "
 RDEPEND="${COMMON_DEPEND}
 "
