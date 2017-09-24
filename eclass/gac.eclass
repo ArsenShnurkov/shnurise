@@ -13,7 +13,7 @@ case ${EAPI:-0} in
 	6) ;;
 esac
 
-IUSE+=" +gac"
+IUSE+=" +gac pkg-config"
 
 DEPEND+=" dev-lang/mono"
 RDEPEND+=" dev-lang/mono"
