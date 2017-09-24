@@ -43,12 +43,14 @@
     <Compile Include="GenerateCurrentVersion.cs" />
     <Compile Include="GenerateResourcesCode.cs" />
     <Compile Include="GenerateEncodingTable.cs" />
+    <Compile Include="Helper.cs" />
     <Compile Include="GetPackageVersion.cs" />
     <Compile Include="GetPackageDependencies.cs" />
     <Compile Include="GetNextRevisionNumber.cs" />
     <Compile Include="GetNetCoreAppVersionsFromFile.cs" />
     <Compile Include="LocatePreviousContract.cs" />
     <Compile Include="NormalizePaths.cs" />
+    <Compile Include="NormalizeAssemblyName.cs" />
     <Compile Include="GetDoItemsIntersect.cs" />
     <Compile Include="NuGetPackageObject.cs" />
     <Compile Include="ExecWithRetries.cs" />
