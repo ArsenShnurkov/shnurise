@@ -34,7 +34,7 @@ RDEPEND="${COMMON_DEPEND}
 "
 DEPEND="${COMMON_DEPEND}
 	dev-dotnet/buildtools
-	>=dev-dotnet/msbuildtasks-1.5.0.240
+	>=dev-dotnet/msbuildtasks-1.5.0.240-r1
 "
 
 PROJ0=Microsoft.Build.Tasks
