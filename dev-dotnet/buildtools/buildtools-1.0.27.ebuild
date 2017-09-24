@@ -25,7 +25,7 @@ LICENSE="MIT" # https://github.com/dotnet/buildtools/blob/master/LICENSE
 #	dev-dotnet/newtonsoft-json
 COMMON_DEPEND=">=dev-lang/mono-5.2.0.196
 	dev-dotnet/msbuild-tasks-api
-	=dev-dotnet/newtonsoft-json-6.0.8[gac]
+	=dev-dotnet/newtonsoft-json-6.0.8-r1[gac]
 "
 RDEPEND="${COMMON_DEPEND}
 "
