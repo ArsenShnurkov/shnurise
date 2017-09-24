@@ -3,12 +3,12 @@ DEPEND=|| ( >=dev-lang/mono-4.2 <dev-lang/mono-9999 ) dev-dotnet/mono-options[ga
 DESCRIPTION=Command line utilities for packaging mono assemblies with portage
 EAPI=6
 HOMEPAGE=http://arsenshnurkov.github.io/mono-packaging-tools
-IUSE=+net45 debug +developer test +aot doc +gac +pkg-config +symlink debug developer net45 +nupkg
+IUSE=+net45 debug +developer test +aot doc +gac pkg-config debug developer net45 +nupkg
 KEYWORDS=~x86 ~amd64
 LICENSE=GPL-3
 RDEPEND=|| ( >=dev-lang/mono-4.2 <dev-lang/mono-9999 ) dev-dotnet/mono-options[gac] >=dev-dotnet/slntools-1.1.3_p201508170-r1[gac] >=dev-dotnet/eto-parse-1.4.0[gac] dev-lang/mono nupkg? ( dev-dotnet/nuget )
 RESTRICT=mirror
 SLOT=0
 SRC_URI=https://github.com/ArsenShnurkov/mono-packaging-tools/archive/19c593ddc37e39e71afce25bb8e584ea222e3018.tar.gz -> mono-packaging-tools-1.4.2.0.tar.gz
-_eclasses_=dotnet	a6f2dd84e753d8176c07f4d2b383982b	epatch	8233751dc5105a6ae8fcd86ce2bb0247	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	9c113d6a64826c40154cad7be15d95ea	gac	24fc527806a0de6ca2df8947a5771f31	ltprune	2770eed66a9b8ef944714cd0e968182e	mono-env	e47f8cb975077b13cdc8db6bab66860c	multilib	97f470f374f2e94ccab04a2fb21d811e	nupkg	48249a52685fd9ba095c2321d341842d	toolchain-funcs	185a06792159ca143528e7010368e8af	versionator	c80ccf29e90adea7c5cae94b42eb76d0
+_eclasses_=dotnet	a6f2dd84e753d8176c07f4d2b383982b	epatch	8233751dc5105a6ae8fcd86ce2bb0247	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	9c113d6a64826c40154cad7be15d95ea	gac	f7ab4ad871d4888e9dd05ee635d1d857	ltprune	2770eed66a9b8ef944714cd0e968182e	mono-env	e47f8cb975077b13cdc8db6bab66860c	multilib	97f470f374f2e94ccab04a2fb21d811e	nupkg	48249a52685fd9ba095c2321d341842d	toolchain-funcs	185a06792159ca143528e7010368e8af	versionator	c80ccf29e90adea7c5cae94b42eb76d0
 _md5_=05ad1073ad54170c77b76cb5553c77b0

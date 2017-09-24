@@ -44,6 +44,7 @@ dev-db/sharphsql:debug - Create .mdb files for release configuration
 dev-db/sharphsql:gac - sign assembly with strongname and install into gac
 dev-db/sharphsql:nupkg - build ,nuget package and install into distributive-dependent path
 dev-db/sharphsql:test - automatically turned on when FEATURES=test is set
+dev-dotnet/dotnetzip-semverd:developer - 
 dev-dotnet/newtonsoft-json:pkg-config - create .pc file(s) for .dll(s) installed to gac
 dev-dotnet/slntools:developer - enables debug information for any of debug and release builds
 dev-dotnet/slntools:nupkg - creates local nuget package

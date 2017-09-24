@@ -1,14 +1,14 @@
 DEFINED_PHASES=compile install prepare setup
-DEPEND=>=dev-lang/mono-5.2.0.196 dev-dotnet/msbuild-tasks-api >=dev-dotnet/msbuildtasks-1.5.0.240 dev-lang/mono dev-lang/mono
+DEPEND=>=dev-lang/mono-5.2.0.196 dev-dotnet/msbuild-tasks-api =dev-dotnet/newtonsoft-json-6.0.8-r1[gac] >=dev-dotnet/msbuildtasks-1.5.0.240 dev-lang/mono dev-lang/mono dev-lang/mono
 DESCRIPTION=Build tools that are necessary for building the .NET Core projects
 EAPI=6
 HOMEPAGE=https://github.com/dotnet/buildtools
-IUSE=+net45 +gac developer debug doc +gac +pkg-config +symlink debug developer net45
+IUSE=+net45 +gac developer debug doc +symlink debug developer net45 +gac pkg-config pkg-config symlink
 KEYWORDS=~amd64
 LICENSE=MIT
-RDEPEND=>=dev-lang/mono-5.2.0.196 dev-dotnet/msbuild-tasks-api dev-lang/mono
+RDEPEND=>=dev-lang/mono-5.2.0.196 dev-dotnet/msbuild-tasks-api =dev-dotnet/newtonsoft-json-6.0.8-r1[gac] dev-lang/mono dev-lang/mono
 RESTRICT=mirror
 SLOT=0
 SRC_URI=https://github.com/dotnet/buildtools/archive/a177c85d78799e6c2407ce88e857546e490d83c2.tar.gz -> buildtools-dotnet-1.0.27.tar.gz
-_eclasses_=dotnet	a6f2dd84e753d8176c07f4d2b383982b	epatch	8233751dc5105a6ae8fcd86ce2bb0247	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	9c113d6a64826c40154cad7be15d95ea	gac	24fc527806a0de6ca2df8947a5771f31	ltprune	2770eed66a9b8ef944714cd0e968182e	mono-env	e47f8cb975077b13cdc8db6bab66860c	multilib	97f470f374f2e94ccab04a2fb21d811e	toolchain-funcs	185a06792159ca143528e7010368e8af	versionator	c80ccf29e90adea7c5cae94b42eb76d0
-_md5_=66900293cabb268e294c6f83ec8251d2
+_eclasses_=dotnet	a6f2dd84e753d8176c07f4d2b383982b	epatch	8233751dc5105a6ae8fcd86ce2bb0247	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	9c113d6a64826c40154cad7be15d95ea	gac	f7ab4ad871d4888e9dd05ee635d1d857	ltprune	2770eed66a9b8ef944714cd0e968182e	mono-env	e47f8cb975077b13cdc8db6bab66860c	mono-pkg-config	7f50f342d7b3bc169f28b698dfde96c0	multilib	97f470f374f2e94ccab04a2fb21d811e	toolchain-funcs	185a06792159ca143528e7010368e8af	versionator	c80ccf29e90adea7c5cae94b42eb76d0
+_md5_=abf1c47642096c17d884d499d9e82f93
