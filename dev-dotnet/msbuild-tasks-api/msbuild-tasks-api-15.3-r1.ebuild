@@ -43,6 +43,7 @@ src_prepare() {
 	eapply "${FILESDIR}/dir.targets.diff"
 	eapply "${FILESDIR}/src-dir.targets.diff"
 	sed -i 's/CurrentAssemblyVersion = "15.1.0.0"/CurrentAssemblyVersion = "15.3.0.0"/g' "${S}/src/Shared/Constants.cs" || die
+	eapply "${FILESDIR}/ToolLocationHelper.cs.patch"
 	eapply_user
 }
 
@@ -80,5 +81,5 @@ src_install() {
 
 	egacinstall "${S}/bin/${CONFIGURATION}/x86/Unix/Output/${FW_PROJ}.dll"
 	egacinstall "${S}/bin/${CONFIGURATION}/x86/Unix/Output/${UT_PROJ}.Core.dll"
-	einstall_pc_file "${PN}" "${PV}" "${FW_PROJ}" "${UT_PROJ}"
+	# einstall_pc_file "${PN}" "${PV}" "${FW_PROJ}" "${UT_PROJ}"
 }

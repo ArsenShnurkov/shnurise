@@ -50,11 +50,14 @@ src_prepare() {
 	eapply "${FILESDIR}/src-dir.targets.diff"
 	eapply "${FILESDIR}/tasks.patch"
 	eapply "${FILESDIR}/Microsoft.Common.targets.patch"
+	eapply "${FILESDIR}/Microsoft.Build.Tasks.csproj.patch"
 	sed -i 's/CurrentAssemblyVersion = "15.1.0.0"/CurrentAssemblyVersion = "15.3.0.0"/g' "${S}/src/Shared/Constants.cs" || die
 	sed -i 's/Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a/Microsoft.Build.Tasks.Core, Version=15.3.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756/g' "${S}/src/Tasks/Microsoft.Common.tasks" || die
 	sed -i 's/PublicKeyToken=b03f5f7f11d50a3a/PublicKeyToken=0738eb9f132ed756/g' "${S}/src/Build/Resources/Constants.cs" || die
 	cp "${FILESDIR}/mono-${PROJ1}.csproj" "${S}/${PROJ1_DIR}/" || die
 	cp "${FILESDIR}/mono-${PROJ2}.csproj" "${S}/${PROJ2_DIR}/" || die
+	cp "${FILESDIR}/ManagedCompiler.cs" "${S}/src/Tasks/" || die
+	cp "${FILESDIR}/Csc.cs" "${S}/src/Tasks/" || die
 	eapply_user
 }
 
@@ -105,7 +108,7 @@ src_install() {
 	insinto "/usr/share/${PN}"
 	newins "${PROJ2_DIR}/bin/${CONFIGURATION}/${PROJ2}.exe" MSBuild.exe
 	doins "${S}/src/Tasks/Microsoft.Common.props"
-	doins "${S}/src/Tasks/Microsoft.Common.tasks"
+	doins "${FILESDIR}/Microsoft.Common.tasks"
 	doins "${S}/src/Tasks/Microsoft.Common.targets"
 	doins "${S}/src/Tasks/Microsoft.Common.overridetasks"
 	doins "${S}/src/Tasks/Microsoft.CSharp.targets"
