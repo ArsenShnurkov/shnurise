@@ -11,4 +11,4 @@ RESTRICT=mirror
 SLOT=0
 SRC_URI=https://github.com/loresoft/msbuildtasks/archive/014ed0f7a69f4936d7b3b438a5ceca78f902e0ef.tar.gz -> msbuildtasks-1.5.0.240.tar.gz https://github.com/mono/mono/raw/master/mcs/class/mono.snk
 _eclasses_=dotnet	a6f2dd84e753d8176c07f4d2b383982b	epatch	8233751dc5105a6ae8fcd86ce2bb0247	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	9c113d6a64826c40154cad7be15d95ea	gac	f7ab4ad871d4888e9dd05ee635d1d857	ltprune	2770eed66a9b8ef944714cd0e968182e	mono-env	e47f8cb975077b13cdc8db6bab66860c	mono-pkg-config	7f50f342d7b3bc169f28b698dfde96c0	multilib	97f470f374f2e94ccab04a2fb21d811e	toolchain-funcs	185a06792159ca143528e7010368e8af	versionator	c80ccf29e90adea7c5cae94b42eb76d0
-_md5_=782c52928d9bec0b5ee5dd3bd58dd5ce
+_md5_=8cf45f7bf2471e9182b764aabdb1c433
