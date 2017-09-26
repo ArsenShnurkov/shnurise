@@ -33,28 +33,35 @@ DEPEND="${COMMON_DEPEND}
 
 KEY2="${DISTDIR}/mono.snk"
 
+function metafile_to_build ( ) {
+	echo "Source/MSBuild.Community.Tasks/MSBuild.Community.Tasks.csproj"
+}
+
 function output_filename ( ) {
-    local DIR=""
-    if use debug; then
-	DIR="Debug"
-    else
-	DIR="Release"
-    fi
-    echo "Source/MSBuild.Community.Tasks/bin/${DIR}/MSBuild.Community.Tasks.dll"
+	local DIR=""
+	if use debug; then
+		DIR="Debug"
+	else
+		DIR="Release"
+	fi
+	echo "Source/MSBuild.Community.Tasks/bin/${DIR}/MSBuild.Community.Tasks.dll"
 }
 
 function deploy_dir ( ) {
-    echo "/usr/lib/mono/${EBUILD_FRAMEWORK}"
+	echo "/usr/lib/mono/${EBUILD_FRAMEWORK}"
 }
 
 src_prepare() {
+	eapply "${FILESDIR}/remove-sandcastle-task.patch"
 	eapply "${FILESDIR}/csproj.patch"
 	eapply "${FILESDIR}/location.patch"
+	sed -i 's/Microsoft.Build.Framework/Microsoft.Build.Framework, Version=15.3.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756/g' "$(metafile_to_build)" || die
+	sed -i 's/Microsoft.Build.Utilities.v4.0/Microsoft.Build.Utilities.Core, Version=15.3.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756/g' "$(metafile_to_build)" || die
 	eapply_user
 }
 
 src_compile() {
-	exbuild_strong "Source/MSBuild.Community.Tasks/MSBuild.Community.Tasks.csproj"
+	exbuild_strong "$(metafile_to_build)"
 	sn -R "$(output_filename)" "${KEY2}" || die
 }
 
