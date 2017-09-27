@@ -1,14 +1,14 @@
 DEFINED_PHASES=compile install prepare setup
-DEPEND=>=dev-lang/mono-5.2.0.196 dev-dotnet/msbuild-tasks-api developer? ( dev-dotnet/msbuild-tasks-api[developer] ) dev-dotnet/system-reflection-metadata developer? ( dev-dotnet/system-reflection-metadata[developer] ) dev-dotnet/system-collections-immutable developer? ( dev-dotnet/system-collections-immutable[developer] ) dev-dotnet/buildtools >=dev-dotnet/msbuildtasks-1.5.0.240-r1 dev-lang/mono dev-lang/mono
+DEPEND=>=dev-lang/mono-5.2.0.196 dev-dotnet/msbuild-tasks-api developer? ( dev-dotnet/msbuild-tasks-api[developer] ) dev-dotnet/system-reflection-metadata developer? ( dev-dotnet/system-reflection-metadata[developer] ) dev-dotnet/system-collections-immutable developer? ( dev-dotnet/system-collections-immutable[developer] ) roslyn? ( dev-dotnet/msbuild-roslyn-csc ) dev-dotnet/buildtools >=dev-dotnet/msbuildtasks-1.5.0.240-r1 dev-lang/mono dev-lang/mono
 DESCRIPTION=Microsoft Build Engine (MSBuild) is an XML-based platform for building applications
 EAPI=6
 HOMEPAGE=https://docs.microsoft.com/visualstudio/msbuild/msbuild
-IUSE=+net46 +gac developer debug doc +gac pkg-config debug developer
+IUSE=+net46 +gac developer debug doc +roslyn +gac pkg-config debug developer
 KEYWORDS=~amd64
 LICENSE=MIT
-RDEPEND=>=dev-lang/mono-5.2.0.196 dev-dotnet/msbuild-tasks-api developer? ( dev-dotnet/msbuild-tasks-api[developer] ) dev-dotnet/system-reflection-metadata developer? ( dev-dotnet/system-reflection-metadata[developer] ) dev-dotnet/system-collections-immutable developer? ( dev-dotnet/system-collections-immutable[developer] ) dev-lang/mono
+RDEPEND=>=dev-lang/mono-5.2.0.196 dev-dotnet/msbuild-tasks-api developer? ( dev-dotnet/msbuild-tasks-api[developer] ) dev-dotnet/system-reflection-metadata developer? ( dev-dotnet/system-reflection-metadata[developer] ) dev-dotnet/system-collections-immutable developer? ( dev-dotnet/system-collections-immutable[developer] ) roslyn? ( dev-dotnet/msbuild-roslyn-csc ) dev-lang/mono
 RESTRICT=mirror
 SLOT=0
 SRC_URI=https://github.com/mono/linux-packaging-msbuild/archive/e08c20fd277b9de1e3a97c5bd9a5dcf95fcff926.tar.gz -> linux-packaging-msbuild-mono-15.3.tar.gz
 _eclasses_=dotnet	a6f2dd84e753d8176c07f4d2b383982b	epatch	8233751dc5105a6ae8fcd86ce2bb0247	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	9c113d6a64826c40154cad7be15d95ea	gac	f7ab4ad871d4888e9dd05ee635d1d857	ltprune	2770eed66a9b8ef944714cd0e968182e	mono-env	e47f8cb975077b13cdc8db6bab66860c	multilib	97f470f374f2e94ccab04a2fb21d811e	toolchain-funcs	185a06792159ca143528e7010368e8af	versionator	c80ccf29e90adea7c5cae94b42eb76d0
-_md5_=5b353ef89113a0fc8472d58f04a53c32
+_md5_=230f705b910b898b6e6f528350d6a0e5
