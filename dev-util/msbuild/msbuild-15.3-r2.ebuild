@@ -8,7 +8,7 @@ KEYWORDS="~amd64"
 SLOT="0"
 
 USE_DOTNET="net46"
-IUSE="+${USE_DOTNET} +gac developer debug doc"
+IUSE="+${USE_DOTNET} +gac developer debug doc +roslyn"
 
 inherit gac dotnet
 
@@ -23,12 +23,10 @@ DESCRIPTION="Microsoft Build Engine (MSBuild) is an XML-based platform for build
 LICENSE="MIT" # https://github.com/mono/linux-packaging-msbuild/blob/master/LICENSE
 
 COMMON_DEPEND=">=dev-lang/mono-5.2.0.196
-	dev-dotnet/msbuild-tasks-api
-	developer? ( dev-dotnet/msbuild-tasks-api[developer] )
-	dev-dotnet/system-reflection-metadata
-	developer? ( dev-dotnet/system-reflection-metadata[developer] )
-	dev-dotnet/system-collections-immutable
-	developer? ( dev-dotnet/system-collections-immutable[developer] )
+	dev-dotnet/msbuild-tasks-api developer? ( dev-dotnet/msbuild-tasks-api[developer] )
+	dev-dotnet/system-reflection-metadata developer? ( dev-dotnet/system-reflection-metadata[developer] )
+	dev-dotnet/system-collections-immutable developer? ( dev-dotnet/system-collections-immutable[developer] )
+	roslyn? ( dev-dotnet/msbuild-roslyn-csc )
 "
 RDEPEND="${COMMON_DEPEND}
 "

@@ -226,7 +226,7 @@ namespace Microsoft.Build.Tasks {
 
 		protected override string ToolName {
 			get {
-				return MSBuildUtils.RunningOnWindows ? "csc.bat" : "mono.exe";
+				return MSBuildUtils.RunningOnWindows ? "csc.bat" : "csc";
 			}
 		}
 

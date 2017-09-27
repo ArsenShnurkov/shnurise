@@ -9,6 +9,7 @@ xbuild - for .Tasks which should be used from msbuild
 # monodevelop and mono packages may also contain support for these USE-flags (but doesn't have yet)
 
 fake - F# Make build system
+roslyn - modern C# to CIL compiler
 
 # platforms are set of .dll files (assemblies)
 net20 - .NET 2.0 Framework
