@@ -26,23 +26,42 @@ LICENSE="Apache2.0" # https://github.com/dotnet/roslyn/blob/master/License.txt
 IUSE="+${USE_DOTNET} +debug developer doc"
 
 COMMON_DEPEND=">=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999
+	dev-dotnet/msbuild-tasks-api developer? ( dev-dotnet/msbuild-tasks-api[developer] )
+	dev-dotnet/msbuild-defaulttasks developer? ( dev-dotnet/msbuild-defaulttasks[developer] )
 "
 RDEPEND="${COMMON_DEPEND}
 "
 DEPEND="${COMMON_DEPEND}
+	dev-dotnet/msbuildtasks
 "
 
 KEY2="${DISTDIR}/mono.snk"
 
+METAFILE_FO_BUILD="${S}/src/Compilers/Core/MSBuildTask/mono-MSBuildTask.csproj"
+
+function output_filename ( ) {
+	local DIR=""
+	if use debug; then
+		DIR="Debug"
+	else
+		DIR="Release"
+	fi
+	echo "Source/MSBuild.Community.Tasks/bin/${DIR}/MSBuild.Community.Tasks.dll"
+}
+
 src_prepare() {
+	cp "${FILESDIR}/MSBuildTask.csproj" "${METAFILE_FO_BUILD}" || die
 	eapply_user
 }
 
 src_compile() {
-	echo "${S}" || die
-	/usr/bin/find "${S}" -type f -iname "*.sln" || die
+	exbuild "${METAFILE_FO_BUILD}"
+	sn -R "$(output_filename)" "${KEY2}" || die
 }
 
 src_install() {
-	:;
+	insinto "/usr/share/msbuild/Roslyn"
+	doins "${S}/src/Compilers/Core/MSBuildTask/Microsoft.CSharp.Core.targets"
+	doins "${S}/src/Compilers/Core/MSBuildTask/Microsoft.VisualBasic.Core.targets"
+	egacinstall "$(output_filename)"
 }
