@@ -15,7 +15,8 @@ inherit dotnet gac
 GITHUB_ACCOUNT="mono"
 GITHUB_PROJECTNAME="linux-packaging-msbuild"
 EGIT_COMMIT="e08c20fd277b9de1e3a97c5bd9a5dcf95fcff926"
-SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EGIT_COMMIT}.tar.gz -> ${GITHUB_PROJECTNAME}-${GITHUB_ACCOUNT}-${PV}.tar.gz"
+SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EGIT_COMMIT}.tar.gz -> ${GITHUB_PROJECTNAME}-${GITHUB_ACCOUNT}-${PV}.tar.gz
+	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
 S="${WORKDIR}/${GITHUB_PROJECTNAME}-${EGIT_COMMIT}"
 
 HOMEPAGE="https://docs.microsoft.com/visualstudio/msbuild/msbuild"
@@ -34,7 +35,7 @@ DEPEND="${COMMON_DEPEND}
 	>=dev-dotnet/msbuildtasks-1.5.0.240-r1
 "
 
-KEY2="${FILESDIR}/mono.snk"
+KEY2="${DISTDIR}/mono.snk"
 
 PROJ1=Microsoft.Build
 PROJ1_DIR=src/Build

@@ -11,7 +11,7 @@ SLOT="0"
 
 USE_DOTNET="net45"
 
-inherit dotnet gac
+inherit dotnet
 
 NAME="roslyn"
 HOMEPAGE="https://github.com/dotnet/${NAME}"
@@ -46,22 +46,22 @@ function output_filename ( ) {
 	else
 		DIR="Release"
 	fi
-	echo "Source/MSBuild.Community.Tasks/bin/${DIR}/MSBuild.Community.Tasks.dll"
+	echo "src/Compilers/Core/MSBuildTask/bin/${DIR}/Microsoft.Build.Tasks.CodeAnalysis.dll"
 }
 
 src_prepare() {
-	cp "${FILESDIR}/MSBuildTask.csproj" "${METAFILE_FO_BUILD}" || die
+	cp "${FILESDIR}/mono-MSBuildTask.csproj" "${METAFILE_FO_BUILD}" || die
 	eapply_user
 }
 
 src_compile() {
-	exbuild "${METAFILE_FO_BUILD}"
-	sn -R "$(output_filename)" "${KEY2}" || die
+	exbuild /p:TargetFrameworkVersion=v4.6 "/p:SignAssembly=true" "/p:AssemblyOriginatorKeyFile=${KEY2}" "${METAFILE_FO_BUILD}"
+	sn -R "${S}/$(output_filename)" "${KEY2}" || die
 }
 
 src_install() {
-	insinto "/usr/share/msbuild/Roslyn"
+	insinto "/usr/share/msbuild/Roslyn/"
 	doins "${S}/src/Compilers/Core/MSBuildTask/Microsoft.CSharp.Core.targets"
 	doins "${S}/src/Compilers/Core/MSBuildTask/Microsoft.VisualBasic.Core.targets"
-	egacinstall "$(output_filename)"
+	doins "${S}/$(output_filename)"
 }

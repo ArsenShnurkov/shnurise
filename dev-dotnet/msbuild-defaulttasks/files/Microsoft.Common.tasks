@@ -13,7 +13,7 @@
     <UsingTask TaskName="Microsoft.Build.Tasks.CreateItem"                            AssemblyName="Microsoft.Build.Tasks.Core, Version=15.3.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
     <UsingTask TaskName="Microsoft.Build.Tasks.CreateProperty"                        AssemblyName="Microsoft.Build.Tasks.Core, Version=15.3.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
     <UsingTask TaskName="Microsoft.Build.Tasks.CreateVisualBasicManifestResourceName" AssemblyName="Microsoft.Build.Tasks.Core, Version=15.3.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
-    <UsingTask TaskName="Microsoft.Build.Tasks.Csc"                                   AssemblyName="Microsoft.Build.Tasks.Core, Version=15.3.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
+    <UsingTask TaskName="Microsoft.CodeAnalysis.BuildTasks.Csc"                       AssemblyFile="$(RoslynTargetsPath)\Microsoft.Build.Tasks.CodeAnalysis.dll" />
     <UsingTask TaskName="Microsoft.Build.Tasks.Delete"                                AssemblyName="Microsoft.Build.Tasks.Core, Version=15.3.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
     <UsingTask TaskName="Microsoft.Build.Tasks.Error"                                 AssemblyName="Microsoft.Build.Tasks.Core, Version=15.3.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
     <UsingTask TaskName="Microsoft.Build.Tasks.ErrorFromResources"                    AssemblyName="Microsoft.Build.Tasks.Core, Version=15.3.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
