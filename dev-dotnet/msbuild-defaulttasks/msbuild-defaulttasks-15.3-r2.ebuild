@@ -8,7 +8,7 @@ KEYWORDS="~amd64"
 SLOT="0"
 
 USE_DOTNET="net46"
-IUSE="+${USE_DOTNET} +gac developer debug doc"
+IUSE="+${USE_DOTNET} gac developer debug doc"
 
 inherit dotnet gac
 
@@ -91,5 +91,6 @@ src_install() {
 	egacinstall "$(output_filename)"
 
 	insinto "/usr/share/msbuild/"
+	doins "$(output_filename)"
 	doins "${FILESDIR}/Microsoft.Common.tasks"
 }
