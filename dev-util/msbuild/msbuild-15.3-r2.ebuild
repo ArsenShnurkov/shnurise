@@ -47,6 +47,7 @@ src_prepare() {
 	eapply "${FILESDIR}/dir.targets.diff"
 	eapply "${FILESDIR}/src-dir.targets.diff"
 	eapply "${FILESDIR}/tasks.patch"
+	eapply "${FILESDIR}/Microsoft.CSharp.targets.patch"
 	eapply "${FILESDIR}/Microsoft.Common.targets.patch"
 	sed -i 's/CurrentAssemblyVersion = "15.1.0.0"/CurrentAssemblyVersion = "15.3.0.0"/g' "${S}/src/Shared/Constants.cs" || die
 	sed -i 's/Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a/Microsoft.Build.Tasks.Core, Version=15.3.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756/g' "${S}/src/Tasks/Microsoft.Common.tasks" || die
