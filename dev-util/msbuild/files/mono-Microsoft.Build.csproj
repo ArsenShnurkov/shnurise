@@ -15,7 +15,7 @@
     <UpdateNuGetPackageDependencies>true</UpdateNuGetPackageDependencies>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <OutputPath>bin\$(Configuration)</OutputPath>
-    <DefineConstants>$(DefineConstants);BUILD_ENGINE;STANDALONEBUILD;FEATURE_TYPE_INVOKEMEMBER;FEATURE_OSVERSION;FEATURE_64BIT_ENVIRONMENT_QUERY;FEATURE_APPDOMAIN;FEATURE_ASSEMBLY_LOADFROM</DefineConstants>
+    <DefineConstants>$(DefineConstants);BUILD_ENGINE;STANDALONEBUILD;FEATURE_TYPE_INVOKEMEMBER;FEATURE_OSVERSION;FEATURE_64BIT_ENVIRONMENT_QUERY;FEATURE_APPDOMAIN;FEATURE_ASSEMBLY_LOADFROM;FEATURE_VARIOUS_EXCEPTIONS</DefineConstants>
   </PropertyGroup>
   <!-- Default configurations to help VS understand the configurations -->
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
