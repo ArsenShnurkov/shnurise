@@ -19,6 +19,7 @@ dev-dotnet/nhibernate-iesi-collections 4.0.2: C#, LinkedHashSet<T>, Synchronized
 dev-dotnet/nuget 2.8.1-r1: Nuget - .NET Package Manager
 dev-dotnet/pliant 0.4.1_p2016081902 0.4.2.1: modified Earley parser in C# inspired by the Marpa Parser project
 dev-dotnet/remotion-linq 2.1.2: Library to create full-featured LINQ providers.
+dev-dotnet/remotion-linq-eagerfetching 2.1.0: Library to create full-featured LINQ providers (fetching).
 dev-dotnet/slntools 1.1.3.0: library for merging .sln files, and cli-tool
 dev-dotnet/system-collections-immutable 2.0.0_pre: part of CoreFX
 dev-dotnet/system-reflection-metadata 2.0.0_pre: part of CoreFX
