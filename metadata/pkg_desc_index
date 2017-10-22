@@ -3,7 +3,7 @@ app-emulation/qemu 2.6.0: QEMU + Kernel-based Virtual Machine userland tools
 app-misc/aha 0.4.7.2: Ansi HTML Adapter
 app-office/projectlibre-bin 1.6.2: A free and open source desktop alternative to Microsoft Project
 dev-db/sharphsql 1.4-r20150714: Small & embebdded database engine witten in C#, port of the Hypersonic SQL v1.4 (HSQL) Java project
-dev-dotnet/antlr3-runtime 3.2: C# runtime for ANTLR (ANother Tool for Language Recognition)
+dev-dotnet/antlr3-runtime 3.2 3.5.2_beta1_p6: The C# port of ANTLR 3 (Rubtime library)
 dev-dotnet/aspnetwebstack 2014.10.27 9999: Mono copy of the Microsoft ASP.NET Web Stack (MVC, Razor etc)
 dev-dotnet/buildtools 1.0.27: Build tools that are necessary for building the .NET Core projects
 dev-dotnet/castle-core 1.2.0 4.0.0_beta1-r1: including Castle DynamicProxy, Logging Services and DictionaryAdapter
@@ -15,6 +15,7 @@ dev-dotnet/msbuild-roslyn-csc 15.3: C# compiler with rich code analysis APIs
 dev-dotnet/msbuild-tasks-api 15.3-r1: msbuild libraries for writing Task-derived classes
 dev-dotnet/msbuildtasks 1.5.0.240-r2: The MSBuild Community Tasks Project is an open source project for MSBuild tasks.
 dev-dotnet/newtonsoft-json 6.0.8-r1 7.0.1_p20150831 8.0.1_p20151229: Json.NET is a popular high-performance JSON framework for .NET
+dev-dotnet/nhibernate 4.1.1: NHibernate Object Relational Mapper
 dev-dotnet/nhibernate-iesi-collections 4.0.2: C#, LinkedHashSet<T>, SynchronizedSet<T>, ReadOnlySet<T>
 dev-dotnet/nuget 2.8.1-r1: Nuget - .NET Package Manager
 dev-dotnet/pliant 0.4.1_p2016081902 0.4.2.1: modified Earley parser in C# inspired by the Marpa Parser project
@@ -26,6 +27,7 @@ dev-dotnet/system-reflection-metadata 2.0.0_pre: part of CoreFX
 dev-gaclibs/Autopsy-Formats-PeCoff 1.0: Safe and static parsing for PE/COFF/LIB formats
 dev-gaclibs/github-api 0.0-r20150331: C# API for github, based on RestSharp
 dev-lang/mono 5.2.0.224 5.4.0.167: Mono runtime and class libraries, a C# compiler/interpreter
+dev-util/antlrcs 3.5.2_beta1_p6: The C# port of ANTLR 3
 dev-util/gplex-dbremner 1.2.2_p2015112101: C# version of lex (Garden Point Lex)
 dev-util/gppg-dbremner 1.5.2_p2015112101: C# version of lex (Garden Point Lex)
 dev-util/mono-packaging-tools 1.4.1.5 1.4.1.6 1.4.2.0 1.4.2.1 1.4.2.2: Command line utilities for packaging mono assemblies with portage

@@ -9,5 +9,5 @@ LICENSE=MIT
 RDEPEND=|| ( >=dev-lang/mono-4.2 <dev-lang/mono-9999 ) nupkg? ( dev-dotnet/nuget ) dev-lang/mono
 SLOT=0
 SRC_URI=https://github.com/JamesNK/Newtonsoft.Json/archive/05710874cd61adabfb635085b1b45cf31882df3d.zip -> newtonsoft-json-7.0.1_p20150831.zip https://github.com/mono/mono/raw/master/mcs/class/mono.snk
-_eclasses_=dotnet	a6f2dd84e753d8176c07f4d2b383982b	epatch	8233751dc5105a6ae8fcd86ce2bb0247	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	227b041a120d309fdefbebb3b8c1dfa9	gac	7d97f13e375dd158dc010a251b56b535	ltprune	2770eed66a9b8ef944714cd0e968182e	mono-env	bbcd2c9fa99e5cdbdccdad231c70af6d	multilib	97f470f374f2e94ccab04a2fb21d811e	nupkg	b94be7a9ff06739d4130b5c3987e4f29	toolchain-funcs	185a06792159ca143528e7010368e8af	versionator	c80ccf29e90adea7c5cae94b42eb76d0
+_eclasses_=dotnet	299dad375408f2a80aa143e41f608ef6	epatch	8233751dc5105a6ae8fcd86ce2bb0247	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	227b041a120d309fdefbebb3b8c1dfa9	gac	218bce427af679c6cddbac50aa9634d7	ltprune	2770eed66a9b8ef944714cd0e968182e	mono-env	bbcd2c9fa99e5cdbdccdad231c70af6d	multilib	97f470f374f2e94ccab04a2fb21d811e	nupkg	b94be7a9ff06739d4130b5c3987e4f29	toolchain-funcs	185a06792159ca143528e7010368e8af	versionator	c80ccf29e90adea7c5cae94b42eb76d0
 _md5_=b95963624b5c652aa6ce043d51f6a217
