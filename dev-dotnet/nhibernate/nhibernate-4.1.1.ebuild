@@ -13,32 +13,40 @@ USE_DOTNET="net45"
 
 inherit dotnet msbuild gac
 
-NAME="Relinq-EagerFetching"
-HOMEPAGE="https://github.com/re-motion/${NAME}"
-EGIT_COMMIT="9c3fe22e35f3f66becc197829d8e3bdf8e3dd622"
+NAME="nhibernate-core"
+HOMEPAGE="https://github.com/nhibernate/${NAME}"
+EGIT_COMMIT="b64b6b74278a12a6a12e19e6a33f97fac6b6c910"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${NAME}-${PV}.tar.gz
 	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
-DESCRIPTION="Library to create full-featured LINQ providers (fetching)."
-LICENSE="LGPL-2.1" # https://github.com/re-motion/Relinq-EagerFetching/blob/develop/license/LGPLv2.1.txt
+DESCRIPTION="NHibernate Object Relational Mapper"
+LICENSE="LGPL-2.1" # https://github.com/nhibernate/nhibernate-core/blob/master/LICENSE.txt
 
 IUSE="+${USE_DOTNET} +msbuild debug developer doc"
 
 COMMON_DEPEND=">=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999
+	dev-dotnet/antlr3-runtime
+	dev-dotnet/iesi-collections
 	dev-dotnet/remotion-linq
+	dev-dotnet/remotion-linq-eagetfetching
 "
 RDEPEND="${COMMON_DEPEND}
 "
 DEPEND="${COMMON_DEPEND}
+	dev-dotnet/antlrcs
+	>=dev-dotnet/msbuildtasks-1.5.0.240
 "
 
-# https://github.com/re-motion/Relinq/blob/82fdca6a4bfd942bb4a71dd20ab9c5af0aea0541/How%20to%20build.txt
-# We cannot provide the official remotion.snk keyfile, so you will need to create your own.
+KEY1="${DISTDIR}/mono.snk"
+KEY1_TOKEN="0738eb9f132ed756"
 KEY2="${DISTDIR}/mono.snk"
+KEY2_TOKEN="0738eb9f132ed756"
 
-METAFILE_FOR_BUILD="${S}/Core/Core.csproj"
-ASSEMBLY_NAME="Remotion.Linq.EagerFetching"
+METAFILE_DIR="src/NHibernate"
+METAFILE_NAME="NHibernate.csproj"
+ASSEMBLY_NAME="NHibernate"
+ASSEMBLY_VER="${PV}"
 
 function output_filename ( ) {
 	local DIR=""
@@ -47,24 +55,20 @@ function output_filename ( ) {
 	else
 		DIR="Release"
 	fi
-	echo "Core/bin/${DIR}/${ASSEMBLY_NAME}.dll"
+	echo "${METAFILE_DIR}/bin/${DIR}/${ASSEMBLY_NAME}.dll"
 }
 
 function deploy_dir ( ) {
 	echo "/usr/$(get_libdir)/mono/${EBUILD_FRAMEWORK}"
 }
 
-pkg_setup() {
-	dotnet_pkg_setup
-}
-
 src_prepare() {
-	eapply "${FILESDIR}/Core.csproj.patch"
+	eapply "${FILESDIR}/${METAFILE_NAME}-${PV}.patch"
 	eapply_user
 }
 
 src_compile() {
-	emsbuild /p:TargetFrameworkVersion=v4.6 "/p:SignAssembly=true" "/p:PublicSign=true" "/p:AssemblyOriginatorKeyFile=${KEY2}" "${METAFILE_FOR_BUILD}"
+	emsbuild /p:TargetFrameworkVersion=v4.6 "/p:SignAssembly=true" "/p:PublicSign=true" "/p:AssemblyOriginatorKeyFile=${KEY1}" "${S}/${METAFILE_DIR}/${METAFILE_NAME}"
 	sn -R "${S}/$(output_filename)" "${KEY2}" || die
 }
 
@@ -89,5 +93,5 @@ pkg_postinst()
 
 pkg_prerm()
 {
-	egacdel "${ASSEMBLY_NAME}, Version=2.1.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756"
+	egacdel "${ASSEMBLY_NAME}, Version=${ASSEMBLY_VER}, Culture=neutral, PublicKeyToken=${KEY1_TOKEN}"
 }

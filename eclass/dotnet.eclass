@@ -77,6 +77,17 @@ dotnet_pkg_setup() {
 	einfo " -- USING .NET ${FRAMEWORK} FRAMEWORK -- "
 }
 
+# @FUNCTION: get_dotlibdir
+# @DESCRIPTION: returns path for .dll assemblies installation
+get_dotlibdir() {
+	if [ "${SLOT}" == "0" ]
+	then
+		echo /usr/$(get_libdir)/mono/${FRAMEWORK}/${PN}
+	else
+		echo /usr/$(get_libdir)/mono/${FRAMEWORK}/${PN}-${SLOT}
+	fi
+}
+
 # >=mono-0.92 versions using mcs -pkg:foo-sharp require shared memory, so we set the
 # shared dir to ${T} so that ${T}/.wapi can be used during the install process.
 export MONO_SHARED_DIR="${T}"

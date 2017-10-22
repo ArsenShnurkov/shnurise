@@ -1,0 +1,131 @@
+diff -ur a/NHibernate/NHibernate.csproj b/NHibernate/NHibernate.csproj
+--- a/src/NHibernate/NHibernate.csproj	2017-02-02 02:07:26.000000000 +0300
++++ b/src/NHibernate/NHibernate.csproj	2017-10-02 21:30:59.851668726 +0300
+@@ -1,70 +1,38 @@
+ ﻿<?xml version="1.0" encoding="utf-8"?>
+-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
++  <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
++  <Import Project="$(MSBuildExtensionsPath)/Antlr3/Antlr3.props" />
+   <PropertyGroup>
+     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+-    <ProductVersion>9.0.30729</ProductVersion>
+-    <SchemaVersion>2.0</SchemaVersion>
+     <ProjectGuid>{5909BFE7-93CF-4E5F-BE22-6293368AF01D}</ProjectGuid>
+     <OutputType>Library</OutputType>
+     <AppDesignerFolder>Properties</AppDesignerFolder>
+     <RootNamespace>NHibernate</RootNamespace>
+     <AssemblyName>NHibernate</AssemblyName>
+-    <FileUpgradeFlags>
+-    </FileUpgradeFlags>
+-    <OldToolsVersion>3.5</OldToolsVersion>
+-    <UpgradeBackupLocation>
+-    </UpgradeBackupLocation>
+-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+-    <PublishUrl>publish\</PublishUrl>
+-    <Install>true</Install>
+-    <InstallFrom>Disk</InstallFrom>
+-    <UpdateEnabled>false</UpdateEnabled>
+-    <UpdateMode>Foreground</UpdateMode>
+-    <UpdateInterval>7</UpdateInterval>
+-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+-    <UpdatePeriodically>false</UpdatePeriodically>
+-    <UpdateRequired>false</UpdateRequired>
+-    <MapFileExtensions>true</MapFileExtensions>
+-    <ApplicationRevision>0</ApplicationRevision>
+-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+-    <IsWebBootstrapper>false</IsWebBootstrapper>
+-    <UseApplicationTrust>false</UseApplicationTrust>
+-    <BootstrapperEnabled>true</BootstrapperEnabled>
+-    <TargetFrameworkProfile />
++    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+   </PropertyGroup>
+   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+     <DebugSymbols>true</DebugSymbols>
+     <DebugType>full</DebugType>
+     <Optimize>false</Optimize>
+-    <OutputPath>bin\Debug-2.0\</OutputPath>
+-    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
+-    <IntermediateOutputPath>obj\Debug-2.0\</IntermediateOutputPath>
++    <OutputPath>bin\Debug</OutputPath>
+     <DefineConstants>NET_4_0</DefineConstants>
+-    <ErrorReport>prompt</ErrorReport>
+-    <WarningLevel>4</WarningLevel>
+-    <DocumentationFile>bin\Debug-2.0\NHibernate.XML</DocumentationFile>
++    <DocumentationFile>bin\Debug\NHibernate.XML</DocumentationFile>
+     <NoWarn>1591%3b3001%3b3002%3b3003%3b3004%3b3005</NoWarn>
+     <WarningsAsErrors>1717;1574</WarningsAsErrors>
+-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+   </PropertyGroup>
+   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+     <DebugType>pdbonly</DebugType>
+     <Optimize>true</Optimize>
+-    <OutputPath>bin\Release-2.0\</OutputPath>
+-    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
+-    <IntermediateOutputPath>obj\Release-2.0\</IntermediateOutputPath>
++    <OutputPath>bin\Release</OutputPath>
+     <DefineConstants>TRACE;NET_2_0;NET_4_0</DefineConstants>
+-    <ErrorReport>prompt</ErrorReport>
+-    <WarningLevel>4</WarningLevel>
+     <NoWarn>1591;3001;3002;3003;3004;3005</NoWarn>
+     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+-    <DocumentationFile>bin\Release-2.0\NHibernate.XML</DocumentationFile>
++    <DocumentationFile>bin\Release\NHibernate.XML</DocumentationFile>
+   </PropertyGroup>
+   <PropertyGroup>
+     <SignAssembly>true</SignAssembly>
+-  </PropertyGroup>
+-  <PropertyGroup>
++    <PublicSign>true</PublicSign>
+     <AssemblyOriginatorKeyFile>..\NHibernate.snk</AssemblyOriginatorKeyFile>
+   </PropertyGroup>
+   <ItemGroup>
+@@ -74,17 +42,9 @@
+     <Reference Include="System.ServiceModel" />
+     <Reference Include="System.Transactions" />
+     <Reference Include="System.Xml" />
+-    <Reference Include="Antlr3.Runtime, Version=3.1.0.39271, Culture=neutral, PublicKeyToken=3a9cab8f8d22bfb7">
+-      <SpecificVersion>False</SpecificVersion>
+-      <HintPath>..\..\lib\net\Antlr3.Runtime.dll</HintPath>
+-    </Reference>
+-    <Reference Include="Iesi.Collections">
+-      <HintPath>..\..\lib\net\4.0\Iesi.Collections.dll</HintPath>
+-    </Reference>
+-    <Reference Include="Remotion.Linq, Version=1.13.100.2, Culture=neutral, PublicKeyToken=cab60358ab4081ea">
+-      <SpecificVersion>False</SpecificVersion>
+-      <HintPath>..\..\lib\net\Remotion.Linq.dll</HintPath>
+-    </Reference>
++    <Reference Include="Antlr3.Runtime" />
++    <Reference Include="Iesi.Collections" />
++    <Reference Include="Remotion.Linq" />
+     <Reference Include="System.Configuration" />
+     <Reference Include="System.Xml.Linq" />
+   </ItemGroup>
+@@ -1807,13 +1767,17 @@
+   <ItemGroup>
+     <Content Include="NamespaceSummary.xml" />
+   </ItemGroup>
+-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+-       Other similar extension points exist, see Microsoft.Common.targets.
++  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
++  <Import Project="$(MSBuildExtensionsPath)\MSBuild.Community.Tasks.Targets" />
+   <Target Name="BeforeBuild">
+-  </Target>
+-  -->
+-  <Target Name="AfterBuild" Condition=" '$(Configuration)' == 'Release' ">
+-    <Exec Command="$(SolutionDir)..\Tools\ilrepack\ilrepack.exe /verbose /t:library /targetplatform:v4 /keyfile:$(AssemblyOriginatorKeyFile) /internalize:internalize.exclude /out:$(OutputPath)\NHibernate.dll $(IntermediateOutputPath)\NHibernate.dll $(OutputPath)\Remotion.Linq.dll $(OutputPath)\Antlr3.Runtime.dll" />
+-  </Target>
+-</Project>
+\ No newline at end of file
++    <PropertyGroup Condition=" '$(VersionNumber)' == '' ">
++      <VersionNumber>4.1.1.0</VersionNumber>
++    </PropertyGroup>
++    <AssemblyInfo CodeLanguage="C#"
++      OutputFile="../SharedAssemblyInfo.cs" 
++      AssemblyVersion="$(VersionNumber)" 
++      AssemblyFileVersion="$(VersionNumber)"
++    />
++    </Target>
++  <Import Project="$(MSBuildExtensionsPath)/Antlr3/Antlr3.targets" />
++</Project>
