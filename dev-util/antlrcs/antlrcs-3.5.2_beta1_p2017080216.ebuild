@@ -7,7 +7,7 @@ EAPI=6
 KEYWORDS="~amd64 ~ppc ~x86"
 RESTRICT="mirror"
 
-SLOT="0"
+SLOT="1"
 
 USE_DOTNET="net45"
 
@@ -16,7 +16,7 @@ inherit dotbuildtask
 NAME="antlrcs"
 HOMEPAGE="https://github.com/antlr/${NAME}"
 EGIT_COMMIT="ca331b7109e1faa5a6aa7336bb6281ce9363e62b"
-SRC_URI="https://github.com/ArsenShnurkov/shnurise-tarballs/raw/dev-utils/antlrcs/${PN}-${PV}.tar.gz -> ${NAME}-${PV}.tar.gz"
+SRC_URI="https://github.com/ArsenShnurkov/shnurise-tarballs/raw/dev-utils/${PN}-${SLOT}/${PN}-${PV}.tar.gz -> ${NAME}-${PV}.tar.gz"
 S="${WORKDIR}"
 
 DESCRIPTION="The C# port of ANTLR 3"
