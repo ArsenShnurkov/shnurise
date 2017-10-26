@@ -11,7 +11,7 @@ SLOT="1"
 
 USE_DOTNET="net45"
 
-inherit dotbuildtask
+inherit multilib dotbuildtask eutils
 
 NAME="antlrcs"
 HOMEPAGE="https://github.com/antlr/${NAME}"
@@ -32,13 +32,16 @@ DEPEND="${COMMON_DEPEND}
 	dev-dotnet/antlr3-runtime
 "
 
-OUTPUT_PATH="artefacts"
+OUTPUT_PATH="${PN}-${SLOT}"
 
 src_prepare() {
 	eapply_user
 }
 
+
 src_compile() {
+	GAC_PATH=/usr/$(get_libdir)/mono/gac
+
 	einfo "${S}/${OUTPUT_PATH}"
 	mkdir -p "${OUTPUT_PATH}" || die
 
@@ -48,6 +51,9 @@ src_compile() {
 	if use debug; then
 	COMMON_KEYS="${COMMON_KEYS} /define:DEBUG /debug+ /debug:full /optimize-"
 	fi
+
+	cd ${S}/AntlrBuildTask || die
+	mono /usr/lib/mono/4.5/csc.exe /target:library /out:${S}/${OUTPUT_PATH}/AntlrBuildTask.dll /reference:${FW_PATH}/System.Core.dll /reference:${GAC_PATH}/Microsoft.Build.Framework/15.3.0.0__0738eb9f132ed756/Microsoft.Build.Framework.dll /reference:${GAC_PATH}/Microsoft.Build.Utilities.Core/15.3.0.0__0738eb9f132ed756/Microsoft.Build.Utilities.Core.dll ${COMMON_KEYS} || die
 
 	cd ${S}/Runtime/Antlr3.Runtime || die
 	mono /usr/lib/mono/4.5/csc.exe /target:library "/out:${S}/${OUTPUT_PATH}/Antlr.Runtime.dll" /reference:${FW_PATH}/System.Core.dll ${COMMON_KEYS} || die
@@ -64,6 +70,7 @@ src_compile() {
 	cd ${S}/Antlr3.Targets/Antlr3.Targets.CSharp3 || die
 	mkdir -p ${S}/${OUTPUT_PATH}/Targets || die
 	mono /usr/lib/mono/4.5/csc.exe /target:library /out:${S}/${OUTPUT_PATH}/Targets/Antlr3.Targets.CSharp3.dll /define:NETSTANDARD /reference:${FW_PATH}/System.Core.dll /reference:${S}/${OUTPUT_PATH}/Antlr3.exe /reference:${S}/${OUTPUT_PATH}/Antlr4.StringTemplate.dll ${COMMON_KEYS} || die
+
 	cd ${S} || die
 }
 
@@ -71,5 +78,25 @@ TASKS_PROPS_FILE="AntlrBuildTask/Antlr3.props"
 TASKS_TARGETS_FILE="AntlrBuildTask/Antlr3.targets"
 
 src_install() {
+	einfo "installing binaries"
+	insinto "usr/share"
+	doins -r "${S}/${OUTPUT_PATH}"
+
+	einfo "installing templates"
+	insinto "usr/share/${OUTPUT_PATH}"
+	einfo "Tool"
+	doins -r "${S}/Reference/antlr3/tool/src/main/resources/org/antlr/Tool"
+	einfo "Codegen"
+	doins -r "${S}/Reference/antlr3/tool/src/main/resources/org/antlr/Codegen"
+
+	einfo "installing msbuild task"
 	einstask "${OUTPUT_PATH}/AntlrBuildTask.dll" "${S}/${TASKS_PROPS_FILE}" "${S}/${TASKS_TARGETS_FILE}"
+
+	einfo "create bash wrapper"
+#	dodir "usr/bin"
+	if use debug; then
+		make_wrapper antlrcs "/usr/bin/mono --debug \${MONO_OPTIONS} /usr/share/${PN}-${SLOT}/antlrcs.exe"
+	else
+		make_wrapper antlrcs "/usr/bin/mono \${MONO_OPTIONS} /usr/share/${PN}-${SLOT}/antlrcs.exe"
+	fi
 }
