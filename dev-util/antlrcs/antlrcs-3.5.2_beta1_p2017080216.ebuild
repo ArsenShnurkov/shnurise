@@ -47,7 +47,6 @@ src_prepare() {
 	eapply_user
 }
 
-
 src_compile() {
 	GAC_PATH=/usr/$(get_libdir)/mono/gac
 
@@ -62,22 +61,22 @@ src_compile() {
 	fi
 
 	cd "${S}/AntlrBuildTask" || die
-	mono /usr/lib/mono/4.5/csc.exe /target:library /out:${S}/${OUTPUT_PATH}/AntlrBuildTask.dll /reference:${FW_PATH}/System.Core.dll /reference:${GAC_PATH}/Microsoft.Build.Framework/15.3.0.0__0738eb9f132ed756/Microsoft.Build.Framework.dll /reference:${GAC_PATH}/Microsoft.Build.Utilities.Core/15.3.0.0__0738eb9f132ed756/Microsoft.Build.Utilities.Core.dll ${COMMON_KEYS} || die
+	mono /usr/lib/mono/4.5/csc.exe /target:library "/out:${S}/${OUTPUT_PATH}/AntlrBuildTask.dll" /reference:${FW_PATH}/System.Core.dll /reference:${GAC_PATH}/Microsoft.Build.Framework/15.3.0.0__0738eb9f132ed756/Microsoft.Build.Framework.dll /reference:${GAC_PATH}/Microsoft.Build.Utilities.Core/15.3.0.0__0738eb9f132ed756/Microsoft.Build.Utilities.Core.dll ${COMMON_KEYS} || die
 
 	cd "${S}/Runtime/Antlr3.Runtime" || die
 	mono /usr/lib/mono/4.5/csc.exe /target:library "/out:${S}/${OUTPUT_PATH}/Antlr.Runtime.dll" /reference:${FW_PATH}/System.Core.dll ${COMMON_KEYS} || die
 
 	cd "${S}/Runtime/Antlr3.Runtime.Debug" || die
-	mono /usr/lib/mono/4.5/csc.exe /target:library /out:${S}/${OUTPUT_PATH}/Antlr.Runtime.Debug.dll /reference:${FW_PATH}/System.Core.dll /reference:${S}/${OUTPUT_PATH}/Antlr.Runtime.dll ${COMMON_KEYS} || die
+	mono /usr/lib/mono/4.5/csc.exe /target:library "/out:${S}/${OUTPUT_PATH}/Antlr.Runtime.Debug.dll" "/reference:${FW_PATH}/System.Core.dll" "/reference:${S}/${OUTPUT_PATH}/Antlr.Runtime.dll" ${COMMON_KEYS} || die
 
 	cd "${S}/Antlr4.StringTemplate" || die
-	mono /usr/lib/mono/4.5/csc.exe /target:library /out:${S}/${OUTPUT_PATH}/Antlr4.StringTemplate.dll /reference:${FW_PATH}/System.Core.dll /reference:${S}/${OUTPUT_PATH}/Antlr.Runtime.dll ${COMMON_KEYS} || die
+	mono /usr/lib/mono/4.5/csc.exe /target:library "/out:${S}/${OUTPUT_PATH}/Antlr4.StringTemplate.dll" "/reference:${FW_PATH}/System.Core.dll" "/reference:${S}/${OUTPUT_PATH}/Antlr.Runtime.dll" ${COMMON_KEYS} || die
 
 	cd "${S}/Antlr3" || die
-	mono /usr/lib/mono/4.5/csc.exe /target:exe /out:${S}/${OUTPUT_PATH}/Antlr3.exe /define:NETSTANDARD /reference:${FW_PATH}/System.Core.dll /reference:${FW_PATH}/System.Xml.Linq.dll /reference:${S}/${OUTPUT_PATH}/Antlr.Runtime.dll /reference:${S}/${OUTPUT_PATH}/Antlr.Runtime.Debug.dll /reference:${S}/${OUTPUT_PATH}/Antlr4.StringTemplate.dll ${COMMON_KEYS} || die
+	mono /usr/lib/mono/4.5/csc.exe /target:exe "/out:${S}/${OUTPUT_PATH}/Antlr3.exe" /define:NETSTANDARD "/reference:${FW_PATH}/System.Core.dll" "/reference:${FW_PATH}/System.Xml.Linq.dll" "/reference:${S}/${OUTPUT_PATH}/Antlr.Runtime.dll" "/reference:${S}/${OUTPUT_PATH}/Antlr.Runtime.Debug.dll" "/reference:${S}/${OUTPUT_PATH}/Antlr4.StringTemplate.dll" ${COMMON_KEYS} || die
 
 	cd "${S}/Antlr3.Targets/Antlr3.Targets.CSharp3" || die
-	mono /usr/lib/mono/4.5/csc.exe /target:library /out:${S}/${OUTPUT_PATH}/Targets/Antlr3.Targets.CSharp3.dll /define:NETSTANDARD /reference:${FW_PATH}/System.Core.dll /reference:${S}/${OUTPUT_PATH}/Antlr3.exe /reference:${S}/${OUTPUT_PATH}/Antlr4.StringTemplate.dll ${COMMON_KEYS} || die
+	mono /usr/lib/mono/4.5/csc.exe /target:library "/out:${S}/${OUTPUT_PATH}/Targets/Antlr3.Targets.CSharp3.dll" /define:NETSTANDARD "/reference:${FW_PATH}/System.Core.dll" "/reference:${S}/${OUTPUT_PATH}/Antlr3.exe" "/reference:${S}/${OUTPUT_PATH}/Antlr4.StringTemplate.dll" ${COMMON_KEYS} || die
 
 	cd "${S}" || die
 }
