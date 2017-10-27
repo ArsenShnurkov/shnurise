@@ -33,8 +33,16 @@ DEPEND="${COMMON_DEPEND}
 "
 
 OUTPUT_PATH="${PN}-${SLOT}"
+ASSEMBLY_VERSION="3.5.2.0"
 
 src_prepare() {
+	local ATEXT="[assembly:System.Reflection.AssemblyVersion(\"${ASSEMBLY_VERSION}\")]"
+	echo "${ATEXT}" >"${S}/AntlrBuildTask/AV.cs" || die
+	echo "${ATEXT}" >"${S}/Runtime/Antlr3.Runtime/AV.cs" || die
+	echo "${ATEXT}" >"${S}/Runtime/Antlr3.Runtime.Debug/AV.cs" || die
+	echo "${ATEXT}" >"${S}/Antlr4.StringTemplate/AV.cs" || die
+	echo "${ATEXT}" >"${S}/Antlr3/AV.cs" || die
+	echo "${ATEXT}" >"${S}/Antlr3.Targets/Antlr3.Targets.CSharp3/AV.cs" || die
 	eapply_user
 }
 
@@ -42,8 +50,8 @@ src_prepare() {
 src_compile() {
 	GAC_PATH=/usr/$(get_libdir)/mono/gac
 
-	einfo "${S}/${OUTPUT_PATH}"
 	mkdir -p "${OUTPUT_PATH}" || die
+	mkdir -p "${S}/${OUTPUT_PATH}/Targets" || die
 
 	FW_PATH="/usr/lib64/mono/4.6-api"
 
@@ -52,51 +60,42 @@ src_compile() {
 	COMMON_KEYS="${COMMON_KEYS} /define:DEBUG /debug+ /debug:full /optimize-"
 	fi
 
-	cd ${S}/AntlrBuildTask || die
+	cd "${S}/AntlrBuildTask" || die
 	mono /usr/lib/mono/4.5/csc.exe /target:library /out:${S}/${OUTPUT_PATH}/AntlrBuildTask.dll /reference:${FW_PATH}/System.Core.dll /reference:${GAC_PATH}/Microsoft.Build.Framework/15.3.0.0__0738eb9f132ed756/Microsoft.Build.Framework.dll /reference:${GAC_PATH}/Microsoft.Build.Utilities.Core/15.3.0.0__0738eb9f132ed756/Microsoft.Build.Utilities.Core.dll ${COMMON_KEYS} || die
 
-	cd ${S}/Runtime/Antlr3.Runtime || die
+	cd "${S}/Runtime/Antlr3.Runtime" || die
 	mono /usr/lib/mono/4.5/csc.exe /target:library "/out:${S}/${OUTPUT_PATH}/Antlr.Runtime.dll" /reference:${FW_PATH}/System.Core.dll ${COMMON_KEYS} || die
 
-	cd ${S}/Runtime/Antlr3.Runtime.Debug || die
+	cd "${S}/Runtime/Antlr3.Runtime.Debug" || die
 	mono /usr/lib/mono/4.5/csc.exe /target:library /out:${S}/${OUTPUT_PATH}/Antlr.Runtime.Debug.dll /reference:${FW_PATH}/System.Core.dll /reference:${S}/${OUTPUT_PATH}/Antlr.Runtime.dll ${COMMON_KEYS} || die
 
-	cd ${S}/Antlr4.StringTemplate || die
+	cd "${S}/Antlr4.StringTemplate" || die
 	mono /usr/lib/mono/4.5/csc.exe /target:library /out:${S}/${OUTPUT_PATH}/Antlr4.StringTemplate.dll /reference:${FW_PATH}/System.Core.dll /reference:${S}/${OUTPUT_PATH}/Antlr.Runtime.dll ${COMMON_KEYS} || die
 
-	cd ${S}/Antlr3 || die
+	cd "${S}/Antlr3" || die
 	mono /usr/lib/mono/4.5/csc.exe /target:exe /out:${S}/${OUTPUT_PATH}/Antlr3.exe /define:NETSTANDARD /reference:${FW_PATH}/System.Core.dll /reference:${FW_PATH}/System.Xml.Linq.dll /reference:${S}/${OUTPUT_PATH}/Antlr.Runtime.dll /reference:${S}/${OUTPUT_PATH}/Antlr.Runtime.Debug.dll /reference:${S}/${OUTPUT_PATH}/Antlr4.StringTemplate.dll ${COMMON_KEYS} || die
 
-	cd ${S}/Antlr3.Targets/Antlr3.Targets.CSharp3 || die
-	mkdir -p ${S}/${OUTPUT_PATH}/Targets || die
+	cd "${S}/Antlr3.Targets/Antlr3.Targets.CSharp3" || die
 	mono /usr/lib/mono/4.5/csc.exe /target:library /out:${S}/${OUTPUT_PATH}/Targets/Antlr3.Targets.CSharp3.dll /define:NETSTANDARD /reference:${FW_PATH}/System.Core.dll /reference:${S}/${OUTPUT_PATH}/Antlr3.exe /reference:${S}/${OUTPUT_PATH}/Antlr4.StringTemplate.dll ${COMMON_KEYS} || die
 
-	cd ${S} || die
+	cd "${S}" || die
 }
 
 TASKS_PROPS_FILE="AntlrBuildTask/Antlr3.props"
 TASKS_TARGETS_FILE="AntlrBuildTask/Antlr3.targets"
 
 src_install() {
-	einfo "installing binaries"
 	insinto "usr/share"
 	doins -r "${S}/${OUTPUT_PATH}"
 
-	einfo "installing templates"
 	insinto "usr/share/${OUTPUT_PATH}"
-	einfo "Tool"
 	doins -r "${S}/Reference/antlr3/tool/src/main/resources/org/antlr/Tool"
-	einfo "Codegen"
 	doins -r "${S}/Reference/antlr3/tool/src/main/resources/org/antlr/Codegen"
-
-	einfo "installing msbuild task"
 	einstask "${OUTPUT_PATH}/AntlrBuildTask.dll" "${S}/${TASKS_PROPS_FILE}" "${S}/${TASKS_TARGETS_FILE}"
 
-	einfo "create bash wrapper"
-#	dodir "usr/bin"
 	if use debug; then
-		make_wrapper antlrcs "/usr/bin/mono --debug \${MONO_OPTIONS} /usr/share/${PN}-${SLOT}/antlrcs.exe"
+		make_wrapper antlrcs "/usr/bin/mono --debug \${MONO_OPTIONS} /usr/share/${PN}-${SLOT}/Antlr3.exe"
 	else
-		make_wrapper antlrcs "/usr/bin/mono \${MONO_OPTIONS} /usr/share/${PN}-${SLOT}/antlrcs.exe"
+		make_wrapper antlrcs "/usr/bin/mono \${MONO_OPTIONS} /usr/share/${PN}-${SLOT}/Antlr3.exe"
 	fi
 }
