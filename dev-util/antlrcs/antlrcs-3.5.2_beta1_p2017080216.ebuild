@@ -36,6 +36,7 @@ OUTPUT_PATH="${PN}-${SLOT}"
 ASSEMBLY_VERSION="3.5.2.0"
 
 src_prepare() {
+	sed "s#\$(AntlrBuildTaskPath)#/usr/$(get_libdir)/mono/${EBUILD_FRAMEWORK}/${PN}-${SLOT}#;s#\$(AntlrToolPath)#/usr/share/${PN}-${SLOT}/Antlr3.exe#" "${FILESDIR}/Antlr3.props" >"${S}/AntlrBuildTask/Antlr3.props" || die
 	local ATEXT="[assembly:System.Reflection.AssemblyVersion(\"${ASSEMBLY_VERSION}\")]"
 	echo "${ATEXT}" >"${S}/AntlrBuildTask/AV.cs" || die
 	echo "${ATEXT}" >"${S}/Runtime/Antlr3.Runtime/AV.cs" || die
@@ -81,9 +82,6 @@ src_compile() {
 	cd "${S}" || die
 }
 
-TASKS_PROPS_FILE="AntlrBuildTask/Antlr3.props"
-TASKS_TARGETS_FILE="AntlrBuildTask/Antlr3.targets"
-
 src_install() {
 	insinto "usr/share"
 	doins -r "${S}/${OUTPUT_PATH}"
@@ -91,7 +89,10 @@ src_install() {
 	insinto "usr/share/${OUTPUT_PATH}"
 	doins -r "${S}/Reference/antlr3/tool/src/main/resources/org/antlr/Tool"
 	doins -r "${S}/Reference/antlr3/tool/src/main/resources/org/antlr/Codegen"
-	einstask "${OUTPUT_PATH}/AntlrBuildTask.dll" "${S}/${TASKS_PROPS_FILE}" "${S}/${TASKS_TARGETS_FILE}"
+
+	local TASKS_PROPS_FILE="${S}/AntlrBuildTask/Antlr3.props"
+	local TASKS_TARGETS_FILE="${S}/AntlrBuildTask/Antlr3.targets"
+	einstask "${OUTPUT_PATH}/AntlrBuildTask.dll" "${TASKS_PROPS_FILE}" "${TASKS_TARGETS_FILE}"
 
 	if use debug; then
 		make_wrapper antlrcs "/usr/bin/mono --debug \${MONO_OPTIONS} /usr/share/${PN}-${SLOT}/Antlr3.exe"
