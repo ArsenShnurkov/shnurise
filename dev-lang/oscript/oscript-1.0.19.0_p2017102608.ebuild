@@ -13,9 +13,9 @@ USE_DOTNET="net45"
 
 inherit multilib eutils msbuild
 
-if [ "${CATEGORY}" == "" ]; then
-	CATEGORY="dev-lang"
-fi
+#if [ "${CATEGORY}" == "" ]; then
+#	CATEGORY="dev-lang"
+#fi
 if [ "${SLOT}" != "0" ]; then
 	APPENDIX="-${SLOT}"
 fi
@@ -29,6 +29,8 @@ LICENSE=
 IUSE="+${USE_DOTNET} debug developer doc"
 
 COMMON_DEPEND=">=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999
+	dev-dotnet/newtonsoft-json
+	dev-dotnet/dotnetzip-semverd
 "
 RDEPEND="${COMMON_DEPEND}
 "
