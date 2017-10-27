@@ -1,5 +1,5 @@
 DEFINED_PHASES=compile install prepare setup
-DEPEND=>=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 dev-dotnet/antlr3-runtime dev-lang/mono dev-util/msbuild
+DEPEND=>=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 >=dev-dotnet/antlr3-runtime-3.5.2_beta1_p2017080216 dev-lang/mono dev-util/msbuild
 DESCRIPTION=The C# port of ANTLR 3
 EAPI=6
 HOMEPAGE=https://github.com/antlr/antlrcs
@@ -11,4 +11,4 @@ RESTRICT=mirror
 SLOT=1
 SRC_URI=https://github.com/ArsenShnurkov/shnurise-tarballs/raw/dev-utils/antlrcs-1/antlrcs-3.5.2_beta1_p2017080216.tar.gz -> antlrcs-3.5.2_beta1_p2017080216.tar.gz
 _eclasses_=dotbuildtask	1b0450ed3e69caf2b6a9ecd35c31f834	dotnet	299dad375408f2a80aa143e41f608ef6	epatch	8233751dc5105a6ae8fcd86ce2bb0247	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	227b041a120d309fdefbebb3b8c1dfa9	ltprune	2770eed66a9b8ef944714cd0e968182e	mono-env	bbcd2c9fa99e5cdbdccdad231c70af6d	msbuild	b2bfee6c90f5a4440a2871251c6dadc5	multilib	97f470f374f2e94ccab04a2fb21d811e	toolchain-funcs	185a06792159ca143528e7010368e8af	versionator	c80ccf29e90adea7c5cae94b42eb76d0
-_md5_=0ae5f0951d33a42de246e5643c5bbda2
+_md5_=35cf8a1a421462fa8269ecf8306a392a
