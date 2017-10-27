@@ -29,11 +29,11 @@ COMMON_DEPEND=">=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999
 RDEPEND="${COMMON_DEPEND}
 "
 DEPEND="${COMMON_DEPEND}
-	dev-dotnet/antlr3-runtime
+	>=dev-dotnet/antlr3-runtime-${PV}
 "
 
 OUTPUT_PATH="${PN}-${SLOT}"
-ASSEMBLY_VERSION="3.5.2.0"
+ASSEMBLY_VERSION="3.5.1.26"
 
 src_prepare() {
 	sed "s#\$(AntlrBuildTaskPath)#/usr/$(get_libdir)/mono/${EBUILD_FRAMEWORK}/${PN}-${SLOT}#;s#\$(AntlrToolPath)#/usr/share/${PN}-${SLOT}/Antlr3.exe#" "${FILESDIR}/Antlr3.props" >"${S}/AntlrBuildTask/Antlr3.props" || die
