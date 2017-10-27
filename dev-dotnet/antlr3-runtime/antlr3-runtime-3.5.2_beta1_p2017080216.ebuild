@@ -16,9 +16,9 @@ inherit dotnet msbuild gac
 NAME="antlrcs"
 HOMEPAGE="https://github.com/antlr/${NAME}"
 EGIT_COMMIT="ca331b7109e1faa5a6aa7336bb6281ce9363e62b"
-SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${NAME}-${PV}.tar.gz
+SRC_URI="https://github.com/ArsenShnurkov/shnurise-tarballs/raw/dev-utils/${PN}-${SLOT}/${PN}-${PV}.tar.gz -> ${NAME}-${PV}.tar.gz
 	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
-S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
+S="${WORKDIR}"
 
 DESCRIPTION="The C# port of ANTLR 3 (Rubtime library)"
 LICENSE="BSD" # https://github.com/antlr/antlrcs/blob/master/LICENSE.txt
