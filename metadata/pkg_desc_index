@@ -37,4 +37,4 @@ dev-util/msbuild 15.3-r2: Microsoft Build Engine (MSBuild) is an XML-based platf
 dev-util/repository-analyser 1.0.0.0: modified Earley parser in C# inspired by the Marpa Parser project
 games-strategy/freeorion 0.4.6_rc2: A free turn-based space empire and galactic conquest game
 net-libs/xulrunner 39.0.3-r20150824: Mozilla runtime package that can be used to bootstrap XUL+XPCOM applications
-www-apps/orchard 1.7.3: CMS written with CSharp
+www-apps/orchard-cms 1.7.3: CMS written with CSharp
