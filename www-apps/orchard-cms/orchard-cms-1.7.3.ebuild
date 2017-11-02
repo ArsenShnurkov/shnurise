@@ -28,6 +28,9 @@ CDEPEND="
 	dev-dotnet/autofac
 	dev-dotnet/autofac-configuration
 	>=dev-dotnet/log4net-1.2.11-r2
+	dev-dotnet/nhibernate-linq
+	dev-dotnet/fluent-nhibernate
+	dev-dotnet/castle-dynamicproxy
 "
 DEPEND="${CDEPEND}"
 RDEPEND="${CDEPEND}"
