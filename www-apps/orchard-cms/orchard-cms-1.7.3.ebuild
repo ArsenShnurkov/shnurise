@@ -40,6 +40,7 @@ src_prepare() {
 	rm -rf "${S}/lib" || die
 
 	# patch remaining source code
+	epatch "${FILESDIR}/SqlAzure.patch"
 	epatch "${FILESDIR}/case-of-path-letters.patch"
 	epatch "${FILESDIR}/web-config.patch"
 	eapply "${FILESDIR}/add-reference-to-system-data-${PV}.patch"
@@ -47,7 +48,13 @@ src_prepare() {
 }
 
 src_compile() {
-	exbuild /p:TargetFrameworkVersion=v4.5 "${S}/src/Orchard.sln"
+	local CONFIGURATION=""
+	if use debug; then
+		CONFIGURATION="Debug"
+	else
+		CONFIGURATION="Release"
+	fi
+	exbuild /p:TargetFrameworkVersion=v4.5 "/p:Configuration=${CONFIGURATION}" "${S}/src/Orchard.sln"
 }
 
 src_install() {
