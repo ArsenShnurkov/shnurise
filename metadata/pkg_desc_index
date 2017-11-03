@@ -28,7 +28,6 @@ dev-gaclibs/Autopsy-Formats-PeCoff 1.0: Safe and static parsing for PE/COFF/LIB 
 dev-gaclibs/github-api 0.0-r20150331: C# API for github, based on RestSharp
 dev-lang/mono 5.2.0.224 5.4.0.167: Mono runtime and class libraries, a C# compiler/interpreter
 dev-lang/oscript 1.0.19.0_p2017102608: 
-dev-util/antlrcs 3.5.2_beta1_p2017080216: The C# port of ANTLR 3
 dev-util/gplex-dbremner 1.2.2_p2015112101: C# version of lex (Garden Point Lex)
 dev-util/gppg-dbremner 1.5.2_p2015112101: C# version of lex (Garden Point Lex)
 dev-util/mono-packaging-tools 1.4.1.5 1.4.1.6 1.4.2.0 1.4.2.1 1.4.2.2: Command line utilities for packaging mono assemblies with portage
