@@ -2,6 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
+RESTRICT="mirror"
 
 inherit autotools eutils linux-info mono-env flag-o-matic pax-utils versionator multilib-minimal
 
