@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile install prepare
+DEPEND=|| ( >=dev-lang/mono-4 <dev-lang/mono-9999 ) dev-util/msbuild dev-lang/mono >=dev-util/mono-packaging-tools-1.4.3
+DESCRIPTION=C# framework for paths operations: Absolute, Drive Letter, UNC, Relative, prefix
+EAPI=6
+HOMEPAGE=https://github.com/psmacchia/NDepend.Path
+IUSE=+net45 debug debug developer +gac pkg-config
+KEYWORDS=~x86 ~amd64 ~ppc
+LICENSE=MIT
+RDEPEND=|| ( >=dev-lang/mono-4 <dev-lang/mono-9999 ) dev-lang/mono
+RESTRICT=mirror
+SLOT=0
+SRC_URI=https://github.com/psmacchia/NDepend.Path/archive/96008fcfbc137eac6fd327387b80b14909a581a1.tar.gz -> ndepend-path-0.0_p20151123.tar.gz https://github.com/mono/mono/raw/master/mcs/class/mono.snk
+_eclasses_=gac	218bce427af679c6cddbac50aa9634d7	mpt-r20150903	4b5038947692e83e41f1ab4898803c33	msbuild	b2bfee6c90f5a4440a2871251c6dadc5
+_md5_=5d11d26f68682ee2e842abff3c0dfc61
