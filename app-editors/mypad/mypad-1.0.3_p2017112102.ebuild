@@ -3,25 +3,28 @@
 # $Id$
 
 EAPI="6"
+RESTRICT="mirror"
+SLOT="1"
+USE_DOTNET="net45"
+IUSE="${USE_DOTNET} debug developer"
 
-inherit eutils gnome2-utils dotnet
+inherit eutils gnome2-utils msbuild
+# mpt-r20150903
 
 DESCRIPTION="mypad text editor"
 LICENSE="MIT"
 
 PROJECTNAME="mypad-winforms-texteditor"
 HOMEPAGE="https://github.com/ArsenShnurkov/${PROJECTNAME}"
-EGIT_COMMIT="c1c79094eb5339309e3767f64d4e87f6214e7faa"
+EGIT_COMMIT="a77d224023c052bd2c419bf59beb15c028d406cb"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${P}-${PR}.zip"
-
-SLOT="1"
-IUSE="net45 debug developer"
-USE_DOTNET="net45"
+S="${WORKDIR}/${PROJECTNAME}-${EGIT_COMMIT}"
 
 KEYWORDS="amd64 ppc x86"
 
-ALLPEND="|| ( >=dev-lang/mono-4 <dev-lang/mono-9999 )
-	|| ( dev-dotnet/icsharpcodetexteditor[nupkg] dev-dotnet/icsharpcodetexteditor[gac] )
+ALLPEND="dev-lang/mono
+	>=dev-dotnet/icsharpcodetexteditor-3.2.2_p2017112101
+	>=dev-dotnet/ndepend-path-0.0_p20151123-r1
 	"
 
 # The DEPEND ebuild variable should specify any dependencies which are 
@@ -36,27 +39,24 @@ DEPEND="${ALLPEND}
 RDEPEND="${ALLPEND}
 	"
 
-S="${WORKDIR}/${PROJECTNAME}-${EGIT_COMMIT}"
-
-# METAFILETOBUILD=${PROJECTNAME}.sln
-METAFILETOBUILD=MyPad.sln
+PROJECT1_PATH=MyPad
+PROJECT1_NAME=MyPad
+PROJECT1_OUT=MyPad
 
 pkg_preinst() {
 	gnome2_icon_savelist
 }
 
 src_prepare() {
-#	elog "Patching"
-	eapply "${FILESDIR}/0001-.csproj-dependency-.nupkg-dependency.patch"
-	eapply "${FILESDIR}/0001-remove-project-from-solution.patch"
-	elog "NuGet restore"
-	/usr/bin/nuget restore ${METAFILETOBUILD} || die
+	cp "${FILESDIR}/${PROJECT1_NAME}.csproj" "${S}/${PROJECT1_PATH}/${PROJECT1_NAME}.csproj" || die
+	sed -i "/Version/d" "${S}/MyPad/Properties/AssemblyInfo.cs" || die
+#	empt-csproj --dir="${S}/${NAME}" --replace-reference "ICSharpProject.TextEditor"
 	eapply_user
 }
 
 src_compile() {
 	# https://bugzilla.xamarin.com/show_bug.cgi?id=9340
-	exbuild ${METAFILETOBUILD}
+	emsbuild /p:TargetFrameworkVersion=v4.6 "${S}/${PROJECT1_PATH}/${PROJECT1_NAME}.csproj"
 }
 
 src_install() {
@@ -71,9 +71,6 @@ src_install() {
 	insinto /usr/lib/mypad-${PV}/
 	newins "${BINDIR}/MyPad.exe" MyPad.exe
 	make_wrapper mypad "mono /usr/lib/mypad-${PV}/MyPad.exe"
-	# Don't dlls should be in GAC ?
-	doins "${BINDIR}/NDepend.Path.dll"
-	doins "${BINDIR}/NDepend.Path.Interfaces.dll"
 
 	elog "Installing syntax coloring schemes for editor"
 	dodir /usr/lib/mypad-${PV}/Modes
