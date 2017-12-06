@@ -11,6 +11,7 @@ dev-dotnet/dotnetzip-semverd 1.9.3-r2: create, extract, or update zip files with
 dev-dotnet/htmlparsersharp 1.0.0.0-r20150614: Validator.nu HTML Parser, a HTML5 parser, port from Java Version 1.4 to C#
 dev-dotnet/icsharpcode-nrefactory 5.5.1: NRefactory supports analysis of C# source code
 dev-dotnet/icsharpcode-texteditor 3.2.2_p2017112101: ICSharpCode.TextEditor library
+dev-dotnet/libgdiplus 4.2-r3: Library for using System.Drawing with mono
 dev-dotnet/msbuild-defaulttasks 15.3-r2: default tasks for Microsoft Build Engine (MSBuild)
 dev-dotnet/msbuild-roslyn-csc 15.3: C# compiler with rich code analysis APIs
 dev-dotnet/msbuild-tasks-api 15.3-r1: msbuild libraries for writing Task-derived classes
