@@ -31,6 +31,11 @@ RDEPEND=">=dev-libs/glib-2.2.3:2
 	!cairo? ( >=x11-libs/pango-1.20 )"
 DEPEND="${RDEPEND}"
 
+src_prepare() {
+	eapply "${FILESDIR}/iswspace.patch"
+	default
+}
+
 src_configure() {
 	econf \
 		--disable-dependency-tracking \
