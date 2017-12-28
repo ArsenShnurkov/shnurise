@@ -1,7 +1,7 @@
 DEFINED_PHASES=compile install postinst postrm preinst prepare prerm pretend setup test unpack
 DEPEND=sources_standalone? ( !=sys-kernel/linux-sabayon-4.11.12 ) !sources_standalone? ( =sys-kernel/linux-sabayon-4.11.12 ) !build? ( sys-apps/sed >=sys-devel/binutils-2.11.90.0.31 ) sys-apps/sed
 DESCRIPTION=Official Sabayon Linux Standard kernel sources
-EAPI=5
+EAPI=6
 HOMEPAGE=https://github.com/Sabayon/kernel
 IUSE=sources_standalone symlink build
 KEYWORDS=~amd64
@@ -11,4 +11,4 @@ RESTRICT=mirror
 SLOT=4.11
 SRC_URI=mirror://kernel/linux/kernel/v4.x/linux-4.11.tar.xz mirror://sabayon/sys-kernel/4.11-sabayon-4.11.12.patch.xz
 _eclasses_=desktop	2ccd1dd1dd7bfb8795eea024a4f91bb6	epatch	8233751dc5105a6ae8fcd86ce2bb0247	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	97ce9decef1ff4b6c5be700283f67343	kernel-2	880361b861490d9503f47d4f16e05f2c	linux-info	ca370deef9d44125d829f2eb6ebc83e0	ltprune	2770eed66a9b8ef944714cd0e968182e	mount-boot	1e82d96b7a7dcb483b412497a90bb646	multilib	97f470f374f2e94ccab04a2fb21d811e	python-any-r1	27d7f9da7187d283b7f3eae8390b7b09	python-utils-r1	c9de01becf9df3f8c10aeec3dc693f5d	sabayon-artwork	0c7988bbdfdcc7440a68ed9df5fdff73	sabayon-kernel	bca6e1e986d01af3fd850c6baf489767	toolchain-funcs	185a06792159ca143528e7010368e8af	versionator	c80ccf29e90adea7c5cae94b42eb76d0
-_md5_=23afaada3f7631c73a651dcd283be0f2
+_md5_=5e6e73e4c36cb59e9b0b5748525bfce3
