@@ -8,4 +8,4 @@
 +#define MAX_ARG_STRLEN 250000
  #define MAX_ARG_STRINGS 0x7FFFFFFF
  
- /* sizeof(linux_binprm->buf) */
+/* sizeof(linux_binprm->buf) */

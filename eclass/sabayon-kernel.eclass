@@ -45,7 +45,7 @@ K_SABKERNEL_LONGTERM="${K_SABKERNEL_LONGTERM:-}"
 # @ECLASS-VARIABLE: K_KERNEL_SOURCES_PKG
 # @DESCRIPTION:
 # The kernel sources package used to build this kernel binary
-K_KERNEL_SOURCES_PKG="${K_KERNEL_SOURCES_PKG:-${CATEGORY}/${PN/*-}-sources-${PV}}"
+K_KERNEL_SOURCES_PKG="${K_KERNEL_SOURCES_PKG:-${CATEGORY}/${PN/*-}-sources-${PVR}}"
 
 # @ECLASS-VARIABLE: K_KERNEL_PATCH_VER
 # @DESCRIPTION:
@@ -197,14 +197,14 @@ fi
 
 ## kernel-2 eclass settings
 if [ "${K_SABKERNEL_PATCH_UPSTREAM_TARBALL}" = "1" ]; then
-	_patch_name="$(get_version_component_range 1-2)-${K_SABKERNEL_SELF_TARBALL_NAME}-${PV}.patch.xz"
+	_patch_name="$(get_version_component_range 1-2)-${K_SABKERNEL_SELF_TARBALL_NAME}-${PVR}.patch.xz"
 	SRC_URI="${KERNEL_URI}
 		mirror://sabayon/${CATEGORY}/${_patch_name}
 	"
 	UNIPATCH_LIST="${UNIPATCH_LIST} ${DISTDIR}/${_patch_name}"
 	unset _patch_name
 elif [ -n "${K_SABKERNEL_SELF_TARBALL_NAME}" ]; then
-	SRC_URI="mirror://sabayon/${CATEGORY}/linux-${PV}+${K_SABKERNEL_SELF_TARBALL_NAME}.tar.${K_TARBALL_EXT}"
+	SRC_URI="mirror://sabayon/${CATEGORY}/linux-${PVR}+${K_SABKERNEL_SELF_TARBALL_NAME}.tar.${K_TARBALL_EXT}"
 else
 	SRC_URI="${KERNEL_URI}"
 fi
@@ -261,7 +261,7 @@ S="${WORKDIR}/linux-${KV_FULL}"
 if [ -n "${K_FIRMWARE_PACKAGE}" ]; then
 	SLOT="0"
 elif [ "${K_KERNEL_SLOT_USEPVR}" = "1" ]; then
-	SLOT="${PV}"
+	SLOT="${PVR}"
 elif [ "${K_KERNEL_NEW_VERSIONING}" = "1" ]; then
 	SLOT="$(get_version_component_range 1-2)"
 else
