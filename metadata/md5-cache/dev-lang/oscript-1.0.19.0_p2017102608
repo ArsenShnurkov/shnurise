@@ -1,12 +1,12 @@
-DEFINED_PHASES=compile install prepare
-DEPEND=>=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 dev-dotnet/newtonsoft-json dev-dotnet/dotnetzip-semverd dev-util/msbuild
+DEFINED_PHASES=compile install prepare setup
+DEPEND=>=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 dev-dotnet/newtonsoft-json dev-dotnet/dotnetzip-semverd dev-lang/mono dev-util/msbuild
 EAPI=6
 HOMEPAGE=http://oscript.io
-IUSE=+net45 debug developer doc debug developer
+IUSE=+net45 debug developer doc debug developer net45 debug developer
 KEYWORDS=~amd64 ~ppc ~x86
 RDEPEND=>=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 dev-dotnet/newtonsoft-json dev-dotnet/dotnetzip-semverd
 RESTRICT=mirror
 SLOT=0
 SRC_URI=https://github.com/ArsenShnurkov/shnurise-tarballs/raw/dev-lang/oscript/oscript-1.0.19.0_p2017102608.tar.gz
-_eclasses_=desktop	2ccd1dd1dd7bfb8795eea024a4f91bb6	epatch	8233751dc5105a6ae8fcd86ce2bb0247	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	b4eee44966573b7fb6761e507910b306	ltprune	2770eed66a9b8ef944714cd0e968182e	msbuild	26d6205117955823e9d006df3f642b12	multilib	97f470f374f2e94ccab04a2fb21d811e	preserve-libs	ef207dc62baddfddfd39a164d9797648	toolchain-funcs	885c7d8dd70a58825f3d17e35a3cd1e9
+_eclasses_=desktop	2ccd1dd1dd7bfb8795eea024a4f91bb6	dotnet	c577b5ff5aed797162338ae0849cb835	epatch	8233751dc5105a6ae8fcd86ce2bb0247	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	b4eee44966573b7fb6761e507910b306	ltprune	2770eed66a9b8ef944714cd0e968182e	mono-env	059a05efbba66d5bdcc2dd74d91f82f8	msbuild	1568231f9678236854f274a621315ce0	multilib	97f470f374f2e94ccab04a2fb21d811e	preserve-libs	ef207dc62baddfddfd39a164d9797648	toolchain-funcs	885c7d8dd70a58825f3d17e35a3cd1e9	versionator	ce21313503c41896ebcd7d58b0607e37
 _md5_=49a91d83c094ab31c6956ed5aa12a2c6

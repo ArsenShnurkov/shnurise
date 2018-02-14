@@ -1,14 +1,14 @@
-DEFINED_PHASES=compile install postinst preinst prepare prerm setup
-DEPEND=>=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 dev-dotnet/antlr3-runtime dev-dotnet/iesi-collections dev-dotnet/remotion-linq dev-dotnet/remotion-linq-eagetfetching dev-dotnet/antlrcs >=dev-dotnet/msbuildtasks-1.5.0.240 dev-lang/mono dev-util/msbuild dev-lang/mono
-DESCRIPTION=NHibernate Object Relational Mapper
+DEFINED_PHASES=compile install postinst preinst prerm setup
+DEPEND=|| ( >=dev-lang/mono-3.4.0 <dev-lang/mono-9999 ) dev-lang/mono dev-lang/mono nupkg? ( dev-dotnet/nuget ) dev-lang/mono dev-util/msbuild
+DESCRIPTION=ICSharpCode.TextEditor library
 EAPI=6
-HOMEPAGE=https://github.com/nhibernate/nhibernate-core
-IUSE=+net45 +msbuild debug developer doc debug developer net45 debug developer +gac pkg-config
-KEYWORDS=~amd64 ~ppc ~x86
-LICENSE=LGPL-2.1
-RDEPEND=>=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 dev-dotnet/antlr3-runtime dev-dotnet/iesi-collections dev-dotnet/remotion-linq dev-dotnet/remotion-linq-eagetfetching dev-lang/mono
+HOMEPAGE=https://github.com/ArsenShnurkov/ICSharpCode.TextEditor
+IUSE=+net45 gac nupkg +gac pkg-config debug developer net45 +nupkg debug developer net45 debug developer
+KEYWORDS=~amd64 ~x86 ~ppc
+LICENSE=MIT
+RDEPEND=|| ( >=dev-lang/mono-3.4.0 <dev-lang/mono-9999 ) dev-lang/mono nupkg? ( dev-dotnet/nuget )
 RESTRICT=mirror
 SLOT=0
-SRC_URI=https://github.com/nhibernate/nhibernate-core/archive/b64b6b74278a12a6a12e19e6a33f97fac6b6c910.tar.gz -> nhibernate-core-4.1.1.tar.gz https://github.com/mono/mono/raw/master/mcs/class/mono.snk
-_eclasses_=desktop	2ccd1dd1dd7bfb8795eea024a4f91bb6	dotnet	299dad375408f2a80aa143e41f608ef6	epatch	8233751dc5105a6ae8fcd86ce2bb0247	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	b4eee44966573b7fb6761e507910b306	gac	218bce427af679c6cddbac50aa9634d7	ltprune	2770eed66a9b8ef944714cd0e968182e	mono-env	19800b8d105a543602e5b9da72d9b0c3	msbuild	26d6205117955823e9d006df3f642b12	multilib	97f470f374f2e94ccab04a2fb21d811e	preserve-libs	ef207dc62baddfddfd39a164d9797648	toolchain-funcs	885c7d8dd70a58825f3d17e35a3cd1e9	versionator	ce21313503c41896ebcd7d58b0607e37
+SRC_URI=https://github.com/ArsenShnurkov/ICSharpCode.TextEditor/archive/514ababab3837dacb09a5d946b0a57c8f508dd7b.zip -> icsharpcode-texteditor-3.2.2_p2017112101-r0.zip https://github.com/mono/mono/raw/master/mcs/class/mono.snk
+_eclasses_=desktop	2ccd1dd1dd7bfb8795eea024a4f91bb6	dotnet	c577b5ff5aed797162338ae0849cb835	epatch	8233751dc5105a6ae8fcd86ce2bb0247	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	b4eee44966573b7fb6761e507910b306	gac	f4ca8a0ebfd9cb2068580696182942a6	ltprune	2770eed66a9b8ef944714cd0e968182e	mono-env	059a05efbba66d5bdcc2dd74d91f82f8	msbuild	1568231f9678236854f274a621315ce0	multilib	97f470f374f2e94ccab04a2fb21d811e	nupkg	041a361deaaaae8f1e809f6a70f13aec	preserve-libs	ef207dc62baddfddfd39a164d9797648	toolchain-funcs	885c7d8dd70a58825f3d17e35a3cd1e9	versionator	ce21313503c41896ebcd7d58b0607e37
 _md5_=b1907cc2cea0aee306de15c958562395

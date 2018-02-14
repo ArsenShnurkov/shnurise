@@ -1,14 +1,14 @@
 DEFINED_PHASES=compile install prepare setup
-DEPEND=>=dev-lang/mono-4.0.2.5 dev-lang/mono dev-lang/mono dev-lang/mono
-DESCRIPTION=create, extract, or update zip files with C# (=DotNetZip+SemVer)
+DEPEND=>=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 dev-dotnet/msbuild-tasks-api developer? ( dev-dotnet/msbuild-tasks-api[developer] ) dev-dotnet/msbuild-defaulttasks developer? ( dev-dotnet/msbuild-defaulttasks[developer] ) dev-dotnet/msbuildtasks dev-lang/mono
+DESCRIPTION=C# compiler with rich code analysis APIs
 EAPI=6
-HOMEPAGE=https://github.com/haf/DotNetZip.Semverd
-IUSE=net45 +gac +nupkg developer debug doc debug developer net45 +gac pkg-config pkg-config symlink
+HOMEPAGE=https://github.com/dotnet/roslyn
+IUSE=+net45 +debug developer doc debug developer net45
 KEYWORDS=~amd64 ~ppc ~x86
-LICENSE=MS-PL
-RDEPEND=>=dev-lang/mono-4.0.2.5 dev-lang/mono dev-lang/mono
+LICENSE=Apache2.0
+RDEPEND=>=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 dev-dotnet/msbuild-tasks-api developer? ( dev-dotnet/msbuild-tasks-api[developer] ) dev-dotnet/msbuild-defaulttasks developer? ( dev-dotnet/msbuild-defaulttasks[developer] )
 RESTRICT=mirror
 SLOT=0
-SRC_URI=https://github.com/haf/DotNetZip.Semverd/archive/v1.9.3.tar.gz -> 1.9.3.tar.gz https://github.com/mono/mono/raw/master/mcs/class/mono.snk
-_eclasses_=desktop	2ccd1dd1dd7bfb8795eea024a4f91bb6	dotnet	299dad375408f2a80aa143e41f608ef6	epatch	8233751dc5105a6ae8fcd86ce2bb0247	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	b4eee44966573b7fb6761e507910b306	gac	218bce427af679c6cddbac50aa9634d7	ltprune	2770eed66a9b8ef944714cd0e968182e	mono-env	19800b8d105a543602e5b9da72d9b0c3	mono-pkg-config	7f50f342d7b3bc169f28b698dfde96c0	multilib	97f470f374f2e94ccab04a2fb21d811e	preserve-libs	ef207dc62baddfddfd39a164d9797648	toolchain-funcs	885c7d8dd70a58825f3d17e35a3cd1e9	versionator	ce21313503c41896ebcd7d58b0607e37
+SRC_URI=https://github.com/dotnet/roslyn/archive/ec1cde8b77c7bca654888681037f55aa0e62dd19.tar.gz -> roslyn-15.3.tar.gz https://github.com/mono/mono/raw/master/mcs/class/mono.snk
+_eclasses_=desktop	2ccd1dd1dd7bfb8795eea024a4f91bb6	dotnet	c577b5ff5aed797162338ae0849cb835	epatch	8233751dc5105a6ae8fcd86ce2bb0247	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	b4eee44966573b7fb6761e507910b306	ltprune	2770eed66a9b8ef944714cd0e968182e	mono-env	059a05efbba66d5bdcc2dd74d91f82f8	multilib	97f470f374f2e94ccab04a2fb21d811e	preserve-libs	ef207dc62baddfddfd39a164d9797648	toolchain-funcs	885c7d8dd70a58825f3d17e35a3cd1e9	versionator	ce21313503c41896ebcd7d58b0607e37
 _md5_=328d14c3a2175cb657b78f26d41f691c
