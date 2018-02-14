@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -18,6 +18,8 @@ case ${EAPI:-0} in
 esac
 
 inherit eutils versionator mono-env
+
+SANDBOX_WRITE="${SANDBOX_WRITE}:/etc/mono/registry/:/etc/mono/registry/last-btime"
 
 # @ECLASS-VARIABLE: USE_DOTNET
 # @DESCRIPTION:
@@ -107,53 +109,22 @@ export XDG_CONFIG_HOME="${T}"
 
 unset MONO_AOT_CACHE
 
-# @FUNCTION: exbuild_raw
-# @DESCRIPTION: run xbuild with given parameters
-exbuild_raw() {
-	elog """$@"""
-	xbuild "$@" || die
-}
-
-# @FUNCTION: exbuild
-# @DESCRIPTION: run xbuild with Release configuration and configurated FRAMEWORK
-exbuild() {
+# @FUNCTION: usedebug_tostr
+# @DESCRIPTION:  returns strings "Debug" or "Release" depending from USE="debug"
+function usedebug_tostring ( ) {
+	local DIR=""
 	if use debug; then
-		CARGS=/p:Configuration=Debug
+		DIR="Debug"
 	else
-		CARGS=/p:Configuration=Release
+		DIR="Release"
 	fi
-
-	if use developer; then
-		SARGS=/p:DebugSymbols=True
-	else
-		SARGS=/p:DebugSymbols=False
-	fi
-
-	if [[ -z ${TOOLS_VERSION} ]]; then
-		TOOLS_VERSION=4.0
-	fi
-
-	exbuild_raw "/v:detailed" "/tv:${TOOLS_VERSION}" "/p:TargetFrameworkVersion=v${FRAMEWORK}" "${CARGS}" "${SARGS}" "$@"
+	echo "${DIR}"
 }
 
-# @FUNCTION: exbuild_strong
-# @DESCRIPTION: run xbuild with default key signing
-exbuild_strong() {
-	# http://stackoverflow.com/questions/7903321/only-sign-assemblies-with-strong-name-during-release-build
-	if use gac; then
-		if [[ -z ${SNK_FILENAME} ]]; then
-			# elog ${BASH_SOURCE}
-			SNK_FILENAME=/var/lib/layman/dotnet/eclass/mono.snk
-			# sn - Digitally sign/verify/compare strongnames on CLR assemblies. 
-			# man sn = http://linux.die.net/man/1/sn
-		fi
-		KARGS1=/p:SignAssembly=true 
-		KARGS2=/p:AssemblyOriginatorKeyFile=${SNK_FILENAME}
-	else
-		KARGS1=
-		KARGS2=
-	fi
-	exbuild "${KARGS1}" "${KARGS2}" "$@"
+# @FUNCTION: output_relpath
+# @DESCRIPTION:  returns default relative directory for Debug or Release configuration depending from USE="debug"
+function output_relpath ( ) {
+	echo "bin/$(usedebug_tostring)"
 }
 
 # @FUNCTION: dotnet_multilib_comply
@@ -197,3 +168,4 @@ dotnet_multilib_comply() {
 }
 
 EXPORT_FUNCTIONS pkg_setup
+
