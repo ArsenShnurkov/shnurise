@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -39,6 +39,18 @@ einstall_pc_file()
 	if use pkg-config; then
 		local PC_NAME="$1"
 		local PC_VERSION="$2"
+		local PC_DESCRIPTION="${DESCRIPTION}"
+
+		local PC_INTERNAL_NAME="${PN}"
+
+		# keep verbatim, do not change it to "/usr/$(get_libdir)/pkgconfig"
+		local PC_DIRECTORY="/usr/lib/pkgconfig"
+
+		local PC_FILENAME="${CATEGORY}-${PN}"
+		local PC_FILENAME_WITH_SLOT="${PC_FILENAME}"
+		if [ "${SLOT}" != "0" ]; then
+			PC_FILENAME_WITH_SLOT="${PC_FILENAME}-${SLOT}"
+		fi
 
 		shift 2
 		if [ "$#" == "0" ]; then
@@ -50,16 +62,10 @@ einstall_pc_file()
 			shift
 		done
 
-#		local PC_FILENAME="${PC_NAME}-${PC_VERSION}"
-		local PC_FILENAME="${PN}-${PV}"
-		local PC_DIRECTORY="/usr/$(get_libdir)/pkgconfig"
-		#local PC_DIRECTORY_DELTA="${CATEGORY}/${PN}"
-		local PC_DIRECTORY_VER="${PC_DIRECTORY}/${PC_DIRECTORY_DELTA}"
-
 		dodir "${PC_DIRECTORY}"
 		dodir "${PC_DIRECTORY_VER}"
 
-		ebegin "Installing ${PC_DIRECTORY_VER}/${PC_FILENAME}.pc file"
+		ebegin "Installing ${PC_FILENAME_WITH_SLOT}.pc file"
 
 		# @Name@: A human-readable name for the library or package. This does not affect usage of the pkg-config tool,
 		# which uses the name of the .pc file.
@@ -72,11 +78,11 @@ einstall_pc_file()
 		# (they only requires sed escaping for replacement path)
 		sed \
 			-e "s:@PC_VERSION@:${PC_VERSION}:" \
-			-e "s:@Name@:${CATEGORY}/${PN}:" \
-			-e "s:@DESCRIPTION@:${DESCRIPTION}:" \
+			-e "s:@Name@:PC_INTERNAL_NAME" \
+			-e "s:@DESCRIPTION@:${PC_DESCRIPTION}:" \
 			-e "s:@LIBDIR@:$(get_libdir):" \
 			-e "s*@LIBS@*${DLL_REFERENCES}*" \
-			<<-EOF >"${D}/${PC_DIRECTORY_VER}/${PC_FILENAME}.pc" || die
+			<<-EOF >"${D}/${PC_DIRECTORY_VER}/${PC_FILENAME_WITH_SLOT}.pc" || die
 				prefix=\${pcfiledir}/../..
 				exec_prefix=\${prefix}
 				libdir=\${exec_prefix}/@LIBDIR@
@@ -91,8 +97,11 @@ einstall_pc_file()
 		eend $?
 
 		if use symlink; then
-			einfo "SymLinking ${PC_DIRECTORY_VER}/${PC_FILENAME}.pc file as ${PC_DIRECTORY}/${PC_NAME}.pc"
-			dosym "./${PC_DIRECTORY_DELTA}/${PC_FILENAME}.pc" "${PC_DIRECTORY}/${PC_NAME}.pc"
+			if [ "${PC_FILENAME}" != "PC_FILENAME_WITH_SLOT" ]; then
+				einfo "SymLinking ${PC_DIRECTORY}/${PC_FILENAME_WITH_SLOT}.pc file as ${PC_DIRECTORY}/${PC_FILENAME}.pc"
+				dosym "${PC_DIRECTORY}/${PC_FILENAME_WITH_SLOT}.pc" "${PC_DIRECTORY}/${PC_FILENAME}.pc"
+			fi
 		fi
 	fi
 }
+

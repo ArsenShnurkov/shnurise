@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -6,9 +6,9 @@
 # @MAINTAINER: cynede@gentoo.org
 # @BLURB: functions for working with msbuild command line utility
 # @DESCRIPTION:
-# This is the new replacement for dotnet eclass
+# This is the new replacement for xbuild eclass
 
-SANDBOX_WRITE="${SANDBOX_WRITE}:/etc/mono/registry/:/etc/mono/registry/last-btime"
+inherit dotnet
 
 case ${EAPI:-0} in
 	0) die "this eclass doesn't support EAPI 0" ;;
