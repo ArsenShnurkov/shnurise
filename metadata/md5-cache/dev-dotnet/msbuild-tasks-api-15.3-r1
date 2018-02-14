@@ -1,14 +1,14 @@
 DEFINED_PHASES=compile install prepare setup
-DEPEND=>=dev-lang/mono-5.2.0.196 dev-lang/mono dev-lang/mono
-DESCRIPTION=msbuild libraries for writing Task-derived classes
+DEPEND=>=dev-lang/mono-5.2.0.196 >=dev-dotnet/msbuildtasks-1.5.0.240 dev-lang/mono dev-lang/mono
+DESCRIPTION=C#, LinkedHashSet<T>, SynchronizedSet<T>, ReadOnlySet<T>
 EAPI=6
-HOMEPAGE=https://github.com/mono/linux-packaging-msbuild
+HOMEPAGE=https://www.codeproject.com/Articles/3190/Add-Support-for-quot-Set-quot-Collections-to-NET
 IUSE=+net45 +gac developer debug doc +gac pkg-config debug developer net45
 KEYWORDS=~amd64 ~ppc ~x86
-LICENSE=MIT
+LICENSE=TODO
 RDEPEND=>=dev-lang/mono-5.2.0.196 dev-lang/mono
 RESTRICT=mirror
 SLOT=0
-SRC_URI=https://github.com/mono/linux-packaging-msbuild/archive/e08c20fd277b9de1e3a97c5bd9a5dcf95fcff926.tar.gz -> msbuild-15.3.tar.gz
-_eclasses_=desktop	2ccd1dd1dd7bfb8795eea024a4f91bb6	dotnet	299dad375408f2a80aa143e41f608ef6	epatch	8233751dc5105a6ae8fcd86ce2bb0247	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	b4eee44966573b7fb6761e507910b306	gac	218bce427af679c6cddbac50aa9634d7	ltprune	2770eed66a9b8ef944714cd0e968182e	mono-env	bbcd2c9fa99e5cdbdccdad231c70af6d	multilib	97f470f374f2e94ccab04a2fb21d811e	preserve-libs	ef207dc62baddfddfd39a164d9797648	toolchain-funcs	885c7d8dd70a58825f3d17e35a3cd1e9	versionator	ce21313503c41896ebcd7d58b0607e37
+SRC_URI=https://github.com/nhibernate/iesi.collections/archive/3e183dd3316baedac508d0171b67c3dee05f6da0.tar.gz -> nhibernate-iesi-collections-4.0.2.tar.gz
+_eclasses_=desktop	2ccd1dd1dd7bfb8795eea024a4f91bb6	dotnet	299dad375408f2a80aa143e41f608ef6	epatch	8233751dc5105a6ae8fcd86ce2bb0247	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	b4eee44966573b7fb6761e507910b306	gac	218bce427af679c6cddbac50aa9634d7	ltprune	2770eed66a9b8ef944714cd0e968182e	mono-env	19800b8d105a543602e5b9da72d9b0c3	multilib	97f470f374f2e94ccab04a2fb21d811e	preserve-libs	ef207dc62baddfddfd39a164d9797648	toolchain-funcs	885c7d8dd70a58825f3d17e35a3cd1e9	versionator	ce21313503c41896ebcd7d58b0607e37
 _md5_=0c5d2a41765d11aff6ec56e93a7dc8f6
