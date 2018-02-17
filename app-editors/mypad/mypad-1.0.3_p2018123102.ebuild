@@ -11,7 +11,8 @@ SLOT="2"
 USE_DOTNET="net45"
 IUSE="${USE_DOTNET} debug developer symlink"
 
-inherit eutils gnome2-utils msbuild
+inherit eutils gnome2-utils
+inherit msbuild
 
 DESCRIPTION="mypad text editor"
 LICENSE="MIT"
@@ -94,7 +95,7 @@ src_install() {
 	elog "Configuring templating engine"
 	# actually this should be in the user home folder
 	dosym $(install_dir) $(install_dir)/bin
-	insinto /usr/lib/mypad-${PV}
+	insinto "$(install_dir)"
 	doins $BINDIR/*.aspx
 	doins $BINDIR/*.config
 
@@ -102,7 +103,7 @@ src_install() {
 	local ICON_NAME="AtomFeedIcon.svg"
 	local FULL_ICON_NAME="MyPad/Resources/${ICON_NAME}"
 	newicon -s scalable "${FULL_ICON_NAME}" "${ICON_NAME}"
-	make_desktop_entry "/usr/bin/mypad" "${DESCRIPTION}" "/usr/share/icons/hicolor/scalable/apps/${ICON_NAME}"
+	make_desktop_entry "/usr/bin/mypad${APPENDIX}" "${DESCRIPTION}" "/usr/share/icons/hicolor/scalable/apps/${ICON_NAME}"
 }
 
 pkg_postinst() {
