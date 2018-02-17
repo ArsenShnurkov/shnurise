@@ -3,12 +3,12 @@ DEPEND=>=dev-lang/mono-5.2.0.196 dev-lang/mono dev-lang/mono
 DESCRIPTION=msbuild libraries for writing Task-derived classes
 EAPI=6
 HOMEPAGE=https://github.com/mono/linux-packaging-msbuild
-IUSE=+net45 +gac developer debug doc +gac pkg-config debug developer net45
+IUSE=+net45 +gac developer debug doc gac pkg-config debug developer net45
 KEYWORDS=~amd64 ~ppc ~x86
 LICENSE=MIT
 RDEPEND=>=dev-lang/mono-5.2.0.196 dev-lang/mono
 RESTRICT=mirror
 SLOT=0
 SRC_URI=https://github.com/mono/linux-packaging-msbuild/archive/e08c20fd277b9de1e3a97c5bd9a5dcf95fcff926.tar.gz -> msbuild-15.3.tar.gz
-_eclasses_=desktop	2ccd1dd1dd7bfb8795eea024a4f91bb6	dotnet	c577b5ff5aed797162338ae0849cb835	epatch	8233751dc5105a6ae8fcd86ce2bb0247	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	b4eee44966573b7fb6761e507910b306	gac	f4ca8a0ebfd9cb2068580696182942a6	ltprune	2770eed66a9b8ef944714cd0e968182e	mono-env	059a05efbba66d5bdcc2dd74d91f82f8	multilib	97f470f374f2e94ccab04a2fb21d811e	preserve-libs	ef207dc62baddfddfd39a164d9797648	toolchain-funcs	885c7d8dd70a58825f3d17e35a3cd1e9	versionator	ce21313503c41896ebcd7d58b0607e37
-_md5_=0c5d2a41765d11aff6ec56e93a7dc8f6
+_eclasses_=desktop	2ccd1dd1dd7bfb8795eea024a4f91bb6	dotnet	c577b5ff5aed797162338ae0849cb835	epatch	8233751dc5105a6ae8fcd86ce2bb0247	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	b4eee44966573b7fb6761e507910b306	gac	0df54a5be08f20975988c3e1510b1f8b	ltprune	2770eed66a9b8ef944714cd0e968182e	mono-env	059a05efbba66d5bdcc2dd74d91f82f8	multilib	97f470f374f2e94ccab04a2fb21d811e	preserve-libs	ef207dc62baddfddfd39a164d9797648	toolchain-funcs	885c7d8dd70a58825f3d17e35a3cd1e9	versionator	ce21313503c41896ebcd7d58b0607e37	xbuild	061c9fba1fac5b72d8062a8e5e3beb5f
+_md5_=af6f93426048f3bb5ac98a809d2d0e39
