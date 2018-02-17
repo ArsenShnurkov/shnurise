@@ -1,16 +1,17 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=6
+EAPI="6"
 RESTRICT="mirror"
 KEYWORDS="~amd64 ~ppc ~x86"
+
 SLOT="0"
 
 USE_DOTNET="net45"
 IUSE="+${USE_DOTNET} +gac developer debug doc"
 
-inherit gac dotnet
+inherit gac xbuild
 
 #https://github.com/mono/linux-packaging-msbuild/commit/0d8cee3f87b92cff425306d9c588fc6433fb6bf0
 GITHUB_ACCOUNT="mono"
