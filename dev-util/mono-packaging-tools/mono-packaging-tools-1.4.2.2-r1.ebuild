@@ -1,9 +1,11 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=6 # >=portage-2.2.25
+EAPI="6" # >=portage-2.2.25
+
 KEYWORDS="~x86 ~amd64"
+RESTRICT="mirror"
 
 USE_DOTNET="net45"
 # debug = debug configuration (symbols and defines for debugging)
@@ -15,7 +17,9 @@ USE_DOTNET="net45"
 # pkg-config = register in pkg-config database
 IUSE="+${USE_DOTNET} debug +developer test +aot doc"
 
-inherit gac nupkg
+TOOLS_VERSION=14.0
+
+inherit xbuild gac nupkg
 
 get_revision()
 {
@@ -31,9 +35,8 @@ HOMEPAGE="http://arsenshnurkov.github.io/mono-packaging-tools"
 
 REPOSITORY_URL="https://github.com/ArsenShnurkov/${NAME}"
 
-EGIT_COMMIT="24192d6c79952f3d8a826f1842fb6627233d95e3"
-SRC_URI="${REPOSITORY_URL}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
-RESTRICT="mirror"
+EGIT_COMMIT="92b9ac4cb83e52a5b679f139ff536da29c321456"
+SRC_URI="${REPOSITORY_URL}/archive/${EGIT_COMMIT}.tar.gz -> ${CATEGORY}-${PN}-${PV}.tar.gz"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 SLOT="0"
@@ -43,9 +46,9 @@ LICENSE="GPL-3"
 LICENSE_URL="https://raw.githubusercontent.com/ArsenShnurkov/mono-packaging-tools/master/LICENSE"
 
 COMMON_DEPENDENCIES="|| ( >=dev-lang/mono-4.2 <dev-lang/mono-9999 )
-	dev-dotnet/mono-options[gac]
-	>=dev-dotnet/slntools-1.1.3_p201508170-r1[gac]
-	>=dev-dotnet/eto-parse-1.4.0[gac]
+	dev-dotnet/mono-options
+	>=dev-dotnet/slntools-1.1.3_p201508170-r2
+	>=dev-dotnet/eto-parse-1.4.0
 	"
 DEPEND="${COMMON_DEPENDENCIES}
 	dev-dotnet/msbuildtasks
@@ -78,7 +81,7 @@ src_prepare() {
 }
 
 src_compile() {
-	exbuild_strong /p:VersionNumber="${ASSEMBLY_VERSION}"  "${METAFILETOBUILD}"
+	exbuild /p:VersionNumber="${ASSEMBLY_VERSION}" "${METAFILETOBUILD}"
 	enuspec "${NUSPEC_ID}.nuspec"
 }
 

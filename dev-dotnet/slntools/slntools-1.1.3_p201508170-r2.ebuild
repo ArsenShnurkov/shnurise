@@ -8,6 +8,9 @@ KEYWORDS="~amd64 ~x86"
 RESTRICT="mirror"
 
 SLOT="1"
+if [ "${SLOT}" != "0" ]; then
+	APPENDIX="-${SLOT}"
+fi
 
 USE_DOTNET="net45"
 
@@ -86,7 +89,7 @@ src_install() {
 		DIR="Release"
 	fi
 
-	insinto "/usr/share/dev-dotnet/slntools-0/"
+	insinto "/usr/share/${CATEGORY}/${PN}${APPENDIX}/"
 
 	# || die is not necessary after doins,
 	# see examples at https://devmanual.gentoo.org/ebuild-writing/functions/src_install/index.html
