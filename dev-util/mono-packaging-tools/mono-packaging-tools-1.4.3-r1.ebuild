@@ -17,9 +17,9 @@ USE_DOTNET="net45"
 # pkg-config = register in pkg-config database
 IUSE="+${USE_DOTNET} debug +developer test +aot doc"
 
-TOOLS_VERSION=14.0
+#TOOLS_VERSION=14.0
 
-inherit xbuild gac nupkg
+inherit xbuild mono-pkg-config gac nupkg
 
 get_revision()
 {
@@ -35,7 +35,7 @@ HOMEPAGE="http://arsenshnurkov.github.io/mono-packaging-tools"
 
 REPOSITORY_URL="https://github.com/ArsenShnurkov/${NAME}"
 
-EGIT_COMMIT="92b9ac4cb83e52a5b679f139ff536da29c321456"
+EGIT_COMMIT="98dfea6ddcc47de78a59014728f823bfe773fb25"
 SRC_URI="${REPOSITORY_URL}/archive/${EGIT_COMMIT}.tar.gz -> ${CATEGORY}-${PN}-${PV}.tar.gz"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
@@ -70,6 +70,9 @@ NUSPEC_FILENAME="${PN}.nuspec"
 #ICON_PATH="$(get_nuget_trusted_icons_location)/${ICON_FINALNAME}"
 
 src_prepare() {
+	eapply "${FILESDIR}/MSBuildExtensionsPath.patch"
+	sed -i "s?<Package>slntools-1.1.3.0</Package>?<HintPath>/usr/share/dev-dotnet/slntools-0/CWDev.SLNTools.Core.dll</HintPath>?g" "${S}/mpt-core/mpt-core.csproj" || die
+
 	#change version in .nuspec
 	# PV = Package version (excluding revision, if any), for example 6.3.
 	# It should reflect the upstream versioning scheme
@@ -94,8 +97,11 @@ src_install() {
 		DIR="Release"
 	fi
 	doins mpt-core/bin/${DIR}/mpt-core.dll
-	dosym slot-${SLOT}/mpt-core.dll $(get_dlldir)/mpt-core.dll
+	dosym "$(get_dlldir)/slot-${SLOT}/mpt-core.dll" "$(get_dlldir)/mpt-core.dll"
 	einstall_pc_file ${PN} ${ASSEMBLY_VERSION} mpt-core
+
+	dosym "$(get_dlldir)/slot-${SLOT}/mpt-core.dll" "/usr/share/${PN}/slot-${SLOT}/mpt-core.dll"
+	dosym "/usr/share/dev-dotnet/slntools-0/CWDev.SLNTools.Core.dll" "/usr/share/${PN}/slot-${SLOT}/CWDev.SLNTools.Core.dll"
 
 	insinto "/usr/share/${PN}/slot-${SLOT}"
 	install_tool mpt-gitmodules
@@ -140,7 +146,9 @@ install_tool() {
 		doins "$1"/bin/${DIR}/*.exe.config
 	fi
 	if use developer; then
-		doins "$1"/bin/${DIR}/*.mdb
+		# http://www.mono-project.com/docs/about-mono/releases/5.0.0/
+		# csc generates Portable PDB (.pdb) debug files instead of Mono’s MDB (.mdb) format from mcs.
+		doins "$1"/bin/${DIR}/*.pdb
 	fi
 
 	MONO=/usr/bin/mono

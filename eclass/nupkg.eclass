@@ -9,7 +9,7 @@
 
 inherit dotnet
 
-IUSE+=" +nupkg"
+IUSE+=" nupkg"
 
 DEPEND+=" nupkg? ( dev-dotnet/nuget )"
 RDEPEND+=" nupkg? ( dev-dotnet/nuget )"
