@@ -3,11 +3,11 @@ DEPEND=|| ( >=dev-lang/mono-4.2 <dev-lang/mono-9999 ) dev-util/nunit:2[nupkg] de
 DESCRIPTION=Json.NET is a popular high-performance JSON framework for .NET
 EAPI=6
 HOMEPAGE=https://github.com/JamesNK/Newtonsoft.Json
-IUSE=net45 debug developer test +nupkg +gac +pkg-config debug developer net45 +nupkg gac pkg-config
+IUSE=net45 debug developer test +nupkg +gac +pkg-config debug developer net45 nupkg gac pkg-config
 KEYWORDS=~amd64 ~x86
 LICENSE=MIT
 RDEPEND=|| ( >=dev-lang/mono-4.2 <dev-lang/mono-9999 ) nupkg? ( dev-dotnet/nuget ) dev-lang/mono
 SLOT=0
 SRC_URI=https://github.com/JamesNK/Newtonsoft.Json/archive/05710874cd61adabfb635085b1b45cf31882df3d.zip -> newtonsoft-json-7.0.1_p20150831.zip https://github.com/mono/mono/raw/master/mcs/class/mono.snk
-_eclasses_=desktop	2ccd1dd1dd7bfb8795eea024a4f91bb6	dotnet	c577b5ff5aed797162338ae0849cb835	epatch	8233751dc5105a6ae8fcd86ce2bb0247	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	b4eee44966573b7fb6761e507910b306	gac	0df54a5be08f20975988c3e1510b1f8b	ltprune	2770eed66a9b8ef944714cd0e968182e	mono-env	059a05efbba66d5bdcc2dd74d91f82f8	multilib	97f470f374f2e94ccab04a2fb21d811e	nupkg	041a361deaaaae8f1e809f6a70f13aec	preserve-libs	ef207dc62baddfddfd39a164d9797648	toolchain-funcs	885c7d8dd70a58825f3d17e35a3cd1e9	versionator	ce21313503c41896ebcd7d58b0607e37
+_eclasses_=desktop	2ccd1dd1dd7bfb8795eea024a4f91bb6	dotnet	c577b5ff5aed797162338ae0849cb835	epatch	8233751dc5105a6ae8fcd86ce2bb0247	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	b4eee44966573b7fb6761e507910b306	gac	0df54a5be08f20975988c3e1510b1f8b	ltprune	2770eed66a9b8ef944714cd0e968182e	mono-env	059a05efbba66d5bdcc2dd74d91f82f8	multilib	97f470f374f2e94ccab04a2fb21d811e	nupkg	2b1f8825be3f1d87191667c26729032d	preserve-libs	ef207dc62baddfddfd39a164d9797648	toolchain-funcs	885c7d8dd70a58825f3d17e35a3cd1e9	versionator	ce21313503c41896ebcd7d58b0607e37
 _md5_=b95963624b5c652aa6ce043d51f6a217
