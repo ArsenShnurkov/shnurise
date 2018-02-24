@@ -16,7 +16,7 @@ inherit nupkg
 : ${NUGET_NO_DEPEND:=}
 
 if [[ -n ${NUGET_NO_DEPEND} ]]; then
-	IUSE+=" +nuget"
+	IUSE+=" nuget"
 	
 	DEPEND+=" nuget? ( dev-dotnet/nuget )"
 	RDEPEND+=" nuget? ( dev-dotnet/nuget )"

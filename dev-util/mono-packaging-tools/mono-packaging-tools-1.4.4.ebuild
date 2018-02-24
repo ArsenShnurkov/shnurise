@@ -35,7 +35,7 @@ HOMEPAGE="http://arsenshnurkov.github.io/mono-packaging-tools"
 
 REPOSITORY_URL="https://github.com/ArsenShnurkov/${NAME}"
 
-EGIT_COMMIT="98dfea6ddcc47de78a59014728f823bfe773fb25"
+EGIT_COMMIT="155ead3f9912f1908fac43bbae5eadde77f482f3"
 SRC_URI="${REPOSITORY_URL}/archive/${EGIT_COMMIT}.tar.gz -> ${CATEGORY}-${PN}-${PV}.tar.gz"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
@@ -45,8 +45,7 @@ DESCRIPTION="Command line utilities for packaging mono assemblies with portage"
 LICENSE="GPL-3"
 LICENSE_URL="https://raw.githubusercontent.com/ArsenShnurkov/mono-packaging-tools/master/LICENSE"
 
-COMMON_DEPENDENCIES="|| ( >=dev-lang/mono-4.2 <dev-lang/mono-9999 )
-	dev-dotnet/mono-options
+COMMON_DEPENDENCIES="
 	>=dev-dotnet/slntools-1.1.3_p201508170-r2
 	>=dev-dotnet/eto-parse-1.4.0
 	"
@@ -70,9 +69,6 @@ NUSPEC_FILENAME="${PN}.nuspec"
 #ICON_PATH="$(get_nuget_trusted_icons_location)/${ICON_FINALNAME}"
 
 src_prepare() {
-	eapply "${FILESDIR}/MSBuildExtensionsPath.patch"
-	sed -i "s?<Package>slntools-1.1.3.0</Package>?<HintPath>/usr/share/dev-dotnet/slntools-0/CWDev.SLNTools.Core.dll</HintPath>?g" "${S}/mpt-core/mpt-core.csproj" || die
-
 	#change version in .nuspec
 	# PV = Package version (excluding revision, if any), for example 6.3.
 	# It should reflect the upstream versioning scheme
