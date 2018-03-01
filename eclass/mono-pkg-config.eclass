@@ -81,7 +81,7 @@ einstall_pc_file()
 		# (they only requires sed escaping for replacement path)
 		sed \
 			-e "s:@PC_VERSION@:${PC_VERSION}:" \
-			-e "s:@Name@:PC_INTERNAL_NAME:" \
+			-e "s:@Name@:${PC_INTERNAL_NAME}:" \
 			-e "s:@DESCRIPTION@:${PC_DESCRIPTION}:" \
 			-e "s:@LIBDIR@:$(get_libdir):" \
 			-e "s*@LIBS@*${DLL_REFERENCES}*" \
