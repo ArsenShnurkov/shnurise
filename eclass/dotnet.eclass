@@ -109,7 +109,7 @@ export XDG_CONFIG_HOME="${T}"
 
 unset MONO_AOT_CACHE
 
-# @FUNCTION: usedebug_tostr
+# @FUNCTION: usedebug_tostring
 # @DESCRIPTION:  returns strings "Debug" or "Release" depending from USE="debug"
 function usedebug_tostring ( ) {
 	local DIR=""

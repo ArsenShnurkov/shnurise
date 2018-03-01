@@ -7,10 +7,10 @@ EAPI="6"
 KEYWORDS="~amd64 ~x86"
 RESTRICT="mirror"
 
-SLOT="0"
+SLOT="1"
 
 USE_DOTNET="net45"
-IUSE="${USE_DOTNET} developer nupkg debug"
+IUSE="${USE_DOTNET} +pkg-config developer debug nupkg"
 
 inherit xbuild gac mono-pkg-config nupkg
 
@@ -26,10 +26,6 @@ LICENSE="MIT" # https://raw.githubusercontent.com/picoe/Eto.Parse/master/LICENSE
 
 # notes on testing, from https://devmanual.gentoo.org/ebuild-writing/functions/src_test/index.html
 # FEATURES+="test"
-
-# there is no "test" in IUSE, because test project and solution are not build
-# there is no "gac" in IUSE, because utilities for patching are not ready
-# "Failure adding assembly Eto.Parse/bin/Release/net40/Eto.Parse.dll to the cache: Attempt to install an assembly without a strong name"
 
 # notes from https://devmanual.gentoo.org/general-concepts/dependencies/
 # DEPEND - dependencies which are required to unpack, patch, compile or install the package
@@ -51,7 +47,6 @@ RDEPEND="${COMMON_DEPENDENCIES}
 # PVR = Package version and revision (if any), for example 6.3, 6.3-r1.
 # PF = Full package name, ${PN}-${PVR}, for example vim-6.3-r1
 
-S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 METAFILETOBUILD="${S}/Eto.Parse/Eto.Parse.csproj" # building .csproj instead of .sln to avoid building test projects
 # NUSPEC_FILE=${FILESDIR}/nuget-2.8.3.nuspec
 NUSPEC_FILE=Eto.Parse/Eto.Parse.nuspec
@@ -99,6 +94,10 @@ src_compile() {
 	enuspec "${NUSPEC_FILE}"
 }
 
+function output_filename () {
+	echo "Eto.Parse/bin/$(usedebug_tostring)/net40/Eto.Parse.dll"
+}
+
 src_test() {
 	# ebuild is not ready for testing
 	# nunit-console Eto.Parse.Tests/bin/Debug/Eto.Parse.Tests.dll
@@ -106,14 +105,8 @@ src_test() {
 }
 
 src_install() {
-	DIR=""
-	if use debug; then
-		DIR="Debug"
-	else
-		DIR="Release"
-	fi
-	egacinstall "Eto.Parse/bin/${DIR}/net40/Eto.Parse.dll"
-	einstall_pc_file "${PN}" "${PV}" "Eto.Parse"
-
+	elib "$(output_filename)"
+#	einstall_pc_file "${PN}" "${PV}" "Eto.Parse"
+	egac "$(output_filename)"
 	enupkg "${WORKDIR}/${NAME}.${NUSPEC_VERSION}.nupkg"
 }

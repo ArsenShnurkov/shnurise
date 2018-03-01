@@ -26,13 +26,17 @@ RDEPEND+=" dev-lang/mono"
 # second one requires rewriting the IDE (disrespecting the decision of IDE's authors who decide to use .pc-files)
 # So, "keep fighting the good fight, don't stop believing, and let the haters hate" (q) desultory from #gentoo-dev-help @ freenode
 
+if [ "${SLOT}" != "0" ]; then
+	APPENDIX="-${SLOT}"
+fi
+
 # @FUNCTION: einstall_pc_file
 # @DESCRIPTION:  installs .pc file
 # The file format contains predefined metadata keywords and freeform variables (like ${prefix} and ${exec_prefix})
 # $1 = ${PN}
 # $2 = ${PV}
-# $3 = myassembly1 # should not contain path, shouldn't contain .dll extension
-# $4 = myassembly2
+# $3 = myassembly1 # path and filename with extension of the first .dll
+# $4 = myassembly2 # path and filename with extension of the second .dll
 # $N = myassemblyN-2 # see DLL_REFERENCES
 einstall_pc_file()
 {
@@ -47,10 +51,9 @@ einstall_pc_file()
 		local PC_DIRECTORY="/usr/lib/pkgconfig"
 
 		local PC_FILENAME="${CATEGORY}-${PN}"
-		local PC_FILENAME_WITH_SLOT="${PC_FILENAME}"
-		if [ "${SLOT}" != "0" ]; then
-			PC_FILENAME_WITH_SLOT="${PC_FILENAME}-${SLOT}"
-		fi
+		local PC_FILENAME_WITH_SLOT="${PC_FILENAME}${APPENDIX}"
+
+		PC_DIRECTORY_VER="${PC_DIRECTORY}/${PC_FILENAME_WITH_SLOT}"
 
 		shift 2
 		if [ "$#" == "0" ]; then
@@ -58,7 +61,7 @@ einstall_pc_file()
 		fi
 		local DLL_REFERENCES=""
 		while (( "$#" )); do
-			DLL_REFERENCES+=" -r:\${libdir}/mono/${PC_NAME}/${1}.dll"
+			DLL_REFERENCES+=" -r:${1}"
 			shift
 		done
 
@@ -78,7 +81,7 @@ einstall_pc_file()
 		# (they only requires sed escaping for replacement path)
 		sed \
 			-e "s:@PC_VERSION@:${PC_VERSION}:" \
-			-e "s:@Name@:PC_INTERNAL_NAME" \
+			-e "s:@Name@:PC_INTERNAL_NAME:" \
 			-e "s:@DESCRIPTION@:${PC_DESCRIPTION}:" \
 			-e "s:@LIBDIR@:$(get_libdir):" \
 			-e "s*@LIBS@*${DLL_REFERENCES}*" \
@@ -92,16 +95,36 @@ einstall_pc_file()
 				Libs: @LIBS@
 			EOF
 
-		einfo PKG_CONFIG_PATH="${D}/${PC_DIRECTORY_VER}" pkg-config --exists "${PC_FILENAME}"
-		PKG_CONFIG_PATH="${D}/${PC_DIRECTORY_VER}" pkg-config --exists "${PC_FILENAME}" || die ".pc file failed to validate."
+		einfo PKG_CONFIG_PATH="${D}/${PC_DIRECTORY_VER}" pkg-config --exists "${PC_FILENAME_WITH_SLOT}"
+		PKG_CONFIG_PATH="${D}/${PC_DIRECTORY_VER}" pkg-config --exists "${PC_FILENAME_WITH_SLOT}" || die ".pc file failed to validate."
 		eend $?
 
 		if use symlink; then
 			if [ "${PC_FILENAME}" != "PC_FILENAME_WITH_SLOT" ]; then
-				einfo "SymLinking ${PC_DIRECTORY}/${PC_FILENAME_WITH_SLOT}.pc file as ${PC_DIRECTORY}/${PC_FILENAME}.pc"
-				dosym "${PC_DIRECTORY}/${PC_FILENAME_WITH_SLOT}.pc" "${PC_DIRECTORY}/${PC_FILENAME}.pc"
+				einfo "SymLinking ${PC_DIRECTORY_VER}/${PC_FILENAME_WITH_SLOT}.pc file as ${PC_DIRECTORY}/${PC_FILENAME}.pc"
+				dosym "${PC_DIRECTORY_VER}/${PC_FILENAME_WITH_SLOT}.pc" "${PC_DIRECTORY}/${PC_FILENAME}.pc"
 			fi
 		fi
 	fi
 }
 
+# @FUNCTION: elib
+# @DESCRIPTION: installs .dll file into filesystem
+# $1 = path to assembly file to install
+elib () {
+	local INSTALL_PATH="/usr/$(get_libdir)/dev-dotnet/${PN}${APPENDIX}"
+	einfo "installing into ${INSTALL_PATH}"
+	insinto "${INSTALL_PATH}"
+	local DLL_LIST
+	while (( "$#" )); do
+		# https://stackoverflow.com/questions/2664740/extract-file-basename-without-path-and-extension-in-bash
+		local ASSEMBLY_FILENAMEWEXT="${1##*/}"
+		local ASSEMBLY_FILENAME="${ASSEMBLY_FILENAMEWEXT%.*}"
+		doins $1
+		einfo "elib: $1 is installed as ${INSTALL_PATH}/${ASSEMBLY_FILENAMEWEXT}"
+		DLL_LIST+=" ${INSTALL_PATH}/${ASSEMBLY_FILENAMEWEXT}"
+		shift
+	done
+	einstall_pc_file "${PN}" "${PV}" ${DLL_LIST}
+	einfo "elib: .pc-file is created"
+}
