@@ -1,27 +1,28 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=6
+EAPI="6"
+
+KEYWORDS="~amd64 ~x86"
+RESTRICT="mirror"
+
+SLOT="0"
 
 USE_DOTNET="net45"
-inherit mono-env gac nupkg
-
 IUSE="${USE_DOTNET} developer nupkg debug"
+
+inherit xbuild gac mono-pkg-config nupkg
 
 NAME="Eto.Parse"
 HOMEPAGE="https://github.com/picoe/${NAME}"
 
 EGIT_COMMIT="7d7884fb4f481e28dd24bc273fbd6615d0ba539a" # 2015-09-07
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${PN}-${PV}.zip"
-RESTRICT="mirror"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
-
-SLOT="0"
 
 DESCRIPTION="CLI parser with API, recursive descent, LL(k), for BNF, EBNF and Gold Grammars"
 LICENSE="MIT" # https://raw.githubusercontent.com/picoe/Eto.Parse/master/LICENSE
-KEYWORDS="~amd64 ~x86"
 
 # notes on testing, from https://devmanual.gentoo.org/ebuild-writing/functions/src_test/index.html
 # FEATURES+="test"
@@ -34,12 +35,12 @@ KEYWORDS="~amd64 ~x86"
 # DEPEND - dependencies which are required to unpack, patch, compile or install the package
 # RDEPEND - dependencies which are required at runtime
 
-COMMON_DEPENDENCIES=">=dev-lang/mono-4.2
-	nupkg? ( dev-dotnet/nuget )
+COMMON_DEPENDENCIES="
 	"
 DEPEND="${COMMON_DEPENDENCIES}
 	"
 #	test? ( >=dev-util/nunit-2.6.4-r201501110:2[nupkg] )
+
 RDEPEND="${COMMON_DEPENDENCIES}
 	"
 
@@ -94,7 +95,7 @@ src_prepare() {
 }
 
 src_compile() {
-	exbuild_strong "${METAFILETOBUILD}"
+	exbuild "${METAFILETOBUILD}"
 	enuspec "${NUSPEC_FILE}"
 }
 
