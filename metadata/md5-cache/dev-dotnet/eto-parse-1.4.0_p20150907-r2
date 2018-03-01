@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile install prepare setup test
+DEPEND=dev-lang/mono dev-lang/mono dev-lang/mono dev-lang/mono nupkg? ( dev-dotnet/nuget )
+DESCRIPTION=CLI parser with API, recursive descent, LL(k), for BNF, EBNF and Gold Grammars
+EAPI=6
+HOMEPAGE=https://github.com/picoe/Eto.Parse
+IUSE=net45 +pkg-config developer debug nupkg debug developer net45 gac pkg-config pkg-config symlink debug developer net45 nupkg
+KEYWORDS=~amd64 ~x86
+LICENSE=MIT
+RDEPEND=dev-lang/mono dev-lang/mono nupkg? ( dev-dotnet/nuget )
+RESTRICT=mirror
+SLOT=1
+SRC_URI=https://github.com/picoe/Eto.Parse/archive/7d7884fb4f481e28dd24bc273fbd6615d0ba539a.zip -> eto-parse-1.4.0_p20150907.zip
+_eclasses_=desktop	2ccd1dd1dd7bfb8795eea024a4f91bb6	dotnet	59bb3e0af9f5ca5cb1f15534f3de9782	epatch	8233751dc5105a6ae8fcd86ce2bb0247	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	b4eee44966573b7fb6761e507910b306	gac	6740f67c109cf741dcb186d5d28a91fd	ltprune	2770eed66a9b8ef944714cd0e968182e	mono-env	059a05efbba66d5bdcc2dd74d91f82f8	mono-pkg-config	d4c659b5d33b6933f64e6220839a4e67	multilib	97f470f374f2e94ccab04a2fb21d811e	nupkg	2b1f8825be3f1d87191667c26729032d	preserve-libs	ef207dc62baddfddfd39a164d9797648	toolchain-funcs	885c7d8dd70a58825f3d17e35a3cd1e9	versionator	ce21313503c41896ebcd7d58b0607e37	xbuild	061c9fba1fac5b72d8062a8e5e3beb5f
+_md5_=1af3ee470e263c4525c0d40dae8e8ba0
