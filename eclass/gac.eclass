@@ -41,6 +41,14 @@ egacinstall() {
 	fi
 }
 
+# @FUNCTION: egac
+# @DESCRIPTION:  stub for future replacement of egacinstall with the impmenetation, which uses egacadd and egacdell
+egac() {
+	if use gac; then
+		egacinstall $@
+	fi
+}
+
 # @FUNCTION: egacadd
 # @DESCRIPTION:  install package to GAC
 egacadd() {
