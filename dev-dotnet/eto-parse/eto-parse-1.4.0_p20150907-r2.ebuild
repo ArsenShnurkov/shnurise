@@ -1,0 +1,112 @@
+# Copyright 1999-2018 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Id$
+
+EAPI="6"
+
+KEYWORDS="~amd64 ~x86"
+RESTRICT="mirror"
+
+SLOT="1"
+
+USE_DOTNET="net45"
+IUSE="${USE_DOTNET} +pkg-config developer debug nupkg"
+
+inherit xbuild gac mono-pkg-config nupkg
+
+NAME="Eto.Parse"
+HOMEPAGE="https://github.com/picoe/${NAME}"
+
+EGIT_COMMIT="7d7884fb4f481e28dd24bc273fbd6615d0ba539a" # 2015-09-07
+SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${PN}-${PV}.zip"
+S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
+
+DESCRIPTION="CLI parser with API, recursive descent, LL(k), for BNF, EBNF and Gold Grammars"
+LICENSE="MIT" # https://raw.githubusercontent.com/picoe/Eto.Parse/master/LICENSE
+
+# notes on testing, from https://devmanual.gentoo.org/ebuild-writing/functions/src_test/index.html
+# FEATURES+="test"
+
+# notes from https://devmanual.gentoo.org/general-concepts/dependencies/
+# DEPEND - dependencies which are required to unpack, patch, compile or install the package
+# RDEPEND - dependencies which are required at runtime
+
+COMMON_DEPENDENCIES="
+	"
+DEPEND="${COMMON_DEPENDENCIES}
+	"
+#	test? ( >=dev-util/nunit-2.6.4-r201501110:2[nupkg] )
+
+RDEPEND="${COMMON_DEPENDENCIES}
+	"
+
+# Notes on Gentoo variables, from https://devmanual.gentoo.org/ebuild-writing/variables/
+# PN = Package name, for example vim.
+# PV = Package version (excluding revision, if any), for example 6.3.
+# P = Package name and version (excluding revision, if any), for example vim-6.3.
+# PVR = Package version and revision (if any), for example 6.3, 6.3-r1.
+# PF = Full package name, ${PN}-${PVR}, for example vim-6.3-r1
+
+METAFILETOBUILD="${S}/Eto.Parse/Eto.Parse.csproj" # building .csproj instead of .sln to avoid building test projects
+# NUSPEC_FILE=${FILESDIR}/nuget-2.8.3.nuspec
+NUSPEC_FILE=Eto.Parse/Eto.Parse.nuspec
+
+COMMIT_DATESTAMP_INDEX=$(get_version_component_count ${PV} )
+COMMIT_DATESTAMP=$(get_version_component_range $COMMIT_DATESTAMP_INDEX ${PV} )
+NUSPEC_VERSION=$(get_version_component_range 1-3)"${COMMIT_DATESTAMP//p/.}${PR//r/}"
+
+src_prepare() {
+	rm -rf "${S}/.nuget"
+	# notes on escaping, from
+	# http://unix.stackexchange.com/questions/32907/what-characters-do-i-need-to-escape-when-using-sed-in-a-sh-script
+	# \$ is for regexps in sed - internal layer of escaping
+	# \\\$ is for bash - external layer of escaping
+
+	#change version in .nuspec
+
+	sed -e "s/\\\$id\\\$/${NAME}/g" \
+	  -e "s/\\\$version\\\$/${NUSPEC_VERSION}/g" \
+	  -e "s/\\\$title\\\$/${P}/g" \
+	  -e "s/\\\$author\\\$/Curtis Wensley/g" \
+	  -e "s/\\\$description\\\$/${DESCRIPTION}/g" \
+	  -i "${NUSPEC_FILE}" || die
+
+	eapply "${FILESDIR}/nuspec.patch"
+
+#	if use test; then
+#
+#		# ${S}/Eto.Parse.TestSpeed/packages.config
+#		# Installing 'NUnit 2.6.2'.
+#		# Installing 'Newtonsoft.Json 5.0.6'.
+#		# Installing 'MarkdownSharp 1.13.0.0'.
+#		# Installing 'ServiceStack.Text 3.9.64'.
+#		# Installing 'MarkdownDeep.NET 1.5'.
+#		# Successfully installed 'MarkdownSharp 1.13.0.0'.
+#
+#		enuget_restore "${METAFILETOBUILD}"
+#	fi ;
+
+	default
+}
+
+src_compile() {
+	exbuild "${METAFILETOBUILD}"
+	enuspec "${NUSPEC_FILE}"
+}
+
+function output_filename () {
+	echo "Eto.Parse/bin/$(usedebug_tostring)/net40/Eto.Parse.dll"
+}
+
+src_test() {
+	# ebuild is not ready for testing
+	# nunit-console Eto.Parse.Tests/bin/Debug/Eto.Parse.Tests.dll
+	true
+}
+
+src_install() {
+	elib "$(output_filename)"
+#	einstall_pc_file "${PN}" "${PV}" "Eto.Parse"
+	egac "$(output_filename)"
+	enupkg "${WORKDIR}/${NAME}.${NUSPEC_VERSION}.nupkg"
+}
