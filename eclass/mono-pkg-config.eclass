@@ -116,11 +116,13 @@ elib () {
 	einfo "installing into ${INSTALL_PATH}"
 	insinto "${INSTALL_PATH}"
 	local DLL_LIST
-	while (( "$#" )); do
+	# https://unix.stackexchange.com/questions/128204/what-does-while-test-gt-0-do/128207
+	while ${1+:} false ; do
 		# https://stackoverflow.com/questions/2664740/extract-file-basename-without-path-and-extension-in-bash
 		local ASSEMBLY_FILENAMEWEXT="${1##*/}"
 		local ASSEMBLY_FILENAME="${ASSEMBLY_FILENAMEWEXT%.*}"
-		doins $1
+		einfo "as ${ASSEMBLY_FILENAMEWEXT} and ${ASSEMBLY_FILENAME}"
+		doins "$1"
 		einfo "elib: $1 is installed as ${INSTALL_PATH}/${ASSEMBLY_FILENAMEWEXT}"
 		DLL_LIST+=" ${INSTALL_PATH}/${ASSEMBLY_FILENAMEWEXT}"
 		shift
