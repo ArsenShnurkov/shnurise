@@ -3,13 +3,14 @@
 # $Id$
 
 EAPI="6"
-RESTRICT="mirror"
+
 KEYWORDS="~amd64 ~x86"
+RESTRICT="mirror"
 
 SLOT="2"
 
 USE_DOTNET="net45"
-IUSE="${USE_DOTNET} debug developer symlink"
+IUSE="+${USE_DOTNET} debug developer symlink"
 
 inherit eutils gnome2-utils
 inherit msbuild
@@ -31,7 +32,6 @@ ALLPEND="dev-lang/mono
 # The DEPEND ebuild variable should specify any dependencies which are 
 # required to unpack, patch, compile or install the package
 DEPEND="${ALLPEND}
-	dev-dotnet/nuget
 	"
 
 # The RDEPEND ebuild variable should specify any dependencies which are 
