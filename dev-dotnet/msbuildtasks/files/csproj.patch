@@ -1,6 +1,6 @@
 --- a/Source/MSBuild.Community.Tasks/MSBuild.Community.Tasks.csproj
 +++ b/Source/MSBuild.Community.Tasks/MSBuild.Community.Tasks.csproj
-@@ -31,21 +31,18 @@
+@@ -31,20 +31,19 @@
    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
      <DebugType>pdbonly</DebugType>
      <Optimize>true</Optimize>
@@ -20,12 +20,12 @@
 -    <Reference Include="DotNetZip, Version=1.10.1.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
 -      <HintPath>..\packages\DotNetZip.1.10.1\lib\net20\DotNetZip.dll</HintPath>
 -      <Private>True</Private>
--    </Reference>
-+    <Reference Include="Ionic.Zip.Reduced" />
++    <Reference Include="Ionic.Zip.Reduced">
++      <HintPath>/usr/lib64/dev-dotnet/dotnetzip-semverd-1/Ionic.Zip.Reduced.dll</HintPath>
+     </Reference>
      <Reference Include="Microsoft.Build.Framework" />
      <Reference Include="Microsoft.Build.Utilities.v4.0" />
-     <Reference Include="System" />
-@@ -270,7 +267,6 @@
+@@ -270,7 +266,6 @@
      <Content Include="NUnitReport.xsl">
        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
      </Content>
