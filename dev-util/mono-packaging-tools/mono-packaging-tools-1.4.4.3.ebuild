@@ -7,39 +7,21 @@ EAPI="6" # >=portage-2.2.25
 KEYWORDS="~x86 ~amd64"
 RESTRICT="mirror"
 
+SLOT="1"
+
 USE_DOTNET="net45"
-# debug = debug configuration (symbols and defines for debugging)
-# test = allow NUnit tests to run
-# developer = generate symbols information (to view line numbers in stack traces, either in debug or release configuration)
-# aot = compile to machine code and store to disk during install, to save time later during startups
-# nupkg = create .nupkg file from .nuspec
-# gac = install into gac
-# pkg-config = register in pkg-config database
 IUSE="+${USE_DOTNET} debug +developer test +aot doc"
 
-#TOOLS_VERSION=14.0
-
 inherit xbuild mono-pkg-config gac nupkg
-
-get_revision()
-{
-	git rev-list --count $2..$1
-}
-
-get_dlldir() {
-	echo /usr/lib64/mono/${PN}
-}
 
 NAME="mono-packaging-tools"
 HOMEPAGE="http://arsenshnurkov.github.io/mono-packaging-tools"
 
 REPOSITORY_URL="https://github.com/ArsenShnurkov/${NAME}"
 
-EGIT_COMMIT="155ead3f9912f1908fac43bbae5eadde77f482f3"
+EGIT_COMMIT="c034a22523bfbc0c8e56850aded285d42c720b16"
 SRC_URI="${REPOSITORY_URL}/archive/${EGIT_COMMIT}.tar.gz -> ${CATEGORY}-${PN}-${PV}.tar.gz"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
-
-SLOT="0"
 
 DESCRIPTION="Command line utilities for packaging mono assemblies with portage"
 LICENSE="GPL-3"
@@ -85,21 +67,23 @@ src_compile() {
 }
 
 src_install() {
-	# install dlls
-	insinto "$(get_dlldir)/slot-${SLOT}"
-	if use debug; then
-		DIR="Debug"
-	else
-		DIR="Release"
-	fi
-	doins mpt-core/bin/${DIR}/mpt-core.dll
-	dosym "$(get_dlldir)/slot-${SLOT}/mpt-core.dll" "$(get_dlldir)/mpt-core.dll"
-	einstall_pc_file ${PN} ${ASSEMBLY_VERSION} mpt-core
+	einfo '$(get_libdir)' == $(get_libdir)
+	einfo '$(framework_assembly_dir)' == $(framework_assembly_dir)
+	einfo '$(library_assembly_dir)' == $(library_assembly_dir)
+	einfo '$(executable_assembly_dir)' == $(executable_assembly_dir)
+	# install dll[s] of this package
+	elib "mpt-core/bin/$(usedebug_tostring)/mpt-core.dll"
 
-	dosym "$(get_dlldir)/slot-${SLOT}/mpt-core.dll" "/usr/share/${PN}/slot-${SLOT}/mpt-core.dll"
-	dosym "/usr/share/dev-dotnet/slntools-0/CWDev.SLNTools.Core.dll" "/usr/share/${PN}/slot-${SLOT}/CWDev.SLNTools.Core.dll"
+	# link libraries of this package
+	dosym "$(library_assembly_dir)/mpt-core.dll" "$(executable_assembly_dir)/mpt-core.dll"
 
-	insinto "/usr/share/${PN}/slot-${SLOT}"
+	# link other libraries
+	dosym "$(framework_api_dir)/Mono.Options.dll" "$(executable_assembly_dir)/Mono.Options.dll"
+	dosym "$(library_assembly_dir)/../slntools-1/CWDev.SLNTools.Core.dll" "$(executable_assembly_dir)/CWDev.SLNTools.Core.dll"
+	dosym "$(library_assembly_dir)/../eto-parse-1/Eto.Parse.dll" "$(executable_assembly_dir)/Eto.Parse.dll"
+
+	# install launchers
+	insinto "/usr/share/${PN}${APPENDIX}"
 	install_tool mpt-gitmodules
 	install_tool mpt-sln
 	install_tool mpt-csproj
@@ -113,45 +97,23 @@ src_install() {
 	fi
 }
 
-pkg_prerm() {
-	if use gac; then
-		# TODO determine version for uninstall from slot-N dir
-		einfo "removing from GAC"
-		gacutil -u mpt-core
-		# don't die, it there is no such assembly in GAC
-	fi
-}
-
-pkg_postinst() {
-	if use gac; then
-		einfo "adding to GAC"
-		gacutil -i "$(get_dlldir)/slot-${SLOT}/mpt-core.dll" || die
-	fi
-}
-
 install_tool() {
-	if use debug; then
-		DIR="Debug"
-	else
-		DIR="Release"
-	fi
-
 	# installs .exe, .exe.config (if any), .mdb (if exists)
-	doins "$1"/bin/${DIR}/*.exe
-	if [ -f "$1"/bin/${DIR}/*.exe.config ]; then
-		doins "$1"/bin/${DIR}/*.exe.config
+	doins "$1"/bin/$(usedebug_tostring)/*.exe
+	if [ -f "$1"/bin/$(usedebug_tostring)/*.exe.config ]; then
+		doins "$1"/bin/$(usedebug_tostring)/*.exe.config
 	fi
 	if use developer; then
 		# http://www.mono-project.com/docs/about-mono/releases/5.0.0/
 		# csc generates Portable PDB (.pdb) debug files instead of Mono’s MDB (.mdb) format from mcs.
-		doins "$1"/bin/${DIR}/*.pdb
+		doins "$1"/bin/$(usedebug_tostring)/*.pdb
 	fi
 
 	MONO=/usr/bin/mono
 
 	if use debug; then
-		make_wrapper "$1" "${MONO} --debug /usr/share/${PN}/slot-${SLOT}/$1.exe"
+		make_wrapper "$1" "${MONO} --debug $(executable_assembly_dir)/$1.exe"
 	else
-		make_wrapper "$1" "${MONO} /usr/share/${PN}/slot-${SLOT}/$1.exe"
+		make_wrapper "$1" "${MONO} $(executable_assembly_dir)/$1.exe"
 	fi;
 }

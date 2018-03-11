@@ -79,17 +79,6 @@ dotnet_pkg_setup() {
 	einfo " -- USING .NET ${FRAMEWORK} FRAMEWORK -- "
 }
 
-# @FUNCTION: get_dotlibdir
-# @DESCRIPTION: returns path for .dll assemblies installation
-get_dotlibdir() {
-	if [ "${SLOT}" == "0" ]
-	then
-		echo /usr/$(get_libdir)/mono/${FRAMEWORK}/${PN}
-	else
-		echo /usr/$(get_libdir)/mono/${FRAMEWORK}/${PN}-${SLOT}
-	fi
-}
-
 # >=mono-0.92 versions using mcs -pkg:foo-sharp require shared memory, so we set the
 # shared dir to ${T} so that ${T}/.wapi can be used during the install process.
 export MONO_SHARED_DIR="${T}"
@@ -125,6 +114,38 @@ function usedebug_tostring ( ) {
 # @DESCRIPTION:  returns default relative directory for Debug or Release configuration depending from USE="debug"
 function output_relpath ( ) {
 	echo "bin/$(usedebug_tostring)"
+}
+
+if [ "${SLOT}" != "0" ]; then
+	APPENDIX="-${SLOT}"
+fi
+
+# @FUNCTION: framework_api_dir
+# @DESCRIPTION: returns path to mono-api assemblies
+function framework_api_dir() {
+	echo "/usr/$(get_libdir)/mono/${FRAMEWORK}-api"
+}
+
+# @FUNCTION: framework_assembly_dir
+# @DESCRIPTION: returns path for .dll assemblies installation
+function framework_assembly_dir() {
+	echo "/usr/$(get_libdir)/mono/${FRAMEWORK}/${PN}${APPENDIX}"
+}
+
+# @FUNCTION: library_assembly_dir
+# @DESCRIPTION:  returns default directory for installing libraries
+function library_assembly_dir() {
+	# note that 'dotnet' is hardcoded, don't change it to '${CATEGORY}'
+	# because when you referer this function from another ebuild category can be different
+	# note that 'share' is hardcoded, don't change it to '$(get_libdir)'
+	# because mono assemblies should be architecture independent in common case
+	echo "/usr/share/dev-dotnet/${PN}${APPENDIX}"
+}
+
+# @FUNCTION: executable_assembly_dir
+# @DESCRIPTION:  returns default directory for installing executables
+function executable_assembly_dir() {
+	echo "/usr/share/${PN}${APPENDIX}"
 }
 
 # @FUNCTION: dotnet_multilib_comply

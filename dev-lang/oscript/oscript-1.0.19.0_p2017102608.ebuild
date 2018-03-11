@@ -1,34 +1,27 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=6
+EAPI="6"
 
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64 ~x86"
 RESTRICT="mirror"
 
-SLOT="0"
+SLOT="1"
 
 USE_DOTNET="net45"
+IUSE="+${USE_DOTNET} debug developer"
 
-inherit multilib eutils msbuild
-
-#if [ "${CATEGORY}" == "" ]; then
-#	CATEGORY="dev-lang"
-#fi
-if [ "${SLOT}" != "0" ]; then
-	APPENDIX="-${SLOT}"
-fi
+inherit multilib eutils 
+inherit msbuild
 
 HOMEPAGE="http://oscript.io"
-SRC_URI="https://github.com/ArsenShnurkov/shnurise-tarballs/raw/${CATEGORY}/${PN}${APPENDIX}/${PN}-${PV}.tar.gz"
+SRC_URI="https://github.com/ArsenShnurkov/shnurise-tarballs/raw/${CATEGORY}/${PN}${APPENDIX}/${PN}-${PV}.tar.gz -> ${CATEGORY}-${PN}${APPENDIX}.tar.gz"
 
-DESCRIPTION=
-LICENSE=
+DESCRIPTION="scripting interpreter for 1C-like language (mono based)"
+LICENSE="MPL-2.0" # https://github.com/EvilBeaver/OneScript/blob/develop/LICENSE
 
-IUSE="+${USE_DOTNET} debug developer doc"
-
-COMMON_DEPEND=">=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999
+COMMON_DEPEND="
 	dev-dotnet/newtonsoft-json
 	dev-dotnet/dotnetzip-semverd
 "

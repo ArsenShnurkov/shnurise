@@ -15,9 +15,9 @@ fi
 USE_DOTNET="net45"
 
 # cli = do install command line interface
-IUSE="+${USE_DOTNET} debug developer cli gac nupkg"
+IUSE="+${USE_DOTNET} +pkg-config +symlink +cli debug developer"
 
-inherit xbuild gac
+inherit xbuild mono-pkg-config
 
 NAME="slntools"
 HOMEPAGE="https://github.com/ArsenShnurkov/${NAME}"
@@ -73,58 +73,20 @@ src_compile() {
 	fi
 
 	exbuild ${ARGS} ${METAFILETOBUILD}
-
-	if use nupkg; then
-		nuget pack "${FILESDIR}/${SLN_FILE}.nuspec" -Properties ${ARGSN} -BasePath "${S}" -OutputDirectory "${WORKDIR}" -NonInteractive -Verbosity detailed
-	fi
 }
 
 src_install() {
 	default
 
-	DIR=""
-	if use debug; then
-		DIR="Debug"
-	else
-		DIR="Release"
-	fi
-
-	insinto "/usr/share/${CATEGORY}/${PN}${APPENDIX}/"
-
-	# || die is not necessary after doins,
-	# see examples at https://devmanual.gentoo.org/ebuild-writing/functions/src_install/index.html
-	doins Main/SLNTools.exe/bin/${DIR}/CWDev.SLNTools.Core.dll
-	if use developer; then
-		doins Main/SLNTools.exe/bin/${DIR}/CWDev.SLNTools.Core.dll.mdb
-	fi
-	doins Main/SLNTools.exe/bin/${DIR}/CWDev.SLNTools.Core.dll
-
-	# egacinstall will do nothing if USE=gac is not set
-	egacinstall Main/SLNTools.exe/bin/${DIR}/CWDev.SLNTools.Core.dll
-	einstall_pc_file ${PN} ${PV} CWDev.SLNTools.Core
+	elib Main/SLNTools.exe/bin/$(usedebug_tostring)/CWDev.SLNTools.Core.dll
+	elib Main/SLNTools.exe/bin/$(usedebug_tostring)/CWDev.SLNTools.UIKit.dll
 
 	if use cli; then
-		doins Main/SLNTools.exe/bin/${DIR}/CWDev.SLNTools.UIKit.dll
-		doins Main/SLNTools.exe/bin/${DIR}/SLNTools.exe
-		if use developer; then
-			doins Main/SLNTools.exe/bin/${DIR}/CWDev.SLNTools.UIKit.dll.mdb
-			doins Main/SLNTools.exe/bin/${DIR}/SLNTools.exe.mdb
-		fi
+		insinto "$(executable_assembly_dir)"
+		dosym "$(library_assembly_dir)/CWDev.SLNTools.Core.dll" "$(executable_assembly_dir)/CWDev.SLNTools.Core.dll"
+		dosym "$(library_assembly_dir)/CWDev.SLNTools.UIKit.dll" "$(executable_assembly_dir)/CWDev.SLNTools.UIKit.dll"
+		doins "Main/SLNTools.exe/bin/$(usedebug_tostring)/SLNTools.exe"
 		make_wrapper slntools "mono /usr/share/slntools/SLNTools.exe"
-	fi
-
-	if use nupkg; then
-		if [ -d "/var/calculate/remote/distfiles" ]; then
-			# Control will enter here if the directory exist.
-			# this is necessary to handle calculate linux profiles feature (for corporate users)
-			elog "Installing .nupkg into /var/calculate/remote/packages/NuGet"
-			insinto /var/calculate/remote/packages/NuGet
-		else
-			# this is for all normal gentoo-based distributions
-			elog "Installing .nupkg into /usr/local/nuget/nupkg"
-			insinto /usr/local/nuget/nupkg
-		fi
-		doins "${WORKDIR}/SLNTools.1.1.3.0.nupkg"
 	fi
 }
 
