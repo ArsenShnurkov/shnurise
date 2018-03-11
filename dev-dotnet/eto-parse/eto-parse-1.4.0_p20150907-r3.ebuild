@@ -10,7 +10,7 @@ RESTRICT="mirror"
 SLOT="1"
 
 USE_DOTNET="net45"
-IUSE="${USE_DOTNET} +pkg-config developer debug nupkg"
+IUSE="${USE_DOTNET} +pkg-config +symlink developer debug nupkg"
 
 inherit xbuild gac mono-pkg-config nupkg
 

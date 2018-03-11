@@ -26,10 +26,6 @@ RDEPEND+=" dev-lang/mono"
 # second one requires rewriting the IDE (disrespecting the decision of IDE's authors who decide to use .pc-files)
 # So, "keep fighting the good fight, don't stop believing, and let the haters hate" (q) desultory from #gentoo-dev-help @ freenode
 
-if [ "${SLOT}" != "0" ]; then
-	APPENDIX="-${SLOT}"
-fi
-
 # @FUNCTION: einstall_pc_file
 # @DESCRIPTION:  installs .pc file
 # The file format contains predefined metadata keywords and freeform variables (like ${prefix} and ${exec_prefix})
@@ -112,7 +108,7 @@ einstall_pc_file()
 # @DESCRIPTION: installs .dll file into filesystem
 # $1 = path to assembly file to install
 elib () {
-	local INSTALL_PATH="/usr/$(get_libdir)/dev-dotnet/${PN}${APPENDIX}"
+	local INSTALL_PATH="$(library_assembly_dir)"
 	einfo "installing into ${INSTALL_PATH}"
 	insinto "${INSTALL_PATH}"
 	local DLL_LIST
