@@ -16,7 +16,8 @@ inherit multilib eutils
 inherit msbuild
 
 HOMEPAGE="http://oscript.io"
-SRC_URI="https://github.com/ArsenShnurkov/shnurise-tarballs/raw/${CATEGORY}/${PN}${APPENDIX}/${PN}-${PV}.tar.gz -> ${CATEGORY}-${PN}${APPENDIX}.tar.gz"
+#SRC_URI="https://github.com/ArsenShnurkov/shnurise-tarballs/raw/${CATEGORY}/${PN}${APPENDIX}/${PN}-${PV}.tar.gz -> ${CATEGORY}-${PN}${APPENDIX}.tar.gz"
+SRC_URI="https://github.com/ArsenShnurkov/shnurise-tarballs/raw/${CATEGORY}/${PN}/${PN}-${PV}.tar.gz -> ${CATEGORY}-${PN}${APPENDIX}.tar.gz"
 
 DESCRIPTION="scripting interpreter for 1C-like language (mono based)"
 LICENSE="MPL-2.0" # https://github.com/EvilBeaver/OneScript/blob/develop/LICENSE

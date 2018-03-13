@@ -4,15 +4,15 @@
 
 EAPI="6"
 
-KEYWORDS="~x86 ~amd64 ~ppc"
+KEYWORDS="~x86 ~amd64"
 RESTRICT="mirror"
 
 SLOT="1"
 
 USE_DOTNET="net45"
-IUSE="+${USE_DOTNET} debug"
+IUSE="+${USE_DOTNET} debug +pkg-config +symlink"
 
-inherit msbuild gac mpt-r20150903
+inherit msbuild gac mpt-r20150903 mono-pkg-config
 
 DESCRIPTION="C# framework for paths operations: Absolute, Drive Letter, UNC, Relative, prefix"
 LICENSE="MIT"
@@ -20,11 +20,12 @@ NAME="NDepend.Path"
 HOMEPAGE="https://github.com/psmacchia/${NAME}"
 EGIT_COMMIT="96008fcfbc137eac6fd327387b80b14909a581a1"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${CATEGORY}-${PN}-${PV}.tar.gz
-	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+	"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 CDEPEND=""
-DEPEND="${CDEPEND}"
+DEPEND="${CDEPEND}
+	>=dev-util/mono-packaging-tools-1.4.4.4"
 RDEPEND="${CDEPEND}"
 
 DLLNAME=${NAME}
@@ -32,6 +33,7 @@ FULLSLN=${NAME}.sln
 
 src_prepare() {
 	sed -i "/AllRules.ruleset/d" "${S}/${NAME}/${NAME}.csproj"
+	empt-csproj --dir="${S}/${NAME}" --remove-signing
 	empt-csproj --dir="${S}/${NAME}" --remove-reference "Microsoft.Contracts"
 	empt-sln --sln-file "${S}/${FULLSLN}" --remove-proj "NDepend.Path.Tests"
 
@@ -44,26 +46,9 @@ src_prepare() {
 }
 
 src_compile() {
-	if use gac; then
-		KEY2="${DISTDIR}/mono.snk"
-		emsbuild "/p:SignAssembly=true" "/p:PublicSign=true" "/p:AssemblyOriginatorKeyFile=${KEY2}" /p:TargetFrameworkVersion=v4.6 "${FULLSLN}"
-	else
-		emsbuild /p:TargetFrameworkVersion=v4.6 "${FULLSLN}"
-	fi
-	if use debug; then
-		DIR="Debug"
-	else
-		DIR="Release"
-	fi
-	sn -R "${NAME}/bin/${DIR}/${DLLNAME}.dll" "${KEY2}" || die
+	emsbuild /p:TargetFrameworkVersion=v4.6 "${FULLSLN}"
 }
 
 src_install() {
-	if use debug; then
-		DIR="Debug"
-	else
-		DIR="Release"
-	fi
-	elog "Installing ${DLLNAME}.dll into GAC "
-	egacinstall "${NAME}/bin/${DIR}/${DLLNAME}.dll"
+	elib "${NAME}/bin/$(usedebug_tostring)/${DLLNAME}.dll"
 }
