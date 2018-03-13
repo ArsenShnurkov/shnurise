@@ -78,7 +78,7 @@ einstall_pc_file()
 		sed \
 			-e "s:@PC_VERSION@:${PC_VERSION}:" \
 			-e "s:@Name@:${PC_INTERNAL_NAME}:" \
-			-e "s:@DESCRIPTION@:${PC_DESCRIPTION}:" \
+			-e "s\\@DESCRIPTION@\\${PC_DESCRIPTION}\\" \
 			-e "s:@LIBDIR@:$(get_libdir):" \
 			-e "s*@LIBS@*${DLL_REFERENCES}*" \
 			<<-EOF >"${D}/${PC_DIRECTORY_VER}/${PC_FILENAME_WITH_SLOT}.pc" || die
