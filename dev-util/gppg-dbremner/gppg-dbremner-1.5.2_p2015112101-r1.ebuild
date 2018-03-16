@@ -1,24 +1,25 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=6
-SLOT="0"
+EAPI="6"
 
 KEYWORDS="~amd64 ~ppc ~x86"
+RESTRICT="mirror"
+
+SLOT="0"
+
 USE_DOTNET="net45"
-
-inherit dotnet
-
 IUSE="+${USE_DOTNET} debug"
+
+inherit xbuild
 
 NAME="gppg"
 HOMEPAGE="https://github.com/dbremner/${NAME}"
 DESCRIPTION="C# version of lex (Garden Point Lex)"
 LICENSE="BSD" # https://gppg.codeplex.com/license
 
-SRC_URI="https://github.com/ArsenShnurkov/shnurise-tarballs/archive/${CATEGORY}/${PN}/${PN}-${PV}.tar.gz"
-RESTRICT="mirror"
+SRC_URI="https://github.com/ArsenShnurkov/shnurise-tarballs/archive/${CATEGORY}/${PN}/${PN}-${PV}.tar.gz -> ${CATEGORY}-${PN}-${PV}.tar.gz"
 S="${WORKDIR}/shnurise-tarballs-${CATEGORY}-${PN}-${PN}-${PV}"
 
 src_prepare() {

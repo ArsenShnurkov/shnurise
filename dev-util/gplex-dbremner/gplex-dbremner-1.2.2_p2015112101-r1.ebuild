@@ -8,7 +8,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
 USE_DOTNET="net45"
 
-inherit dotnet
+inherit xbuild
 
 IUSE="+${USE_DOTNET} debug"
 
@@ -17,7 +17,7 @@ HOMEPAGE="https://github.com/dbremner/${NAME}"
 DESCRIPTION="C# version of lex (Garden Point Lex)"
 LICENSE="BSD" # https://gplex.codeplex.com/license
 
-SRC_URI="https://github.com/ArsenShnurkov/shnurise-tarballs/archive/${CATEGORY}/${PN}/${PN}-${PV}.tar.gz"
+SRC_URI="https://github.com/ArsenShnurkov/shnurise-tarballs/archive/${CATEGORY}/${PN}/${PN}-${PV}.tar.gz -> ${CATEGORY}-${PN}-${PV}.tar.gz"
 RESTRICT="mirror"
 S="${WORKDIR}/shnurise-tarballs-${CATEGORY}-${PN}-${PN}-${PV}"
 
