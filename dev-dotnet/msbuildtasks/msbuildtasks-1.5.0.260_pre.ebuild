@@ -31,7 +31,7 @@ DESCRIPTION="The MSBuild Community Tasks Project is an open source project for M
 LICENSE="BSD" # https://github.com/loresoft/msbuildtasks/blob/master/LICENSE
 
 COMMON_DEPEND=">=dev-lang/mono-4.0.2.5
-	>=dev-dotnet/dotnetzip-semverd-1.9.3-r2
+	>=dev-dotnet/dotnetzip-semverd-1.9.3-r4
 "
 RDEPEND="${COMMON_DEPEND}
 "
