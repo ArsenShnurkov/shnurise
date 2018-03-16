@@ -24,7 +24,7 @@ LICENSE="MPL-2.0" # https://github.com/EvilBeaver/OneScript/blob/develop/LICENSE
 
 COMMON_DEPEND="
 	dev-dotnet/newtonsoft-json
-	dev-dotnet/dotnetzip-semverd
+	>=dev-dotnet/dotnetzip-semverd-1.9.3-r4
 "
 RDEPEND="${COMMON_DEPEND}
 "
@@ -32,6 +32,7 @@ DEPEND="${COMMON_DEPEND}
 "
 
 src_prepare() {
+	eapply "${FILESDIR}/hintpath.patch"
 	eapply_user
 }
 
