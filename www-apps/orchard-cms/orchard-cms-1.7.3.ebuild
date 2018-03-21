@@ -25,7 +25,7 @@ CDEPEND="
 	>=dev-lang/mono-4.9.0.729-r1
 	www-apache/mod_mono
 	dev-dotnet/castle-core
-	dev-dotnet/autofac
+	dev-dotnet/autofac:2
 	dev-dotnet/autofac-configuration
 	>=dev-dotnet/log4net-1.2.11-r2
 	dev-dotnet/nhibernate-linq
