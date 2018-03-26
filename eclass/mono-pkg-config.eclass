@@ -15,8 +15,7 @@ esac
 
 IUSE+=" pkg-config symlink"
 
-DEPEND+=" dev-lang/mono"
-RDEPEND+=" dev-lang/mono"
+DEPEND+=" virtual/pkgconfig"
 
 # http://www.gossamer-threads.com/lists/gentoo/dev/263462
 # pkg config files should always come from upstream
