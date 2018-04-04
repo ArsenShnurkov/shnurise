@@ -1,0 +1,57 @@
+# Copyright 1999-2018 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Id$
+
+EAPI="6"
+
+KEYWORDS="~amd64 ~x86"
+RESTRICT="mirror"
+
+SLOT="0"
+
+USE_DOTNET="net45"
+IUSE="+${USE_DOTNET} gac nupkg"
+
+inherit dotnet mono-pkg-config gac nupkg
+
+DESCRIPTION="A Getopt::Long-inspired option parsing library for C#"
+HOMEPAGE="http://tirania.org/blog/archive/2008/Oct-14.html"
+LICENSE="MIT"
+
+MY_PV="$(get_version_component_range 1-4)"
+MONO_ARCHIVE_NAME="mono-${MY_PV}"
+S="${WORKDIR}/${MONO_ARCHIVE_NAME}"
+SRC_URI="http://download.mono-project.com/sources/mono/nightly/${MONO_ARCHIVE_NAME}.tar.bz2
+	"
+
+CDEPEND=""
+DEPEND="${CDEPEND}
+	nupkg? ( dev-dotnet/nuget )
+	"
+RDEPEND="${CDEPEND}
+	"
+
+src_configure() {
+	# dont' call default configure for the whole mono package, because it is slow
+	cat <<-METADATA >AssemblyInfo.cs || die
+			[assembly: System.Reflection.AssemblyVersion("${MY_PV}")]
+		METADATA
+}
+
+src_compile() {
+	# exbuild_strong "mcs/class/Mono.Options/Mono.Options-net_4_x.csproj" # csproj is created during configure
+	if use gac; then
+		PARAMETERS=-keyfile:mcs/class/mono.snk
+	else
+		PARAMETERS=
+	fi
+	#mcs ${PARAMETERS} -r:System.Core mcs/class/Mono.Options/Mono.Options/Options.cs AssemblyInfo.cs -t:library -out:"Mono.Options.dll" || die "compilation failed"
+	csc ${PARAMETERS} -r:System.Core.dll mcs/class/Mono.Options/Mono.Options/Options.cs AssemblyInfo.cs -t:library -out:"Mono.Options.dll" || die "compilation failed"
+	enuspec "${FILESDIR}/Mono.Options.nuspec"
+}
+
+src_install() {
+	elib "Mono.Options.dll"
+	egacinstall "Mono.Options.dll"
+	enupkg "${WORKDIR}/Mono.Options.${MY_PV}.nupkg"
+}

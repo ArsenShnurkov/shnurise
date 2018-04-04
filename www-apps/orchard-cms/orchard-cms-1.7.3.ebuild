@@ -1,17 +1,19 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=6
+EAPI="6"
 KEYWORDS="~amd64 ~x86"
+RESTRICT="mirror"
+
+SLOT="173"
 
 USE_DOTNET="net45"
-inherit dotnet
+inherit xbuild
 
 IUSE="vhosts"
 
 SRC_URI="http://download-codeplex.sec.s-msft.com/Download/Release?ProjectName=orchard&DownloadId=820579&FileTime=130405900542070000&Build=21031 -> ${PN}-${PV}.zip"
-RESTRICT="mirror"
 
 S="${WORKDIR}"
 
@@ -19,10 +21,7 @@ LICENSE="BSD"
 DESCRIPTION="CMS written with CSharp"
 HOMEPAGE="http://www.orchardproject.net/"
 
-SLOT="1.7.3"
-
 CDEPEND="
-	>=dev-lang/mono-4.9.0.729-r1
 	www-apache/mod_mono
 	dev-dotnet/castle-core
 	dev-dotnet/autofac:2
