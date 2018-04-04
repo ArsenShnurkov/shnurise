@@ -11,7 +11,7 @@ SLOT="0"
 USE_DOTNET="net45"
 IUSE="+${USE_DOTNET} +pkg-config +symlink debug developer"
 
-inherit xbuild mono-pkg-config nupkg
+inherit xbuild mono-pkg-config gac nupkg
 
 HOMEPAGE="http://cecil.pe/"
 DESCRIPTION="System.Reflection alternative to generate and inspect .NET executables/libraries"
@@ -88,12 +88,7 @@ src_compile() {
 		FW_UPPER=${x:3:1}
 		FW_LOWER=${x:4:1}
 		P_FW_VERSION="/p:TargetFrameworkVersion=v${FW_UPPER}.${FW_LOWER}"
-		local CONFIGURATION=""
-		if use debug; then
-			CONFIGURATION=net_${FW_UPPER}_${FW_LOWER}_Debug
-		else
-			CONFIGURATION=net_${FW_UPPER}_${FW_LOWER}_Debug
-		fi
+		local CONFIGURATION="net_${FW_UPPER}_${FW_LOWER}_$(usedebug_tostring)"
 		einfo "Building configuration '${CONFIGURATION}'"
 		P_CONFIGURATION="/p:Configuration=${CONFIGURATION}"
 		exbuild_raw ${PARAMETERS} ${P_FW_VERSION} ${P_CONFIGURATION} "${METAFILETOBUILD}"
@@ -103,9 +98,6 @@ src_compile() {
 		sn -R ${S}/bin/${CONFIGURATION}/Mono.Cecil.Mdb.dll "${KEY2}" || die
 		sn -R ${S}/bin/${CONFIGURATION}/Mono.Cecil.Pdb.dll "${KEY2}" || die
 		sn -R ${S}/bin/${CONFIGURATION}/Mono.Cecil.Rocks.dll "${KEY2}" || die
-
-		#sn -R ${S}/bin/${CONFIGURATION}/Mono.Cecil.Rocks.Mdb.dll "${KEY2}" || die
-		#sn -R ${S}/bin/${CONFIGURATION}/Mono.Cecil.Rocks.Pdb.dll "${KEY2}" || die
 	done
 
 	# run nuget_pack
@@ -113,17 +105,11 @@ src_compile() {
 }
 
 src_install() {
-	if use debug; then
-		DIR=Debug
-	else
-		DIR=Release
-	fi
-
 	for dll_name in ${GAC_DLL_NAMES} ; do
 		for x in ${USE_DOTNET} ; do
 			FW_UPPER=${x:3:1}
 			FW_LOWER=${x:4:1}
-			egacinstall "bin/net_${FW_UPPER}_${FW_LOWER}_${DIR}/${dll_name}.dll"
+			egacinstall "bin/net_${FW_UPPER}_${FW_LOWER}_$(usedebug_tostring)/${dll_name}.dll"
 		done
 	done
 	einstall_pc_file "${PN}" "0.10" ${GAC_DLL_NAMES}
