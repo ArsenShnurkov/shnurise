@@ -10,9 +10,9 @@ RESTRICT="mirror"
 SLOT="0"
 
 USE_DOTNET="net45"
-IUSE="+${USE_DOTNET} debug developer doc"
+IUSE="+${USE_DOTNET}"
 
-inherit dotnet
+inherit dotnet mono-pkg-config
 
 GITHUB_ACCOUNT="mono"
 GITHUB_PROJECTNAME="t4"
@@ -35,9 +35,25 @@ src_prepare() {
 }
 
 src_compile() {
-	:;
+	mkdir -p "Mono.TextTemplating/Mono.TextTemplating/bin/$(usedebug_tostring)" || die
+	csc /unsafe /recurse:Mono.TextTemplating/*.cs  -t:library -out:"Mono.TextTemplating/Mono.TextTemplating/bin/$(usedebug_tostring)/Mono.TextTemplating.dll" || die
+	mkdir -p "TextTransform/bin/$(usedebug_tostring)" || die
+	csc  -t:exe -out:"TextTransform/bin/$(usedebug_tostring)/TextTransform.exe" \
+		-r:Mono.TextTemplating/Mono.TextTemplating/bin/$(usedebug_tostring)/Mono.TextTemplating.dll \
+		-r:/usr/share/dev-dotnet/mono-options/Mono.Options.dll \
+		TextTransform/TextTransform.cs || die
 }
 
 src_install() {
-	:;
+	elib "Mono.TextTemplating/Mono.TextTemplating/bin/$(usedebug_tostring)/Mono.TextTemplating.dll"
+
+	local INSTALL_PATH="/usr/share/${PN}/slot-${SLOT}"
+
+	insinto "${INSTALL_PATH}"
+	doins "TextTransform/bin/$(usedebug_tostring)/TextTransform.exe"
+
+	dosym "/usr/share/dev-dotnet/${PN}/Mono.TextTemplating.dll" "${INSTALL_PATH}/Mono.TextTemplating.dll"
+	dosym "/usr/share/dev-dotnet/mono-options/Mono.Options.dll" "${INSTALL_PATH}/Mono.Options.dll"
+
+	make_wrapper t4 "/usr/bin/mono ${INSTALL_PATH}/TextTransform.exe"
 }
