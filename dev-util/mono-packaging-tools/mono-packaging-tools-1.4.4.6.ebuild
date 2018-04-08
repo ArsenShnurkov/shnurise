@@ -19,7 +19,7 @@ HOMEPAGE="http://arsenshnurkov.github.io/mono-packaging-tools"
 
 REPOSITORY_URL="https://github.com/ArsenShnurkov/${NAME}"
 
-EGIT_COMMIT="22b3ef8294a9be1067f7a44f55bd09a0e0dd2fd7"
+EGIT_COMMIT="caa40252cd38db323a5f1113cf2fd922b1aa7e59"
 SRC_URI="${REPOSITORY_URL}/archive/${EGIT_COMMIT}.tar.gz -> ${CATEGORY}-${PN}-${PV}.tar.gz"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
@@ -78,7 +78,7 @@ src_install() {
 	dosym "$(library_assembly_dir)/mpt-core.dll" "$(executable_assembly_dir)/mpt-core.dll"
 
 	# link other libraries
-	dosym "$(framework_api_dir)/Mono.Options.dll" "$(executable_assembly_dir)/Mono.Options.dll"
+	dosym "$(library_assembly_dir)/../mono-options/Mono.Options.dll" "$(executable_assembly_dir)/Mono.Options.dll"
 	dosym "$(library_assembly_dir)/../slntools-1/CWDev.SLNTools.Core.dll" "$(executable_assembly_dir)/CWDev.SLNTools.Core.dll"
 	dosym "$(library_assembly_dir)/../eto-parse-1/Eto.Parse.dll" "$(executable_assembly_dir)/Eto.Parse.dll"
 
