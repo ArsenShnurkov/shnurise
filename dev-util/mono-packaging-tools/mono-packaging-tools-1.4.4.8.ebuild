@@ -19,7 +19,7 @@ HOMEPAGE="http://arsenshnurkov.github.io/mono-packaging-tools"
 
 REPOSITORY_URL="https://github.com/ArsenShnurkov/${NAME}"
 
-EGIT_COMMIT="05d4f2f627a29e61fb661e4ec71c620206344d81"
+EGIT_COMMIT="44275b96b955e4587c76448e25a299ffabf28edb"
 SRC_URI="${REPOSITORY_URL}/archive/${EGIT_COMMIT}.tar.gz -> ${CATEGORY}-${PN}-${PV}.tar.gz"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
@@ -55,6 +55,7 @@ src_prepare() {
 	# PV = Package version (excluding revision, if any), for example 6.3.
 	# It should reflect the upstream versioning scheme
 	sed "s/@VERSION@/${NUSPEC_VERSION}/g" "${FILESDIR}/${NUSPEC_ID}.nuspec" >"${S}/${NUSPEC_ID}.nuspec" || die
+	sed -i "s?<HintPath>.*Mono\\.TextTemplating.dll</HintPath>?<HintPath>/usr/share/dev-dotnet/t4/Mono.TextTemplating.dll</HintPath>?g" "${S}/mpt-core/mpt-core.csproj" || die
 
 	# restoring is not necessary after switching to GAC references
 	# enuget_restore "${METAFILETOBUILD}"

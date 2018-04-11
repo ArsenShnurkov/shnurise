@@ -12,8 +12,8 @@ SLOT="2"
 USE_DOTNET="net45"
 IUSE="+${USE_DOTNET} debug developer symlink"
 
-inherit eutils gnome2-utils
-inherit msbuild
+inherit eutils gnome2-utils 
+inherit mpt-r20150903 msbuild
 
 DESCRIPTION="mypad text editor"
 LICENSE="MIT"
@@ -21,17 +21,18 @@ LICENSE="MIT"
 PROJECTNAME="mypad-winforms-texteditor"
 HOMEPAGE="https://github.com/ArsenShnurkov/${PROJECTNAME}"
 EGIT_COMMIT="0cbef257aefa9dec1fdbbd0f98616fc461d58a75"
-SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${P}-${PR}.zip"
+SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${CATEGORY}-${PN}-${PV}.zip"
 S="${WORKDIR}/${PROJECTNAME}-${EGIT_COMMIT}"
 
 ALLPEND="dev-lang/mono
-	>=dev-dotnet/icsharpcode-texteditor-3.2.2_p2018020702
+	>=dev-dotnet/icsharpcode-texteditor-3.2.2_p2018020702-r1
 	>=dev-dotnet/ndepend-path-0.0_p20151123-r1
 	"
 
 # The DEPEND ebuild variable should specify any dependencies which are 
 # required to unpack, patch, compile or install the package
 DEPEND="${ALLPEND}
+	>=dev-util/mono-packaging-tools-1.4.4.8
 	"
 
 # The RDEPEND ebuild variable should specify any dependencies which are 
@@ -48,31 +49,40 @@ PROJECT1_PATH="${S}/MyPad"
 PROJECT1_NAME="MyPad"
 PROJECT1_OUT="MyPad"
 
+function csproj_1() {
+	echo  "${PROJECT1_PATH}/${PROJECT1_NAME}.csproj"
+}
+
 function install_dir() {
 	echo "/usr/lib/mypad-${SLOT}"
 }
-
 
 pkg_preinst() {
 	gnome2_icon_savelist
 }
 
 src_prepare() {
+	# NDepend.Path
+	empt-csproj "$(csproj_1)" --remove-reference="NDepend.Path"
+	#empt-csproj "$(csproj_1)" --inject-reference="NDepend.Path"
+	empt-csproj "$(csproj_1)" --inject-reference="NDepend.Path" \
+		--package-hintpath="/usr/share/dev-dotnet/ndepend-path-1/NDepend.Path.dll"
+	# ICSharpCode.TextEditor
+	empt-csproj "$(csproj_1)" --remove-projectreference="ICSharpCode.TextEditor"
+	#empt-csproj "$(csproj_1)" --replace-reference="ICSharpCode.TextEditor" 
+	empt-csproj "$(csproj_1)" --inject-reference="ICSharpCode.TextEditor" \
+		--package-hintpath="/usr/share/dev-dotnet/icsharpcode-texteditor/ICSharpCode.TextEditor.dll"
+	# default initialization
 	eapply_user
 }
 
 src_compile() {
 	# https://bugzilla.xamarin.com/show_bug.cgi?id=9340
-	emsbuild /p:TargetFrameworkVersion=v4.6 "${PROJECT1_PATH}/${PROJECT1_NAME}.csproj"
+	emsbuild /p:TargetFrameworkVersion=v4.6 "$(csproj_1)"
 }
 
 src_install() {
-	local BINDIR=""
-	if use debug; then
-		BINDIR=MyPad/bin/Debug
-	else
-		BINDIR=MyPad/bin/Release
-	fi
+	local BINDIR=MyPad/bin/$(usedebug_tostring)
 
 	elog "Installing executable"
 	insinto "$(install_dir)"
@@ -83,10 +93,10 @@ src_install() {
 		make_wrapper mypad${APPENDIX} "mono $(install_dir)/MyPad.exe"
 	fi
 
-	elog "Installing syntax coloring schemes for editor"
+	elog "Installing syntax coloring schemes for editor ${S}/${BINDIR}/Modes/*.xshd"
 	dodir "$(install_dir)/Modes"
-	insinto /usr/lib/mypad-${PV}/Modes
-	doins "$BINDIR/Modes/*.xshd"
+	insinto "$(install_dir)/Modes"
+	doins "${S}/${BINDIR}/Modes/"*.xshd
 
 	elog "Preparing data directory"
 	# actually this should be in the user home folder

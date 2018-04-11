@@ -9,9 +9,9 @@ KEYWORDS="~amd64 ~x86 ~ppc"
 SLOT="0"
 
 USE_DOTNET="net45"
-IUSE="+${USE_DOTNET}"
+IUSE="+${USE_DOTNET} +pkgconfig"
 
-inherit eutils gac msbuild
+inherit eutils msbuild gac mono-pkg-config
 
 DESCRIPTION="ICSharpCode.TextEditor library"
 LICENSE="MIT"
@@ -48,6 +48,8 @@ src_compile() {
 }
 
 src_install() {
+	elib "$(output_filename)"
+
 	insinto "/gac"
 	doins "$(output_filename)"
 }
