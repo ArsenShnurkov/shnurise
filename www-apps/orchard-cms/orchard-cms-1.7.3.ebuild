@@ -9,7 +9,7 @@ RESTRICT="mirror"
 SLOT="173"
 
 USE_DOTNET="net45"
-inherit xbuild
+inherit mpt-r20150903 xbuild 
 
 IUSE="vhosts"
 
@@ -43,6 +43,7 @@ src_prepare() {
 	epatch "${FILESDIR}/case-of-path-letters.patch"
 	epatch "${FILESDIR}/web-config.patch"
 	eapply "${FILESDIR}/add-reference-to-system-data-${PV}.patch"
+	empt-csproj --replace-reference="Castle.Core" "${S}"
 	eapply_user
 }
 
