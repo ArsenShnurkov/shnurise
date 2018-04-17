@@ -30,6 +30,7 @@ LICENSE_URL="https://raw.githubusercontent.com/ArsenShnurkov/mono-packaging-tool
 COMMON_DEPENDENCIES="
 	>=dev-dotnet/slntools-1.1.3_p201508170-r2
 	>=dev-dotnet/eto-parse-1.4.0
+	dev-dotnet/t4
 	"
 DEPEND="${COMMON_DEPENDENCIES}
 	dev-dotnet/msbuildtasks
