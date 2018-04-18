@@ -9,7 +9,7 @@ RESTRICT="mirror"
 SLOT="3"
 
 USE_DOTNET="net45"
-IUSE="+net45 developer debug nupkg gac doc"
+IUSE="+${USE_DOTNET} developer debug nupkg gac doc"
 
 inherit mono-env xbuild gac nupkg
 
@@ -28,12 +28,12 @@ CECIL=">=dev-dotnet/cecil-0.10_beta7_p2018031901-r1"
 CDEPEND="
 	net45? (
 		developer? (
-			debug?  ( ${CECIL}[net45,gac,developer,debug] )
-			!debug? ( ${CECIL}[net45,gac,developer] )
+			debug?  ( ${CECIL}[${USE_DOTNET},developer,debug] )
+			!debug? ( ${CECIL}[${USE_DOTNET},developer] )
 		)
 		!developer? (
-			debug?  ( ${CECIL}[net45,gac,debug] )
-			!debug? ( ${CECIL}[net45,gac] )
+			debug?  ( ${CECIL}[${USE_DOTNET},debug] )
+			!debug? ( ${CECIL}[${USE_DOTNET}] )
 		)
 	)
 "
