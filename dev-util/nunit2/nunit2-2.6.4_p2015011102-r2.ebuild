@@ -17,7 +17,7 @@ NAME="nunitv2"
 HOMEPAGE="https://github.com/nunit/${NAME}"
 
 EGIT_COMMIT="1b549f4f8b067518c7b54a5b263679adb83ccda4"
-SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${PN}-${PV}.zip"
+SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${CATEGORY}-${PN}-${PV}.zip"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="NUnit test suite for mono applications"
