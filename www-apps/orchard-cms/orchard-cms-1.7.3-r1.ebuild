@@ -31,8 +31,11 @@ CDEPEND="
 	dev-dotnet/fluent-nhibernate
 	dev-dotnet/castle-dynamicproxy
 "
-DEPEND="${CDEPEND}"
-RDEPEND="${CDEPEND}"
+DEPEND="${CDEPEND}
+	dev-util/nunit2
+"
+RDEPEND="${CDEPEND}
+"
 
 src_prepare() {
 	# remove untrusted binary files
