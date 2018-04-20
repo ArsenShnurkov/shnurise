@@ -13,7 +13,7 @@ inherit mpt-r20150903 xbuild
 
 IUSE="vhosts"
 
-SRC_URI="http://download-codeplex.sec.s-msft.com/Download/Release?ProjectName=orchard&DownloadId=820579&FileTime=130405900542070000&Build=21031 -> ${PN}-${PV}.zip"
+SRC_URI="http://download-codeplex.sec.s-msft.com/Download/Release?ProjectName=orchard&DownloadId=820579&FileTime=130405900542070000&Build=21031 -> ${CATEGORY}-${PN}-${PV}.zip"
 
 S="${WORKDIR}"
 
@@ -22,14 +22,14 @@ DESCRIPTION="CMS written with CSharp"
 HOMEPAGE="http://www.orchardproject.net/"
 
 CDEPEND="
-	www-apache/mod_mono
-	dev-dotnet/castle-core:1
 	dev-dotnet/autofac:2
-	dev-dotnet/autofac-configuration
+	dev-dotnet/autofac-configuration:2
+	dev-dotnet/castle-core:1
+	dev-dotnet/castle-dynamicproxy
 	>=dev-dotnet/log4net-1.2.11-r2
 	dev-dotnet/nhibernate-linq
 	dev-dotnet/fluent-nhibernate
-	dev-dotnet/castle-dynamicproxy
+	www-apache/mod_mono
 "
 DEPEND="${CDEPEND}
 	dev-util/nunit2
