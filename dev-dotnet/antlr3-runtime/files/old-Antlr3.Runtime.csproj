@@ -30,7 +30,7 @@
     <Compile Include="Properties/AssemblyVersion.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\MSBuild.Community.Tasks.Targets" />
+  <Import Project="$(MSBuildExtensionsPath)/MSBuildCommunityTasks/MSBuild.Community.Tasks.Targets" />
    <Target Name="BeforeBuild">
     <PropertyGroup Condition=" '$(VersionNumber)' == '' ">
       <VersionNumber>3.5.1.26</VersionNumber>
