@@ -61,6 +61,8 @@ src_compile() {
 }
 
 src_install() {
+	elib "$(output_filename)"
+
 	insinto "/gac"
 	doins "$(output_filename)"
 }
