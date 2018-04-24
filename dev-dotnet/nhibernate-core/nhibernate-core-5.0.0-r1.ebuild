@@ -9,8 +9,10 @@ RESTRICT="mirror"
 SLOT="0"
 
 USE_DOTNET="net45"
-inherit msbuild gac
 IUSE="+${USE_DOTNET}"
+
+inherit mpt-r20150903
+inherit msbuild gac
 
 NAME="nhibernate-core"
 HOMEPAGE="http://nhibernate.info/"
@@ -28,8 +30,7 @@ CDEPEND="|| ( >=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 )
 RDEPEND="${CDEPEND}
 "
 DEPEND="${CDEPEND}
-	dev-util/antlrcs
-	>=dev-util/antlr3-runtime-3.5.2_beta1_p2017080216-r2
+	>=dev-util/antlrcs-3.5.2_beta1_p2017080216-r1
 	>=dev-dotnet/msbuildtasks-1.5.0.240
 "
 
@@ -52,6 +53,8 @@ function output_filename ( ) {
 
 src_prepare() {
 	cp "${FILESDIR}/${METAFILE_TO_BUILD}-${PV}.csproj" "${S}/${PATH_TO_PROJ}/${METAFILE_TO_BUILD}.csproj" || die
+	empt-csproj --remove-reference="Antlr3.Runtime" "${S}/${PATH_TO_PROJ}/${METAFILE_TO_BUILD}.csproj"
+	empt-csproj --inject-reference="Antlr3.Runtime" --package-hintpath="/usr/share/dev-dotnet/antlr3-runtime/Antlr3.Runtime.dll" "${S}/${PATH_TO_PROJ}/${METAFILE_TO_BUILD}.csproj"
 	cp "${FILESDIR}/SharedAssemblyInfo-${PV}.cs" "${S}/${PATH_TO_PROJ}/../SharedAssemblyInfo.cs" || die
 	eapply_user
 }

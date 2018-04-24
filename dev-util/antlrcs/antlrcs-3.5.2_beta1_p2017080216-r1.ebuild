@@ -10,6 +10,7 @@ RESTRICT="mirror"
 SLOT="0"
 
 USE_DOTNET="net45"
+IUSE="+${USE_DOTNET} debug developer doc"
 
 inherit multilib dotbuildtask eutils
 
@@ -22,21 +23,19 @@ S="${WORKDIR}"
 DESCRIPTION="The C# port of ANTLR 3"
 LICENSE="BSD" # https://github.com/antlr/antlrcs/blob/master/LICENSE.txt
 
-IUSE="+${USE_DOTNET} debug developer doc"
-
 COMMON_DEPEND=">=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999
 "
 RDEPEND="${COMMON_DEPEND}
 "
 DEPEND="${COMMON_DEPEND}
-	>=dev-dotnet/antlr3-runtime-${PV}
+	>=dev-dotnet/antlr3-runtime-${PV}-r2
 "
 
-OUTPUT_PATH="${PN}-${SLOT}"
+OUTPUT_PATH="${PN}${APPENDIX}"
 ASSEMBLY_VERSION="3.5.1.26"
 
 src_prepare() {
-	sed "s#\$(AntlrBuildTaskPath)#/usr/$(get_libdir)/mono/${EBUILD_FRAMEWORK}/${PN}-${SLOT}#;s#\$(AntlrToolPath)#/usr/share/${PN}-${SLOT}/Antlr3.exe#" "${FILESDIR}/Antlr3.props" >"${S}/AntlrBuildTask/Antlr3.props" || die
+	sed "s#\$(AntlrBuildTaskPath)#/usr/share/${PN}${APPENDIX}#;s#\$(AntlrToolPath)#/usr/share/${PN}${APPENDIX}/Antlr3.exe#" "${FILESDIR}/Antlr3.props" >"${S}/AntlrBuildTask/Antlr3.props" || die
 	local ATEXT="[assembly:System.Reflection.AssemblyVersion(\"${ASSEMBLY_VERSION}\")]"
 	echo "${ATEXT}" >"${S}/AntlrBuildTask/AV.cs" || die
 	echo "${ATEXT}" >"${S}/Runtime/Antlr3.Runtime/AV.cs" || die
@@ -94,8 +93,8 @@ src_install() {
 	einstask "${OUTPUT_PATH}/AntlrBuildTask.dll" "${TASKS_PROPS_FILE}" "${TASKS_TARGETS_FILE}"
 
 	if use debug; then
-		make_wrapper antlrcs "/usr/bin/mono --debug \${MONO_OPTIONS} /usr/share/${PN}-${SLOT}/Antlr3.exe"
+		make_wrapper antlrcs "/usr/bin/mono --debug \${MONO_OPTIONS} /usr/share/${PN}${APPENDIX}/Antlr3.exe"
 	else
-		make_wrapper antlrcs "/usr/bin/mono \${MONO_OPTIONS} /usr/share/${PN}-${SLOT}/Antlr3.exe"
+		make_wrapper antlrcs "/usr/bin/mono \${MONO_OPTIONS} /usr/share/${PN}${APPENDIX}/Antlr3.exe"
 	fi
 }
