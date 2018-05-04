@@ -1,8 +1,9 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=6
+EAPI="6"
+
 KEYWORDS="~amd64 ~ppc ~x86"
 RESTRICT="mirror"
 
@@ -30,6 +31,9 @@ CDEPEND="|| ( >=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 )
 RDEPEND="${CDEPEND}
 "
 DEPEND="${CDEPEND}
+	dev-dotnet/nhibernate-iesi-collections
+	dev-dotnet/remotion-linq
+	dev-dotnet/remotion-linq-eagerfetching
 	>=dev-util/antlrcs-3.5.2_beta1_p2017080216-r1
 	>=dev-dotnet/msbuildtasks-1.5.0.240
 "
