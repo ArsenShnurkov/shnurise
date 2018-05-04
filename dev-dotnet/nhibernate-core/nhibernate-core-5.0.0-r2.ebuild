@@ -32,6 +32,8 @@ RDEPEND="${CDEPEND}
 "
 DEPEND="${CDEPEND}
 	dev-dotnet/nhibernate-iesi-collections
+	dev-dotnet/remotion-linq
+	dev-dotnet/remotion-linq-eagerfetching
 	>=dev-util/antlrcs-3.5.2_beta1_p2017080216-r1
 	>=dev-dotnet/msbuildtasks-1.5.0.240
 "
