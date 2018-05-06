@@ -2,7 +2,7 @@ diff --git a/Core/Core.csproj b/Core/Core.csproj
 index 26d3ff4..a55d211 100644
 --- a/Core/Core.csproj
 +++ b/Core/Core.csproj
-@@ -2,80 +2,45 @@
+@@ -2,80 +2,47 @@
  <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
    <PropertyGroup>
@@ -88,7 +88,9 @@ index 26d3ff4..a55d211 100644
 -      <RequiredTargetFramework>4.5</RequiredTargetFramework>
 -    </Reference>
 +    <Reference Include="System.Core" />
-+    <Reference Include="Remotion.Linq" />
++    <Reference Include="Remotion.Linq">
++      <HintPath>/usr/share/dev-dotnet/remotion-linq/Remotion.Linq.dll</HintPath>
++    </Reference>
    </ItemGroup>
    <ItemGroup>
      <Compile Include="..\AssemblyInfoShared.cs">
