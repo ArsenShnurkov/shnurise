@@ -26,7 +26,7 @@ LICENSE="LGPL-2.1" # https://github.com/re-motion/Relinq-EagerFetching/blob/deve
 IUSE="+${USE_DOTNET} +msbuild debug developer doc"
 
 COMMON_DEPEND=">=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999
-	dev-dotnet/remotion-linq
+	>=dev-dotnet/remotion-linq-2.1.2-r1
 "
 RDEPEND="${COMMON_DEPEND}
 "
