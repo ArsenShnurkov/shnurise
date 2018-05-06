@@ -1,8 +1,8 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=6
+EAPI="6"
 RESTRICT="mirror"
 KEYWORDS="~amd64 ~ppc ~x86"
 SLOT="0"
@@ -10,8 +10,8 @@ SLOT="0"
 USE_DOTNET="net45"
 IUSE="+${USE_DOTNET} +gac developer debug doc"
 
-inherit gac dotnet
-
+inherit xbuild mono-pkg-config gac
+ 
 GITHUB_ACCOUNT="nhibernate"
 GITHUB_PROJECTNAME="iesi.collections"
 EGIT_COMMIT="3e183dd3316baedac508d0171b67c3dee05f6da0"
