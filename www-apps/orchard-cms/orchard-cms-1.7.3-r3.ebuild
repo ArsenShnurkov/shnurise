@@ -49,7 +49,7 @@ src_prepare() {
 	epatch "${FILESDIR}/case-of-path-letters.patch"
 	epatch "${FILESDIR}/web-config.patch"
 	eapply "${FILESDIR}/add-reference-to-system-data-${PV}.patch"
-	empt-csproj --replace-reference="Castle.Core" "${S}"
+	empt-csproj --replace-reference="Castle.Core" --package-hintpath="/usr/share/dev-dotnet/castle-core-1/Castle.Core.dll" "${S}"
 	eapply_user
 }
 
