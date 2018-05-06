@@ -42,7 +42,7 @@
     <Compile Include="Generic\ReadOnlySet.cs" />
     <Compile Include="Generic\SynchronizedSet.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\MSBuild.Community.Tasks.Targets" />
+  <Import Project="$(MSBuildExtensionsPath)/MSBuildCommunityTasks/MSBuild.Community.Tasks.Targets" />
   <Target Name="BeforeBuild">
     <PropertyGroup Condition=" '$(VersionNumber)' == '' ">
       <VersionNumber>1.0.0.0</VersionNumber>
