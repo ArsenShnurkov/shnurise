@@ -56,13 +56,9 @@ src_compile() {
 }
 
 src_install() {
-	if use debug; then
-		CONFIGURATION=Debug
-	else
-		CONFIGURATION=Release
-	fi
+	DLLNAME="${PROJECT_FILE_DIR}/bin/$(usedebug_tostring)/${PROJECT_NAME}.dll"
+	elib "${DLLNAME}"
 
-	DLLNAME="${PROJECT_FILE_DIR}/bin/${CONFIGURATION}/${PROJECT_NAME}.dll"
 	sn -R "${DLLNAME}" "${S}/src/NHibernate.snk" || die
 	egacinstall ${DLLNAME}
 	einstall_pc_file "${PN}" "${PV}" "${PROJECT_NAME}"

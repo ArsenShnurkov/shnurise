@@ -32,9 +32,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2" />
-    <Reference Include="Iesi.Collections, Version=4.0.0.0" />
-    <Reference Include="Remotion.Linq, Version=2.1.0.0" />
-    <Reference Include="Remotion.Linq.EagerFetching, Version=2.1.0.0" />
+    <Reference Include="Iesi.Collections, Version=4.0.0.0">
+        <HintPath>/usr/share/dev-dotnet/nhibernate-iesi-collections/Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Linq">
+        <HintPath>/usr/share/dev-dotnet/remotion-linq/Remotion.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Linq.EagerFetching">
+        <HintPath>/usr/share/dev-dotnet/remotion-linq-eagerfetching/Remotion.Linq.EagerFetching.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
