@@ -9,13 +9,16 @@ RESTRICT="mirror"
 SLOT="173"
 
 USE_DOTNET="net45"
-inherit mpt-r20150903 xbuild 
+IUSE="${USE_DOTNET} vhosts"
 
-IUSE="vhosts"
+inherit mpt-r20150903 xbuild
 
-SRC_URI="http://download-codeplex.sec.s-msft.com/Download/Release?ProjectName=orchard&DownloadId=820579&FileTime=130405900542070000&Build=21031 -> ${CATEGORY}-${PN}-${PV}.zip"
+GITHUB_ACCOUNT_NAME="OrchardCMS"
+GITHUB_REPOSITORY_NAME="Orchard"
+EGIT_COMMIT="e737aa08ec3068a8e4f6057550e6df3d0884cabf"
+SRC_URI="https://github.com/${GITHUB_ACCOUNT_NAME}/${GITHUB_REPOSITORY_NAME}/archive/${EGIT_COMMIT}.tar.gz -> ${CATEGORY}-${PN}-${PV}.tar.gz"
 
-S="${WORKDIR}"
+S="${WORKDIR}/${GITHUB_REPOSITORY_NAME}-${EGIT_COMMIT}"
 
 LICENSE="BSD"
 DESCRIPTION="CMS written with CSharp"
@@ -46,7 +49,7 @@ src_prepare() {
 	epatch "${FILESDIR}/case-of-path-letters.patch"
 	epatch "${FILESDIR}/web-config.patch"
 	eapply "${FILESDIR}/add-reference-to-system-data-${PV}.patch"
-	empt-csproj --replace-reference="Castle.Core" "${S}"
+	empt-csproj --replace-reference="Castle.Core" --package-hintpath="/usr/share/dev-dotnet/castle-core-1/Castle.Core.dll" "${S}"
 	eapply_user
 }
 
