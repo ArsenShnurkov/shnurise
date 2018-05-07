@@ -7,33 +7,35 @@ EAPI="6"
 KEYWORDS="~amd64 ~x86"
 RESTRICT="mirror"
 
-SLOT="4"
+SLOT="3"
 
 USE_DOTNET="net45"
 IUSE="+${USE_DOTNET} +msbuild debug developer doc"
 
+inherit mpt-r20150903
 inherit msbuild mono-pkg-config gac
 
-NAME="nhibernate-core"
-HOMEPAGE="https://github.com/nhibernate/${NAME}"
-EGIT_COMMIT="b64b6b74278a12a6a12e19e6a33f97fac6b6c910"
-SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${NAME}-${PV}.tar.gz
+GITHUB_REPOSITORY_NAME="nhibernate-core"
+GITHUB_ACCOUNT_NAME="nhibernate"
+HOMEPAGE="https://github.com/${GITHUB_ACCOUNT_NAME}/${GITHUB_REPOSITORY_NAME}"
+EGIT_COMMIT="78ee78d7863300c791ff86df00f94072e83537dc"
+SRC_URI="https://github.com/${GITHUB_ACCOUNT_NAME}/${GITHUB_REPOSITORY_NAME}/archive/${EGIT_COMMIT}.tar.gz -> ${CATEGORY}-${PN}-${PV}.tar.gz
 	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
-S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
+S="${WORKDIR}/${GITHUB_REPOSITORY_NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="NHibernate Object Relational Mapper"
 LICENSE="LGPL-2.1" # https://github.com/nhibernate/nhibernate-core/blob/master/LICENSE.txt
 
 COMMON_DEPEND=">=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999
 	dev-dotnet/antlr3-runtime
-	dev-dotnet/iesi-collections
+	dev-dotnet/nhibernate-iesi-collections
 	dev-dotnet/remotion-linq
-	dev-dotnet/remotion-linq-eagetfetching
+	dev-dotnet/remotion-linq-eagerfetching
 "
 RDEPEND="${COMMON_DEPEND}
 "
 DEPEND="${COMMON_DEPEND}
-	dev-dotnet/antlrcs
+	dev-util/antlrcs
 	>=dev-dotnet/msbuildtasks-1.5.0.240
 "
 
@@ -42,19 +44,13 @@ KEY1_TOKEN="0738eb9f132ed756"
 KEY2="${DISTDIR}/mono.snk"
 KEY2_TOKEN="0738eb9f132ed756"
 
-METAFILE_DIR="src/NHibernate"
+PATH_TO_PROJ="src/NHibernate"
 METAFILE_NAME="NHibernate.csproj"
 ASSEMBLY_NAME="NHibernate"
 ASSEMBLY_VER="${PV}"
 
 function output_filename ( ) {
-	local DIR=""
-	if use debug; then
-		DIR="Debug"
-	else
-		DIR="Release"
-	fi
-	echo "${METAFILE_DIR}/bin/${DIR}/${ASSEMBLY_NAME}.dll"
+	echo "${PATH_TO_PROJ}/bin/$(usedebug_tostring)/${ASSEMBLY_NAME}.dll"
 }
 
 function deploy_dir ( ) {
@@ -62,16 +58,20 @@ function deploy_dir ( ) {
 }
 
 src_prepare() {
-	eapply "${FILESDIR}/${METAFILE_NAME}-${PV}.patch"
+	cp "${FILESDIR}/SharedAssemblyInfo-${PV}.cs" "${S}/${PATH_TO_PROJ}/AssemblyInfo.cs" || die
+	empt-csproj --remove-reference="Antlr3.Runtime" "${S}/${PATH_TO_PROJ}/${METAFILE_NAME}"
+	empt-csproj --inject-reference="Antlr3.Runtime" --package-hintpath="/usr/share/dev-dotnet/antlr3-runtime/Antlr3.Runtime.dll" "${S}/${PATH_TO_PROJ}/${METAFILE_NAME}"
 	eapply_user
 }
 
 src_compile() {
-	emsbuild /p:TargetFrameworkVersion=v4.6 "/p:SignAssembly=true" "/p:PublicSign=true" "/p:AssemblyOriginatorKeyFile=${KEY1}" "${S}/${METAFILE_DIR}/${METAFILE_NAME}"
+	emsbuild /p:TargetFrameworkVersion=v4.6 "/p:SignAssembly=true" "/p:PublicSign=true" "/p:AssemblyOriginatorKeyFile=${KEY1}" "${S}/${PATH_TO_PROJ}/${METAFILE_NAME}"
 	sn -R "${S}/$(output_filename)" "${KEY2}" || die
 }
 
 src_install() {
+	elib "$(output_filename)"
+
 	insinto "/gac"
 	doins "$(output_filename)"
 }

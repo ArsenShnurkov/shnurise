@@ -4,10 +4,10 @@
 
 EAPI="6"
 
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64 ~x86"
 RESTRICT="mirror"
 
-SLOT="0"
+SLOT="5"
 
 USE_DOTNET="net45"
 IUSE="+${USE_DOTNET}"
@@ -46,13 +46,7 @@ KEY2="${DISTDIR}/mono.snk"
 ASSEMBLY_VERSION="${PV}"
 
 function output_filename ( ) {
-	local DIR=""
-	if use debug; then
-		DIR="Debug"
-	else
-		DIR="Release"
-	fi
-	echo "${PATH_TO_PROJ}/bin/${DIR}/${ASSEMBLY_NAME}.dll"
+	echo "${PATH_TO_PROJ}/bin/$(usedebug_tostring)/${ASSEMBLY_NAME}.dll"
 }
 
 src_prepare() {
