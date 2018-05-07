@@ -26,7 +26,7 @@ DESCRIPTION="Contributions to NHibernate"
 LICENSE="LGPL-2.0" # https://sourceforge.net/directory/license:lgpl/
 
 CDEPEND="|| ( >=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 )
-	dev-dotnet/nhibernate-core
+	dev-dotnet/nhibernate-core:3
 	"
 RDEPEND="${CDEPEND}
 "
