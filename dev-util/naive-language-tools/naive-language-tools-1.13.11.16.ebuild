@@ -23,9 +23,10 @@ LICENSE="MIT"
 
 S="${WORKDIR}/${GITHUB_REPOSITORY_NAME}-${EGIT_COMMIT}"
 
-inherit xbuild
+inherit xbuild mono-pkg-config
 
 src_prepare() {
+	eapply "${FILESDIR}/variant.patch"
 	eapply_user
 }
 
@@ -34,14 +35,26 @@ src_compile() {
 }
 
 src_install() {
-	insinto "/usr/share/${PN}"
+	# ${CATEGORY} == dev-util, not the same as dev-dotnet
+	local FINAL_DLL_PATH="/usr/share/dev-dotnet/${PN}"
+	local FINAL_EXE_DIRECTORY="/usr/share/${PN}"
+	local FINAL_EXE_FILENAME="NaiveLanguageTools.Generator.exe"
+
+	elib "./NaiveLanguageTools.Generator/bin/Release/NaiveLanguageTools.MultiRegex.dll"
+	elib "./NaiveLanguageTools.Generator/bin/Release/NaiveLanguageTools.Common.dll"
+	elib "./NaiveLanguageTools.Generator/bin/Release/NaiveLanguageTools.Parser.dll"
+	elib "./NaiveLanguageTools.Generator/bin/Release/NaiveLanguageTools.Lexer.dll"
+	dosym "${FINAL_DLL_PATH}/NaiveLanguageTools.MultiRegex.dll" "${FINAL_EXE_DIRECTORY}/NaiveLanguageTools.MultiRegex.dll"
+	dosym "${FINAL_DLL_PATH}/NaiveLanguageTools.Common.dll" "${FINAL_EXE_DIRECTORY}/NaiveLanguageTools.Common.dll"
+	dosym "${FINAL_DLL_PATH}/NaiveLanguageTools.Parser.dll" "${FINAL_EXE_DIRECTORY}/NaiveLanguageTools.Parser.dll"
+	dosym "${FINAL_DLL_PATH}/NaiveLanguageTools.Lexer.dll" "${FINAL_EXE_DIRECTORY}/NaiveLanguageTools.Lexer.dll"
+
+	insinto "${FINAL_EXE_DIRECTORY}"
+	newins NaiveLanguageTools.Generator/bin/Release/NaiveLanguageTools.Generator.exe "${FINAL_EXE_FILENAME}"
+
 	if use debug; then
-		:
-#		newins bin/Debug/Gppg.exe Gppg.exe
-#		make_wrapper gppg "/usr/bin/mono --debug /usr/share/${PN}/gppg.exe"
+		make_wrapper nltg "/usr/bin/mono --debug ${FINAL_EXE_DIRECTORY}/${FINAL_EXE_FILENAME}"
 	else
-		:
-#		newins bin/Release/Gppg.exe gppg.exe
-#		make_wrapper gppg "/usr/bin/mono /usr/share/${PN}/gppg.exe"
+		make_wrapper nltg "/usr/bin/mono ${FINAL_EXE_DIRECTORY}/${FINAL_EXE_FILENAME}"
 	fi
 }

@@ -1,0 +1,11 @@
+--- a/NaiveLanguageTools.Common/Variant.cs
++++ b/NaiveLanguageTools.Common/Variant.cs
+@@ -9,7 +9,7 @@
+     /// T is common type
+     public class Variant<T,  
+         R1, R2>
+-where R1 : T,
++where R1 : T
+ where R2 : T
+     {
+         private readonly object _value;
