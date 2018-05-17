@@ -27,7 +27,7 @@ DESCRIPTION="NHibernate Object Relational Mapper"
 LICENSE="LGPL-2.1" # https://github.com/nhibernate/nhibernate-core/blob/master/LICENSE.txt
 
 COMMON_DEPEND=">=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999
-	dev-dotnet/antlr3-runtime
+	dev-dotnet/antlr3-runtime:31
 	dev-dotnet/nhibernate-iesi-collections
 	dev-dotnet/remotion-linq
 	dev-dotnet/remotion-linq-eagerfetching
@@ -60,7 +60,7 @@ function deploy_dir ( ) {
 src_prepare() {
 	cp "${FILESDIR}/SharedAssemblyInfo-${PV}.cs" "${S}/${PATH_TO_PROJ}/AssemblyInfo.cs" || die
 	empt-csproj --remove-reference="Antlr3.Runtime" "${S}/${PATH_TO_PROJ}/${METAFILE_NAME}"
-	empt-csproj --inject-reference="Antlr3.Runtime" --package-hintpath="/usr/share/dev-dotnet/antlr3-runtime/Antlr3.Runtime.dll" "${S}/${PATH_TO_PROJ}/${METAFILE_NAME}"
+	empt-csproj --inject-reference="Antlr3.Runtime" --package-hintpath="/usr/share/dev-dotnet/antlr3-runtime-31/Antlr3.Runtime.dll" "${S}/${PATH_TO_PROJ}/${METAFILE_NAME}"
 	eapply_user
 }
 
