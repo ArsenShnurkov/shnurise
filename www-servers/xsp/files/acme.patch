@@ -1,0 +1,15 @@
+--- a/src/Mono.WebServer.Apache/RequestReader.cs
++++ b/src/Mono.WebServer.Apache/RequestReader.cs
+@@ -47,10 +47,12 @@ namespace Mono.WebServer
+ 		{
+ 			string path = Request.GetUri ();
+ 
++			if (path.StartsWith ("/.well-known/acme-challenge", System.StringComparison.InvariantCultureIgnoreCase) == false) {
+ 			int dot = path.LastIndexOf ('.');
+ 			int slash = (dot != -1) ? path.IndexOf ('/', dot) : 0;
+ 			if (dot > 0 && slash > 0)
+ 				path = path.Substring (0, slash);
++			}
+ 
+ 			return path;
+ 		}
