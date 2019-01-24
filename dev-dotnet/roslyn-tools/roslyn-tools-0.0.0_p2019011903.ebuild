@@ -4,7 +4,7 @@
 EAPI="6"
 SLOT="0"
 
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64 ~x86 ~ppc"
 RESTRICT="mirror"
 
 USE_DOTNET="net45"
@@ -12,18 +12,17 @@ IUSE="+${USE_DOTNET}"
 
 inherit versionator dotnet
 
-GITHUB_REPONAME="sdk"
+GITHUB_REPONAME="roslyn-tools"
 GITHUB_ACCOUNT="dotnet"
-EGIT_COMMIT="4908e1f6d532cb823b6889816c49fb5134b0278c"
+EGIT_COMMIT="8a1c2507afd04904cfa34515509f264b87655494"
 
 SRC_URI="https://codeload.github.com/${GITHUB_ACCOUNT}/${GITHUB_REPONAME}/tar.gz/${EGIT_COMMIT} -> ${PN}-${PV}.tar.gz"
 S="${WORKDIR}/${GITHUB_REPONAME}-${EGIT_COMMIT}"
 
-LICENSE="MIT" # https://github.com/dotnet/sdk/blob/master/LICENSE.TXT
+LICENSE="Apache-2.0" # https://github.com/dotnet/roslyn-tools/blob/master/LICENSE.md
 
-HOMEPAGE="https://github.com/dotnet/sdk/"
-#DESCRIPTION="Core functionality needed to create .NET Core projects, that is shared between Visual Studio and CLI"
-DESCRIPTION="'Microsoft.NET.Sdk' for msbuild"
+HOMEPAGE="https://github.com/dotnet/roslyn-tools"
+DESCRIPTION="'Tools used in Roslyn based repos "
 
 COMMON_DEPEND=">=dev-lang/mono-4.0.2.5
 "
