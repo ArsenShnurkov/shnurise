@@ -104,8 +104,8 @@
     <Compile Include="..\Shared\IKeyed.cs" />
     <Compile Include="..\Shared\MSBuildNameIgnoreCaseComparer.cs" />
     <Compile Include="..\Shared\ReadOnlyEmptyCollection.cs" />
+    <Compile Include="..\Shared\ReadOnlyEmptyList.cs" />
     <Compile Include="..\Shared\ReadOnlyEmptyDictionary.cs" />
-    <!--Compile Include="..\Shared\ReadOnlyEmptyList.cs" /-->
     <Compile Include="..\Shared\NativeMethodsShared.cs" />
     <Compile Include="..\Shared\AssemblyUtilities.cs" />
     <Compile Include="..\Shared\ExceptionHandling.cs" />
@@ -164,15 +164,10 @@
     <Compile Include="AV.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Build\mono-Microsoft.Build.csproj">
-      <Project>{16CD7635-7CF4-4C62-A77B-CF87D0F09A58}</Project>
-      <Name>Microsoft.Build</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\Framework\mono-Microsoft.Build.Framework.csproj" />
+    <ProjectReference Include="..\Build\mono-Microsoft.Build.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Build.Framework, Version=15.3.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
-      <Package>msbuild-tasks-api-15.3</Package>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
@@ -181,10 +176,10 @@
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\MSBuild.Community.Tasks.Targets" />
+  <Import Project="/usr/lib/mono/xbuild/MSBuildCommunityTasks/MSBuild.Community.Tasks.Targets" />
   <Target Name="BeforeBuild">
     <PropertyGroup Condition=" '$(VersionNumber)' == '' ">
-      <VersionNumber>15.3</VersionNumber>
+      <VersionNumber>15.4.8</VersionNumber>
     </PropertyGroup>
     <AssemblyInfo CodeLanguage="C#" OutputFile="AV.cs" AssemblyVersion="$(VersionNumber)" AssemblyFileVersion="$(VersionNumber)" />
   </Target>

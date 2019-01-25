@@ -1,30 +1,29 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 RESTRICT="mirror"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~x86 ~ppc"
 SLOT="0"
 
 USE_DOTNET="net46"
 IUSE="+${USE_DOTNET} +gac developer debug doc +roslyn"
 
-inherit dotnet gac
+inherit xbuild gac
 
-GITHUB_ACCOUNT="mono"
-GITHUB_PROJECTNAME="linux-packaging-msbuild"
-EGIT_COMMIT="e08c20fd277b9de1e3a97c5bd9a5dcf95fcff926"
-SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EGIT_COMMIT}.tar.gz -> ${GITHUB_PROJECTNAME}-${GITHUB_ACCOUNT}-${PV}.tar.gz
+GITHUB_ACCOUNT="Microsoft"
+GITHUB_PROJECTNAME="msbuild"
+EGIT_COMMIT="a0efa11be10d5209afc679d672a79ed67e27875a"
+SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/v${PV}.tar.gz -> ${GITHUB_PROJECTNAME}-${GITHUB_ACCOUNT}-${PV}.tar.gz
 	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
-S="${WORKDIR}/${GITHUB_PROJECTNAME}-${EGIT_COMMIT}"
+S="${WORKDIR}/msbuild-${PV}"
 
 HOMEPAGE="https://docs.microsoft.com/visualstudio/msbuild/msbuild"
 DESCRIPTION="Microsoft Build Engine (MSBuild) is an XML-based platform for building applications"
 LICENSE="MIT" # https://github.com/mono/linux-packaging-msbuild/blob/master/LICENSE
 
 COMMON_DEPEND=">=dev-lang/mono-5.2.0.196
-	dev-dotnet/msbuild-tasks-api developer? ( dev-dotnet/msbuild-tasks-api[developer] )
+	=dev-dotnet/msbuild-tasks-api-${PV} developer? ( dev-dotnet/msbuild-tasks-api[developer] )
 	dev-dotnet/msbuild-defaulttasks developer? ( dev-dotnet/msbuild-defaulttasks[developer] )
 	roslyn? ( dev-dotnet/msbuild-roslyn-csc )
 "
@@ -41,19 +40,22 @@ PROJ1=Microsoft.Build
 PROJ1_DIR=src/Build
 PROJ2=MSBuild
 PROJ2_DIR=src/MSBuild
+PROJ3=Microsoft.Build.Framework
+PROJ3_DIR=src/Framework
 
 src_prepare() {
-	eapply "${FILESDIR}/dir.props.diff"
-	eapply "${FILESDIR}/dir.targets.diff"
-	eapply "${FILESDIR}/src-dir.targets.diff"
-	eapply "${FILESDIR}/tasks.patch"
-	eapply "${FILESDIR}/Microsoft.CSharp.targets.patch"
-	eapply "${FILESDIR}/Microsoft.Common.targets.patch"
-	sed -i 's/CurrentAssemblyVersion = "15.1.0.0"/CurrentAssemblyVersion = "15.3.0.0"/g' "${S}/src/Shared/Constants.cs" || die
-	sed -i 's/Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a/Microsoft.Build.Tasks.Core, Version=15.3.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756/g' "${S}/src/Tasks/Microsoft.Common.tasks" || die
+#	eapply "${FILESDIR}/${PV}/dir.props.diff"
+#	eapply "${FILESDIR}/${PV}/dir.targets.diff"
+#	eapply "${FILESDIR}/${PV}/src-dir.targets.diff"
+#	eapply "${FILESDIR}/${PV}/tasks.patch"
+#	eapply "${FILESDIR}/${PV}/Microsoft.CSharp.targets.patch"
+#	eapply "${FILESDIR}/${PV}/Microsoft.Common.targets.patch"
+	sed -i 's/CurrentAssemblyVersion = "15.1.0.0"/CurrentAssemblyVersion = "${PV}"/g' "${S}/src/Shared/Constants.cs" || die
+	sed -i 's/Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a/Microsoft.Build.Tasks.Core, Version=${PV}, Culture=neutral, PublicKeyToken=0738eb9f132ed756/g' "${S}/src/Tasks/Microsoft.Common.tasks" || die
 	sed -i 's/PublicKeyToken=b03f5f7f11d50a3a/PublicKeyToken=0738eb9f132ed756/g' "${S}/src/Build/Resources/Constants.cs" || die
-	cp "${FILESDIR}/mono-${PROJ1}.csproj" "${S}/${PROJ1_DIR}/" || die
-	cp "${FILESDIR}/mono-${PROJ2}.csproj" "${S}/${PROJ2_DIR}/" || die
+	cp "${FILESDIR}/${PV}/mono-${PROJ1}.csproj" "${S}/${PROJ1_DIR}" || die
+	cp "${FILESDIR}/${PV}/mono-${PROJ2}.csproj" "${S}/${PROJ2_DIR}" || die
+	cp "${FILESDIR}/${PV}/mono-${PROJ3}.csproj" "${S}/${PROJ3_DIR}" || die
 	eapply_user
 }
 
@@ -76,7 +78,7 @@ src_compile() {
 		fi
 	fi
 
-	VER=1.0.27.0
+	VER="${PV}"
 
 	exbuild_raw /v:detailed /p:TargetFrameworkVersion=v4.6 "/p:Configuration=${CONFIGURATION}" ${SARGS} "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:AssemblyOriginatorKeyFile=${KEY2}" "${S}/${PROJ2_DIR}/mono-${PROJ2}.csproj"
 	sn -R "${PROJ1_DIR}/bin/${CONFIGURATION}/${PROJ1}.dll" "${KEY2}" || die

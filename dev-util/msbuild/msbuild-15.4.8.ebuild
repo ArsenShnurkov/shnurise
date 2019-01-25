@@ -18,12 +18,12 @@ SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EG
 	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
 S="${WORKDIR}/${GITHUB_PROJECTNAME}-${EGIT_COMMIT}"
 
-HOMEPAGE="https://docs.microsoft.com/visualstudio/msbuild/msbuild"
+HOMEPAGE="https://github.com/Microsoft/msbuild"
 DESCRIPTION="Microsoft Build Engine (MSBuild) is an XML-based platform for building applications"
 LICENSE="MIT" # https://github.com/mono/linux-packaging-msbuild/blob/master/LICENSE
 
 COMMON_DEPEND=">=dev-lang/mono-5.2.0.196
-	dev-dotnet/msbuild-tasks-api developer? ( dev-dotnet/msbuild-tasks-api[developer] )
+	=dev-dotnet/msbuild-tasks-api-${PV} developer? ( dev-dotnet/msbuild-tasks-api[developer] )
 	dev-dotnet/msbuild-defaulttasks developer? ( dev-dotnet/msbuild-defaulttasks[developer] )
 	roslyn? ( dev-dotnet/msbuild-roslyn-csc )
 "
@@ -42,17 +42,17 @@ PROJ2=MSBuild
 PROJ2_DIR=src/MSBuild
 
 src_prepare() {
-	eapply "${FILESDIR}/dir.props.diff"
-	eapply "${FILESDIR}/dir.targets.diff"
-	eapply "${FILESDIR}/src-dir.targets.diff"
-	eapply "${FILESDIR}/tasks.patch"
-	eapply "${FILESDIR}/Microsoft.CSharp.targets.patch"
-	eapply "${FILESDIR}/Microsoft.Common.targets.patch"
+	eapply "${FILESDIR}/${PV}/dir.props.diff"
+	eapply "${FILESDIR}/${PV}/dir.targets.diff"
+	eapply "${FILESDIR}/${PV}/src-dir.targets.diff"
+	eapply "${FILESDIR}/${PV}/tasks.patch"
+	eapply "${FILESDIR}/${PV}/Microsoft.CSharp.targets.patch"
+	eapply "${FILESDIR}/${PV}/Microsoft.Common.targets.patch"
 	sed -i 's/CurrentAssemblyVersion = "15.1.0.0"/CurrentAssemblyVersion = "15.4.8.0"/g' "${S}/src/Shared/Constants.cs" || die
 	sed -i 's/Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a/Microsoft.Build.Tasks.Core, Version=15.4.8.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756/g' "${S}/src/Tasks/Microsoft.Common.tasks" || die
 	sed -i 's/PublicKeyToken=b03f5f7f11d50a3a/PublicKeyToken=0738eb9f132ed756/g' "${S}/src/Build/Resources/Constants.cs" || die
-	cp "${FILESDIR}/mono-${PROJ1}-${PV}.csproj" "${S}/${PROJ1_DIR}/mono-${PROJ1}.csproj" || die
-	cp "${FILESDIR}/mono-${PROJ2}-${PV}.csproj" "${S}/${PROJ2_DIR}/mono-${PROJ2}.csproj" || die
+	cp "${FILESDIR}/${PV}/mono-${PROJ1}.csproj" "${S}/${PROJ1_DIR}" || die
+	cp "${FILESDIR}/${PV}/mono-${PROJ2}.csproj" "${S}/${PROJ2_DIR}" || die
 	eapply_user
 }
 
