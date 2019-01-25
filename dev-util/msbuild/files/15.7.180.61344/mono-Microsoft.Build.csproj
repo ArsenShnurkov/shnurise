@@ -620,15 +620,15 @@
     <Compile Include="AV.cs" />
   </ItemGroup>
   <ItemGroup>
-        <ProjectReference Include="..\Framework\mono-Microsoft.Build.Framework.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <!-- Assemblies Files we depend on -->
     <!-- Be conservative when adding references... adding System.Xml.Linq can add .47 sec cold start time to our launch time, or 80 ms to warm start time -->
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
+    <Reference Include="Microsoft.Build.Framework, Version=15.4.8.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+      <Package>msbuild-tasks-api-15.4.8</Package>
+    </Reference>
     <Reference Include="System.Threading.Tasks.Dataflow" />
     <Reference Include="System.Collections.Immutable, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
       <Package>system-collections-immutable-2.0.0_pre</Package>

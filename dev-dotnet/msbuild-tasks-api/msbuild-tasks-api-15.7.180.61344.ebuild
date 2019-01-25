@@ -1,26 +1,26 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI="6"
 RESTRICT="mirror"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64 ~x86 ~ppc"
 
-SLOT="0"
+VER="15.7.0.0"
+SLOT="2"
 
-USE_DOTNET="net45"
+USE_DOTNET="net46"
 IUSE="+${USE_DOTNET} +gac developer debug doc"
 
-inherit gac xbuild
+inherit xbuild gac
 
-#https://github.com/mono/linux-packaging-msbuild/commit/0d8cee3f87b92cff425306d9c588fc6433fb6bf0
-GITHUB_ACCOUNT="mono"
-GITHUB_PROJECTNAME="linux-packaging-msbuild"
-EGIT_COMMIT="e08c20fd277b9de1e3a97c5bd9a5dcf95fcff926"
-SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EGIT_COMMIT}.tar.gz -> msbuild-${PV}.tar.gz"
-S="${WORKDIR}/${GITHUB_PROJECTNAME}-${EGIT_COMMIT}"
+GITHUB_ACCOUNT="Microsoft"
+GITHUB_PROJECTNAME="msbuild"
+EGIT_COMMIT="a0efa11be10d5209afc679d672a79ed67e27875a"
+SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/v${PV}.tar.gz -> ${GITHUB_PROJECTNAME}-${GITHUB_ACCOUNT}-${PV}.tar.gz
+	"
+S="${WORKDIR}/msbuild-${PV}"
 
-HOMEPAGE="https://github.com/mono/linux-packaging-msbuild"
+HOMEPAGE="https://github.com/Microsoft/msbuild"
 DESCRIPTION="msbuild libraries for writing Task-derived classes"
 LICENSE="MIT" # https://github.com/mono/linux-packaging-msbuild/blob/master/LICENSE
 
@@ -40,11 +40,13 @@ src_prepare() {
 	mkdir -p "${S}/packages/msbuild/" || die
 	cp "${FILESDIR}/${PV}/MSFT.snk" "${S}/packages/msbuild/" || die
 	cp "${FILESDIR}/${PV}/mono.snk" "${S}/packages/msbuild/" || die
-	eapply "${FILESDIR}/${PV}/dir.props.diff"
-	eapply "${FILESDIR}/${PV}/dir.targets.diff"
-	eapply "${FILESDIR}/${PV}/src-dir.targets.diff"
-	sed -i 's/CurrentAssemblyVersion = "15.1.0.0"/CurrentAssemblyVersion = "15.3.0.0"/g' "${S}/src/Shared/Constants.cs" || die
+#	eapply "${FILESDIR}/${PV}/dir.props.diff"
+#	eapply "${FILESDIR}/${PV}/dir.targets.diff"
+#	eapply "${FILESDIR}/${PV}/src-dir.targets.diff"
+	sed -i 's/CurrentAssemblyVersion = "15.1.0.0"/CurrentAssemblyVersion = "'${VER}'"/g' "${S}/src/Shared/Constants.cs" || die
 	eapply "${FILESDIR}/${PV}/ToolLocationHelper.cs.patch"
+	cp "${FILESDIR}/${PV}/mono-${FW_PROJ}.csproj" "${S}/${FW_DIR}" || die
+
 	eapply_user
 }
 
@@ -62,14 +64,14 @@ src_compile() {
 		SARGS=DebugSymbols=False
 	fi
 
-	VER=15.3.0.0
+	VER="${PV}"
 	#KEY="${S}/packages/msbuild/MSFT.snk"
 	KEY2="${S}/packages/msbuild/mono.snk"
 	KEY="${KEY2}"
 
-	exbuild_raw /v:detailed /p:MonoBuild=true /p:TargetFrameworkVersion=v4.6 "/p:Configuration=${CONFIGURATION}" /p:${SARGS} "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:AssemblyOriginatorKeyFile=${KEY}" "${S}/${FW_DIR}/${FW_PROJ}.csproj"
+	exbuild_raw /v:detailed /p:MonoBuild=true /p:TargetFrameworkVersion=v4.6 "/p:Configuration=${CONFIGURATION}" /p:${SARGS} "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:AssemblyOriginatorKeyFile=${KEY}" "${S}/${FW_DIR}/mono-${FW_PROJ}.csproj"
 	sn -R "${S}/bin/${CONFIGURATION}/x86/Unix/Output/${FW_PROJ}.dll" "${KEY2}" || die
-	exbuild_raw /v:detailed /p:MonoBuild=true /p:TargetFrameworkVersion=v4.6 "/p:Configuration=${CONFIGURATION}" /p:${SARGS} "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:AssemblyOriginatorKeyFile=${KEY}" "${S}/${UT_DIR}/${UT_PROJ}.csproj"
+	exbuild_raw /v:detailed /p:MonoBuild=true /p:TargetFrameworkVersion=v4.6 "/p:Configuration=${CONFIGURATION}" /p:${SARGS} "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:AssemblyOriginatorKeyFile=${KEY}" "${S}/${UT_DIR}/mono-${UT_PROJ}.csproj"
 	sn -R "${S}/bin/${CONFIGURATION}/x86/Unix/Output/${UT_PROJ}.Core.dll" "${KEY2}" || die
 }
 
@@ -82,5 +84,5 @@ src_install() {
 
 	egacinstall "${S}/bin/${CONFIGURATION}/x86/Unix/Output/${FW_PROJ}.dll"
 	egacinstall "${S}/bin/${CONFIGURATION}/x86/Unix/Output/${UT_PROJ}.Core.dll"
-	# einstall_pc_file "${PN}" "${PV}" "${FW_PROJ}" "${UT_PROJ}"
+	# einstall_pc_file "${PN}" "${VER}" "${FW_PROJ}" "${UT_PROJ}"
 }

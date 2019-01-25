@@ -283,7 +283,7 @@
   <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets" />
   <Target Name="BeforeBuild">
     <PropertyGroup Condition=" '$(VersionNumber)' == '' ">
-      <VersionNumber>15.3</VersionNumber>
+      <VersionNumber>15.4.0.0</VersionNumber>
     </PropertyGroup>
     <AssemblyInfo CodeLanguage="C#"
       OutputFile="AV.cs" 

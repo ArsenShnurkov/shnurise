@@ -164,10 +164,12 @@
     <Compile Include="AV.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Framework\mono-Microsoft.Build.Framework.csproj" />
     <ProjectReference Include="..\Build\mono-Microsoft.Build.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Build.Framework, Version=15.7.180.61344, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+      <Package>msbuild-tasks-api-15.7.180.61344</Package>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
