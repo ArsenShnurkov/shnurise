@@ -211,8 +211,21 @@
     <Compile Include="BackEnd\Components\Scheduler\ScheduleTimeRecord.cs" />
     <Compile Include="BackEnd\Components\Scheduler\SchedulingPlan.cs" />
     <Compile Include="BackEnd\Components\SdkResolution\DefaultSdkResolver.cs" />
-    <Compile Include="BackEnd\Components\SdkResolution\SdkResolution.cs" />
+    <Compile Include="BackEnd\Components\SdkResolution\ISdkResolverService.cs" />
+    <Compile Include="BackEnd\Components\SdkResolution\OutOfProcNodeSdkResolverService.cs" />
+    <Compile Include="BackEnd\Components\SdkResolution\OutOfProcNodeSdkResolverServiceFactory.cs" />
+    <Compile Include="BackEnd\Components\SdkResolution\SdkLogger.cs" />
+    <Compile Include="BackEnd\Components\SdkResolution\CachingSdkResolverService.cs" />
+    <Compile Include="BackEnd\Components\SdkResolution\SdkResolverContext.cs" />
     <Compile Include="BackEnd\Components\SdkResolution\SdkResolverLoader.cs" />
+    <!--Compile Include="BackEnd\Components\SdkResolution\SdkResolverManifest.cs" /-->
+    <Compile Include="BackEnd\Components\SdkResolution\SdkResolverRequest.cs" />
+    <Compile Include="BackEnd\Components\SdkResolution\MainNodeSdkResolverService.cs" />
+    <Compile Include="BackEnd\Components\SdkResolution\SdkResolverService.cs" />
+    <Compile Include="BackEnd\Components\SdkResolution\HostedSdkResolverServiceBase.cs" />
+    <Compile Include="BackEnd\Components\SdkResolution\SdkResult.cs" />
+    <Compile Include="BackEnd\Components\SdkResolution\SdkResultFactory.cs" />
+    <!--Compile Include="BackEnd\Node\LoggingNodeConfiguration.cs" /-->
     <Compile Include="BackEnd\Shared\ConfigurationMetadata.cs" />
     <Compile Include="Collections\ConcurrentQueueExtensions.cs" />
     <Compile Include="Collections\ConcurrentStackExtensions.cs" />
@@ -228,6 +241,11 @@
     <Compile Include="Definition\ProjectImportPathMatch.cs" />
     <Compile Include="Definition\ProjectLoadSettings.cs" />
     <Compile Include="Definition\ToolsetLocalReader.cs" />
+    <Compile Include="Evaluation\Context\EvaluationContext.cs" />
+    <Compile Include="Evaluation\Profiler\EvaluationLocationMarkdownPrettyPrinter.cs" />
+    <Compile Include="Evaluation\Profiler\EvaluationLocationPrettyPrinterBase.cs" />
+    <Compile Include="Evaluation\Profiler\EvaluationLocationTabSeparatedPrettyPrinter.cs" />
+    <Compile Include="Evaluation\Profiler\EvaluationProfiler.cs" />
     <Compile Include="Evaluation\ItemSpec.cs" />
     <Compile Include="Evaluation\ItemsAndMetadataPair.cs" />
     <Compile Include="Evaluation\LazyItemEvaluator.cs" />
@@ -237,6 +255,9 @@
     <Compile Include="Evaluation\LazyItemEvaluator.ItemFactoryWrapper.cs" />
     <Compile Include="Evaluation\LazyItemEvaluator.RemoveOperation.cs" />
     <Compile Include="Evaluation\MetadataReference.cs" />
+    <Compile Include="Logging\EvaluationLocationIdAgnosticComparer.cs" />
+    <Compile Include="Logging\ProfilerLogger.cs" />
+    <Compile Include="Evaluation\Profiler\ProfilerResultPrettyPrinter.cs" />
     <Compile Include="Evaluation\ProjectChangedEventArgs.cs" />
     <Compile Include="Evaluation\ProjectXmlChangedEventArgs.cs" />
     <Compile Include="Construction\Solution\SolutionProjectGenerator.cs" />
@@ -325,11 +346,8 @@
     <Compile Include="Collections\IImmutable.cs" />
     <Compile Include="Collections\MultiDictionary.cs" />
     <Compile Include="Collections\IValued.cs" />
-    <Compile Include="Collections\OrdinalKeyedComparer.cs" />
-    <Compile Include="Collections\OrdinalIgnoreCaseKeyedComparer.cs" />
     <Compile Include="Collections\PropertyDictionary.cs" />
     <Compile Include="..\Shared\ReadOnlyCollection.cs" />
-    <Compile Include="Collections\ReadOnlyConvertingCollection.cs" />
     <Compile Include="Collections\ReadOnlyConvertingDictionary.cs" />
     <Compile Include="Collections\Triple.cs" />
     <!-- ######################## -->
@@ -364,8 +382,6 @@
     <Compile Include="Construction\Solution\ProjectConfigurationInSolution.cs" />
     <Compile Include="Construction\Solution\ProjectInSolution.cs" />
     <Compile Include="Construction\Solution\SolutionFile.cs" />
-    <Compile Include="Debugger\DebuggerLocalType.cs" />
-    <Compile Include="Debugger\DebuggerManager.cs" />
     <!-- #### DEFINITION MODEL ### -->
     <Compile Include="Definition\BuiltInMetadata.cs" />
     <Compile Include="Definition\ProjectCollection.cs" />
@@ -508,9 +524,6 @@
     <Compile Include="..\Shared\ReadOnlyEmptyDictionary.cs">
       <Link>SharedUtilities\ReadOnlyEmptyDictionary.cs</Link>
     </Compile>
-    <Compile Include="..\Shared\ReadOnlyEmptyList.cs">
-      <Link>SharedUtilities\ReadOnlyEmptyList.cs</Link>
-    </Compile>
     <Compile Include="..\Shared\AssemblyNameExtension.cs">
       <Link>SharedUtilities\AssemblyNameExtension.cs</Link>
     </Compile>
@@ -607,15 +620,15 @@
     <Compile Include="AV.cs" />
   </ItemGroup>
   <ItemGroup>
+        <ProjectReference Include="..\Framework\mono-Microsoft.Build.Framework.csproj" />
+  </ItemGroup>
+  <ItemGroup>
     <!-- Assemblies Files we depend on -->
     <!-- Be conservative when adding references... adding System.Xml.Linq can add .47 sec cold start time to our launch time, or 80 ms to warm start time -->
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
-    <Reference Include="Microsoft.Build.Framework, Version=15.3.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
-      <Package>msbuild-tasks-api-15.3</Package>
-    </Reference>
     <Reference Include="System.Threading.Tasks.Dataflow" />
     <Reference Include="System.Collections.Immutable, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
       <Package>system-collections-immutable-2.0.0_pre</Package>

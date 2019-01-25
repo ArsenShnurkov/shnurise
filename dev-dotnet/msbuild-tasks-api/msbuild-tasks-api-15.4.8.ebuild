@@ -1,6 +1,5 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI="6"
 RESTRICT="mirror"
@@ -13,14 +12,13 @@ IUSE="+${USE_DOTNET} +gac developer debug doc"
 
 inherit gac xbuild
 
-#https://github.com/mono/linux-packaging-msbuild/commit/0d8cee3f87b92cff425306d9c588fc6433fb6bf0
-GITHUB_ACCOUNT="mono"
-GITHUB_PROJECTNAME="linux-packaging-msbuild"
-EGIT_COMMIT="e08c20fd277b9de1e3a97c5bd9a5dcf95fcff926"
-SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EGIT_COMMIT}.tar.gz -> msbuild-${PV}.tar.gz"
+GITHUB_ACCOUNT="Microsoft"
+GITHUB_PROJECTNAME="msbuild"
+EGIT_COMMIT="51c3830b82db41a313305d8ee5eb3e8860a5ceb5"
+SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EGIT_COMMIT}.tar.gz -> ${GITHUB_PROJECTNAME}-${GITHUB_ACCOUNT}-${PV}.tar.gz"
 S="${WORKDIR}/${GITHUB_PROJECTNAME}-${EGIT_COMMIT}"
 
-HOMEPAGE="https://github.com/mono/linux-packaging-msbuild"
+HOMEPAGE="https://github.com/Microsoft/msbuild"
 DESCRIPTION="msbuild libraries for writing Task-derived classes"
 LICENSE="MIT" # https://github.com/mono/linux-packaging-msbuild/blob/master/LICENSE
 
@@ -38,13 +36,13 @@ FW_DIR=src/Framework
 
 src_prepare() {
 	mkdir -p "${S}/packages/msbuild/" || die
-	cp "${FILESDIR}/MSFT.snk" "${S}/packages/msbuild/" || die
-	cp "${FILESDIR}/mono.snk" "${S}/packages/msbuild/" || die
-	eapply "${FILESDIR}/dir.props.diff"
-	eapply "${FILESDIR}/dir.targets.diff"
-	eapply "${FILESDIR}/src-dir.targets.diff"
-	sed -i 's/CurrentAssemblyVersion = "15.1.0.0"/CurrentAssemblyVersion = "15.3.0.0"/g' "${S}/src/Shared/Constants.cs" || die
-	eapply "${FILESDIR}/ToolLocationHelper.cs.patch"
+	cp "${FILESDIR}/${PV}/MSFT.snk" "${S}/packages/msbuild/" || die
+	cp "${FILESDIR}/${PV}/mono.snk" "${S}/packages/msbuild/" || die
+	eapply "${FILESDIR}/${PV}/dir.props.diff"
+	eapply "${FILESDIR}/${PV}/dir.targets.diff"
+	eapply "${FILESDIR}/${PV}/src-dir.targets.diff"
+	sed -i 's/CurrentAssemblyVersion = "15.1.0.0"/CurrentAssemblyVersion = "15.4.8.0"/g' "${S}/src/Shared/Constants.cs" || die
+	eapply "${FILESDIR}/${PV}/ToolLocationHelper.cs.patch"
 	eapply_user
 }
 
@@ -62,7 +60,7 @@ src_compile() {
 		SARGS=DebugSymbols=False
 	fi
 
-	VER=15.3.0.0
+	VER=15.4.8.0
 	#KEY="${S}/packages/msbuild/MSFT.snk"
 	KEY2="${S}/packages/msbuild/mono.snk"
 	KEY="${KEY2}"

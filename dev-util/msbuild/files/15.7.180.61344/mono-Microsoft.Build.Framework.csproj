@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{571F09DB-A81A-4444-945C-6F7B530054CD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Microsoft.Build.Frameworf</RootNamespace>
+    <AssemblyName>Microsoft.Build.Framework</AssemblyName>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <GenerateReferenceAssemblySources>true</GenerateReferenceAssemblySources>
+    <EnableDocumentationFile>true</EnableDocumentationFile>
+    <UpdateNuGetPackageDependencies>true</UpdateNuGetPackageDependencies>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <OutputPath>bin\$(Configuration)</OutputPath>
+    <DefineConstants>$(DefineConstants);STANDALONEBUILD</DefineConstants>
+  </PropertyGroup>
+  <!-- Default configurations to help VS understand the configurations -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
+    <DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <WarningLevel>4</WarningLevel>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <ItemGroup>  
+      <Compile Include="..\Shared\Constants.cs">
+      <Link>Shared\Constants.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\BinaryWriterExtensions.cs">
+      <Link>Shared\BinaryWriterExtensions.cs</Link>
+    </Compile>
+     <Compile Include="**\*.cs" Exclude="XamlTypes\*" />
+  </ItemGroup>
+  <ItemGroup>
+    <RCResourceFile Include="native.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Assemblies Files we depend on -->
+    <!-- Be conservative when adding references... adding System.Xml.Linq can add .47 sec cold start time to our launch time, or 80 ms to warm start time -->
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="/usr/lib/mono/xbuild/MSBuildCommunityTasks/MSBuild.Community.Tasks.Targets" />
+  <Target Name="BeforeBuild">
+    <PropertyGroup Condition=" '$(VersionNumber)' == '' ">
+      <VersionNumber>15.4.8</VersionNumber>
+    </PropertyGroup>
+    <AssemblyInfo CodeLanguage="C#" OutputFile="AV.cs" AssemblyVersion="$(VersionNumber)" AssemblyFileVersion="$(VersionNumber)" />
+  </Target>
+</Project>
