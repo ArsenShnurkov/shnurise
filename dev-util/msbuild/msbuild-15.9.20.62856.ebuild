@@ -5,9 +5,9 @@ EAPI="6"
 RESTRICT="mirror"
 KEYWORDS="~amd64 ~x86 ~ppc"
 
-VER="15.7.180.61344"
+VER="${PV}"
 SLOT="0"
-SLOT_OF_API="2"
+SLOT_OF_API="3"
 
 USE_DOTNET="net46"
 IUSE="+${USE_DOTNET} +gac developer debug doc +roslyn"
@@ -46,18 +46,8 @@ PROJ2=MSBuild
 PROJ2_DIR=src/MSBuild
 
 src_prepare() {
-#	eapply "${FILESDIR}/${PV}/dir.props.diff"
-#	eapply "${FILESDIR}/${PV}/dir.targets.diff"
-#	eapply "${FILESDIR}/${PV}/src-dir.targets.diff"
-#	eapply "${FILESDIR}/${PV}/tasks.patch"
-#	eapply "${FILESDIR}/${PV}/Microsoft.CSharp.targets.patch"
-#	eapply "${FILESDIR}/${PV}/Microsoft.Common.targets.patch"
-	sed -i 's/CurrentAssemblyVersion = "15.1.0.0"/CurrentAssemblyVersion = "${VER}"/g' "${S}/src/Shared/Constants.cs" || die
-	sed -i 's/Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a/Microsoft.Build.Tasks.Core, Version=${PV}, Culture=neutral, PublicKeyToken=0738eb9f132ed756/g' "${S}/src/Tasks/Microsoft.Common.tasks" || die
-	sed -i 's/PublicKeyToken=b03f5f7f11d50a3a/PublicKeyToken=0738eb9f132ed756/g' "${S}/src/Build/Resources/Constants.cs" || die
 	cp "${FILESDIR}/${PV}/mono-${PROJ1}.csproj" "${S}/${PROJ1_DIR}" || die
 	cp "${FILESDIR}/${PV}/mono-${PROJ2}.csproj" "${S}/${PROJ2_DIR}" || die
-	cp "${FILESDIR}/${PV}/CommunicationsUtilities.cs" "${S}/src/Shared/CommunicationsUtilities.cs" || die
 	eapply_user
 }
 

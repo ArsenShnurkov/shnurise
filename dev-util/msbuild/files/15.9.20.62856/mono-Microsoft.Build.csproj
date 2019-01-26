@@ -60,11 +60,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Condition="'$(NetCoreBuild)' == 'true'" Include="..\Shared\Compat\SafeHandleZeroOrMinusOneIsInvalid.cs" />
+    <Compile Include="..\Shared\FileSystem\*.cs" />
     <Compile Include="..\Shared\HybridDictionary.cs" />
     <Compile Include="..\Shared\BinaryWriterExtensions.cs" />
     <Compile Include="..\Shared\EncodingUtilities.cs" />
     <Compile Include="..\Shared\EnvironmentUtilities.cs" />
-    <Compile Include="..\Shared\FileUtilities.GetFolderPath.cs" Condition="'$(FeatureSpecialFolders)' != 'true'" />
     <Compile Include="..\Shared\BuildEnvironmentHelper.cs" />
     <Compile Include="..\Shared\EncodingStringWriter.cs" />
     <Compile Include="..\Shared\FxCopExclusions\Microsoft.Build.Shared.Suppressions.cs" />
@@ -154,7 +154,7 @@
     <Compile Include="..\Shared\XmlUtilities.cs" />
     <Compile Include="..\Shared\ToolsetElement.cs" />
     <Compile Include="..\Shared\ToolsetElement.cs" Condition="$(FeatureSystemConfiguration) == 'true'" />
-    <Compile Include="**\*.cs" Exclude="Collections\RetrievableEntryHashSet\Originals\*" />
+    <Compile Include="**\*.cs" Exclude="Collections\RetrievableEntryHashSet\Originals\*;BackEnd/Components/SdkResolution/SdkResolverCachingWrapper.cs" />
     <Compile Include="AV.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -164,7 +164,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
-    <Reference Include="Microsoft.Build.Framework, Version=15.7.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.Build.Framework, Version=15.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="System.Threading.Tasks.Dataflow" />
     <Reference Include="System.Collections.Immutable, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
     <Reference Include="System.IO.Compression" />

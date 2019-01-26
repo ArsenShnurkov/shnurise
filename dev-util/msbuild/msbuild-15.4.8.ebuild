@@ -7,6 +7,7 @@ KEYWORDS="~amd64 ~x86 ~ppc"
 
 VER="15.4.8.0"
 SLOT="0"
+SLOT_OF_API="1"
 
 USE_DOTNET="net46"
 IUSE="+${USE_DOTNET} +gac developer debug doc +roslyn"
@@ -26,7 +27,7 @@ DESCRIPTION="Microsoft Build Engine (MSBuild) is an XML-based platform for build
 LICENSE="MIT" # https://github.com/mono/linux-packaging-msbuild/blob/master/LICENSE
 
 COMMON_DEPEND=">=dev-lang/mono-5.2.0.196
-	=dev-dotnet/msbuild-tasks-api-${PV} developer? ( dev-dotnet/msbuild-tasks-api[developer] )
+	dev-dotnet/msbuild-tasks-api:${SLOT_OF_API} developer? ( dev-dotnet/msbuild-tasks-api[developer] )
 	dev-dotnet/msbuild-defaulttasks developer? ( dev-dotnet/msbuild-defaulttasks[developer] )
 	roslyn? ( dev-dotnet/msbuild-roslyn-csc )
 "
