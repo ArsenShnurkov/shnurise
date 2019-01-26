@@ -64,9 +64,9 @@ src_compile() {
 		SARGS=DebugSymbols=False
 	fi
 
-	#KEY="${S}/packages/msbuild/MSFT.snk"
+	KEY="${S}/packages/msbuild/MSFT.snk"
 	KEY2="${S}/packages/msbuild/mono.snk"
-	KEY="${KEY2}"
+	#KEY="${KEY2}"
 
 	exbuild_raw /v:detailed /p:MonoBuild=true /p:TargetFrameworkVersion=v4.6 "/p:Configuration=${CONFIGURATION}" /p:${SARGS} "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:AssemblyOriginatorKeyFile=${KEY}" "${S}/${FW_DIR}/mono-${FW_PROJ}.csproj"
 	sn -R "${S}/src/Framework/bin/${CONFIGURATION}/${FW_PROJ}.dll" "${KEY2}" || die

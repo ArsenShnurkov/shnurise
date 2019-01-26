@@ -613,7 +613,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
-    <Reference Include="Microsoft.Build.Framework, Version=15.4.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
+    <Reference Include="Microsoft.Build.Framework, Version=15.4.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="System.Threading.Tasks.Dataflow" />
     <Reference Include="System.Collections.Immutable, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
       <Package>system-collections-immutable-2.0.0_pre</Package>
