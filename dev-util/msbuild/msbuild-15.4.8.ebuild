@@ -5,8 +5,8 @@ EAPI="6"
 RESTRICT="mirror"
 KEYWORDS="~amd64 ~x86 ~ppc"
 
-VER="15.4.0.0"
-SLOT="1"
+VER="15.4.8.0"
+SLOT="0"
 
 USE_DOTNET="net46"
 IUSE="+${USE_DOTNET} +gac developer debug doc +roslyn"
@@ -89,9 +89,11 @@ src_install() {
 		CONFIGURATION=Release
 	fi
 
+	MSBuildBinPath="/usr/share/${PN}/${PV}"
+
 	egacinstall "${PROJ1_DIR}/bin/${CONFIGURATION}/${PROJ1}.dll"
 
-	insinto "/usr/share/${PN}"
+	insinto "${MSBuildBinPath}"
 	newins "${PROJ2_DIR}/bin/${CONFIGURATION}/${PROJ2}.exe" MSBuild.exe
 	doins "${S}/src/Tasks/Microsoft.Common.props"
 	doins "${S}/src/Tasks/Microsoft.Common.targets"
@@ -103,10 +105,11 @@ src_install() {
 	doins "${S}/src/Tasks/Microsoft.NETFramework.CurrentVersion.props"
 	doins "${S}/src/Tasks/Microsoft.NETFramework.targets"
 	doins "${S}/src/Tasks/Microsoft.NETFramework.CurrentVersion.targets"
+	keepdir "${MSBuildBinPath}/Sdks"
 
 	if use debug; then
-		make_wrapper msbuild "/usr/bin/mono --debug /usr/share/${PN}/MSBuild.exe"
+		make_wrapper msbuild "/usr/bin/mono --debug ${MSBuildBinPath}/MSBuild.exe"
 	else
-		make_wrapper msbuild "/usr/bin/mono /usr/share/${PN}/MSBuild.exe"
+		make_wrapper msbuild "/usr/bin/mono ${MSBuildBinPath}/MSBuild.exe"
 	fi
 }
