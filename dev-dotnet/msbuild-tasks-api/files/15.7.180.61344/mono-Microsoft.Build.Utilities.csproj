@@ -53,6 +53,9 @@
     <Compile Include="..\Shared\FileUtilities.GetFolderPath.cs">
       <Link>FileUtilities.GetFolderPath.cs</Link>
     </Compile>
+    <Compile Include="..\Shared\IConstrainedEqualityComparer.cs">
+      <Link>IConstrainedEqualityComparer.cs</Link>
+    </Compile>
     <Compile Include="..\Shared\BuildEnvironmentHelper.cs">
       <Link>BuildEnvironmentHelper.cs</Link>
     </Compile>
@@ -147,9 +150,6 @@
     <Compile Include="..\Shared\ReadOnlyEmptyDictionary.cs">
       <Link>Collections\ReadOnlyEmptyDictionary.cs</Link>
     </Compile>
-    <Compile Include="..\Shared\ReadOnlyEmptyList.cs">
-      <Link>Collections\ReadOnlyEmptyList.cs</Link>
-    </Compile>
     <Compile Include="..\Shared\RegistryDelegates.cs">
       <Link>RegistryDelegates.cs</Link>
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
@@ -186,73 +186,11 @@
     <Compile Include="..\Shared\Traits.cs">
       <Link>SharedTraits.cs</Link>
     </Compile>
-    <Compile Include="ApiContract.cs" />
-    <Compile Include="AppDomainIsolatedTask.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    <Compile Include="..\Shared\EnvironmentUtilities.cs">
+      <Link>EnvironmentUtilities.cs</Link>
     </Compile>
-    <Compile Include="AssemblyFolders\AssemblyFoldersExInfo.cs" />
-    <Compile Include="AssemblyFolders\AssemblyFoldersFromConfigInfo.cs" />
-    <Compile Include="AssemblyInfo.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="AssemblyResources.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="CommandLineBuilder.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="FxCopExclusions\Microsoft.Build.Utilities.Suppressions.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="Logger.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="MuxLogger.cs" />
-    <Compile Include="ProcessorArchitecture.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="SDKType.cs" />
-    <Compile Include="TargetPlatformSDK.cs" />
-    <Compile Include="ExtensionSDK.cs" />
-    <Compile Include="SDKManifest.cs" />
-    <Compile Include="PlatformManifest.cs" />
-    <Compile Include="Task.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="TaskItem.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="ToolLocationHelper.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="ToolTask.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="ProcessExtensions.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <!-- FileTracker Managed Libraries -->
-    <Compile Include="TrackedDependencies\CanonicalTrackedInputFiles.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="TrackedDependencies\DependencyTableCache.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="TrackedDependencies\FlatTrackingData.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="TrackedDependencies\FileTracker.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="TrackedDependencies\CanonicalTrackedOutputFiles.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="TrackedDependencies\TrackedDependencies.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="TrackedDependencies\CanonicalTrackedFilesHelper.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
+    <Compile Include="**\*.cs" />
+    <Compile Include="AV.cs" />
     <!-- Win32 RC Files -->
     <RCResourceFile Include="native.rc" />
     <!-- Resource Files -->
@@ -265,19 +203,17 @@
       <SubType>Designer</SubType>
       <LogicalName>$(AssemblyName).Strings.shared.resources</LogicalName>
     </EmbeddedResource>
-    <Compile Include="..\Shared\EnvironmentUtilities.cs">
-      <Link>EnvironmentUtilities.cs</Link>
-    </Compile>
-    <Compile Include="AV.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Collections.Immutable" />
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
     <Reference Include="Microsoft.Build.Framework" >
       <HintPath>../Framework/bin/$(Configuration)/Microsoft.Build.Framework.dll</HintPath>
     </Reference>
+
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets" />

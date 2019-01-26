@@ -38,15 +38,15 @@ FW_DIR=src/Framework
 
 src_prepare() {
 	mkdir -p "${S}/packages/msbuild/" || die
-	cp "${FILESDIR}/${PV}/MSFT.snk" "${S}/packages/msbuild/" || die
-	cp "${FILESDIR}/${PV}/mono.snk" "${S}/packages/msbuild/" || die
+	cp "${FILESDIR}/MSFT.snk" "${S}/packages/msbuild/" || die
+	cp "${FILESDIR}/mono.snk" "${S}/packages/msbuild/" || die
 #	eapply "${FILESDIR}/${PV}/dir.props.diff"
 #	eapply "${FILESDIR}/${PV}/dir.targets.diff"
 #	eapply "${FILESDIR}/${PV}/src-dir.targets.diff"
-	sed -i 's/CurrentAssemblyVersion = "15.1.0.0"/CurrentAssemblyVersion = "'${VER}'"/g' "${S}/src/Shared/Constants.cs" || die
 	eapply "${FILESDIR}/${PV}/ToolLocationHelper.cs.patch"
+#	sed -i 's/CurrentAssemblyVersion = "15.1.0.0"/CurrentAssemblyVersion = "'${PV}'"/g' "${S}/src/Shared/Constants.cs" || die
 	cp "${FILESDIR}/${PV}/mono-${FW_PROJ}.csproj" "${S}/${FW_DIR}" || die
-
+	cp "${FILESDIR}/${PV}/mono-${UT_PROJ}.csproj" "${S}/${UT_DIR}" || die
 	eapply_user
 }
 
@@ -64,15 +64,14 @@ src_compile() {
 		SARGS=DebugSymbols=False
 	fi
 
-	VER="${PV}"
 	#KEY="${S}/packages/msbuild/MSFT.snk"
 	KEY2="${S}/packages/msbuild/mono.snk"
 	KEY="${KEY2}"
 
 	exbuild_raw /v:detailed /p:MonoBuild=true /p:TargetFrameworkVersion=v4.6 "/p:Configuration=${CONFIGURATION}" /p:${SARGS} "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:AssemblyOriginatorKeyFile=${KEY}" "${S}/${FW_DIR}/mono-${FW_PROJ}.csproj"
-	sn -R "${S}/bin/${CONFIGURATION}/x86/Unix/Output/${FW_PROJ}.dll" "${KEY2}" || die
+	sn -R "${S}/src/Framework/bin/${CONFIGURATION}/${FW_PROJ}.dll" "${KEY2}" || die
 	exbuild_raw /v:detailed /p:MonoBuild=true /p:TargetFrameworkVersion=v4.6 "/p:Configuration=${CONFIGURATION}" /p:${SARGS} "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:AssemblyOriginatorKeyFile=${KEY}" "${S}/${UT_DIR}/mono-${UT_PROJ}.csproj"
-	sn -R "${S}/bin/${CONFIGURATION}/x86/Unix/Output/${UT_PROJ}.Core.dll" "${KEY2}" || die
+	sn -R "${S}/src/Utilities/bin/${CONFIGURATION}/${UT_PROJ}.dll" "${KEY2}" || die
 }
 
 src_install() {
@@ -82,7 +81,7 @@ src_install() {
 		CONFIGURATION=Release
 	fi
 
-	egacinstall "${S}/bin/${CONFIGURATION}/x86/Unix/Output/${FW_PROJ}.dll"
-	egacinstall "${S}/bin/${CONFIGURATION}/x86/Unix/Output/${UT_PROJ}.Core.dll"
+	egacinstall "${S}//src/Framework/bin/${CONFIGURATION}/${FW_PROJ}.dll"
+	egacinstall "${S}//src/Utilities/bin/${CONFIGURATION}/${UT_PROJ}.dll"
 	# einstall_pc_file "${PN}" "${VER}" "${FW_PROJ}" "${UT_PROJ}"
 }

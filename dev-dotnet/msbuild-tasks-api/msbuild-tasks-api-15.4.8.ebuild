@@ -3,7 +3,7 @@
 
 EAPI="6"
 RESTRICT="mirror"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64 ~x86 ~ppc"
 
 VER="15.4.0.0"
 SLOT="1"
@@ -11,7 +11,7 @@ SLOT="1"
 USE_DOTNET="net45"
 IUSE="+${USE_DOTNET} +gac developer debug doc"
 
-inherit gac xbuild
+inherit xbuild gac
 
 GITHUB_ACCOUNT="Microsoft"
 GITHUB_PROJECTNAME="msbuild"
@@ -37,15 +37,15 @@ FW_DIR=src/Framework
 
 src_prepare() {
 	mkdir -p "${S}/packages/msbuild/" || die
-	cp "${FILESDIR}/${PV}/MSFT.snk" "${S}/packages/msbuild/" || die
-	cp "${FILESDIR}/${PV}/mono.snk" "${S}/packages/msbuild/" || die
+	cp "${FILESDIR}/MSFT.snk" "${S}/packages/msbuild/" || die
+	cp "${FILESDIR}/mono.snk" "${S}/packages/msbuild/" || die
 	eapply "${FILESDIR}/${PV}/dir.props.diff"
 	eapply "${FILESDIR}/${PV}/dir.targets.diff"
 	eapply "${FILESDIR}/${PV}/src-dir.targets.diff"
-	sed -i 's/CurrentAssemblyVersion = "15.1.0.0"/CurrentAssemblyVersion = "'${VER}'"/g' "${S}/src/Shared/Constants.cs" || die
+	eapply "${FILESDIR}/${PV}/ToolLocationHelper.cs.patch"
+#	sed -i 's/CurrentAssemblyVersion = "15.1.0.0"/CurrentAssemblyVersion = "'${PV}'"/g' "${S}/src/Shared/Constants.cs" || die
 	cp "${FILESDIR}/${PV}/mono-${FW_PROJ}.csproj" "${S}/${FW_DIR}" || die
 	cp "${FILESDIR}/${PV}/mono-${UT_PROJ}.csproj" "${S}/${UT_DIR}" || die
-	eapply "${FILESDIR}/${PV}/ToolLocationHelper.cs.patch"
 	eapply_user
 }
 
