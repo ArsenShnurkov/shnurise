@@ -10,17 +10,10 @@ RESTRICT="mirror"
 USE_DOTNET="net45"
 USE_MSBUILD="msbuild15-9 msbuild15-7 msbuild15-4"
 
-msbuild_expand() {
-	local res=""
-	for word in $@; do
-		res="${res} ${word//msbuild/msbuild_targets_msbuild}"
-	done
-	echo "${res}"
-}
+# inherit directive is placed before IUSE line because of dotnet_expand and msbuild_expand functions
+inherit msbuild 
 
-IUSE="${USE_DOTNET} $( msbuild_expand ${USE_MSBUILD} ) +msbuild +net45"
-
-inherit versionator dotnet
+IUSE="$(dotnet_expand ${USE_DOTNET}) $(msbuild_expand ${USE_MSBUILD}) +msbuild"
 
 GITHUB_REPONAME="sdk"
 GITHUB_ACCOUNT="dotnet"

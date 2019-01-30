@@ -21,11 +21,14 @@ inherit eutils versionator mono-env
 SANDBOX_WRITE="${SANDBOX_WRITE}:/etc/mono/registry/:/etc/mono/registry/last-btime"
 
 # @ECLASS-VARIABLE: USE_DOTNET
-# @DESCRIPTION:
-# Use flags added to IUSE
+# @DESCRIPTION: This variable enumerate all dotnet which are supported by ebuild
 
-DEPEND+=" dev-lang/mono"
-IUSE+=" debug developer"
+# @FUNCTION: dotnet_expand
+# @DESCRIPTION: expands values from the DOTNET_TARGET variable
+dotnet_expand() {
+	# do nothing for now
+	echo "$@"
+}
 
 # SRC_URI+=" https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
 # I was unable to setup it this ^^ way
