@@ -3,6 +3,6 @@
 
 # This file contains descriptions of the MSBUILD_TARGETS USE_EXPAND flags
 
-slot-15-4 - install Sdks into directory of msbuild 15.4
-slot-15-7 - install Sdks into directory of msbuild 15.7
-slot-15-9 - install Sdks into directory of msbuild 15.9
+msbuild15-4 - install Sdks into directory of msbuild 15.4
+msbuild15-7 - install Sdks into directory of msbuild 15.7
+msbuild15-9 - install Sdks into directory of msbuild 15.9
