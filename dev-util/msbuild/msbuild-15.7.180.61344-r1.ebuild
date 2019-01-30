@@ -5,14 +5,23 @@ EAPI="6"
 RESTRICT="mirror"
 KEYWORDS="~amd64 ~x86 ~ppc"
 
-VER="${PV}"
-SLOT="0"
-SLOT_OF_API="3"
+# see docs:
+# https://github.com/gentoo/gentoo/commit/59a1a0dda7300177a263eb1de347da493f09fdee
+# https://devmanual.gentoo.org/eclass-reference/eapi7-ver.eclass/index.html
+inherit eapi7-ver 
+SLOT="$(ver_cut 1-2)"
+
+SLOT_OF_API="${SLOT}" # slot for ebuild with API of msbuild
+VER="${PV}" # version of resulting msbuild.exe
 
 USE_DOTNET="net46"
-IUSE="+${USE_DOTNET} +gac developer debug doc +roslyn"
+IUSE="+${USE_DOTNET} +gac developer debug doc +roslyn symlink"
 
 inherit xbuild gac
+
+# msbuild-locations.eclass is inherited to get the access to the locations 
+# $(MSBuildBinPath) and $(MSBuildSdksPath)
+inherit msbuild-locations
 
 GITHUB_ACCOUNT="Microsoft"
 GITHUB_PROJECTNAME="msbuild"
@@ -46,8 +55,18 @@ PROJ2=MSBuild
 PROJ2_DIR=src/MSBuild
 
 src_prepare() {
+#	eapply "${FILESDIR}/${PV}/dir.props.diff"
+#	eapply "${FILESDIR}/${PV}/dir.targets.diff"
+#	eapply "${FILESDIR}/${PV}/src-dir.targets.diff"
+#	eapply "${FILESDIR}/${PV}/tasks.patch"
+#	eapply "${FILESDIR}/${PV}/Microsoft.CSharp.targets.patch"
+#	eapply "${FILESDIR}/${PV}/Microsoft.Common.targets.patch"
+	sed -i 's/CurrentAssemblyVersion = "15.1.0.0"/CurrentAssemblyVersion = "${VER}"/g' "${S}/src/Shared/Constants.cs" || die
+	sed -i 's/Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a/Microsoft.Build.Tasks.Core, Version=${PV}, Culture=neutral, PublicKeyToken=0738eb9f132ed756/g' "${S}/src/Tasks/Microsoft.Common.tasks" || die
+	sed -i 's/PublicKeyToken=b03f5f7f11d50a3a/PublicKeyToken=0738eb9f132ed756/g' "${S}/src/Build/Resources/Constants.cs" || die
 	cp "${FILESDIR}/${PV}/mono-${PROJ1}.csproj" "${S}/${PROJ1_DIR}" || die
 	cp "${FILESDIR}/${PV}/mono-${PROJ2}.csproj" "${S}/${PROJ2_DIR}" || die
+	cp "${FILESDIR}/${PV}/CommunicationsUtilities.cs" "${S}/src/Shared/CommunicationsUtilities.cs" || die
 	eapply_user
 }
 
@@ -81,11 +100,9 @@ src_install() {
 		CONFIGURATION=Release
 	fi
 
-	MSBuildBinPath="/usr/share/${PN}/${PV}"
-
 	egacinstall "${PROJ1_DIR}/bin/${CONFIGURATION}/${PROJ1}.dll"
 
-	insinto "${MSBuildBinPath}"
+	insinto "$(MSBuildBinPath)"
 	newins "${PROJ2_DIR}/bin/${CONFIGURATION}/${PROJ2}.exe" MSBuild.exe
 	doins "${S}/src/Tasks/Microsoft.Common.props"
 	doins "${S}/src/Tasks/Microsoft.Common.targets"
@@ -97,11 +114,21 @@ src_install() {
 	doins "${S}/src/Tasks/Microsoft.NETFramework.CurrentVersion.props"
 	doins "${S}/src/Tasks/Microsoft.NETFramework.targets"
 	doins "${S}/src/Tasks/Microsoft.NETFramework.CurrentVersion.targets"
-	keepdir "${MSBuildBinPath}/Sdks"
+	keepdir "$(MSBuildSdksPath)"
 
-	if use debug; then
-		make_wrapper msbuild "/usr/bin/mono --debug ${MSBuildBinPath}/MSBuild.exe"
-	else
-		make_wrapper msbuild "/usr/bin/mono ${MSBuildBinPath}/MSBuild.exe"
+	if use symlink; then
+		if use debug; then
+			make_wrapper msbuild "/usr/bin/mono --debug $(MSBuildBinPath)/MSBuild.exe"
+		else
+			make_wrapper msbuild "/usr/bin/mono $(MSBuildBinPath)/MSBuild.exe"
+		fi
+	fi
+}
+
+pkg_postinst() {
+	if ! has "msbuild${SLOT/./-}" ${MSBUILD_TARGETS}; then
+		   elog "To install Sdks for this version of msbuild, you will need to"
+		   elog "add msbuild${SLOT/./-} to your MSBUILD_TARGETS USE_EXPAND variable."
+		   elog
 	fi
 }

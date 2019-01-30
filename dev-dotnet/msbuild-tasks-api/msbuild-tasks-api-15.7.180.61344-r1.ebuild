@@ -5,19 +5,25 @@ EAPI="6"
 RESTRICT="mirror"
 KEYWORDS="~amd64 ~x86 ~ppc"
 
-VER="15.4.0.0"
-SLOT="1"
+# see docs:
+# https://github.com/gentoo/gentoo/commit/59a1a0dda7300177a263eb1de347da493f09fdee
+# https://devmanual.gentoo.org/eclass-reference/eapi7-ver.eclass/index.html
+inherit eapi7-ver
+SLOT="$(ver_cut 1-2)"
 
-USE_DOTNET="net45"
+VER="${SLOT}.0.0" # version of resulting .dll files in GAC
+
+USE_DOTNET="net46"
 IUSE="+${USE_DOTNET} +gac developer debug doc"
 
 inherit xbuild gac
 
 GITHUB_ACCOUNT="Microsoft"
 GITHUB_PROJECTNAME="msbuild"
-EGIT_COMMIT="51c3830b82db41a313305d8ee5eb3e8860a5ceb5"
-SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EGIT_COMMIT}.tar.gz -> ${GITHUB_PROJECTNAME}-${GITHUB_ACCOUNT}-${PV}.tar.gz"
-S="${WORKDIR}/${GITHUB_PROJECTNAME}-${EGIT_COMMIT}"
+EGIT_COMMIT="a0efa11be10d5209afc679d672a79ed67e27875a"
+SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/v${PV}.tar.gz -> ${GITHUB_PROJECTNAME}-${GITHUB_ACCOUNT}-${PV}.tar.gz
+	"
+S="${WORKDIR}/msbuild-${PV}"
 
 HOMEPAGE="https://github.com/Microsoft/msbuild"
 DESCRIPTION="msbuild libraries for writing Task-derived classes"
@@ -39,9 +45,9 @@ src_prepare() {
 	mkdir -p "${S}/packages/msbuild/" || die
 	cp "${FILESDIR}/MSFT.snk" "${S}/packages/msbuild/" || die
 	cp "${FILESDIR}/mono.snk" "${S}/packages/msbuild/" || die
-	eapply "${FILESDIR}/${PV}/dir.props.diff"
-	eapply "${FILESDIR}/${PV}/dir.targets.diff"
-	eapply "${FILESDIR}/${PV}/src-dir.targets.diff"
+#	eapply "${FILESDIR}/${PV}/dir.props.diff"
+#	eapply "${FILESDIR}/${PV}/dir.targets.diff"
+#	eapply "${FILESDIR}/${PV}/src-dir.targets.diff"
 	eapply "${FILESDIR}/${PV}/ToolLocationHelper.cs.patch"
 #	sed -i 's/CurrentAssemblyVersion = "15.1.0.0"/CurrentAssemblyVersion = "'${PV}'"/g' "${S}/src/Shared/Constants.cs" || die
 	cp "${FILESDIR}/${PV}/mono-${FW_PROJ}.csproj" "${S}/${FW_DIR}" || die
