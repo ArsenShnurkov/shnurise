@@ -12,7 +12,7 @@ inherit eapi7-ver
 SLOT="$(ver_cut 1-2)"
 
 SLOT_OF_API="1" # slot for ebuild with API of msbuild
-VER="15.4.8.0" # version of resulting msbuild.exe
+VER="${PV}" # version of resulting msbuild.exe
 
 USE_DOTNET="net46"
 IUSE="+${USE_DOTNET} +gac developer debug doc +roslyn"
