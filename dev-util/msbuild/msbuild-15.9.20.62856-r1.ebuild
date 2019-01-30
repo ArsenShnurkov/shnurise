@@ -5,9 +5,14 @@ EAPI="6"
 RESTRICT="mirror"
 KEYWORDS="~amd64 ~x86 ~ppc"
 
-VER="${PV}"
-SLOT="0"
-SLOT_OF_API="3"
+# see docs:
+# https://github.com/gentoo/gentoo/commit/59a1a0dda7300177a263eb1de347da493f09fdee
+# https://devmanual.gentoo.org/eclass-reference/eapi7-ver.eclass/index.html
+inherit eapi7-ver 
+SLOT="$(ver_cut 1-2)"
+
+SLOT_OF_API="3" # slot for ebuild with API of msbuild
+VER="${PV}" # version of resulting msbuild.exe
 
 USE_DOTNET="net46"
 IUSE="+${USE_DOTNET} +gac developer debug doc +roslyn"
