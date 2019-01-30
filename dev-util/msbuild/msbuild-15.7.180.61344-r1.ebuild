@@ -15,7 +15,7 @@ SLOT_OF_API="${SLOT}" # slot for ebuild with API of msbuild
 VER="${PV}" # version of resulting msbuild.exe
 
 USE_DOTNET="net46"
-IUSE="+${USE_DOTNET} +gac developer debug doc +roslyn"
+IUSE="+${USE_DOTNET} +gac developer debug doc +roslyn symlink"
 
 inherit xbuild gac
 
@@ -116,10 +116,12 @@ src_install() {
 	doins "${S}/src/Tasks/Microsoft.NETFramework.CurrentVersion.targets"
 	keepdir "$(MSBuildSdksPath)"
 
-	if use debug; then
-		make_wrapper msbuild "/usr/bin/mono --debug $(MSBuildBinPath)/MSBuild.exe"
-	else
-		make_wrapper msbuild "/usr/bin/mono $(MSBuildBinPath)/MSBuild.exe"
+	if use symlink; then
+		if use debug; then
+			make_wrapper msbuild "/usr/bin/mono --debug $(MSBuildBinPath)/MSBuild.exe"
+		else
+			make_wrapper msbuild "/usr/bin/mono $(MSBuildBinPath)/MSBuild.exe"
+		fi
 	fi
 }
 
