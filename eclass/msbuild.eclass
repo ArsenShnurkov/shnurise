@@ -8,11 +8,12 @@
 # This is the new replacement for xbuild eclass
 
 inherit dotnet
+inherit msbuild-locations
 
 case ${EAPI:-0} in
 	0) die "this eclass doesn't support EAPI 0" ;;
 	1|2|3) ;;
-	*) ;; #if [[ ${USE_DOTNET} ]]; then REQUIRED_USE="|| (${USE_DOTNET})"; fi;;
+	*) ;; #if [[ ${USE_MSBUILD} ]]; then REQUIRED_USE="|| (${USE_MSBUILD})"; fi;;
 esac
 
 DEPEND+=" dev-util/msbuild"

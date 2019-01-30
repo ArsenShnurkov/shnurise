@@ -19,6 +19,10 @@ IUSE="+${USE_DOTNET} +gac developer debug doc +roslyn"
 
 inherit xbuild gac
 
+# msbuild-locations.eclass is inherited to get the access to the locations 
+# $(MSBuildBinPath) and $(MSBuildSdksPath)
+inherit msbuild-locations
+
 GITHUB_ACCOUNT="Microsoft"
 GITHUB_PROJECTNAME="msbuild"
 EGIT_COMMIT="51c3830b82db41a313305d8ee5eb3e8860a5ceb5"
@@ -95,11 +99,9 @@ src_install() {
 		CONFIGURATION=Release
 	fi
 
-	MSBuildBinPath="/usr/share/${PN}/${PV}"
-
 	egacinstall "${PROJ1_DIR}/bin/${CONFIGURATION}/${PROJ1}.dll"
 
-	insinto "${MSBuildBinPath}"
+	insinto "$(MSBuildBinPath)"
 	newins "${PROJ2_DIR}/bin/${CONFIGURATION}/${PROJ2}.exe" MSBuild.exe
 	doins "${S}/src/Tasks/Microsoft.Common.props"
 	doins "${S}/src/Tasks/Microsoft.Common.targets"
@@ -111,12 +113,12 @@ src_install() {
 	doins "${S}/src/Tasks/Microsoft.NETFramework.CurrentVersion.props"
 	doins "${S}/src/Tasks/Microsoft.NETFramework.targets"
 	doins "${S}/src/Tasks/Microsoft.NETFramework.CurrentVersion.targets"
-	keepdir "${MSBuildBinPath}/Sdks"
+	keepdir "$(MSBuildSdksPath)"
 
 	if use debug; then
-		make_wrapper msbuild "/usr/bin/mono --debug ${MSBuildBinPath}/MSBuild.exe"
+		make_wrapper msbuild "/usr/bin/mono --debug $(MSBuildBinPath)/MSBuild.exe"
 	else
-		make_wrapper msbuild "/usr/bin/mono ${MSBuildBinPath}/MSBuild.exe"
+		make_wrapper msbuild "/usr/bin/mono $(MSBuildBinPath)/MSBuild.exe"
 	fi
 }
 
