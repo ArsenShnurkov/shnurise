@@ -8,9 +8,12 @@ KEYWORDS="~amd64 ~ppc ~x86"
 RESTRICT="mirror"
 
 USE_DOTNET="net45"
-IUSE="+${USE_DOTNET}"
+USE_MSBUILD="msbuild15-9 msbuild15-7 msbuild15-4"
 
-inherit versionator dotnet
+# inherit directive is placed before IUSE line because of dotnet_expand and msbuild_expand functions
+inherit msbuild 
+
+IUSE="$(dotnet_expand ${USE_DOTNET}) $(msbuild_expand ${USE_MSBUILD}) +msbuild"
 
 GITHUB_REPONAME="sdk"
 GITHUB_ACCOUNT="dotnet"
@@ -41,5 +44,15 @@ src_compile() {
 }
 
 src_install() {
-	default
+	if use msbuild; then
+	    local targets=( ${USE_MSBUILD} )
+	    for target in ${targets[@]}; do
+		local etarget="$( msbuild_expand ${target} )"
+#		einfo ${etarget}
+		if use ${etarget}; then
+#		        einfo installing for ${target}
+			echo todo
+                fi
+	    done
+	fi 
 }

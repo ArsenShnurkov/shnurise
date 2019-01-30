@@ -5,8 +5,13 @@ EAPI="6"
 RESTRICT="mirror"
 KEYWORDS="~amd64 ~x86 ~ppc"
 
-VER="15.9.0.0"
-SLOT="3"
+# see docs:
+# https://github.com/gentoo/gentoo/commit/59a1a0dda7300177a263eb1de347da493f09fdee
+# https://devmanual.gentoo.org/eclass-reference/eapi7-ver.eclass/index.html
+inherit eapi7-ver
+SLOT="$(ver_cut 1-2)"
+
+VER="${SLOT}.0.0" # version of resulting .dll files in GAC
 
 USE_DOTNET="net46"
 IUSE="+${USE_DOTNET} +gac developer debug doc"
