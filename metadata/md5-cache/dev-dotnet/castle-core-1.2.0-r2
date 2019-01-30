@@ -1,14 +1,14 @@
 DEFINED_PHASES=compile install prepare setup
-DEPEND=>=dev-util/mono-packaging-tools-1.4.2.2 dev-lang/mono dev-lang/mono virtual/pkgconfig
+DEPEND=>=dev-util/mono-packaging-tools-1.4.2.2 dev-lang/mono virtual/pkgconfig
 DESCRIPTION=including Castle DynamicProxy, Logging Services and DictionaryAdapter
 EAPI=6
 HOMEPAGE=http://www.castleproject.org/
-IUSE=+net45 +pkg-config debug developer net45 gac pkg-config pkg-config symlink
+IUSE=+net45 +pkg-config net45 gac pkg-config pkg-config symlink
 KEYWORDS=~amd64 ~x86
 LICENSE=Apache-2.0
 RDEPEND=dev-lang/mono
 RESTRICT=mirror
 SLOT=1
 SRC_URI=https://github.com/castleproject/Castle.Core-READONLY/archive/44859cac767ff02dfc43911c4ce4a571625648b0.tar.gz -> dev-dotnet-castle-core-1.2.0.tar.gz https://github.com/mono/mono/raw/master/mcs/class/mono.snk
-_eclasses_=desktop	b1d22ac8bdd4679ab79c71aca235009d	dotnet	90255984468df1312e932514db89b945	epatch	a1bf4756dba418a7238f3be0cb010c54	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	gac	6740f67c109cf741dcb186d5d28a91fd	ltprune	08f9e1d9ee0af8f5d9a7854efbcd8c0e	mono-env	059a05efbba66d5bdcc2dd74d91f82f8	mono-pkg-config	640aa55a8fdc6a72cc28cdff9f47bc81	multilib	b2f01ad412baf81650c23fcf0975fa33	preserve-libs	ef207dc62baddfddfd39a164d9797648	toolchain-funcs	f164325a2cdb5b3ea39311d483988861	vcs-clean	2a0f74a496fa2b1552c4f3398258b7bf	versionator	2352c3fc97241f6a02042773c8287748	xbuild	c67583c573f4ca4d63e61dcd2b353b51
+_eclasses_=desktop	b1d22ac8bdd4679ab79c71aca235009d	dotnet	382fcf5ac48aa4f8c290accb481a960f	epatch	a1bf4756dba418a7238f3be0cb010c54	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	gac	6740f67c109cf741dcb186d5d28a91fd	ltprune	08f9e1d9ee0af8f5d9a7854efbcd8c0e	mono-env	059a05efbba66d5bdcc2dd74d91f82f8	mono-pkg-config	640aa55a8fdc6a72cc28cdff9f47bc81	multilib	b2f01ad412baf81650c23fcf0975fa33	preserve-libs	ef207dc62baddfddfd39a164d9797648	toolchain-funcs	f164325a2cdb5b3ea39311d483988861	vcs-clean	2a0f74a496fa2b1552c4f3398258b7bf	versionator	2352c3fc97241f6a02042773c8287748	xbuild	c67583c573f4ca4d63e61dcd2b353b51
 _md5_=af0e5be29fa51f76b122539ec18756fa
