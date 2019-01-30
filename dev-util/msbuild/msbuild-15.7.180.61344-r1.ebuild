@@ -11,7 +11,7 @@ KEYWORDS="~amd64 ~x86 ~ppc"
 inherit eapi7-ver 
 SLOT="$(ver_cut 1-2)"
 
-SLOT_OF_API="2" # slot for ebuild with API of msbuild
+SLOT_OF_API="${SLOT}" # slot for ebuild with API of msbuild
 VER="${PV}" # version of resulting msbuild.exe
 
 USE_DOTNET="net46"
