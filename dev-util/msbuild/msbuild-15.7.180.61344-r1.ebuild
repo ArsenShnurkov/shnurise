@@ -120,3 +120,11 @@ src_install() {
 		make_wrapper msbuild "/usr/bin/mono ${MSBuildBinPath}/MSBuild.exe"
 	fi
 }
+
+pkg_postinst() {
+	if ! has "msbuild${SLOT/./-}" ${MSBUILD_TARGETS}; then
+		   elog "To install Sdks for this version of msbuild, you will need to"
+		   elog "add msbuild${SLOT/./-} to your MSBUILD_TARGETS USE_EXPAND variable."
+		   elog
+	fi
+}
