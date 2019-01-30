@@ -8,7 +8,17 @@ KEYWORDS="~amd64 ~ppc ~x86"
 RESTRICT="mirror"
 
 USE_DOTNET="net45"
-IUSE="+${USE_DOTNET}"
+USE_MSBUILD="msbuild15-9 msbuild15-7 msbuild15-4"
+
+msbuild_expand() {
+	local res=""
+	for word in $@; do
+		res="${res} ${word//msbuild/msbuild_targets_msbuild}"
+	done
+	echo "${res}"
+}
+
+IUSE="${USE_DOTNET} $( msbuild_expand ${USE_MSBUILD} ) +msbuild +net45"
 
 inherit versionator dotnet
 
@@ -41,5 +51,15 @@ src_compile() {
 }
 
 src_install() {
-	default
+	if use msbuild; then
+	    local targets=( ${USE_MSBUILD} )
+	    for target in ${targets[@]}; do
+		local etarget="$( msbuild_expand ${target} )"
+#		einfo ${etarget}
+		if use ${etarget}; then
+#		        einfo installing for ${target}
+			echo todo
+                fi
+	    done
+	fi 
 }
