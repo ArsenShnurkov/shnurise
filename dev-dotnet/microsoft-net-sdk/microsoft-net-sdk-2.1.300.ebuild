@@ -48,10 +48,13 @@ src_install() {
 	    local targets=( ${USE_MSBUILD} )
 	    for target in ${targets[@]}; do
 		local etarget="$( msbuild_expand ${target} )"
-#		einfo ${etarget}
 		if use ${etarget}; then
-#		        einfo installing for ${target}
-			echo todo
+			local TARGET_SLOT=${target//msbuild/}
+			TARGET_SLOT=${TARGET_SLOT//-/.}
+			insinto /usr/share/msbuild/${TARGET_SLOT}/Sdks/Microsoft.NET.Sdk/Sdk
+			doins -r "${S}"/src/Tasks/Microsoft.NET.Build.Tasks/sdk/*
+			insinto /usr/share/msbuild/${TARGET_SLOT}/Sdks/Microsoft.NET.Sdk/Targets
+			doins -r "${S}"/src/Tasks/Microsoft.NET.Build.Tasks/targets/*
                 fi
 	    done
 	fi 

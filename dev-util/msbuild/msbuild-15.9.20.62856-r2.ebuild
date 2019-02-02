@@ -106,12 +106,14 @@ src_install() {
 	doins "${S}/src/Tasks/Microsoft.NETFramework.CurrentVersion.targets"
 	keepdir "$(MSBuildSdksPath)"
 
+	if use debug; then
+		make_wrapper msbuild-${SLOT} "/usr/bin/mono --debug $(MSBuildBinPath)/MSBuild.exe"
+	else
+		make_wrapper msbuild-${SLOT} "/usr/bin/mono $(MSBuildBinPath)/MSBuild.exe"
+	fi
+
 	if use symlink; then
-		if use debug; then
-			make_wrapper msbuild "/usr/bin/mono --debug $(MSBuildBinPath)/MSBuild.exe"
-		else
-			make_wrapper msbuild "/usr/bin/mono $(MSBuildBinPath)/MSBuild.exe"
-		fi
+		dosym ${EPREFIX}/usr/bin/msbuild-${SLOT} /usr/bin/msbuild || die
 	fi
 }
 
