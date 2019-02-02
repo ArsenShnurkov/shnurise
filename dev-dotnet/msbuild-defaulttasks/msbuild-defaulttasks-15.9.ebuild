@@ -38,6 +38,7 @@ COMMON_DEPEND=">=dev-lang/mono-5.2.0.196
 	dev-dotnet/msbuild-tasks-api:${SLOT} developer? ( dev-dotnet/msbuild-tasks-api:${SLOT}[developer] )
 	dev-dotnet/system-reflection-metadata developer? ( dev-dotnet/system-reflection-metadata[developer] )
 	dev-dotnet/system-collections-immutable developer? ( dev-dotnet/system-collections-immutable[developer] )
+	dev-dotnet/msbuild-roslyn-csc[gac]
 "
 RDEPEND="${COMMON_DEPEND}
 "
@@ -64,12 +65,12 @@ function output_filename ( ) {
 }
 
 src_prepare() {
-	eapply "${FILESDIR}/dir.props.diff"
-	eapply "${FILESDIR}/dir.targets.diff"
-	eapply "${FILESDIR}/src-dir.targets.diff"
-	eapply "${FILESDIR}/tasks.patch"
-	sed -i 's/CurrentAssemblyVersion = "15.1.0.0"/CurrentAssemblyVersion = "15.3.0.0"/g' "${S}/src/Shared/Constants.cs" || die
-	sed -i 's/Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a/Microsoft.Build.Tasks.Core, Version=15.3.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756/g' "${S}/src/Tasks/Microsoft.Common.tasks" || die
+	eapply "${FILESDIR}/${SLOT}/dir.props.diff"
+	eapply "${FILESDIR}/${SLOT}/dir.targets.diff"
+	eapply "${FILESDIR}/${SLOT}/src-dir.targets.diff"
+	eapply "${FILESDIR}/${SLOT}/tasks.patch"
+	sed -i 's/CurrentAssemblyVersion = "15.1.0.0"/CurrentAssemblyVersion = "15.9.0.0"/g' "${S}/src/Shared/Constants.cs" || die
+	sed -i 's/Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a/Microsoft.Build.Tasks.Core, Version=15.9.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756/g' "${S}/src/Tasks/Microsoft.Common.tasks" || die
 	sed -i 's/PublicKeyToken=b03f5f7f11d50a3a/PublicKeyToken=0738eb9f132ed756/g' "${S}/src/Build/Resources/Constants.cs" || die
 	eapply_user
 }
