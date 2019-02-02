@@ -26,14 +26,14 @@ inherit msbuild-locations
 GITHUB_ACCOUNT="Microsoft"
 GITHUB_PROJECTNAME="msbuild"
 EGIT_COMMIT="88f5fadfbef809b7ed2689f72319b7d91792460e"
-SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/v${PV}.tar.gz -> ${GITHUB_PROJECTNAME}-${GITHUB_ACCOUNT}-${PV}.tar.gz
+SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EGIT_COMMIT}.tar.gz -> ${GITHUB_PROJECTNAME}-${GITHUB_ACCOUNT}-${PV}.tar.gz
 	https://github.com/mono/mono/raw/master/mcs/class/mono.snk
 	"
-S="${WORKDIR}/msbuild-${PV}"
+S="${WORKDIR}/${GITHUB_PROJECTNAME}-${EGIT_COMMIT}"
 
 HOMEPAGE="https://github.com/Microsoft/msbuild"
 DESCRIPTION="Microsoft Build Engine (MSBuild) is an XML-based platform for building applications"
-LICENSE="MIT" # https://github.com/mono/linux-packaging-msbuild/blob/master/LICENSE
+LICENSE="MIT" # https://github.com/Microsoft/msbuild/blob/master/LICENSE
 
 COMMON_DEPEND=">=dev-lang/mono-5.2.0.196
 	dev-dotnet/msbuild-tasks-api:${SLOT_OF_API} developer? ( dev-dotnet/msbuild-tasks-api:${SLOT_OF_API}[developer] )

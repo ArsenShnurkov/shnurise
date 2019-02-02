@@ -17,7 +17,7 @@ VER="${PV}" # version of resulting msbuild.exe
 USE_DOTNET="net46"
 IUSE="+${USE_DOTNET} gac developer debug doc"
 
-inherit dotnet gac
+inherit xbuild gac
 
 # msbuild-locations.eclass is inherited to get the access to the locations 
 # $(MSBuildBinPath) and $(MSBuildSdksPath)
@@ -26,10 +26,9 @@ inherit msbuild-locations
 GITHUB_ACCOUNT="Microsoft"
 GITHUB_PROJECTNAME="msbuild"
 EGIT_COMMIT="51c3830b82db41a313305d8ee5eb3e8860a5ceb5"
-SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/v${PV}.tar.gz -> ${GITHUB_PROJECTNAME}-${GITHUB_ACCOUNT}-${PV}.tar.gz
+SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EGIT_COMMIT}.tar.gz -> ${GITHUB_PROJECTNAME}-${GITHUB_ACCOUNT}-${PV}.tar.gz
 	"
-S="${WORKDIR}/msbuild-${PV}"
-#S="${WORKDIR}/${GITHUB_PROJECTNAME}-${EGIT_COMMIT}"
+S="${WORKDIR}/${GITHUB_PROJECTNAME}-${EGIT_COMMIT}"
 
 HOMEPAGE="https://github.com/Microsoft/msbuild"
 DESCRIPTION="default tasks for Microsoft Build Engine (MSBuild)"
@@ -103,7 +102,7 @@ src_compile() {
 src_install() {
 	egacinstall "$(output_filename)"
 
-	insinto "/usr/share/msbuild/"
+	insinto "/usr/share/msbuild/${SLOT}"
 	doins "$(output_filename)"
 	doins "${FILESDIR}/Microsoft.Common.tasks"
 }
