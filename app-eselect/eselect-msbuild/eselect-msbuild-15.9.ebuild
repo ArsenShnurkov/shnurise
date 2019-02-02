@@ -13,7 +13,7 @@ HOMEPAGE="https://github.com/ArsenShnurkov/shnurise"
 
 GITHUB_ACCOUNT="ArsenShnurkov"
 GITHUB_PROJECTNAME="eselect-msbuild"
-EGIT_COMMIT="7da8a8f3a5114e4583efe5206b545bc701145b73"
+EGIT_COMMIT="bff06be7887ab2fb8a496bad9282b54ee9e3821c"
 SRC_URI="https://codeload.github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/tar.gz/${EGIT_COMMIT} -> ${PN}-${PV}.tar.gz
 	"
 
