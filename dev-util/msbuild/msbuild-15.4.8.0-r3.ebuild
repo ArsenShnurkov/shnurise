@@ -33,7 +33,7 @@ S="${WORKDIR}/${GITHUB_PROJECTNAME}-${EGIT_COMMIT}"
 
 HOMEPAGE="https://github.com/Microsoft/msbuild"
 DESCRIPTION="Microsoft Build Engine (MSBuild) is an XML-based platform for building applications"
-LICENSE="MIT" # https://github.com/mono/linux-packaging-msbuild/blob/master/LICENSE
+LICENSE="MIT" # https://github.com/Microsoft/msbuild/blob/master/LICENSE
 
 COMMON_DEPEND=">=dev-lang/mono-5.2.0.196
 	dev-dotnet/msbuild-tasks-api:${SLOT_OF_API} developer? ( dev-dotnet/msbuild-tasks-api:${SLOT_OF_API}[developer] )

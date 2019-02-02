@@ -1,29 +1,42 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
-EAPI=6
+EAPI="6"
 RESTRICT="mirror"
-KEYWORDS="~amd64"
-SLOT="0"
+KEYWORDS="~amd64 ~x86 ~ppc"
+
+# see docs:
+# https://github.com/gentoo/gentoo/commit/59a1a0dda7300177a263eb1de347da493f09fdee
+# https://devmanual.gentoo.org/eclass-reference/eapi7-ver.eclass/index.html
+inherit eapi7-ver 
+SLOT="$(ver_cut 1-2)"
+
+SLOT_OF_API="${SLOT}" # slot for ebuild with API of msbuild
+VER="${PV}" # version of resulting msbuild.exe
 
 USE_DOTNET="net46"
 IUSE="+${USE_DOTNET} gac developer debug doc"
 
 inherit dotnet gac
 
-GITHUB_ACCOUNT="mono"
-GITHUB_PROJECTNAME="linux-packaging-msbuild"
-EGIT_COMMIT="e08c20fd277b9de1e3a97c5bd9a5dcf95fcff926"
-SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EGIT_COMMIT}.tar.gz -> ${GITHUB_PROJECTNAME}-${GITHUB_ACCOUNT}-${PV}.tar.gz"
-S="${WORKDIR}/${GITHUB_PROJECTNAME}-${EGIT_COMMIT}"
+# msbuild-locations.eclass is inherited to get the access to the locations 
+# $(MSBuildBinPath) and $(MSBuildSdksPath)
+inherit msbuild-locations
 
-HOMEPAGE="https://docs.microsoft.com/visualstudio/msbuild/msbuild"
+GITHUB_ACCOUNT="Microsoft"
+GITHUB_PROJECTNAME="msbuild"
+EGIT_COMMIT="a0efa11be10d5209afc679d672a79ed67e27875a"
+SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/v${PV}.tar.gz -> ${GITHUB_PROJECTNAME}-${GITHUB_ACCOUNT}-${PV}.tar.gz
+	"
+S="${WORKDIR}/msbuild-${PV}"
+#S="${WORKDIR}/${GITHUB_PROJECTNAME}-${EGIT_COMMIT}"
+
+HOMEPAGE="https://github.com/Microsoft/msbuild"
 DESCRIPTION="default tasks for Microsoft Build Engine (MSBuild)"
-LICENSE="MIT" # https://github.com/mono/linux-packaging-msbuild/blob/master/LICENSE
+LICENSE="MIT" # https://github.com/Microsoft/msbuild/blob/master/LICENSE
 
 COMMON_DEPEND=">=dev-lang/mono-5.2.0.196
-	dev-dotnet/msbuild-tasks-api developer? ( dev-dotnet/msbuild-tasks-api[developer] )
+	dev-dotnet/msbuild-tasks-api:${SLOT} developer? ( dev-dotnet/msbuild-tasks-api:${SLOT}[developer] )
 	dev-dotnet/system-reflection-metadata developer? ( dev-dotnet/system-reflection-metadata[developer] )
 	dev-dotnet/system-collections-immutable developer? ( dev-dotnet/system-collections-immutable[developer] )
 "
