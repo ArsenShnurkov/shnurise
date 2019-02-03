@@ -15,7 +15,7 @@ SLOT_OF_API="${SLOT}" # slot for ebuild with API of msbuild
 VER="${SLOT_OF_API}.0.0" # version of resulting .dll files in GAC
 
 USE_DOTNET="net45"
-IUSE="+${USE_DOTNET} +gac developer debug doc"
+IUSE="+${USE_DOTNET} +gac mskey debug  developer"
 
 inherit xbuild gac
 
@@ -27,7 +27,7 @@ GITHUB_ACCOUNT="Microsoft"
 GITHUB_PROJECTNAME="msbuild"
 EGIT_COMMIT="51c3830b82db41a313305d8ee5eb3e8860a5ceb5"
 SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EGIT_COMMIT}.tar.gz -> ${GITHUB_PROJECTNAME}-${GITHUB_ACCOUNT}-${PV}.tar.gz
-	https://github.com/Microsoft/msbuild/raw/master/src/MSFT.snk
+	mskey? ( https://github.com/Microsoft/msbuild/raw/master/src/MSFT.snk )
 	https://github.com/mono/mono/raw/master/mcs/class/mono.snk
 	"
 S="${WORKDIR}/${GITHUB_PROJECTNAME}-${EGIT_COMMIT}"
@@ -48,9 +48,6 @@ DEPEND="${COMMON_DEPEND}
 	>=dev-dotnet/msbuildtasks-1.5.0.240-r1
 "
 
-KEY="${DISTDIR}/MSFT.snk"
-KEY2="${DISTDIR}/mono.snk"
-
 PROJ0=Microsoft.Build.Tasks
 PROJ0_DIR=src/Tasks
 
@@ -61,10 +58,6 @@ function output_filename ( ) {
 }
 
 src_prepare() {
-#	eapply "${FILESDIR}/${SLOT}/dir.props.diff"
-#	eapply "${FILESDIR}/${SLOT}/dir.targets.diff"
-#	eapply "${FILESDIR}/${SLOT}/src-dir.targets.diff"
-#	sed -i 's/CurrentAssemblyVersion = "[0-9.]*"/CurrentAssemblyVersion = "15.4.0.0"/g' "${S}/src/Shared/Constants.cs" || die
 	cp "${FILESDIR}/${PV}/xbuild-${PROJ0}.csproj" "${S}/${PROJ0_DIR}/${PROJ0}.csproj" || die
 	eapply_user
 }
@@ -86,8 +79,8 @@ src_compile() {
 		fi
 	fi
 
-	exbuild_raw /v:detailed  /p:MonoBuild=true /p:MachineIndependentBuild=true /p:TargetFrameworkVersion=v4.6 "/p:Configuration=$(usedebug_tostring)" ${SARGS} "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:DelaySign=true" "/p:SignAssembly=true" "/p:AssemblyOriginatorKeyFile=${KEY}" "${METAFILE_FO_BUILD}"
-	sn -R "$(output_filename)" "${KEY2}" || die
+	exbuild_raw /v:detailed  /p:MonoBuild=true /p:MachineIndependentBuild=true /p:TargetFrameworkVersion=v4.6 "/p:Configuration=$(usedebug_tostring)" ${SARGS} "/p:PublicKeyToken=$(token)" "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:DelaySign=true" "/p:AssemblyOriginatorKeyFile=$(token_key)" "${METAFILE_FO_BUILD}"
+	sn -R "$(output_filename)" "$(signing_key)" || die
 }
 
 src_install() {
