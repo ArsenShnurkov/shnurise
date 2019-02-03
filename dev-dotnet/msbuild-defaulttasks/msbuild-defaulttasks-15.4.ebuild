@@ -68,10 +68,10 @@ src_prepare() {
 	eapply "${FILESDIR}/${SLOT}/dir.props.diff"
 	eapply "${FILESDIR}/${SLOT}/dir.targets.diff"
 	eapply "${FILESDIR}/${SLOT}/src-dir.targets.diff"
-	eapply "${FILESDIR}/${SLOT}/tasks.patch"
 	sed -i 's/CurrentAssemblyVersion = "15.1.0.0"/CurrentAssemblyVersion = "15.4.0.0"/g' "${S}/src/Shared/Constants.cs" || die
 	sed -i 's/Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a/Microsoft.Build.Tasks.Core, Version=15.4.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756/g' "${S}/src/Tasks/Microsoft.Common.tasks" || die
 	sed -i 's/PublicKeyToken=b03f5f7f11d50a3a/PublicKeyToken=0738eb9f132ed756/g' "${S}/src/Build/Resources/Constants.cs" || die
+	cp "${FILESDIR}/${PV}/xbuild-${PROJ0}.csproj" "${S}/${PROJ0_DIR}" || die
 	eapply_user
 }
 
