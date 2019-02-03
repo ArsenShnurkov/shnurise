@@ -83,6 +83,7 @@ src_compile() {
 src_install() {
 	egacinstall "${PROJ1_DIR}/bin/$(usedebug_tostring)/${PROJ1}.dll"
 
+	TargetVersion=${SLOT}
 	insinto "$(MSBuildBinPath)"
 	newins "${PROJ2_DIR}/bin/$(usedebug_tostring)/${PROJ2}.exe" MSBuild.exe
 	doins "${S}/src/Tasks/Microsoft.Common.props"

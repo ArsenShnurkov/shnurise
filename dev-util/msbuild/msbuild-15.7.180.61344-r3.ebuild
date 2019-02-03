@@ -15,7 +15,7 @@ SLOT_OF_API="${SLOT}" # slot for ebuild with API of msbuild
 VER="${PV}" # version of resulting msbuild.exe
 
 USE_DOTNET="net46"
-IUSE="+${USE_DOTNET} +gac developer debug doc +roslyn symlink"
+IUSE="+${USE_DOTNET} +gac mskey developer debug +roslyn symlink"
 
 inherit xbuild gac
 
@@ -27,6 +27,7 @@ GITHUB_ACCOUNT="Microsoft"
 GITHUB_PROJECTNAME="msbuild"
 EGIT_COMMIT="a0efa11be10d5209afc679d672a79ed67e27875a"
 SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EGIT_COMMIT}.tar.gz -> ${GITHUB_PROJECTNAME}-${GITHUB_ACCOUNT}-${PV}.tar.gz
+	mskey? ( https://github.com/Microsoft/msbuild/raw/master/src/MSFT.snk )
 	https://github.com/mono/mono/raw/master/mcs/class/mono.snk
 	"
 S="${WORKDIR}/${GITHUB_PROJECTNAME}-${EGIT_COMMIT}"
@@ -47,23 +48,12 @@ DEPEND="${COMMON_DEPEND}
 	>=dev-dotnet/msbuildtasks-1.5.0.240-r1
 "
 
-KEY2="${DISTDIR}/mono.snk"
-
 PROJ1=Microsoft.Build
 PROJ1_DIR=src/Build
 PROJ2=MSBuild
 PROJ2_DIR=src/MSBuild
 
 src_prepare() {
-#	eapply "${FILESDIR}/${PV}/dir.props.diff"
-#	eapply "${FILESDIR}/${PV}/dir.targets.diff"
-#	eapply "${FILESDIR}/${PV}/src-dir.targets.diff"
-#	eapply "${FILESDIR}/${PV}/tasks.patch"
-#	eapply "${FILESDIR}/${PV}/Microsoft.CSharp.targets.patch"
-#	eapply "${FILESDIR}/${PV}/Microsoft.Common.targets.patch"
-	sed -i 's/CurrentAssemblyVersion = "15.1.0.0"/CurrentAssemblyVersion = "${VER}"/g' "${S}/src/Shared/Constants.cs" || die
-	sed -i 's/Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a/Microsoft.Build.Tasks.Core, Version=${PV}, Culture=neutral, PublicKeyToken=0738eb9f132ed756/g' "${S}/src/Tasks/Microsoft.Common.tasks" || die
-	sed -i 's/PublicKeyToken=b03f5f7f11d50a3a/PublicKeyToken=0738eb9f132ed756/g' "${S}/src/Build/Resources/Constants.cs" || die
 	cp "${FILESDIR}/${PV}/mono-${PROJ1}.csproj" "${S}/${PROJ1_DIR}" || die
 	cp "${FILESDIR}/${PV}/mono-${PROJ2}.csproj" "${S}/${PROJ2_DIR}" || die
 	cp "${FILESDIR}/${PV}/CommunicationsUtilities.cs" "${S}/src/Shared/CommunicationsUtilities.cs" || die
@@ -78,32 +68,25 @@ src_compile() {
 	fi
 
 	if use debug; then
-		CONFIGURATION=Debug
 		if use developer; then
 			SARGS=${SARGS} /p:DebugType=full
 		fi
 	else
-		CONFIGURATION=Release
 		if use developer; then
 			SARGS=${SARGS} /p:DebugType=pdbonly
 		fi
 	fi
 
-	exbuild_raw /v:detailed /p:TargetFrameworkVersion=v4.6 "/p:Configuration=${CONFIGURATION}" ${SARGS} "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:AssemblyOriginatorKeyFile=${KEY2}" "${S}/${PROJ2_DIR}/mono-${PROJ2}.csproj"
-	sn -R "${PROJ1_DIR}/bin/${CONFIGURATION}/${PROJ1}.dll" "${KEY2}" || die
+	exbuild_raw /v:detailed /p:TargetFrameworkVersion=v4.6 "/p:Configuration=$(usedebug_tostring)" ${SARGS} "/p:VersionNumber=${VER}" "/p:ReferencesVersion=${SLOT_OF_API}.0.0" "/p:PublicKeyToken=$(token)" "/p:RootPath=${S}" "/p:MonoBuild=true" "/p:SignAssembly=true" "/p:DelaySign=true" "/p:AssemblyOriginatorKeyFile=$(token_key)" "${S}/${PROJ2_DIR}/mono-${PROJ2}.csproj"
+	sn -R "${PROJ1_DIR}/bin/$(usedebug_tostring)/${PROJ1}.dll" "$(signing_key)" || die
 }
 
 src_install() {
-	if use debug; then
-		CONFIGURATION=Debug
-	else
-		CONFIGURATION=Release
-	fi
+	egacinstall "${PROJ1_DIR}/bin/$(usedebug_tostring)/${PROJ1}.dll"
 
-	egacinstall "${PROJ1_DIR}/bin/${CONFIGURATION}/${PROJ1}.dll"
-
+	TargetVersion=${SLOT}
 	insinto "$(MSBuildBinPath)"
-	newins "${PROJ2_DIR}/bin/${CONFIGURATION}/${PROJ2}.exe" MSBuild.exe
+	newins "${PROJ2_DIR}/bin/$(usedebug_tostring)/${PROJ2}.exe" MSBuild.exe
 	doins "${S}/src/Tasks/Microsoft.Common.props"
 	doins "${S}/src/Tasks/Microsoft.Common.targets"
 	doins "${S}/src/Tasks/Microsoft.Common.overridetasks"
