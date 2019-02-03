@@ -11,7 +11,7 @@ USE_DOTNET="net45"
 USE_MSBUILD="msbuild15-9 msbuild15-7 msbuild15-4"
 
 # inherit directive is placed before IUSE line because of dotnet_expand and msbuild_expand functions
-inherit msbuild
+inherit msbuild-framework
 
 inherit xbuild gac
 
@@ -27,14 +27,26 @@ S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 DESCRIPTION="C# compiler with rich code analysis APIs"
 LICENSE="Apache2.0" # https://github.com/dotnet/roslyn/blob/master/License.txt
 
-IUSE="+${USE_DOTNET} +gac mskey +debug developer "
+IUSE="$(dotnet_expand ${USE_DOTNET}) $(msbuild_expand ${USE_MSBUILD}) +msbuild +gac mskey +debug developer"
 
 COMMON_DEPEND=">=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999
-	dev-dotnet/msbuild-tasks-api developer? ( dev-dotnet/msbuild-tasks-api[developer] )
-	dev-dotnet/msbuild-defaulttasks developer? ( dev-dotnet/msbuild-defaulttasks[developer] )
+	msbuild_targets_msbuild15-4? (
+		dev-dotnet/msbuild-tasks-api:15.4
+		dev-dotnet/msbuild-defaulttasks:15.4
+	)
+	msbuild_targets_msbuild15-7? (
+		dev-dotnet/msbuild-tasks-api:15.7
+		dev-dotnet/msbuild-defaulttasks:15.7
+	)
+	msbuild_targets_msbuild15-9? (
+		dev-dotnet/msbuild-tasks-api:15.9  
+		dev-dotnet/msbuild-defaulttasks:15.9
+	)
 "
+
 RDEPEND="${COMMON_DEPEND}
 "
+
 DEPEND="${COMMON_DEPEND}
 	dev-dotnet/msbuildtasks
 "
@@ -42,13 +54,7 @@ DEPEND="${COMMON_DEPEND}
 METAFILE_FO_BUILD="${S}/src/Compilers/Core/MSBuildTask/mono-MSBuildTask.csproj"
 
 function output_filename ( ) {
-	local DIR=""
-	if use debug; then
-		DIR="Debug"
-	else
-		DIR="Release"
-	fi
-	echo "src/Compilers/Core/MSBuildTask/bin/${DIR}/Microsoft.Build.Tasks.CodeAnalysis.dll"
+	echo "src/Compilers/Core/MSBuildTask/bin/$(usedebug_tostring)/${MSBuildToolsVersion}/Microsoft.Build.Tasks.CodeAnalysis.dll"
 }
 
 src_prepare() {
@@ -57,17 +63,37 @@ src_prepare() {
 }
 
 src_compile() {
-	exbuild "/p:TargetFrameworkVersion=v4.6" "/p:VersionNumber=15.4.0.0" "/p:ReferencesVersion=15.4.0.0" "/p:PublicKeyToken=$(token)" "/p:SignAssembly=true" "/p:DelaySign=true" "/p:AssemblyOriginatorKeyFile=$(token_key)" "${METAFILE_FO_BUILD}"
-	sn -R "${S}/$(output_filename)" "$(signing_key)" || die
+	if use msbuild; then
+		local targets=( ${USE_MSBUILD} )
+		for target in ${targets[@]}; do
+		local etarget="$( msbuild_expand ${target} )"
+		if use ${etarget}; then
+			local TARGET_SLOT=${target//msbuild/}
+			MSBuildToolsVersion=${TARGET_SLOT//-/.}
+			exbuild "/p:TargetFrameworkVersion=v4.6" "/p:VersionNumber=15.4.0.0" "/p:MSBuildToolsVersion=${MSBuildToolsVersion}" "/p:ReferencesVersion=${MSBuildToolsVersion}.0.0" "/p:PublicKeyToken=$(token)" "/p:SignAssembly=true" "/p:DelaySign=true" "/p:AssemblyOriginatorKeyFile=$(token_key)" "${METAFILE_FO_BUILD}"
+			sn -R "${S}/$(output_filename)" "$(signing_key)" || die
+		fi
+		done
+	fi
 }
 
 src_install() {
-	insinto "/usr/share/msbuild/Roslyn/"
-	doins "${S}/src/Compilers/Core/MSBuildTask/Microsoft.CSharp.Core.targets"
-	doins "${S}/src/Compilers/Core/MSBuildTask/Microsoft.VisualBasic.Core.targets"
-	doins "${S}/$(output_filename)"
-
-	if use gac; then
-		egacinstall "${S}/$(output_filename)"
-	fi
+	if use msbuild; then
+	    local targets=( ${USE_MSBUILD} )
+	    for target in ${targets[@]}; do
+		local etarget="$( msbuild_expand ${target} )"
+		if use ${etarget}; then
+			local TARGET_SLOT=${target//msbuild/}
+			MSBuildToolsVersion=${TARGET_SLOT//-/.}
+			insinto "/usr/share/msbuild/${MSBuildToolsVersion}/Roslyn/"
+			doins "${S}/src/Compilers/Core/MSBuildTask/Microsoft.CSharp.Core.targets"
+			doins "${S}/src/Compilers/Core/MSBuildTask/Microsoft.VisualBasic.Core.targets"
+			doins "${S}/$(output_filename)"
+		 	if use gac; then
+				egacinstall "${S}/$(output_filename)"
+			fi
+               fi
+	    done
+	fi 
 }
+

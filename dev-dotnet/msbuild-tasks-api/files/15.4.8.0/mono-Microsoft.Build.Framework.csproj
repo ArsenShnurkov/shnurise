@@ -130,9 +130,7 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Shared\Constants.cs">
-      <Link>Constants.cs</Link>
-    </Compile>
+    <Compile Include="..\Shared\Constants.cs" />
     <Compile Include="BuildEngineResult.cs" />
     <Compile Include="BuildErrorEventArgs.cs" />
     <Compile Include="BuildEventArgs.cs" />

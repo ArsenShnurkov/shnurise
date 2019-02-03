@@ -206,6 +206,7 @@
     <Compile Include="TrackedDependencies\CanonicalTrackedOutputFiles.cs" />
     <Compile Include="TrackedDependencies\TrackedDependencies.cs" />
     <Compile Include="TrackedDependencies\CanonicalTrackedFilesHelper.cs" />
+    <Compile Include="..\Shared\EnvironmentUtilities.cs" />
     <!-- Win32 RC Files -->
     <RCResourceFile Include="native.rc" />
     <!-- Resource Files -->
@@ -218,9 +219,6 @@
       <SubType>Designer</SubType>
       <LogicalName>$(AssemblyName).Strings.shared.resources</LogicalName>
     </EmbeddedResource>
-    <Compile Include="..\Shared\EnvironmentUtilities.cs">
-      <Link>EnvironmentUtilities.cs</Link>
-    </Compile>
   </ItemGroup>
   <!-- ==========================================================================================-->
   <!-- Assemblies Files we depend on -->
