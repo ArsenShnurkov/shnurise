@@ -34,3 +34,4 @@ machine - register ADO .NET data provider in the machine.config (where ebuild re
 developer - create .mdb files
 debug - build Debug configuration instead of Release default
 symlink - create files which are common for several slots
+mskey - create assembly with Microsoft's token (PublicKeyToken), mono's token otherwise

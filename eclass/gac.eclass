@@ -1,6 +1,5 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 # @ECLASS: gac.eclass
 # @MAINTAINER: cynede@gentoo.org
@@ -20,6 +19,31 @@ RDEPEND+=" dev-lang/mono"
 
 # SRC_URI+=" https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
 # I was unable to setup it this ^^ way
+# So this is how it should look like:
+#SRC_URI="...
+#	mskey? ( https://github.com/Microsoft/msbuild/raw/master/src/MSFT.snk )
+#	https://github.com/mono/mono/raw/master/mcs/class/mono.snk
+#	"
+
+function token {
+	if use mskey; then
+		echo "b03f5f7f11d50a3a"
+	else
+		echo "0738eb9f132ed756"
+	fi
+}
+
+function signing_key {
+	echo "${DISTDIR}/mono.snk"
+}
+
+function token_key {
+	if use mskey; then
+		echo "${DISTDIR}/MSFT.snk"
+	else
+		echo "$(signing_key)"
+	fi
+}
 
 # @FUNCTION: egacinstall
 # @DESCRIPTION:  install package to GAC
