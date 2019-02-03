@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <OutputType>Library</OutputType>
     <AssemblyName>Microsoft.Build.Tasks.Core</AssemblyName>
-    <VersionNumber Condition=" '$(VersionNumber)' == '' ">15.4.0.0</VersionNumber>
+    <VersionNumber Condition=" '$(VersionNumber)' == '' ">15.9.0.0</VersionNumber>
     <RootNamespace>Microsoft.Build.Tasks</RootNamespace>
     <ProjectGuid>{59A73FE0-D3B7-4299-9063-3A587D429AF4}</ProjectGuid>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -191,7 +191,6 @@
     <Compile Include="..\Shared\Modifiers.cs" />
     <Compile Include="..\Shared\ReadOnlyCollection.cs" />
     <Compile Include="..\Shared\ReadOnlyEmptyDictionary.cs" />
-    <Compile Include="..\Shared\ReadOnlyEmptyList.cs" />
     <Compile Include="..\Shared\Tracing.cs" />
     <Compile Include="..\Shared\Traits.cs" />
     <Compile Include="..\Shared\VersionUtilities.cs" />
@@ -383,14 +382,24 @@
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="FindInvalidProjectReferences.cs" />
-    <Compile Include="FormatUrl.cs" Condition="'$(MonoBuild)' != 'true'" />
-    <Compile Include="GenerateApplicationManifest.cs" Condition="'$(MonoBuild)' != 'true'" />
+    <Compile Include="FormatUrl.cs" Condition="'$(MonoBuild)' != 'true'">
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="GenerateApplicationManifest.cs" Condition="'$(MonoBuild)' != 'true'">
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="GenerateBootstrapper.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="GenerateDeploymentManifest.cs" Condition="'$(MonoBuild)' != 'true'" />
-    <Compile Include="GenerateManifestBase.cs" Condition="'$(MonoBuild)' != 'true'" />
-    <Compile Include="GenerateTrustInfo.cs" Condition="'$(MonoBuild)' != 'true'" />
+    <Compile Include="GenerateDeploymentManifest.cs" Condition="'$(MonoBuild)' != 'true'">
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="GenerateManifestBase.cs" Condition="'$(MonoBuild)' != 'true'">
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="GenerateTrustInfo.cs" Condition="'$(MonoBuild)' != 'true'">
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="GetAssemblyIdentity.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
@@ -403,7 +412,9 @@
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="RCWForCurrentContext.cs" />
-    <Compile Include="LC.cs" Condition="'$(MonoBuild)' != 'true'" />
+    <Compile Include="LC.cs" Condition="'$(MonoBuild)' != 'true'">
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="ManifestUtil\*.cs" Condition="'$(MonoBuild)' != 'true'">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
@@ -423,7 +434,9 @@
     <Compile Include="ResolveComReferenceCache.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="ResolveManifestFiles.cs" Condition="'$(MonoBuild)' != 'true'" />
+    <Compile Include="ResolveManifestFiles.cs" Condition="'$(MonoBuild)' != 'true'">
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="ResolveNativeReference.cs" Condition="'$(MonoBuild)' != 'true'">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
@@ -438,7 +451,9 @@
     <Compile Include="SGen.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="SignFile.cs" Condition="'$(MonoBuild)' != 'true'" />
+    <Compile Include="SignFile.cs" Condition="'$(MonoBuild)' != 'true'">
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="StateFileBase.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
@@ -462,7 +477,9 @@
     <Compile Include="UnregisterAssembly.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="UpdateManifest.cs" Condition="'$(MonoBuild)' != 'true'" />
+    <Compile Include="UpdateManifest.cs" Condition="'$(MonoBuild)' != 'true'">
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="WinMDExp.cs" />
     <Compile Include="XslTransformation.cs" />
   </ItemGroup>

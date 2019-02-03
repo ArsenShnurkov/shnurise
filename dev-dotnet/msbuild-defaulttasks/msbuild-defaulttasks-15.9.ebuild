@@ -8,14 +8,14 @@ KEYWORDS="~amd64 ~x86 ~ppc"
 # see docs:
 # https://github.com/gentoo/gentoo/commit/59a1a0dda7300177a263eb1de347da493f09fdee
 # https://devmanual.gentoo.org/eclass-reference/eapi7-ver.eclass/index.html
-inherit eapi7-ver 
+inherit eapi7-ver
 SLOT="$(ver_cut 1-2)"
 
 SLOT_OF_API="${SLOT}" # slot for ebuild with API of msbuild
-VER="${PV}" # version of resulting msbuild.exe
+VER="${SLOT_OF_API}.0.0" # version of resulting .dll files in GAC
 
 USE_DOTNET="net46"
-IUSE="+${USE_DOTNET} gac developer debug doc"
+IUSE="+${USE_DOTNET} +gac mskey debug  developer"
 
 inherit xbuild gac
 
@@ -27,6 +27,7 @@ GITHUB_ACCOUNT="Microsoft"
 GITHUB_PROJECTNAME="msbuild"
 EGIT_COMMIT="88f5fadfbef809b7ed2689f72319b7d91792460e"
 SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EGIT_COMMIT}.tar.gz -> ${GITHUB_PROJECTNAME}-${GITHUB_ACCOUNT}-${PV}.tar.gz
+	mskey? ( https://github.com/Microsoft/msbuild/raw/master/src/MSFT.snk )
 	https://github.com/mono/mono/raw/master/mcs/class/mono.snk
 	"
 S="${WORKDIR}/${GITHUB_PROJECTNAME}-${EGIT_COMMIT}"
@@ -47,31 +48,17 @@ DEPEND="${COMMON_DEPEND}
 	>=dev-dotnet/msbuildtasks-1.5.0.240-r1
 "
 
-KEY2="${FILESDIR}/mono.snk"
-
 PROJ0=Microsoft.Build.Tasks
 PROJ0_DIR=src/Tasks
 
 METAFILE_FO_BUILD="${S}/${PROJ0_DIR}/${PROJ0}.csproj"
 
 function output_filename ( ) {
-	local DIR=""
-	if use debug; then
-		DIR="Debug"
-	else
-		DIR="Release"
-	fi
-	echo "${S}/bin/${DIR}/x86/Unix/Output/${PROJ0}.Core.dll"
+	echo "${S}/${PROJ0_DIR}/bin/$(usedebug_tostring)/${PROJ0}.Core.dll"
 }
 
 src_prepare() {
-	eapply "${FILESDIR}/${SLOT}/dir.props.diff"
-	eapply "${FILESDIR}/${SLOT}/dir.targets.diff"
-	eapply "${FILESDIR}/${SLOT}/src-dir.targets.diff"
-	eapply "${FILESDIR}/${SLOT}/tasks.patch"
-	sed -i 's/CurrentAssemblyVersion = "15.1.0.0"/CurrentAssemblyVersion = "15.9.0.0"/g' "${S}/src/Shared/Constants.cs" || die
-	sed -i 's/Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a/Microsoft.Build.Tasks.Core, Version=15.9.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756/g' "${S}/src/Tasks/Microsoft.Common.tasks" || die
-	sed -i 's/PublicKeyToken=b03f5f7f11d50a3a/PublicKeyToken=0738eb9f132ed756/g' "${S}/src/Build/Resources/Constants.cs" || die
+	cp "${FILESDIR}/${PV}/xbuild-${PROJ0}.csproj" "${S}/${PROJ0_DIR}/${PROJ0}.csproj" || die
 	eapply_user
 }
 
@@ -83,21 +70,17 @@ src_compile() {
 	fi
 
 	if use debug; then
-		CONFIGURATION=Debug
 		if use developer; then
 			SARGS=${SARGS} /p:DebugType=full
 		fi
 	else
-		CONFIGURATION=Release
 		if use developer; then
 			SARGS=${SARGS} /p:DebugType=pdbonly
 		fi
 	fi
 
-	VER="1.0.27.0"
-
-	exbuild_raw /v:detailed  /p:MonoBuild=true /p:TargetFrameworkVersion=v4.6 "/p:Configuration=${CONFIGURATION}" ${SARGS} "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:AssemblyOriginatorKeyFile=${KEY2}" "${METAFILE_FO_BUILD}"
-	sn -R "$(output_filename)" "${KEY2}" || die
+	exbuild_raw /v:detailed  /p:MonoBuild=true /p:MachineIndependentBuild=true /p:TargetFrameworkVersion=v4.6 "/p:Configuration=$(usedebug_tostring)" ${SARGS} "/p:PublicKeyToken=$(token)" "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:DelaySign=true" "/p:AssemblyOriginatorKeyFile=$(token_key)" "${METAFILE_FO_BUILD}"
+	sn -R "$(output_filename)" "$(signing_key)" || die
 }
 
 src_install() {
@@ -105,5 +88,5 @@ src_install() {
 
 	insinto "/usr/share/msbuild/${SLOT}"
 	doins "$(output_filename)"
-	doins "${FILESDIR}/Microsoft.Common.tasks"
+	doins "${FILESDIR}/${SLOT}/Microsoft.Common.tasks"
 }

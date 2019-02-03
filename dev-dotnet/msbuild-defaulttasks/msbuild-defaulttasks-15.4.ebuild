@@ -14,7 +14,7 @@ SLOT="$(ver_cut 1-2)"
 SLOT_OF_API="${SLOT}" # slot for ebuild with API of msbuild
 VER="${SLOT_OF_API}.0.0" # version of resulting .dll files in GAC
 
-USE_DOTNET="net45"
+USE_DOTNET="net46"
 IUSE="+${USE_DOTNET} +gac mskey debug  developer"
 
 inherit xbuild gac
