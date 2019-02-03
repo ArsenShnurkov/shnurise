@@ -14,7 +14,7 @@ SLOT="$(ver_cut 1-2)"
 VER="${SLOT}.0.0" # version of resulting .dll files in GAC
 
 USE_DOTNET="net45"
-IUSE="+${USE_DOTNET} +gac developer debug doc"
+IUSE="+${USE_DOTNET} +gac mskey debug  developer"
 
 inherit xbuild gac
 
@@ -22,7 +22,7 @@ GITHUB_ACCOUNT="Microsoft"
 GITHUB_PROJECTNAME="msbuild"
 EGIT_COMMIT="51c3830b82db41a313305d8ee5eb3e8860a5ceb5"
 SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EGIT_COMMIT}.tar.gz -> ${GITHUB_PROJECTNAME}-${GITHUB_ACCOUNT}-${PV}.tar.gz
-	https://github.com/Microsoft/msbuild/raw/master/src/MSFT.snk
+	mskey? ( https://github.com/Microsoft/msbuild/raw/master/src/MSFT.snk )
 	https://github.com/mono/mono/raw/master/mcs/class/mono.snk
 	"
 S="${WORKDIR}/${GITHUB_PROJECTNAME}-${EGIT_COMMIT}"
@@ -38,8 +38,25 @@ RDEPEND="${COMMON_DEPEND}
 DEPEND="${COMMON_DEPEND}
 "
 
-KEY="${DISTDIR}/MSFT.snk"
-KEY2="${DISTDIR}/mono.snk"
+function token {
+	if use mskey; then
+		echo "b03f5f7f11d50a3a"
+	else
+		echo "0738eb9f132ed756"
+	fi
+}
+
+function signing_key {
+	echo "${DISTDIR}/mono.snk"
+}
+
+function token_key {
+	if use mskey; then
+		echo "${DISTDIR}/mono.snk"
+	else
+		echo "$(signing_key)"
+	fi
+}
 
 UT_PROJ=Microsoft.Build.Utilities
 FW_PROJ=Microsoft.Build.Framework
@@ -47,14 +64,6 @@ UT_DIR=src/Utilities
 FW_DIR=src/Framework
 
 src_prepare() {
-	mkdir -p "${S}/packages/msbuild/" || die
-	cp "${FILESDIR}/MSFT.snk" "${S}/packages/msbuild/" || die
-	cp "${FILESDIR}/mono.snk" "${S}/packages/msbuild/" || die
-	eapply "${FILESDIR}/${PV}/dir.props.diff"
-	eapply "${FILESDIR}/${PV}/dir.targets.diff"
-	eapply "${FILESDIR}/${PV}/src-dir.targets.diff"
-	eapply "${FILESDIR}/${PV}/ToolLocationHelper.cs.patch"
-#	sed -i 's/CurrentAssemblyVersion = "15.1.0.0"/CurrentAssemblyVersion = "'${PV}'"/g' "${S}/src/Shared/Constants.cs" || die
 	cp "${FILESDIR}/${PV}/mono-${FW_PROJ}.csproj" "${S}/${FW_DIR}" || die
 	cp "${FILESDIR}/${PV}/mono-${UT_PROJ}.csproj" "${S}/${UT_DIR}" || die
 	eapply_user
@@ -67,14 +76,13 @@ src_compile() {
 		SARGS=DebugSymbols=False
 	fi
 
-	exbuild_raw /v:detailed /p:MonoBuild=true /p:TargetFrameworkVersion=v4.6 "/p:Configuration=$(usedebug_tostring)" /p:${SARGS} "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:DelaySign=true" "/p:AssemblyOriginatorKeyFile=${KEY}" "${S}/${FW_DIR}/mono-${FW_PROJ}.csproj"
-	sn -R "${S}/${FW_DIR}/bin/$(usedebug_tostring)/${FW_PROJ}.dll" "${KEY2}" || die
-	exbuild_raw /v:detailed /p:MonoBuild=true /p:TargetFrameworkVersion=v4.6 "/p:Configuration=$(usedebug_tostring)" /p:${SARGS} "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:DelaySign=true" "/p:AssemblyOriginatorKeyFile=${KEY}" "${S}/${UT_DIR}/mono-${UT_PROJ}.csproj"
-	sn -R "${S}/${UT_DIR}/bin/$(usedebug_tostring)/${UT_PROJ}.dll" "${KEY2}" || die
+	exbuild_raw /v:detailed /p:MonoBuild=true /p:TargetFrameworkVersion=v4.6 "/p:Configuration=$(usedebug_tostring)" /p:${SARGS} "/p:PublicKeyToken=$(token)" "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:DelaySign=true" "/p:AssemblyOriginatorKeyFile=$(token_key)" "${S}/${FW_DIR}/mono-${FW_PROJ}.csproj"
+	sn -R "${S}/${FW_DIR}/bin/$(usedebug_tostring)/${FW_PROJ}.dll" "$(signing_key)" || die
+	exbuild_raw /v:detailed /p:MonoBuild=true /p:TargetFrameworkVersion=v4.6 "/p:Configuration=$(usedebug_tostring)" /p:${SARGS} "/p:PublicKeyToken=$(token)" "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:DelaySign=true" "/p:AssemblyOriginatorKeyFile=$(token_key)" "${S}/${UT_DIR}/mono-${UT_PROJ}.csproj"
+	sn -R "${S}/${UT_DIR}/bin/$(usedebug_tostring)/${UT_PROJ}.dll" "$(signing_key)" || die
 }
 
 src_install() {
 	egacinstall "${S}/${FW_DIR}/bin/$(usedebug_tostring)/${FW_PROJ}.dll"
 	egacinstall "${S}/${UT_DIR}/bin/$(usedebug_tostring)/${UT_PROJ}.dll"
 }
-
