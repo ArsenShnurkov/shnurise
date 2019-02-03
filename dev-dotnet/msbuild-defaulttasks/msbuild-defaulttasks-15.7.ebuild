@@ -27,6 +27,7 @@ GITHUB_ACCOUNT="Microsoft"
 GITHUB_PROJECTNAME="msbuild"
 EGIT_COMMIT="a0efa11be10d5209afc679d672a79ed67e27875a"
 SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EGIT_COMMIT}.tar.gz -> ${GITHUB_PROJECTNAME}-${GITHUB_ACCOUNT}-${PV}.tar.gz
+	https://github.com/mono/mono/raw/master/mcs/class/mono.snk
 	"
 S="${WORKDIR}/${GITHUB_PROJECTNAME}-${EGIT_COMMIT}"
 
@@ -35,10 +36,9 @@ DESCRIPTION="default tasks for Microsoft Build Engine (MSBuild)"
 LICENSE="MIT" # https://github.com/Microsoft/msbuild/blob/master/LICENSE
 
 COMMON_DEPEND=">=dev-lang/mono-5.2.0.196
-	dev-dotnet/msbuild-tasks-api:${SLOT} developer? ( dev-dotnet/msbuild-tasks-api:${SLOT}[developer] )
+	dev-dotnet/msbuild-tasks-api:${SLOT_OF_API} developer? ( dev-dotnet/msbuild-tasks-api:${SLOT_OF_API}[developer] )
 	dev-dotnet/system-reflection-metadata developer? ( dev-dotnet/system-reflection-metadata[developer] )
 	dev-dotnet/system-collections-immutable developer? ( dev-dotnet/system-collections-immutable[developer] )
-	dev-dotnet/msbuild-roslyn-csc[gac]
 "
 RDEPEND="${COMMON_DEPEND}
 "

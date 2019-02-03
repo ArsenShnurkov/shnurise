@@ -10,13 +10,17 @@
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
+    <!-- error CS0234: The type or namespace name 'XamlTypes' does not exist in the namespace 'Microsoft.Build.Framework' -->
+    <DefineConstants>$(DefineConstants);FEATURE_XAML_TYPES</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_XAMLTASKFACTORY</DefineConstants>
+    <FeatureXamlTypes>true</FeatureXamlTypes>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;STANDALONEBUILD</DefineConstants>
+    <DefineConstants>$(DefineConstants);DEBUG;STANDALONEBUILD</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -29,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <DebugSymbols>true</DebugSymbols>
-    <DefineConstants>STANDALONEBUILD</DefineConstants>
+    <DefineConstants>$(DefineConstants);STANDALONEBUILD</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\Shared\Constants.cs">

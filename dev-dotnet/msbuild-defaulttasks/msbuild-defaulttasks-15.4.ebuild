@@ -27,6 +27,7 @@ GITHUB_ACCOUNT="Microsoft"
 GITHUB_PROJECTNAME="msbuild"
 EGIT_COMMIT="51c3830b82db41a313305d8ee5eb3e8860a5ceb5"
 SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EGIT_COMMIT}.tar.gz -> ${GITHUB_PROJECTNAME}-${GITHUB_ACCOUNT}-${PV}.tar.gz
+	https://github.com/mono/mono/raw/master/mcs/class/mono.snk
 	"
 S="${WORKDIR}/${GITHUB_PROJECTNAME}-${EGIT_COMMIT}"
 
@@ -35,10 +36,9 @@ DESCRIPTION="default tasks for Microsoft Build Engine (MSBuild)"
 LICENSE="MIT" # https://github.com/Microsoft/msbuild/blob/master/LICENSE
 
 COMMON_DEPEND=">=dev-lang/mono-5.2.0.196
-	dev-dotnet/msbuild-tasks-api:${SLOT} developer? ( dev-dotnet/msbuild-tasks-api:${SLOT}[developer] )
+	dev-dotnet/msbuild-tasks-api:${SLOT_OF_API} developer? ( dev-dotnet/msbuild-tasks-api:${SLOT_OF_API}[developer] )
 	dev-dotnet/system-reflection-metadata developer? ( dev-dotnet/system-reflection-metadata[developer] )
 	dev-dotnet/system-collections-immutable developer? ( dev-dotnet/system-collections-immutable[developer] )
-	dev-dotnet/msbuild-roslyn-csc[gac]
 "
 RDEPEND="${COMMON_DEPEND}
 "
@@ -96,7 +96,7 @@ src_compile() {
 
 	VER="1.0.27.0"
 
-	exbuild_raw /v:detailed  /p:MonoBuild=true /p:TargetFrameworkVersion=v4.6 "/p:Configuration=${CONFIGURATION}" ${SARGS} "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:AssemblyOriginatorKeyFile=${KEY2}" "${METAFILE_FO_BUILD}"
+	exbuild_raw /v:detailed  /p:MonoBuild=true /p:MachineIndependentBuild=true /p:TargetFrameworkVersion=v4.6 "/p:Configuration=${CONFIGURATION}" ${SARGS} "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:AssemblyOriginatorKeyFile=${KEY2}" "${METAFILE_FO_BUILD}"
 	sn -R "$(output_filename)" "${KEY2}" || die
 }
 
