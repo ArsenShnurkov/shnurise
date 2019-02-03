@@ -25,7 +25,7 @@ inherit msbuild-framework
 
 GITHUB_ACCOUNT="Microsoft"
 GITHUB_PROJECTNAME="msbuild"
-EGIT_COMMIT="51c3830b82db41a313305d8ee5eb3e8860a5ceb5"
+EGIT_COMMIT="88f5fadfbef809b7ed2689f72319b7d91792460e"
 SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EGIT_COMMIT}.tar.gz -> ${GITHUB_PROJECTNAME}-${GITHUB_ACCOUNT}-${PV}.tar.gz
 	mskey? ( https://github.com/Microsoft/msbuild/raw/master/src/MSFT.snk )
 	https://github.com/mono/mono/raw/master/mcs/class/mono.snk
@@ -58,7 +58,7 @@ function output_filename ( ) {
 }
 
 src_prepare() {
-	cp "${FILESDIR}/${PV}/xbuild-${PROJ0}.csproj" "${S}/${PROJ0_DIR}/${PROJ0}.csproj" || die
+	cp "${FILESDIR}/${SLOT}/xbuild-${PROJ0}.csproj" "${S}/${PROJ0_DIR}/${PROJ0}.csproj" || die
 	eapply_user
 }
 
@@ -90,4 +90,3 @@ src_install() {
 	doins "$(output_filename)"
 	doins "${FILESDIR}/${SLOT}/Microsoft.Common.tasks"
 }
-

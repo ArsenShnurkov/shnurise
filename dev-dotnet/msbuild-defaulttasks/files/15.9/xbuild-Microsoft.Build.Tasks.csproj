@@ -162,7 +162,8 @@
     <Compile Include="..\Shared\FileSystem\*.cs" />
     <Compile Include="..\MSBuildTaskHost\Concurrent\ConcurrentDictionary.cs" />
     <Compile Include="..\MSBuildTaskHost\Concurrent\ConcurrentQueue.cs" />
-    <Compile Include="..\MSBuildTaskHost/FileSystem/MSBuildTaskHostFileSystem.cs" />
+    <Compile Include="..\MSBuildTaskHost\FileSystem\MSBuildTaskHostFileSystem.cs" />
+    <Compile Include="..\Shared\ReuseableStringBuilder.cs" />
     <Compile Include="..\Shared\EnvironmentUtilities.cs" />
     <Compile Include="..\Shared\AssemblyFolders\AssemblyFoldersEx.cs" />
     <Compile Include="..\Shared\AssemblyFolders\AssemblyFoldersFromConfig.cs" />
@@ -308,6 +309,7 @@
     <Compile Include="InvalidParameterValueException.cs" />
     <Compile Include="ListOperators\FindUnderPath.cs" />
     <Compile Include="ListOperators\RemoveDuplicates.cs" />
+    <Compile Include="LockCheck.cs" />
     <Compile Include="MakeDir.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Move.cs" />
@@ -731,6 +733,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Reflection" />
     <Reference Include="System.Runtime.Serialization" />

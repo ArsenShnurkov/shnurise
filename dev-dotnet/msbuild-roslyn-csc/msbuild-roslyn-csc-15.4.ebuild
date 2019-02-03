@@ -54,7 +54,7 @@ DEPEND="${COMMON_DEPEND}
 METAFILE_FO_BUILD="${S}/src/Compilers/Core/MSBuildTask/mono-MSBuildTask.csproj"
 
 function output_filename ( ) {
-	echo "src/Compilers/Core/MSBuildTask/bin/$(usedebug_tostring)/${MSBuildToolsVersion}/Microsoft.Build.Tasks.CodeAnalysis.dll"
+	echo "src/Compilers/Core/MSBuildTask/bin/$(usedebug_tostring)/${TargetVersion}/Microsoft.Build.Tasks.CodeAnalysis.dll"
 }
 
 src_prepare() {
@@ -69,8 +69,8 @@ src_compile() {
 		local etarget="$( msbuild_expand ${target} )"
 		if use ${etarget}; then
 			local TARGET_SLOT=${target//msbuild/}
-			MSBuildToolsVersion=${TARGET_SLOT//-/.}
-			exbuild "/p:TargetFrameworkVersion=v4.6" "/p:VersionNumber=15.4.0.0" "/p:MSBuildToolsVersion=${MSBuildToolsVersion}" "/p:ReferencesVersion=${MSBuildToolsVersion}.0.0" "/p:PublicKeyToken=$(token)" "/p:SignAssembly=true" "/p:DelaySign=true" "/p:AssemblyOriginatorKeyFile=$(token_key)" "${METAFILE_FO_BUILD}"
+			TargetVersion=${TARGET_SLOT//-/.}
+			exbuild "/p:TargetFrameworkVersion=v4.6" "/p:VersionNumber=${TargetVersion}.0.0" "/p:TargetVersion=${TargetVersion}" "/p:ReferencesVersion=${TargetVersion}.0.0" "/p:PublicKeyToken=$(token)" "/p:SignAssembly=true" "/p:DelaySign=true" "/p:AssemblyOriginatorKeyFile=$(token_key)" "${METAFILE_FO_BUILD}"
 			sn -R "${S}/$(output_filename)" "$(signing_key)" || die
 		fi
 		done
@@ -84,7 +84,7 @@ src_install() {
 		local etarget="$( msbuild_expand ${target} )"
 		if use ${etarget}; then
 			local TARGET_SLOT=${target//msbuild/}
-			MSBuildToolsVersion=${TARGET_SLOT//-/.}
+			TargetVersion=${TARGET_SLOT//-/.}
 			insinto "/usr/share/msbuild/${MSBuildToolsVersion}/Roslyn/"
 			doins "${S}/src/Compilers/Core/MSBuildTask/Microsoft.CSharp.Core.targets"
 			doins "${S}/src/Compilers/Core/MSBuildTask/Microsoft.VisualBasic.Core.targets"
