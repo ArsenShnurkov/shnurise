@@ -1,5 +1,5 @@
 DEFINED_PHASES=compile install prepare setup
-DEPEND=>=dev-lang/mono-4.0.2.5 dev-util/msbuild
+DEPEND=>=dev-lang/mono-4.0.2.5 dev-dotnet/msbuild-tasks-api
 DESCRIPTION='Microsoft.NET.Sdk' for msbuild
 EAPI=6
 HOMEPAGE=https://github.com/dotnet/sdk/
@@ -10,5 +10,5 @@ RDEPEND=>=dev-lang/mono-4.0.2.5
 RESTRICT=mirror
 SLOT=0
 SRC_URI=https://codeload.github.com/dotnet/sdk/tar.gz/4908e1f6d532cb823b6889816c49fb5134b0278c -> microsoft-net-sdk-2.1.300.tar.gz
-_eclasses_=desktop	b1d22ac8bdd4679ab79c71aca235009d	dotnet	382fcf5ac48aa4f8c290accb481a960f	epatch	a1bf4756dba418a7238f3be0cb010c54	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	ltprune	08f9e1d9ee0af8f5d9a7854efbcd8c0e	mono-env	059a05efbba66d5bdcc2dd74d91f82f8	msbuild	1679cb3704f7c916235848607362949e	msbuild-locations	1a9beadb3894692975c58cb9c4f876f5	multilib	b2f01ad412baf81650c23fcf0975fa33	preserve-libs	ef207dc62baddfddfd39a164d9797648	toolchain-funcs	f164325a2cdb5b3ea39311d483988861	vcs-clean	2a0f74a496fa2b1552c4f3398258b7bf	versionator	2352c3fc97241f6a02042773c8287748
-_md5_=7c8cba73ed52ad9fa541c93c29adbbca
+_eclasses_=desktop	b1d22ac8bdd4679ab79c71aca235009d	dotnet	382fcf5ac48aa4f8c290accb481a960f	epatch	a1bf4756dba418a7238f3be0cb010c54	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	ltprune	08f9e1d9ee0af8f5d9a7854efbcd8c0e	mono-env	059a05efbba66d5bdcc2dd74d91f82f8	msbuild-framework	fa91bb33ba125313ae08f3c04f5ebebf	multilib	b2f01ad412baf81650c23fcf0975fa33	preserve-libs	ef207dc62baddfddfd39a164d9797648	toolchain-funcs	f164325a2cdb5b3ea39311d483988861	vcs-clean	2a0f74a496fa2b1552c4f3398258b7bf	versionator	2352c3fc97241f6a02042773c8287748
+_md5_=17557386bf507197f141bbd16014694d
