@@ -5,9 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <OutputType>Library</OutputType>
     <AssemblyName>Microsoft.Build.Framework</AssemblyName>
-    <PropertyGroup Condition=" '$(VersionNumber)' == '' ">
-      <VersionNumber>15.4.0.0</VersionNumber>
-    </PropertyGroup>
+    <VersionNumber Condition=" '$(VersionNumber)' == '' ">15.4.0.0</VersionNumber>
     <RootNamespace>Microsoft.Build.Framework</RootNamespace>
     <ProjectGuid>{65AA1982-493F-4976-9AA3-1728D1468A97}</ProjectGuid>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>

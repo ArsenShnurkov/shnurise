@@ -38,26 +38,6 @@ RDEPEND="${COMMON_DEPEND}
 DEPEND="${COMMON_DEPEND}
 "
 
-function token {
-	if use mskey; then
-		echo "b03f5f7f11d50a3a"
-	else
-		echo "0738eb9f132ed756"
-	fi
-}
-
-function signing_key {
-	echo "${DISTDIR}/mono.snk"
-}
-
-function token_key {
-	if use mskey; then
-		echo "${DISTDIR}/mono.snk"
-	else
-		echo "$(signing_key)"
-	fi
-}
-
 UT_PROJ=Microsoft.Build.Utilities
 FW_PROJ=Microsoft.Build.Framework
 UT_DIR=src/Utilities
