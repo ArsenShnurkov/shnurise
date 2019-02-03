@@ -3,20 +3,111 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{65AA1982-493F-4976-9AA3-1728D1468A97}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Microsoft.Build.Framework</RootNamespace>
     <AssemblyName>Microsoft.Build.Framework</AssemblyName>
+    <VersionNumber Condition=" '$(VersionNumber)' == '' ">15.4.0.0</VersionNumber>
+    <RootNamespace>Microsoft.Build.Framework</RootNamespace>
+    <ProjectGuid>{65AA1982-493F-4976-9AA3-1728D1468A97}</ProjectGuid>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
+    <DefineConstants>$(DefineConstants);STANDALONEBUILD</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DefineConstants>$(DefineConstants);FEATURE_64BIT_ENVIRONMENT_QUERY</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_APARTMENT_STATE</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_APM</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_APPDOMAIN</DefineConstants>
+    <FeatureAppDomain>true</FeatureAppDomain>
+    <DefineConstants>$(DefineConstants);FEATURE_APPDOMAIN_UNHANDLED_EXCEPTION</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_ASSEMBLY_LOADFROM</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_ASSEMBLY_LOCATION</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_ASSEMBLYNAME_CULTUREINFO</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_ASSEMBLYNAME_CLONE</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_TYPE_GETCONSTRUCTOR</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_BINARY_SERIALIZATION</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_COM_INTEROP</DefineConstants>
+    <DefineConstants Condition="'$(MonoBuild)' != 'true'">$(DefineConstants);FEATURE_COMPILE_IN_TESTS</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_CONSOLE_BUFFERWIDTH</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_CONSTRAINED_EXECUTION</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_CHARSET_AUTO</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_CODEDOM</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_CODETASKFACTORY</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_CULTUREINFO_CONSOLE_FALLBACK</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_CULTUREINFO_GETCULTUREINFO</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_CULTUREINFO_GETCULTURES</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_DOTNETVERSION</DefineConstants>
+    <DefineConstants Condition="'$(MonoBuild)' != 'true'">$(DefineConstants);FEATURE_ENCODING_DEFAULT</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_ENVIRONMENT_SYSTEMDIRECTORY</DefineConstants>
+    <DefineConstants Condition="'$(MonoBuild)' != 'true'">$(DefineConstants);FEATURE_FILE_TRACKER</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_FUSION_COMPAREASSEMBLYIDENTITY</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_GAC</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_GET_COMMANDLINE</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_HANDLE_SAFEWAITHANDLE</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_HANDLEPROCESSCORRUPTEDSTATEEXCEPTIONS</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_HANDLEREF</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_HTTP_LISTENER</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_INSTALLED_MSBUILD</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_LEGACY_GETFULLPATH</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_MEMORYSTREAM_GETBUFFER</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_NAMED_PIPES_FULL_DUPLEX</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_OSVERSION</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_PERFORMANCE_COUNTERS</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_PIPE_SECURITY</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_PFX_SIGNING</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_REFLECTION_EMIT_DEBUG_INFO</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_REGISTRY_TOOLSETS</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_REGISTRY_SDKS</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_REGISTRYHIVE_DYNDATA</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_RESGEN</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_RESOURCE_EXPOSURE</DefineConstants>
+    <!-- System.Resources.ResourceManager.GetResourceSet() method is currently only in full framework -->
+    <DefineConstants>$(DefineConstants);FEATURE_RESOURCEMANAGER_GETRESOURCESET</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_RESX_RESOURCE_READER</DefineConstants>
+    <DefineConstants Condition="'$(MonoBuild)' != 'true'">$(DefineConstants);FEATURE_RTLMOVEMEMORY</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_RUN_EXE_IN_TESTS</DefineConstants>
+    <DefineConstants Condition="'$(MonoBuild)' == 'true'">$(DefineConstants);USE_MSBUILD_DLL_EXTN</DefineConstants>
+    <DefineConstants Condition="'$(MonoBuild)' != 'true'">$(DefineConstants);FEATURE_SECURITY_PERMISSIONS</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_SECURITY_PRINCIPAL_WINDOWS</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_SPECIAL_FOLDERS</DefineConstants>
+    <FeatureSpecialFolders>true</FeatureSpecialFolders>
+    <DefineConstants>$(DefineConstants);FEATURE_STRING_INTERN</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_STRONG_NAMES</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_SYSTEM_CONFIGURATION</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_SYSTEMPAGESIZE</DefineConstants>
+    <FeatureSystemConfiguration>true</FeatureSystemConfiguration>
+    <DefineConstants>$(DefineConstants);FEATURE_TASK_GENERATERESOURCES</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_TASKHOST</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_THREAD_ABORT</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_THREAD_CULTURE</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_THREAD_PRIORITY</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_MULTIPLE_TOOLSETS</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_NODE_REUSE</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_TYPE_INVOKEMEMBER</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_TYPE_GETINTERFACE</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_USERINTERACTIVE</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_USERDOMAINNAME</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_VARIOUS_EXCEPTIONS</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_XAML_TYPES</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_XAMLTASKFACTORY</DefineConstants>
+    <FeatureXamlTypes>true</FeatureXamlTypes>
+    <DefineConstants>$(DefineConstants);FEATURE_XML_SOURCE_URI</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_XML_LOADPATH</DefineConstants>
+    <DefineConstants Condition="'$(MonoBuild)' != 'true'">$(DefineConstants);FEATURE_XML_SCHEMA_VALIDATION</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_XMLTEXTREADER</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_DEBUGGER</DefineConstants>
+    <DefineConstants Condition="'$(MonoBuild)' != 'true'">$(DefineConstants);FEATURE_DEBUG_LAUNCH</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_WIN32_REGISTRY</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_WORKINGSET</DefineConstants>
+    <DefineConstants Condition="'$(MonoBuild)' != 'true'">$(DefineConstants);FEATURE_VISUALSTUDIOSETUP</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_MSCOREE</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;STANDALONEBUILD</DefineConstants>
+    <DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -29,118 +120,62 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <DebugSymbols>true</DebugSymbols>
-    <DefineConstants>STANDALONEBUILD</DefineConstants>
   </PropertyGroup>
+  <!-- Source Files -->
   <ItemGroup>
-    <Compile Include="..\Shared\Constants.cs">
-      <Link>Constants.cs</Link>
-    </Compile>
-    <Compile Include="AssemblyInfo.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="AV.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Shared\Constants.cs" />
     <Compile Include="BuildEngineResult.cs" />
-    <Compile Include="BuildErrorEventArgs.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="BuildEventArgs.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="BuildFinishedEventArgs.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="BuildMessageEventArgs.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="BuildStartedEventArgs.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="BuildStatusEventArgs.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="BuildWarningEventArgs.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
+    <Compile Include="BuildErrorEventArgs.cs" />
+    <Compile Include="BuildEventArgs.cs" />
+    <Compile Include="BuildFinishedEventArgs.cs" />
+    <Compile Include="BuildMessageEventArgs.cs" />
+    <Compile Include="BuildStartedEventArgs.cs" />
+    <Compile Include="BuildStatusEventArgs.cs" />
+    <Compile Include="BuildWarningEventArgs.cs" />
     <Compile Include="CriticalBuildMessageEventArgs.cs" />
-    <Compile Include="CustomBuildEventArgs.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="ExternalProjectFinishedEventArgs.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="ExternalProjectStartedEventArgs.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="FxCopExclusions\Microsoft.Build.Framework.Suppressions.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
+    <Compile Include="CustomBuildEventArgs.cs" />
+    <Compile Include="ExternalProjectFinishedEventArgs.cs" />
+    <Compile Include="ExternalProjectStartedEventArgs.cs" />
+    <Compile Include="FxCopExclusions\Microsoft.Build.Framework.Suppressions.cs" />
     <Compile Include="IBuildEngine3.cs" />
     <Compile Include="IBuildEngine4.cs" />
     <Compile Include="IBuildEngine5.cs" />
     <Compile Include="IEventSource2.cs" />
     <Compile Include="IGeneratedTask.cs" />
     <Compile Include="LazyFormattedBuildEventArgs.cs" />
-    <Compile Include="IBuildEngine.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="IBuildEngine2.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="IEventRedirector.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="IEventSource.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="IForwardingLogger.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="ILogger.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="INodeLogger.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="ITask.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
+    <Compile Include="IBuildEngine.cs" />
+    <Compile Include="IBuildEngine2.cs" />
+    <Compile Include="IEventRedirector.cs" />
+    <Compile Include="IEventSource.cs" />
+    <Compile Include="IForwardingLogger.cs" />
+    <Compile Include="ILogger.cs" />
+    <Compile Include="INodeLogger.cs" />
+    <Compile Include="ITask.cs" />
     <Compile Include="ICancelableTask.cs" />
     <Compile Include="ITaskFactory.cs" />
     <Compile Include="ITaskFactory2.cs" />
-    <Compile Include="ITaskHost.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="ITaskItem.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
+    <Compile Include="ITaskHost.cs" />
+    <Compile Include="ITaskItem.cs" />
     <Compile Include="ITaskItem2.cs" />
-    <Compile Include="LoadInSeparateAppDomainAttribute.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="LoggerException.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="BuildEventContext.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="OutputAttribute.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
+    <Compile Include="LoadInSeparateAppDomainAttribute.cs" />
+    <Compile Include="LoggerException.cs" />
+    <Compile Include="BuildEventContext.cs" />
+    <Compile Include="OutputAttribute.cs" />
     <Compile Include="ProjectEvaluationFinishedEventArgs.cs" />
     <Compile Include="ProjectEvaluationStartedEventArgs.cs" />
     <Compile Include="ProjectImportedEventArgs.cs" />
-    <Compile Include="ProjectFinishedEventArgs.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="ProjectStartedEventArgs.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
+    <Compile Include="ProjectFinishedEventArgs.cs" />
+    <Compile Include="ProjectStartedEventArgs.cs" />
     <Compile Include="Sdk\SdkReference.cs" />
-    <Compile Include="RequiredAttribute.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="RequiredRuntimeAttribute.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
+    <Compile Include="RequiredAttribute.cs" />
+    <Compile Include="RequiredRuntimeAttribute.cs" />
     <Compile Include="RunInMTAAttribute.cs" />
     <Compile Include="RunInSTAAttribute.cs" />
     <Compile Include="Sdk\SdkLogger.cs" />
@@ -148,28 +183,17 @@
     <Compile Include="Sdk\SdkResolverContext.cs" />
     <Compile Include="Sdk\SdkResult.cs" />
     <Compile Include="Sdk\SdkResultFactory.cs" />
-    <Compile Include="TargetFinishedEventArgs.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="TargetStartedEventArgs.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="TaskCommandLineEventArgs.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="TaskFinishedEventArgs.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
+    <Compile Include="TargetFinishedEventArgs.cs" />
+    <Compile Include="TargetStartedEventArgs.cs" />
+    <Compile Include="TaskCommandLineEventArgs.cs" />
+    <Compile Include="TaskFinishedEventArgs.cs" />
     <Compile Include="TaskPropertyInfo.cs" />
-    <Compile Include="TaskStartedEventArgs.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
+    <Compile Include="TaskStartedEventArgs.cs" />
     <Compile Include="TelemetryEventArgs.cs" />
     <None Include="Event args classes.cd" />
     <None Include="project.json" />
     <!-- Win32 RC Files -->
     <RCResourceFile Include="native.rc" />
-    <Compile Include="AV.cs" />
   </ItemGroup>
   <ItemGroup Condition="'$(FeatureXamlTypes)' == 'true'">
     <Compile Include="XamlTypes\Argument.cs" />
@@ -195,20 +219,18 @@
     <Compile Include="XamlTypes\StringProperty.cs" />
     <Compile Include="XamlTypes\ValueEditor.cs" />
   </ItemGroup>
-  <ItemGroup Condition="'$(NetCoreBuild)' != 'true'">
+  <!-- ==========================================================================================-->
+  <!-- Assemblies Files we depend on -->
+  <!-- For perf, do not add more references (that will be loaded in common scenarios) without good reason -->
+  <!-- ==========================================================================================-->
+  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets" />
   <Target Name="BeforeBuild">
-    <PropertyGroup Condition=" '$(VersionNumber)' == '' ">
-       <VersionNumber>15.4.0.0</VersionNumber>
-    </PropertyGroup>
     <AssemblyInfo CodeLanguage="C#"
       OutputFile="AV.cs" 
       AssemblyVersion="$(VersionNumber)" 

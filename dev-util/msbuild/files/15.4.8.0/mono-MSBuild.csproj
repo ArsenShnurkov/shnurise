@@ -3,20 +3,111 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <ProjectGuid>{23C9FD0E-70C5-4F1F-B08A-D2774240FB51}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AssemblyName>MSBuild</AssemblyName>
-    <OutputPath>bin\$(Configuration)</OutputPath>
+    <VersionNumber Condition=" '$(VersionNumber)' == '' ">15.4.8.0</VersionNumber>
+    <RootNamespace>Microsoft.Build.CommandLine</RootNamespace>
+    <ProjectGuid>{23C9FD0E-70C5-4F1F-B08A-D2774240FB51}</ProjectGuid>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <ReferencesVersion Condition=" '$(VersionNumber)' == '' ">15.4.0.0</ReferencesVersion>
     <AppConfig>app.config</AppConfig>
     <ApplicationManifest>MSBuild.exe.manifest</ApplicationManifest>
     <ApplicationIcon>MSBuild.ico</ApplicationIcon>
-    <RootNamespace>Microsoft.Build.CommandLine</RootNamespace>
+    <OutputPath>bin\$(Configuration)</OutputPath>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
     <LargeAddressAware>true</LargeAddressAware>
     <WarningLevel>4</WarningLevel>
-    <DefineConstants>FEATURE_ASSEMBLY_LOADFROM;STANDALONEBUILD;FEATURE_APPDOMAIN;FEATURE_OSVERSION;FEATURE_APPDOMAIN;FEATURE_APPDOMAIN_UNHANDLED_EXCEPTION</DefineConstants>
+    <DefineConstants>$(DefineConstants);STANDALONEBUILD;</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DefineConstants>$(DefineConstants);FEATURE_64BIT_ENVIRONMENT_QUERY</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_APARTMENT_STATE</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_APM</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_APPDOMAIN</DefineConstants>
+    <FeatureAppDomain>true</FeatureAppDomain>
+    <DefineConstants>$(DefineConstants);FEATURE_APPDOMAIN_UNHANDLED_EXCEPTION</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_ASSEMBLY_LOADFROM</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_ASSEMBLY_LOCATION</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_ASSEMBLYNAME_CULTUREINFO</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_ASSEMBLYNAME_CLONE</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_TYPE_GETCONSTRUCTOR</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_BINARY_SERIALIZATION</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_COM_INTEROP</DefineConstants>
+    <DefineConstants Condition="'$(MonoBuild)' != 'true'">$(DefineConstants);FEATURE_COMPILE_IN_TESTS</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_CONSOLE_BUFFERWIDTH</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_CONSTRAINED_EXECUTION</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_CHARSET_AUTO</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_CODEDOM</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_CODETASKFACTORY</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_CULTUREINFO_CONSOLE_FALLBACK</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_CULTUREINFO_GETCULTUREINFO</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_CULTUREINFO_GETCULTURES</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_DOTNETVERSION</DefineConstants>
+    <DefineConstants Condition="'$(MonoBuild)' != 'true'">$(DefineConstants);FEATURE_ENCODING_DEFAULT</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_ENVIRONMENT_SYSTEMDIRECTORY</DefineConstants>
+    <DefineConstants Condition="'$(MonoBuild)' != 'true'">$(DefineConstants);FEATURE_FILE_TRACKER</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_FUSION_COMPAREASSEMBLYIDENTITY</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_GAC</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_GET_COMMANDLINE</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_HANDLE_SAFEWAITHANDLE</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_HANDLEPROCESSCORRUPTEDSTATEEXCEPTIONS</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_HANDLEREF</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_HTTP_LISTENER</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_INSTALLED_MSBUILD</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_LEGACY_GETFULLPATH</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_MEMORYSTREAM_GETBUFFER</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_NAMED_PIPES_FULL_DUPLEX</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_OSVERSION</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_PERFORMANCE_COUNTERS</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_PIPE_SECURITY</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_PFX_SIGNING</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_REFLECTION_EMIT_DEBUG_INFO</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_REGISTRY_TOOLSETS</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_REGISTRY_SDKS</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_REGISTRYHIVE_DYNDATA</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_RESGEN</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_RESOURCE_EXPOSURE</DefineConstants>
+    <!-- System.Resources.ResourceManager.GetResourceSet() method is currently only in full framework -->
+    <DefineConstants>$(DefineConstants);FEATURE_RESOURCEMANAGER_GETRESOURCESET</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_RESX_RESOURCE_READER</DefineConstants>
+    <DefineConstants Condition="'$(MonoBuild)' != 'true'">$(DefineConstants);FEATURE_RTLMOVEMEMORY</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_RUN_EXE_IN_TESTS</DefineConstants>
+    <DefineConstants Condition="'$(MonoBuild)' == 'true'">$(DefineConstants);USE_MSBUILD_DLL_EXTN</DefineConstants>
+    <DefineConstants Condition="'$(MonoBuild)' != 'true'">$(DefineConstants);FEATURE_SECURITY_PERMISSIONS</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_SECURITY_PRINCIPAL_WINDOWS</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_SPECIAL_FOLDERS</DefineConstants>
+    <FeatureSpecialFolders>true</FeatureSpecialFolders>
+    <DefineConstants>$(DefineConstants);FEATURE_STRING_INTERN</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_STRONG_NAMES</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_SYSTEM_CONFIGURATION</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_SYSTEMPAGESIZE</DefineConstants>
+    <FeatureSystemConfiguration>true</FeatureSystemConfiguration>
+    <DefineConstants>$(DefineConstants);FEATURE_TASK_GENERATERESOURCES</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_TASKHOST</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_THREAD_ABORT</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_THREAD_CULTURE</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_THREAD_PRIORITY</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_MULTIPLE_TOOLSETS</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_NODE_REUSE</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_TYPE_INVOKEMEMBER</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_TYPE_GETINTERFACE</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_USERINTERACTIVE</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_USERDOMAINNAME</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_VARIOUS_EXCEPTIONS</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_XAML_TYPES</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_XAMLTASKFACTORY</DefineConstants>
+    <FeatureXamlTypes>true</FeatureXamlTypes>
+    <DefineConstants>$(DefineConstants);FEATURE_XML_SOURCE_URI</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_XML_LOADPATH</DefineConstants>
+    <DefineConstants Condition="'$(MonoBuild)' != 'true'">$(DefineConstants);FEATURE_XML_SCHEMA_VALIDATION</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_XMLTEXTREADER</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_DEBUGGER</DefineConstants>
+    <DefineConstants Condition="'$(MonoBuild)' != 'true'">$(DefineConstants);FEATURE_DEBUG_LAUNCH</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_WIN32_REGISTRY</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_WORKINGSET</DefineConstants>
+    <DefineConstants Condition="'$(MonoBuild)' != 'true'">$(DefineConstants);FEATURE_VISUALSTUDIOSETUP</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_MSCOREE</DefineConstants>
   </PropertyGroup>
   <!-- Default configurations to help VS understand the configurations -->
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -163,24 +254,26 @@
     <Compile Include="XMake.cs" />
     <Compile Include="AV.cs" />
   </ItemGroup>
+  <!-- Assemblies Files we depend on -->
+  <!-- Be conservative when adding references... adding System.Xml.Linq can add .47 sec cold start time to our launch time, or 80 ms to warm start time -->
   <ItemGroup>
     <ProjectReference Include="..\Build\mono-Microsoft.Build.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Build.Framework, Version=15.4.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.Reflection.Metadata, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
-      <Package>system-reflection-metadata-2.0.0_pre</Package>
-    </Reference>
+    <Reference Include="System.Reflection.Metadata" />
+    <Reference Include="Microsoft.Build.Framework, Version=$(ReferencesVersion), Culture=neutral, PublicKeyToken=$(PublicKeyToken)" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="/usr/lib/mono/xbuild/MSBuildCommunityTasks/MSBuild.Community.Tasks.Targets" />
+  <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets" />
   <Target Name="BeforeBuild">
-    <PropertyGroup Condition=" '$(VersionNumber)' == '' ">
-      <VersionNumber>15.4.8</VersionNumber>
-    </PropertyGroup>
-    <AssemblyInfo CodeLanguage="C#" OutputFile="AV.cs" AssemblyVersion="$(VersionNumber)" AssemblyFileVersion="$(VersionNumber)" />
+    <AssemblyInfo CodeLanguage="C#"
+      OutputFile="AV.cs" 
+      AssemblyVersion="$(VersionNumber)" 
+      AssemblyFileVersion="$(VersionNumber)"
+    />
   </Target>
 </Project>
