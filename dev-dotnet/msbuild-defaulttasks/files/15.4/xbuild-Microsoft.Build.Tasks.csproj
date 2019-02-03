@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{59A73FE0-D3B7-4299-9063-3A587D429AF4}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Microsoft.Build.Tasks</RootNamespace>
     <AssemblyName>Microsoft.Build.Tasks.Core</AssemblyName>
+    <RootNamespace>Microsoft.Build.Tasks</RootNamespace>
+    <ProjectGuid>{59A73FE0-D3B7-4299-9063-3A587D429AF4}</ProjectGuid>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <CopyNuGetImplementations>true</CopyNuGetImplementations>
     <GenerateReferenceAssemblySources>true</GenerateReferenceAssemblySources>
@@ -113,7 +113,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -122,7 +121,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
@@ -143,6 +141,7 @@
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </TextStringResource -->
   </ItemGroup>
+  <!-- Source Files -->
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
@@ -152,7 +151,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <!-- Source Files -->
     <Compile Condition="'$(NetCoreBuild)' == 'true'" Include="..\Shared\Compat\SafeHandleZeroOrMinusOneIsInvalid.cs" />
     <Compile Include="..\Shared\EnvironmentUtilities.cs" />
     <Compile Include="..\Shared\AssemblyFolders\AssemblyFoldersEx.cs" />

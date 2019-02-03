@@ -22,6 +22,8 @@ GITHUB_ACCOUNT="Microsoft"
 GITHUB_PROJECTNAME="msbuild"
 EGIT_COMMIT="51c3830b82db41a313305d8ee5eb3e8860a5ceb5"
 SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EGIT_COMMIT}.tar.gz -> ${GITHUB_PROJECTNAME}-${GITHUB_ACCOUNT}-${PV}.tar.gz
+	https://github.com/Microsoft/msbuild/raw/master/src/MSFT.snk
+	https://github.com/mono/mono/raw/master/mcs/class/mono.snk
 	"
 S="${WORKDIR}/${GITHUB_PROJECTNAME}-${EGIT_COMMIT}"
 
@@ -35,6 +37,9 @@ RDEPEND="${COMMON_DEPEND}
 "
 DEPEND="${COMMON_DEPEND}
 "
+
+KEY="${DISTDIR}/MSFT.snk"
+KEY2="${DISTDIR}/mono.snk"
 
 UT_PROJ=Microsoft.Build.Utilities
 FW_PROJ=Microsoft.Build.Framework
@@ -55,38 +60,21 @@ src_prepare() {
 	eapply_user
 }
 
-
 src_compile() {
-	if use debug; then
-		CONFIGURATION=Debug
-	else
-		CONFIGURATION=Release
-	fi
-
 	if use developer; then
 		SARGS=DebugSymbols=True
 	else
 		SARGS=DebugSymbols=False
 	fi
 
-	KEY="${S}/packages/msbuild/MSFT.snk"
-	KEY2="${S}/packages/msbuild/mono.snk"
-	#KEY="${KEY2}"
-
-	exbuild_raw /v:detailed /p:MonoBuild=true /p:TargetFrameworkVersion=v4.6 "/p:Configuration=${CONFIGURATION}" /p:${SARGS} "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:AssemblyOriginatorKeyFile=${KEY}" "${S}/${FW_DIR}/mono-${FW_PROJ}.csproj"
-	sn -R "${S}/src/Framework/bin/${CONFIGURATION}/${FW_PROJ}.dll" "${KEY2}" || die
-	exbuild_raw /v:detailed /p:MonoBuild=true /p:TargetFrameworkVersion=v4.6 "/p:Configuration=${CONFIGURATION}" /p:${SARGS} "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:AssemblyOriginatorKeyFile=${KEY}" "${S}/${UT_DIR}/mono-${UT_PROJ}.csproj"
-	sn -R "${S}/src/Utilities/bin/${CONFIGURATION}/${UT_PROJ}.dll" "${KEY2}" || die
+	exbuild_raw /v:detailed /p:MonoBuild=true /p:TargetFrameworkVersion=v4.6 "/p:Configuration=$(usedebug_tostring)" /p:${SARGS} "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:DelaySign=true" "/p:AssemblyOriginatorKeyFile=${KEY}" "${S}/${FW_DIR}/mono-${FW_PROJ}.csproj"
+	sn -R "${S}/${FW_DIR}/bin/$(usedebug_tostring)/${FW_PROJ}.dll" "${KEY2}" || die
+	exbuild_raw /v:detailed /p:MonoBuild=true /p:TargetFrameworkVersion=v4.6 "/p:Configuration=$(usedebug_tostring)" /p:${SARGS} "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:DelaySign=true" "/p:AssemblyOriginatorKeyFile=${KEY}" "${S}/${UT_DIR}/mono-${UT_PROJ}.csproj"
+	sn -R "${S}/${UT_DIR}/bin/$(usedebug_tostring)/${UT_PROJ}.dll" "${KEY2}" || die
 }
 
 src_install() {
-	if use debug; then
-		CONFIGURATION=Debug
-	else
-		CONFIGURATION=Release
-	fi
-
-	egacinstall "${S}//src/Framework/bin/${CONFIGURATION}/${FW_PROJ}.dll"
-	egacinstall "${S}//src/Utilities/bin/${CONFIGURATION}/${UT_PROJ}.dll"
-	# einstall_pc_file "${PN}" "${VER}" "${FW_PROJ}" "${UT_PROJ}"
+	egacinstall "${S}/${FW_DIR}/bin/$(usedebug_tostring)/${FW_PROJ}.dll"
+	egacinstall "${S}/${UT_DIR}/bin/$(usedebug_tostring)/${UT_PROJ}.dll"
 }
+

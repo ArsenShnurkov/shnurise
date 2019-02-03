@@ -8,13 +8,13 @@ KEYWORDS="~amd64 ~x86 ~ppc"
 # see docs:
 # https://github.com/gentoo/gentoo/commit/59a1a0dda7300177a263eb1de347da493f09fdee
 # https://devmanual.gentoo.org/eclass-reference/eapi7-ver.eclass/index.html
-inherit eapi7-ver 
+inherit eapi7-ver
 SLOT="$(ver_cut 1-2)"
 
 SLOT_OF_API="${SLOT}" # slot for ebuild with API of msbuild
-VER="${PV}" # version of resulting msbuild.exe
+VER="${SLOT_OF_API}.0.0" # version of resulting .dll files in GAC
 
-USE_DOTNET="net46"
+USE_DOTNET="net45"
 IUSE="+${USE_DOTNET} +gac developer debug doc"
 
 inherit xbuild gac
@@ -57,13 +57,7 @@ PROJ0_DIR=src/Tasks
 METAFILE_FO_BUILD="${S}/${PROJ0_DIR}/${PROJ0}.csproj"
 
 function output_filename ( ) {
-	local DIR=""
-	if use debug; then
-		DIR="Debug"
-	else
-		DIR="Release"
-	fi
-	echo "${S}/${PROJ0_DIR}/bin/${DIR}/${PROJ0}.Core.dll"
+	echo "${S}/${PROJ0_DIR}/bin/$(usedebug_tostring)/${PROJ0}.Core.dll"
 }
 
 src_prepare() {
@@ -83,20 +77,16 @@ src_compile() {
 	fi
 
 	if use debug; then
-		CONFIGURATION=Debug
 		if use developer; then
 			SARGS=${SARGS} /p:DebugType=full
 		fi
 	else
-		CONFIGURATION=Release
 		if use developer; then
 			SARGS=${SARGS} /p:DebugType=pdbonly
 		fi
 	fi
 
-	VER="15.4.0.0"
-
-	exbuild_raw /v:detailed  /p:MonoBuild=true /p:MachineIndependentBuild=true /p:TargetFrameworkVersion=v4.6 "/p:Configuration=${CONFIGURATION}" ${SARGS} "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:DelaySign=true" "/p:SignAssembly=true" "/p:AssemblyOriginatorKeyFile=${KEY}" "${METAFILE_FO_BUILD}"
+	exbuild_raw /v:detailed  /p:MonoBuild=true /p:MachineIndependentBuild=true /p:TargetFrameworkVersion=v4.6 "/p:Configuration=$(usedebug_tostring)" ${SARGS} "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:DelaySign=true" "/p:SignAssembly=true" "/p:AssemblyOriginatorKeyFile=${KEY}" "${METAFILE_FO_BUILD}"
 	sn -R "$(output_filename)" "${KEY2}" || die
 }
 
@@ -107,3 +97,4 @@ src_install() {
 	doins "$(output_filename)"
 	doins "${FILESDIR}/${SLOT}/Microsoft.Common.tasks"
 }
+
