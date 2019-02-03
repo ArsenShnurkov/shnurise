@@ -19,9 +19,9 @@ IUSE="+${USE_DOTNET} +gac mskey developer debug +roslyn symlink"
 
 inherit xbuild gac
 
-# msbuild-locations.eclass is inherited to get the access to the locations 
+# msbuild-framework.eclass is inherited to get the access to the locations 
 # $(MSBuildBinPath) and $(MSBuildSdksPath)
-inherit msbuild-locations
+inherit msbuild-framework
 
 GITHUB_ACCOUNT="Microsoft"
 GITHUB_PROJECTNAME="msbuild"

@@ -2,13 +2,16 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
+SLOT="0"
 
 KEYWORDS="~amd64 ~ppc ~x86"
 RESTRICT="mirror"
 
-SLOT="0"
-
 USE_DOTNET="net45"
+USE_MSBUILD="msbuild15-9 msbuild15-7 msbuild15-4"
+
+# inherit directive is placed before IUSE line because of dotnet_expand and msbuild_expand functions
+inherit msbuild
 
 inherit xbuild gac
 

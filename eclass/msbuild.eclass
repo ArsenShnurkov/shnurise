@@ -8,7 +8,7 @@
 # This is the new replacement for xbuild eclass
 
 inherit dotnet
-inherit msbuild-locations
+inherit msbuild-framework
 
 case ${EAPI:-0} in
 	0) die "this eclass doesn't support EAPI 0" ;;
@@ -26,16 +26,6 @@ export XDG_CONFIG_HOME="${T}"
 # variable is not set to C. To prevent this all mono related packages will be
 # build with LC_ALL=C (see bugs #146424, #149817)
 export LC_ALL=C
-
-# @FUNCTION: msbuild_expand
-# @DESCRIPTION: expands values from the MSBUILD_TARGETS variable
-msbuild_expand() {
-	local res=""
-	for word in $@; do
-		res="${res} ${word//msbuild/msbuild_targets_msbuild}"
-	done
-	echo "${res}"
-}
 
 # @FUNCTION: emsbuild_raw
 # @DESCRIPTION: run msbuild with given parameters
