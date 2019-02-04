@@ -35,10 +35,10 @@ MSBuildExtensionsPath () {
 # for use only from slotted ebuilds
 MSBuildBinPath () {
 	# https://stackoverflow.com/questions/3601515/how-to-check-if-a-variable-is-set-in-bash
-	if [-z ${MSBuildToolsVersion+x} ]; then
-		MSBuildToolsVersion = "${SLOT}"
+	if [ -z ${TargetVersion+x} ]; then
+		TargetVersion = "${SLOT}"
 	fi
-	echo "$(MSBuildExtensionsPath)/${MSBuildToolsVersion}"
+	echo "$(MSBuildExtensionsPath)/${TargetVersion}"
 }
 
 # @FUNCTION: MSBuildSdksPath
