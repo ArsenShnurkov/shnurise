@@ -3,12 +3,12 @@ DEPEND=>=dev-lang/mono-5.2.0.196 dev-dotnet/msbuild-tasks-api:15.9 developer? ( 
 DESCRIPTION=Microsoft Build Engine (MSBuild) is an XML-based platform for building applications
 EAPI=6
 HOMEPAGE=https://github.com/Microsoft/msbuild
-IUSE=+net46 +gac developer debug doc +roslyn symlink gac pkg-config
+IUSE=+net46 +gac mskey developer debug +roslyn symlink gac pkg-config
 KEYWORDS=~amd64 ~x86 ~ppc
 LICENSE=MIT
 RDEPEND=>=dev-lang/mono-5.2.0.196 dev-dotnet/msbuild-tasks-api:15.9 developer? ( dev-dotnet/msbuild-tasks-api:15.9[developer] ) dev-dotnet/msbuild-defaulttasks:15.9 developer? ( dev-dotnet/msbuild-defaulttasks:15.9[developer] ) roslyn? ( dev-dotnet/msbuild-roslyn-csc ) dev-lang/mono
 RESTRICT=mirror
 SLOT=15.9
-SRC_URI=https://github.com/Microsoft/msbuild/archive/88f5fadfbef809b7ed2689f72319b7d91792460e.tar.gz -> msbuild-Microsoft-15.9.20.62856.tar.gz https://github.com/mono/mono/raw/master/mcs/class/mono.snk
-_eclasses_=desktop	b1d22ac8bdd4679ab79c71aca235009d	dotnet	382fcf5ac48aa4f8c290accb481a960f	eapi7-ver	756b3f27d8e46131d5cf3c51bd876446	epatch	a1bf4756dba418a7238f3be0cb010c54	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	gac	b3a99fa1af6dc828ce43773748fb33eb	ltprune	08f9e1d9ee0af8f5d9a7854efbcd8c0e	mono-env	059a05efbba66d5bdcc2dd74d91f82f8	msbuild-framework	fa91bb33ba125313ae08f3c04f5ebebf	multilib	b2f01ad412baf81650c23fcf0975fa33	preserve-libs	ef207dc62baddfddfd39a164d9797648	toolchain-funcs	f164325a2cdb5b3ea39311d483988861	vcs-clean	2a0f74a496fa2b1552c4f3398258b7bf	versionator	2352c3fc97241f6a02042773c8287748	xbuild	c67583c573f4ca4d63e61dcd2b353b51
-_md5_=bbb4b75ac7606f781988f643fbea2442
+SRC_URI=https://github.com/Microsoft/msbuild/archive/88f5fadfbef809b7ed2689f72319b7d91792460e.tar.gz -> msbuild-Microsoft-15.9.20.62856.tar.gz mskey? ( https://github.com/Microsoft/msbuild/raw/master/src/MSFT.snk ) https://github.com/mono/mono/raw/master/mcs/class/mono.snk
+_eclasses_=desktop	b1d22ac8bdd4679ab79c71aca235009d	dotnet	382fcf5ac48aa4f8c290accb481a960f	eapi7-ver	756b3f27d8e46131d5cf3c51bd876446	epatch	a1bf4756dba418a7238f3be0cb010c54	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	gac	b3a99fa1af6dc828ce43773748fb33eb	ltprune	08f9e1d9ee0af8f5d9a7854efbcd8c0e	mono-env	059a05efbba66d5bdcc2dd74d91f82f8	msbuild-framework	587a5b268cd38c4a7a909ed17812708f	multilib	b2f01ad412baf81650c23fcf0975fa33	preserve-libs	ef207dc62baddfddfd39a164d9797648	toolchain-funcs	f164325a2cdb5b3ea39311d483988861	vcs-clean	2a0f74a496fa2b1552c4f3398258b7bf	versionator	2352c3fc97241f6a02042773c8287748	xbuild	c67583c573f4ca4d63e61dcd2b353b51
+_md5_=8378203b0215aafeac65c88b1ae83ab2
