@@ -1,6 +1,5 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI="6"
 
@@ -98,3 +97,4 @@ src_install() {
 		make_wrapper antlrcs "/usr/bin/mono \${MONO_OPTIONS} /usr/share/${PN}${APPENDIX}/Antlr3.exe"
 	fi
 }
+
