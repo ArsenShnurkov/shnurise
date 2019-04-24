@@ -738,7 +738,7 @@
     <Reference Include="System.Reflection" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="Microsoft.Build.Framework, Version=$(VersionNumber), Culture=neutral, PublicKeyToken=$(PublicKeyToken)" />
-    <Reference Include="Microsoft.Build.Utilities, Version=$(VersionNumber), Culture=neutral, PublicKeyToken=$(PublicKeyToken)" />
+    <Reference Include="Microsoft.Build.Utilities.Core, Version=$(VersionNumber), Culture=neutral, PublicKeyToken=$(PublicKeyToken)" />
     <!-- Needed by GenerateResource's ResXResourceReader: UNDONE: When CLR has moved this type to improve layering, remove this reference -->
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Security" />

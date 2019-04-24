@@ -15,7 +15,7 @@ SLOT_OF_API="${SLOT}" # slot for ebuild with API of msbuild
 VER="${PV}" # version of resulting msbuild.exe
 
 USE_DOTNET="net46"
-IUSE="+${USE_DOTNET} +gac mskey developer debug +roslyn symlink"
+IUSE="+${USE_DOTNET} +gac +mskey developer debug +roslyn symlink"
 
 inherit xbuild gac
 
@@ -53,8 +53,16 @@ PROJ2=MSBuild
 PROJ2_DIR=src/MSBuild
 
 src_prepare() {
-	cp "${FILESDIR}/${PV}/mono-${PROJ1}.csproj" "${S}/${PROJ1_DIR}" || die
-	cp "${FILESDIR}/${PV}/mono-${PROJ2}.csproj" "${S}/${PROJ2_DIR}" || die
+	einfo "PublicKeyToken=$(token)"
+	REGEX='s/PublicKeyToken=[0-9a-f]+/PublicKeyToken='$(token)'/g'
+	sed -E ${REGEX} "${FILESDIR}/${PV}/mono-${PROJ1}.csproj" > "${S}/${PROJ1_DIR}/mono-${PROJ1}.csproj" || die
+	sed -E ${REGEX} "${FILESDIR}/${PV}/mono-${PROJ2}.csproj" > "${S}/${PROJ2_DIR}/mono-${PROJ2}.csproj" || die
+	sed -E ${REGEX} -i "${S}/src/MSBuild/app.config" || die
+	sed -E ${REGEX} -i ${S}/src/Build/Resources/Constants.cs || die
+	sed -E ${REGEX} -i ${S}/src/Tasks/Microsoft.Common.tasks || die
+	sed -E ${REGEX} -i ${S}/src/Tasks/Microsoft.Common.overridetasks || die
+	sed "s/15.1./15.9./g" -i "${S}/src/Shared/Constants.cs" || die
+	sed "s/15.1./15.9./g" -i "${S}/src/Tasks/Microsoft.Common.overridetasks" || die
 	eapply_user
 }
 

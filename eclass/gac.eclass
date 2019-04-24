@@ -25,6 +25,8 @@ RDEPEND+=" dev-lang/mono"
 #	https://github.com/mono/mono/raw/master/mcs/class/mono.snk
 #	"
 
+# @FUNCTION: token
+# @DESCRIPTION:  returns Microsoft's PublicKeyToken or mono's one depending on USE="mskey"
 function token {
 	if use mskey; then
 		echo "b03f5f7f11d50a3a"
@@ -33,10 +35,14 @@ function token {
 	fi
 }
 
+# @FUNCTION: signing_key
+# @DESCRIPTION:  returns the location of mono.snk for signing
 function signing_key {
 	echo "${DISTDIR}/mono.snk"
 }
 
+# @FUNCTION: token_key
+# @DESCRIPTION:  returns the location of MSFT.snk or mono.snk for making token depending on USE="mskey"
 function token_key {
 	if use mskey; then
 		echo "${DISTDIR}/MSFT.snk"

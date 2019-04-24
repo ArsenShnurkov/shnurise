@@ -14,7 +14,7 @@ SLOT="$(ver_cut 1-2)"
 VER="${SLOT}.0.0" # version of resulting .dll files in GAC
 
 USE_DOTNET="net45"
-IUSE="+${USE_DOTNET} +gac mskey debug  developer"
+IUSE="+${USE_DOTNET} +gac +mskey debug  developer"
 
 inherit xbuild gac
 
@@ -38,14 +38,21 @@ RDEPEND="${COMMON_DEPEND}
 DEPEND="${COMMON_DEPEND}
 "
 
-UT_PROJ=Microsoft.Build.Utilities
+UT_PROJ=Microsoft.Build.Utilities.Core
 FW_PROJ=Microsoft.Build.Framework
 UT_DIR=src/Utilities
 FW_DIR=src/Framework
 
 src_prepare() {
-	cp "${FILESDIR}/${PV}/mono-${FW_PROJ}.csproj" "${S}/${FW_DIR}" || die
-	cp "${FILESDIR}/${PV}/mono-${UT_PROJ}.csproj" "${S}/${UT_DIR}" || die
+	einfo "PublicKeyToken=$(token)"
+	REGEX='s/PublicKeyToken=[0-9a-f]+/PublicKeyToken='$(token)'/g'
+	sed -E ${REGEX} "${FILESDIR}/${PV}/mono-${FW_PROJ}.csproj" > "${S}/${FW_DIR}/mono-${FW_PROJ}.csproj" || die
+	sed -E ${REGEX} "${FILESDIR}/${PV}/mono-${UT_PROJ}.csproj" > "${S}/${UT_DIR}/mono-${UT_PROJ}.csproj" || die
+	sed -E ${REGEX} -i ${S}/src/MSBuild/app.config || die
+	sed -E ${REGEX} -i ${S}/src/Build/Resources/Constants.cs || die
+	sed -E ${REGEX} -i ${S}/src/Tasks/Microsoft.Common.tasks || die
+	sed -E ${REGEX} -i ${S}/src/Tasks/Microsoft.Common.overridetasks || die
+	sed "s/15.1./15.9./g" -i "${S}/src/Shared/Constants.cs" || die
 	eapply_user
 }
 

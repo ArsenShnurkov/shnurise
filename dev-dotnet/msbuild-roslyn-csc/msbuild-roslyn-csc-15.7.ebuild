@@ -30,9 +30,9 @@ LICENSE="Apache2.0" # https://github.com/dotnet/roslyn/blob/master/License.txt
 IUSE="$(dotnet_expand ${USE_DOTNET}) $(msbuild_expand ${USE_MSBUILD}) +msbuild +gac mskey +debug developer"
 
 COMMON_DEPEND=">=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999
-	msbuild_targets_msbuild15-4? (
-		dev-dotnet/msbuild-tasks-api:15.4
-		dev-dotnet/msbuild-defaulttasks:15.4
+	msbuild_targets_msbuild15-7? (
+		dev-dotnet/msbuild-tasks-api:15.7
+		dev-dotnet/msbuild-defaulttasks:15.7
 	)
 "
 

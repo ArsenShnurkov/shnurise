@@ -20,7 +20,7 @@ inherit xbuild gac
 
 GITHUB_ACCOUNT="Microsoft"
 GITHUB_PROJECTNAME="msbuild"
-EGIT_COMMIT="a0efa11be10d5209afc679d672a79ed67e27875a"
+EGIT_COMMIT="51c3830b82db41a313305d8ee5eb3e8860a5ceb5"
 SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EGIT_COMMIT}.tar.gz -> ${GITHUB_PROJECTNAME}-${GITHUB_ACCOUNT}-${PV}.tar.gz
 	mskey? ( https://github.com/Microsoft/msbuild/raw/master/src/MSFT.snk )
 	https://github.com/mono/mono/raw/master/mcs/class/mono.snk
@@ -38,7 +38,7 @@ RDEPEND="${COMMON_DEPEND}
 DEPEND="${COMMON_DEPEND}
 "
 
-UT_PROJ=Microsoft.Build.Utilities
+UT_PROJ=Microsoft.Build.Utilities.Core
 FW_PROJ=Microsoft.Build.Framework
 UT_DIR=src/Utilities
 FW_DIR=src/Framework
