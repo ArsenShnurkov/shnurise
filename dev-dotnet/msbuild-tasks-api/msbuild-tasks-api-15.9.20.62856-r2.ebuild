@@ -38,7 +38,7 @@ RDEPEND="${COMMON_DEPEND}
 DEPEND="${COMMON_DEPEND}
 "
 
-UT_PROJ=Microsoft.Build.Utilities
+UT_PROJ=Microsoft.Build.Utilities.Core
 FW_PROJ=Microsoft.Build.Framework
 UT_DIR=src/Utilities
 FW_DIR=src/Framework
