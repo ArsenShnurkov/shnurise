@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <OutputType>Library</OutputType>
     <AssemblyName>Microsoft.Build.Tasks.CodeAnalysis</AssemblyName>
-    <VersionNumber Condition=" '$(VersionNumber)' == '' ">15.3</VersionNumber>
+    <VersionNumber Condition=" '$(VersionNumber)' == '' ">15.9</VersionNumber>
     <ReferencesVersion Condition=" '$(ReferencesVersion)' == '' ">$(VersionNumber)</ReferencesVersion>
     <RootNamespace>Microsoft.CodeAnalysis.BuildTasks</RootNamespace>
     <ProjectGuid>{7AD4FE65-9A30-41A6-8004-AA8F89BCB7F3}</ProjectGuid>
@@ -113,7 +113,7 @@
     <Reference Include="System.Threading" />
     <Reference Include="System.Threading.Tasks" />
     <Reference Include="Microsoft.Build.Framework, Version=$(ReferencesVersion), Culture=neutral, PublicKeyToken=$(PublicKeyToken)" />
-    <Reference Include="Microsoft.Build.Utilities, Version=$(ReferencesVersion), Culture=neutral, PublicKeyToken=$(PublicKeyToken)" />
+    <Reference Include="Microsoft.Build.Utilities.Core, Version=$(ReferencesVersion), Culture=neutral, PublicKeyToken=$(PublicKeyToken)" />
     <Reference Include="Microsoft.Build.Tasks.Core, Version=$(ReferencesVersion), Culture=neutral, PublicKeyToken=$(PublicKeyToken)" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
