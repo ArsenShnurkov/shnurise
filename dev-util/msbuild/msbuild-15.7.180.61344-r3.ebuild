@@ -15,7 +15,7 @@ SLOT_OF_API="${SLOT}" # slot for ebuild with API of msbuild
 VER="${PV}" # version of resulting msbuild.exe
 
 USE_DOTNET="net46"
-IUSE="+${USE_DOTNET} +gac mskey developer debug +roslyn symlink"
+IUSE="+${USE_DOTNET} +gac +mskey developer debug +roslyn symlink"
 
 inherit xbuild gac
 
@@ -56,6 +56,8 @@ PROJ2_DIR=src/MSBuild
 src_prepare() {
 	cp "${FILESDIR}/${PV}/mono-${PROJ1}.csproj" "${S}/${PROJ1_DIR}" || die
 	cp "${FILESDIR}/${PV}/mono-${PROJ2}.csproj" "${S}/${PROJ2_DIR}" || die
+	sed -i "s/15.1./15.7./g" "${S}/src/Shared/Constants.cs" || die
+	sed -i "s/15.1./15.7./g" "${S}/src/Tasks/Microsoft.Common.overridetasks" || die
 	cp "${FILESDIR}/${PV}/CommunicationsUtilities.cs" "${S}/src/Shared/CommunicationsUtilities.cs" || die
 	eapply_user
 }
