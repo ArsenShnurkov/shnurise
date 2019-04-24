@@ -93,6 +93,7 @@ src_install() {
 	TargetVersion=${SLOT}
 	insinto "$(MSBuildBinPath)"
 	newins "${PROJ2_DIR}/bin/$(usedebug_tostring)/${PROJ2}.exe" MSBuild.exe
+	doins "${FILESDIR}/${PV}/MSBuild.exe.config"
 	doins "${S}/src/Tasks/Microsoft.Common.props"
 	doins "${S}/src/Tasks/Microsoft.Common.targets"
 	doins "${S}/src/Tasks/Microsoft.Common.overridetasks"
