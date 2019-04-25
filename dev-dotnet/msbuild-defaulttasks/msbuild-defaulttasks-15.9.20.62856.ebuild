@@ -17,7 +17,8 @@ VER="${SLOT_OF_API}.0.0" # version of resulting .dll files in GAC
 USE_DOTNET="net46"
 IUSE="+${USE_DOTNET} +gac +mskey debug  developer"
 
-inherit xbuild gac
+inherit xbuild
+inherit gac
 
 # msbuild-framework.eclass is inherited to get the access to the locations 
 # $(MSBuildBinPath) and $(MSBuildSdksPath)

@@ -38,7 +38,7 @@ MSBuildBinPath () {
 	if [ -z ${TargetVersion+x} ]; then
 		TargetVersion = "${SLOT}"
 	fi
-	echo "$(MSBuildExtensionsPath)/${TargetVersion}"
+	echo "$(MSBuildExtensionsPath)/${TargetVersion}/bin"
 }
 
 # @FUNCTION: MSBuildSdksPath
