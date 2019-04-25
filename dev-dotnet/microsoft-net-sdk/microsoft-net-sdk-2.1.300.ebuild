@@ -8,12 +8,11 @@ KEYWORDS="~amd64 ~ppc ~x86"
 RESTRICT="mirror"
 
 USE_DOTNET="net45"
-USE_MSBUILD="msbuild15-9 msbuild15-7 msbuild15-4"
 
 # inherit directive is placed before IUSE line because of dotnet_expand and msbuild_expand functions
 inherit dotnet msbuild-framework
 
-IUSE="$(dotnet_expand ${USE_DOTNET}) $(msbuild_expand ${USE_MSBUILD}) +msbuild"
+IUSE="$(dotnet_expand ${USE_DOTNET}) +msbuild"
 
 GITHUB_REPONAME="sdk"
 GITHUB_ACCOUNT="dotnet"
@@ -44,19 +43,9 @@ src_compile() {
 }
 
 src_install() {
-	if use msbuild; then
-	    local targets=( ${USE_MSBUILD} )
-	    for target in ${targets[@]}; do
-		local etarget="$( msbuild_expand ${target} )"
-		if use ${etarget}; then
-			local TARGET_SLOT=${target//msbuild/}
-			MSBuildToolsVersion=${TARGET_SLOT//-/.}
-			insinto /usr/share/msbuild/${MSBuildToolsVersion}/Sdks/Microsoft.NET.Sdk/Sdk
-			doins -r "${S}"/src/Tasks/Microsoft.NET.Build.Tasks/sdk/*
-			insinto /usr/share/msbuild/${MSBuildToolsVersion}/Sdks/Microsoft.NET.Sdk/Targets
-			doins -r "${S}"/src/Tasks/Microsoft.NET.Build.Tasks/targets/*
-                fi
-	    done
-	fi 
+	insinto /usr/share/msbuild/Sdks/Microsoft.NET.Sdk/Sdk
+	doins -r "${S}"/src/Tasks/Microsoft.NET.Build.Tasks/sdk/*
+	insinto /usr/share/msbuild/Sdks/Microsoft.NET.Sdk/Targets
+	doins -r "${S}"/src/Tasks/Microsoft.NET.Build.Tasks/targets/*
 }
 

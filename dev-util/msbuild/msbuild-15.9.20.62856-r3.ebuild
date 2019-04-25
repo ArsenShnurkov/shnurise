@@ -108,7 +108,7 @@ src_install() {
 	doins "${S}/src/Tasks/Microsoft.NETFramework.props"
 	doins "${S}/src/Tasks/Microsoft.NETFramework.CurrentVersion.props"
 
-	keepdir "$(MSBuildSdksPath)"
+#	keepdir "$(MSBuildSdksPath)"
 
 	egacinstall "${PROJ1_DIR}/bin/$(usedebug_tostring)/${PROJ1}.dll"
 

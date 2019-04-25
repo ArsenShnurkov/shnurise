@@ -54,6 +54,6 @@ MSBuildBinPath () {
 # @DESCRIPTION: location of Sdks directory
 # for use only from slotted ebuilds
 MSBuildSdksPath () {
-	echo "$(MSBuildBinPath)/Sdks"
+	echo "$(MSBuildExtensionsPath)/Sdks"
 }
 
