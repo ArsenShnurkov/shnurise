@@ -170,6 +170,24 @@
     <Reference Include="System.Xaml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Target Name="BeforeBuild">
+    <PropertyGroup Condition=" '$(VersionNumber)' == '' ">
+      <VersionNumber>1.0.0.0</VersionNumber>
+    </PropertyGroup>
+    <ItemGroup>
+      <AssemblyAttributes Include="AssemblyVersion">
+        <_Parameter1>$(VersionNumber)</_Parameter1>
+      </AssemblyAttributes>
+      <AssemblyAttributes Include="AssemblyFileVersion">
+        <_Parameter1>$(VersionNumber)</_Parameter1>
+      </AssemblyAttributes>
+      <AssemblyAttributes Include="AssemblyInformationalVersion">
+        <_Parameter1>$(VersionNumber)</_Parameter1>
+      </AssemblyAttributes>   
+      </ItemGroup>
+    <WriteCodeFragment Language="C#" OutputFile="AV.cs" AssemblyAttributes="@(AssemblyAttributes)" />
+  </Target>
+<!--
   <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets" />
   <Target Name="BeforeBuild">
     <AssemblyInfo CodeLanguage="C#"
@@ -178,4 +196,5 @@
       AssemblyFileVersion="$(VersionNumber)"
     />
   </Target>
+-->
 </Project>

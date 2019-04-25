@@ -12,6 +12,8 @@ case ${EAPI:-0} in
 	*) ;; #if [[ ${USE_MSBUILD} ]]; then REQUIRED_USE="|| (${USE_MSBUILD})"; fi;;
 esac
 
+inherit versionator
+
 DEPEND+=" dev-dotnet/msbuild-tasks-api"
 
 # @FUNCTION: msbuild_expand
@@ -30,6 +32,13 @@ MSBuildExtensionsPath () {
 	echo "/usr/share/msbuild"
 }
 
+# @FUNCTION: MSBuildToolsVersion
+# @DESCRIPTION: version of tools
+# for use only from slotted ebuilds
+MSBuildToolsVersion () {
+	echo "$(get_version_component_range 1 ${SLOT}).0"
+}
+
 # @FUNCTION: MSBuildBinPath
 # @DESCRIPTION: location of msbuild.exe
 # for use only from slotted ebuilds
@@ -38,7 +47,7 @@ MSBuildBinPath () {
 	if [ -z ${TargetVersion+x} ]; then
 		TargetVersion = "${SLOT}"
 	fi
-	echo "$(MSBuildExtensionsPath)/${TargetVersion}"
+	echo "$(MSBuildExtensionsPath)/${TargetVersion}/bin"
 }
 
 # @FUNCTION: MSBuildSdksPath

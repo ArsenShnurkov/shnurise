@@ -27,7 +27,7 @@ S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 DESCRIPTION="C# compiler with rich code analysis APIs"
 LICENSE="Apache2.0" # https://github.com/dotnet/roslyn/blob/master/License.txt
 
-IUSE="$(dotnet_expand ${USE_DOTNET}) $(msbuild_expand ${USE_MSBUILD}) +msbuild +gac mskey +debug developer"
+IUSE="$(dotnet_expand ${USE_DOTNET}) $(msbuild_expand ${USE_MSBUILD}) +msbuild +gac +mskey +debug developer"
 
 COMMON_DEPEND=">=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999
 	msbuild_targets_msbuild15-9? (
