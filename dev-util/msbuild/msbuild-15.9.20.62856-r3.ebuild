@@ -63,6 +63,9 @@ src_prepare() {
 	sed -E ${REGEX} -i ${S}/src/Tasks/Microsoft.Common.overridetasks || die
 	sed "s/15.1./15.9./g" -i "${S}/src/Shared/Constants.cs" || die
 	sed "s/15.1./15.9./g" -i "${S}/src/Tasks/Microsoft.Common.overridetasks" || die
+
+	sed 's#Project="$(NuGetRestoreTargets)"#Condition="Exists('"'"'$(NuGetRestoreTargets)'"'"')"  Project="$(NuGetRestoreTargets)"#g' -i src/Tasks/Microsoft.Common.CrossTargeting.targets || die
+
 	eapply_user
 }
 
@@ -98,18 +101,18 @@ src_install() {
 	insinto "$(MSBuildBinPath)"
 	newins "${PROJ2_DIR}/bin/$(usedebug_tostring)/${PROJ2}.exe" MSBuild.exe
 	doins "${FILESDIR}/${PV}/MSBuild.exe.config"
-	#doins "${S}/src/Tasks/Microsoft.CSharp.targets"
-	#doins "${S}/src/Tasks/Microsoft.CSharp.CurrentVersion.targets"
-	#doins "${S}/src/Tasks/Microsoft.Common.targets"
-	#doins "${S}/src/Tasks/Microsoft.Common.CurrentVersion.targets"
-	#doins "${S}/src/Tasks/Microsoft.NETFramework.targets"
-	#doins "${S}/src/Tasks/Microsoft.NETFramework.CurrentVersion.targets"
+	doins "${S}/src/Tasks/Microsoft.CSharp.targets"
+	doins "${S}/src/Tasks/Microsoft.CSharp.CurrentVersion.targets"
+	doins "${S}/src/Tasks/Microsoft.Common.targets"
+	doins "${S}/src/Tasks/Microsoft.Common.CurrentVersion.targets"
+	doins "${S}/src/Tasks/Microsoft.NETFramework.targets"
+	doins "${S}/src/Tasks/Microsoft.NETFramework.CurrentVersion.targets"
 	doins "${S}/src/Tasks/Microsoft.Common.overridetasks"
 	doins "${S}/src/Tasks/Microsoft.NETFramework.props"
 	doins "${S}/src/Tasks/Microsoft.NETFramework.CurrentVersion.props"
-	#doins "${S}/src/Tasks/Microsoft.CSharp.CrossTargeting.targets"
-	#Microsoft.Common.CrossTargeting.targets
-	doins "${S}/src/Tasks/"*.targets
+	doins "${S}/src/Tasks/Microsoft.CSharp.CrossTargeting.targets"
+	doins "${S}/src/Tasks/Microsoft.Common.CrossTargeting.targets"
+	#doins "${S}/src/Tasks/"*.targets
 
 #	keepdir "$(MSBuildSdksPath)"
 	dosym ${EPREFIX}/usr/share/msbuild/Sdks /usr/share/msbuild/${SLOT}/bin/Sdks || die

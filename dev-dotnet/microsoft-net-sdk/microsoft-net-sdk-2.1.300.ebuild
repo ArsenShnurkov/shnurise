@@ -44,8 +44,9 @@ src_compile() {
 
 src_install() {
 	insinto /usr/share/msbuild/Sdks/Microsoft.NET.Sdk/Sdk
-	doins -r "${S}"/src/Tasks/Microsoft.NET.Build.Tasks/sdk/*
+	doins -r "${S}/src/Tasks/Microsoft.NET.Build.Tasks/sdk/"*
 	insinto /usr/share/msbuild/Sdks/Microsoft.NET.Sdk/targets
-	doins -r "${S}"/src/Tasks/Microsoft.NET.Build.Tasks/targets/*
+	doins -r "${S}/src/Tasks/Microsoft.NET.Build.Tasks/targets/"*
+	doins -r "${S}/src/Tasks/Common/targets/"*
 }
 
