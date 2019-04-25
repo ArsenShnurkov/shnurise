@@ -90,3 +90,4 @@ src_install() {
 	doins "$(output_filename)"
 	doins "${FILESDIR}/${SLOT}/Microsoft.Common.tasks"
 }
+

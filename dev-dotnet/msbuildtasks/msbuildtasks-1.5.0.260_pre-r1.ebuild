@@ -14,7 +14,14 @@ fi
 
 USE_DOTNET="net45"
 
-inherit versionator dotnet msbuild
+inherit versionator
+
+# xbuild here can't be changed to msbuild
+# because tasks from this package is used to build dev-dotnet/msbuild-defaulttasks
+# and dependency on msbuild will create a circle (circular dependency)
+inherit xbuild
+
+inherit gac
 
 IUSE="+${USE_DOTNET} +debug developer +msbuild +xbuild +symlink"
 
@@ -32,6 +39,7 @@ LICENSE="BSD" # https://github.com/loresoft/msbuildtasks/blob/master/LICENSE
 
 COMMON_DEPEND=">=dev-lang/mono-4.0.2.5
 	>=dev-dotnet/dotnetzip-semverd-1.9.3-r4
+	dev-dotnet/msbuild-tasks-api
 "
 RDEPEND="${COMMON_DEPEND}
 "
@@ -66,13 +74,13 @@ src_prepare() {
 	eapply "${FILESDIR}/csproj.patch"
 	eapply "${FILESDIR}/location.patch"
 	sed -i "s?/usr/lib/mono/4.5?/usr/lib/mono/4.5/MSBuild.Community.Tasks${APPENDIX}?g" "${S}/$(project_relpath)/$(targets_filename)" || die
-	sed -i 's/Microsoft.Build.Framework/Microsoft.Build.Framework, Version=15.3.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756/g' "$(metafile_to_build)" || die
-	sed -i 's/Microsoft.Build.Utilities.v4.0/Microsoft.Build.Utilities.Core, Version=15.3.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756/g' "$(metafile_to_build)" || die
+#	sed -i 's/Microsoft.Build.Framework/Microsoft.Build.Framework, Version=15.9.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756/g' "$(metafile_to_build)" || die
+	sed -i 's/Microsoft.Build.Utilities.v4.0/Microsoft.Build.Utilities.Core/g' "$(metafile_to_build)" || die
 	eapply_user
 }
 
 src_compile() {
-	emsbuild "/p:SignAssembly=true" "/p:PublicSign=true" "/p:AssemblyOriginatorKeyFile=${KEY2}" "$(metafile_to_build)"
+	exbuild "/p:SignAssembly=true" "/p:PublicSign=true" "/p:AssemblyOriginatorKeyFile=${KEY2}" "$(metafile_to_build)"
 	sn -R "$(project_relpath)/$(output_relpath)/$(AssemblyName).dll" "${KEY2}" || die
 }
 
