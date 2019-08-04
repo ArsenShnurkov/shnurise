@@ -55,9 +55,13 @@ src_compile() {
 src_install() {
 	insinto $(library_assembly_dir)
 	for assembly_name in ${ASSEMBLY_NAMES[*]} ; do
-		ASSEMBLY_NAME="${WORKDIR}/${assembly_name}.*"
-		einfo "installing  ${DQUOTE}${ASSEMBLY_NAME}${DQUOTE}"
-		doins "${ASSEMBLY_NAME}"
+		ASSEMBLY_NAME="${WORKDIR}/${assembly_name}"
+		einfo "installing  ${DQUOTE}${ASSEMBLY_NAME}.dll${DQUOTE}"
+		doins "${ASSEMBLY_NAME}.dll"
+		if (use debug); then
+			einfo "installing  ${DQUOTE}${ASSEMBLY_NAME}.pdb${DQUOTE}"
+			doins "${ASSEMBLY_NAME}.pdb"
+		fi
 	done
 	einstall_pc_file "${PN}" "1.0" ${ASSEMBLY_NAMES[*]}
 }
