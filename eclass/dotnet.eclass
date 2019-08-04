@@ -137,10 +137,11 @@ function framework_assembly_dir() {
 # @FUNCTION: library_assembly_dir
 # @DESCRIPTION:  returns default directory for installing libraries
 function library_assembly_dir() {
-	# note that 'dotnet' is hardcoded, don't change it to '${CATEGORY}'
-	# because when you referer this function from another ebuild category can be different
+	# note that 'dev-dotnet' is hardcoded, don't change it to '${CATEGORY}'
+	# because when you referer this function from another ebuild, the category can be different
 	# note that 'share' is hardcoded, don't change it to '$(get_libdir)'
 	# because mono assemblies should be architecture independent in common case
+	# why there is no "mono/${FRAMEWORK}" after "share" ?
 	echo "/usr/share/dev-dotnet/${PN}${APPENDIX}"
 }
 
