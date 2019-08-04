@@ -11,9 +11,9 @@ USE_DOTNET="net45"
 USE_MSBUILD="msbuild15-9 msbuild15-7 msbuild15-4"
 
 # inherit directive is placed before IUSE line because of dotnet_expand and msbuild_expand functions
-inherit dotnet msbuild-framework
+inherit dotnet msbuild-framework xbuild
 
-IUSE="$(dotnet_expand ${USE_DOTNET}) $(msbuild_expand ${USE_MSBUILD}) +msbuild"
+IUSE="$(dotnet_expand ${USE_DOTNET}) $(msbuild_expand ${USE_MSBUILD}) +msbuild debug developer"
 
 GITHUB_REPONAME="sdk"
 GITHUB_ACCOUNT="dotnet"
@@ -36,11 +36,12 @@ DEPEND="${COMMON_DEPEND}
 "
 
 src_prepare() {
+	cp "${FILESDIR}/nonuget-Microsoft.NET.Build.Tasks.csproj" "${S}/src/Tasks/Microsoft.NET.Build.Tasks/Microsoft.NET.Build.Tasks.csproj" || die
 	eapply_user
 }
 
 src_compile() {
-	default
+	exbuild "${S}/src/Tasks/Microsoft.NET.Build.Tasks/Microsoft.NET.Build.Tasks.csproj"
 }
 
 src_install() {
