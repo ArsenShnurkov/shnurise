@@ -40,3 +40,33 @@ app-emulation/qemu:vte - Enable terminal support (x11-libs/vte) in the GTK+ inte
 app-emulation/qemu:xattr - Add support for getting and setting POSIX extended attributes, through sys-apps/attr. Requisite for the virtfs backend.
 app-emulation/qemu:xen - Enables support for Xen backends
 app-emulation/qemu:xfs - Support xfsctl() notification and syncing for XFS backed virtual disks.
+dev-db/sharphsql:debug - Create .mdb files for release configuration
+dev-db/sharphsql:gac - sign assembly with strongname and install into gac
+dev-db/sharphsql:nupkg - build ,nuget package and install into distributive-dependent path
+dev-db/sharphsql:test - automatically turned on when FEATURES=test is set
+dev-dotnet/cecil:pkg-config - create .pc file(s) for .dll(s) installed to gac
+dev-dotnet/dotnetzip-semverd:developer - 
+dev-dotnet/mono-options:developer - n/a
+dev-dotnet/mono-options:gac - n/a
+dev-dotnet/mono-options:nupkg - n/a
+dev-dotnet/newtonsoft-json:pkg-config - create .pc file(s) for .dll(s) installed to gac
+dev-dotnet/npgsql:machine - register ADO .NET data provider in machine.config
+dev-dotnet/npgsql:pkg-config - create .pc file(s) for .dll(s) installed to gac
+dev-dotnet/slntools:developer - enables debug information for any of debug and release builds
+dev-dotnet/slntools:nupkg - creates local nuget package
+dev-gaclibs/Autopsy-Formats-PeCoff:debug - Create .mdb files for release configuration
+dev-gaclibs/github-api:debug - Create .mdb files for release configuration
+dev-lang/mono-patched:pax_kernel - Enable if the user plans to run the package under a pax enabled hardened kernel
+dev-lang/mono-patched:xen - Make mono generate code that is considerably faster on xen VMs but slightly slower on for normal systems.
+dev-util/mono-packaging-tools:aot - compile to machine code and store to disk during install, to save time later during startups
+dev-util/monodevelop:git - Enable Git version control support
+dev-util/monodevelop:gnome - Enable support gnome support (unsetting this flag is unsupported)
+dev-util/monodevelop:qtcurve - Remove qtcurve check (unsupported)
+dev-util/nunit:developer - enables debug information for any of debug and release builds
+dev-util/nunit:nupkg - creates local nuget package
+dev-util/nunit2:developer - enables debug information for any of debug and release builds
+dev-util/nunit2:nupkg - creates local nuget package
+net-libs/xulrunner:custom-optimization - Fine-tune custom compiler optimizations
+www-servers/xsp:modmono - install mod-mono-server
+www-servers/xsp:openrc - install init.d scripts
+www-servers/xsp:xsp - install standalone XSP web server
