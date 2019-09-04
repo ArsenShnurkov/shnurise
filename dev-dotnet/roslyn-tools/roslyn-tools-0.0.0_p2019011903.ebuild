@@ -1,19 +1,20 @@
 # Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
-SLOT="0"
+EAPI="6" # valid EAPI assignment must occur on or before line: 5
 
 KEYWORDS="~amd64 ~x86 ~ppc"
 RESTRICT="mirror"
+
+SLOT="0"
 
 USE_DOTNET="net45"
 IUSE="+${USE_DOTNET}"
 
 inherit versionator dotnet
 
-GITHUB_REPONAME="roslyn-tools"
 GITHUB_ACCOUNT="dotnet"
+GITHUB_REPONAME="roslyn-tools"
 EGIT_COMMIT="8a1c2507afd04904cfa34515509f264b87655494"
 
 SRC_URI="https://codeload.github.com/${GITHUB_ACCOUNT}/${GITHUB_REPONAME}/tar.gz/${EGIT_COMMIT} -> ${PN}-${PV}.tar.gz"
@@ -42,3 +43,4 @@ src_compile() {
 src_install() {
 	default
 }
+
