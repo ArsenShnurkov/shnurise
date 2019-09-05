@@ -50,6 +50,9 @@ src_compile() {
 }
 
 src_install() {
-	default
+	insinto "$(anycpu_current_assembly_dir)"
+	doins "${S}/src/System.CommandLine/bin/Release/System.CommandLine.dll"
+
+	dosym "$(anycpu_current_assembly_dir)/System.CommandLine.dll" "$(anycpu_current_symlink_dir)/System.CommandLine.dll"
 }
 

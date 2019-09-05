@@ -6,9 +6,9 @@
 # @BLURB: common settings and functions for mono and dotnet related packages
 # @DESCRIPTION:
 # The dotnet eclass contains common environment settings that are useful for
-# dotnet packages.  Currently, it provides no functions, just exports
-# MONO_SHARED_DIR and sets LC_ALL in order to prevent errors during compilation
-# of dotnet packages.
+# dotnet packages.  Currently, it 
+# exports MONO_SHARED_DIR ans
+# sets LC_ALL in order to prevent errors during compilation of dotnet packages.
 
 case ${EAPI:-0} in
 	0) die "this eclass doesn't support EAPI 0" ;;
@@ -18,20 +18,29 @@ esac
 
 inherit eutils versionator mono-env
 
+# >=mono-0.92 versions using mcs -pkg:foo-sharp require shared memory, so we set the
+# shared dir to ${T} so that ${T}/.wapi can be used during the install process.
+export MONO_SHARED_DIR="${T}"
+
+# Building mono, nant and many other dotnet packages is known to fail if LC_ALL
+# variable is not set to C. To prevent this all mono related packages will be
+# build with LC_ALL=C (see bugs #146424, #149817)
+export LC_ALL=C
+
+# Monodevelop-using applications need this to be set or they will try to create config
+# files in the user's ~ dir.
+
+export XDG_CONFIG_HOME="${T}"
+
 SANDBOX_WRITE="${SANDBOX_WRITE}:/etc/mono/registry/:/etc/mono/registry/last-btime"
+
+# Fix bug 83020:
+# "Access Violations Arise When Emerging Mono-Related Packages with MONO_AOT_CACHE"
+
+unset MONO_AOT_CACHE
 
 # @ECLASS-VARIABLE: USE_DOTNET
 # @DESCRIPTION: This variable enumerate all dotnet which are supported by ebuild
-
-# @FUNCTION: dotnet_expand
-# @DESCRIPTION: expands values from the DOTNET_TARGET variable
-dotnet_expand() {
-	# do nothing for now
-	echo "$@"
-}
-
-# SRC_URI+=" https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
-# I was unable to setup it this ^^ way
 
 # SET default use flags according on DOTNET_TARGETS
 for x in ${USE_DOTNET}; do
@@ -43,8 +52,22 @@ for x in ${USE_DOTNET}; do
 	esac
 done
 
+if [ "${SLOT}" != "0" ]; then
+	APPENDIX="-${SLOT}"
+fi
+
+# SRC_URI+=" https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+# I was unable to append SRC_URI variable this ^^ way
+
+# @FUNCTION: dotnet_expand
+# @DESCRIPTION: expands values from the DOTNET_TARGETS variable
+dotnet_expand() {
+	# do nothing for now
+	echo "$@"
+}
+
 # @FUNCTION: dotnet_pkg_setup
-# @DESCRIPTION:  This function set FRAMEWORK
+# @DESCRIPTION:  This function set FRAMEWORK variable
 dotnet_pkg_setup() {
 	EBUILD_FRAMEWORK=""
 	for x in ${USE_DOTNET} ; do
@@ -81,25 +104,6 @@ dotnet_pkg_setup() {
 	einfo " -- USING .NET ${FRAMEWORK} FRAMEWORK -- "
 }
 
-# >=mono-0.92 versions using mcs -pkg:foo-sharp require shared memory, so we set the
-# shared dir to ${T} so that ${T}/.wapi can be used during the install process.
-export MONO_SHARED_DIR="${T}"
-
-# Building mono, nant and many other dotnet packages is known to fail if LC_ALL
-# variable is not set to C. To prevent this all mono related packages will be
-# build with LC_ALL=C (see bugs #146424, #149817)
-export LC_ALL=C
-
-# Monodevelop-using applications need this to be set or they will try to create config
-# files in the user's ~ dir.
-
-export XDG_CONFIG_HOME="${T}"
-
-# Fix bug 83020:
-# "Access Violations Arise When Emerging Mono-Related Packages with MONO_AOT_CACHE"
-
-unset MONO_AOT_CACHE
-
 # @FUNCTION: usedebug_tostring
 # @DESCRIPTION:  returns strings "Debug" or "Release" depending from USE="debug"
 function usedebug_tostring ( ) {
@@ -118,10 +122,6 @@ function output_relpath ( ) {
 	echo "bin/$(usedebug_tostring)"
 }
 
-if [ "${SLOT}" != "0" ]; then
-	APPENDIX="-${SLOT}"
-fi
-
 # @FUNCTION: framework_api_dir
 # @DESCRIPTION: returns path to mono-api assemblies
 function framework_api_dir() {
@@ -136,6 +136,7 @@ function framework_assembly_dir() {
 
 # @FUNCTION: library_assembly_dir
 # @DESCRIPTION:  returns default directory for installing libraries
+# @OBSOLETE: use platform_assembly_dir/platform_symlink_dir and anycpy_assembly_dir/anycpy_symlink_dir
 function library_assembly_dir() {
 	# note that 'dev-dotnet' is hardcoded, don't change it to '${CATEGORY}'
 	# because when you referer this function from another ebuild, the category can be different
@@ -147,9 +148,73 @@ function library_assembly_dir() {
 
 # @FUNCTION: executable_assembly_dir
 # @DESCRIPTION:  returns default directory for installing executables
+# @OBSOLETE: use platform_assembly_dir and anycpy_assembly_dir
 function executable_assembly_dir() {
 	echo "/usr/share/${PN}${APPENDIX}"
 }
+
+# ========================================================================
+
+function directory_modificator_for_slot()
+{
+	local MODIFICATOR=""
+	if [ "${1}" != "0" ]; then
+		MODIFICATOR="-${1}"
+	fi
+	echo "${MODIFICATOR}"
+}
+
+# @FUNCTION: platform_assembly_dir
+# @DESCRIPTION:  returns default directory for installing platform-dependent CLR assemblies
+function platform_assembly_dir() {
+	echo "/var/$(get_libdir)/mono/assemblies/${1}$(directory_modificator_for_slot $2)"
+}
+
+# @FUNCTION: platform_symlink_dir
+# @DESCRIPTION:  returns default directory for symlinks to platform-dependent CLR assembly and it's dependencies
+function platform_symlink_dir() {
+	echo "/var/$(get_libdir)/mono/assemblies/${1}$(directory_modificator_for_slot $2)/bin"
+}
+
+# @FUNCTION: anycpu_assembly_dir
+# @DESCRIPTION:  returns default directory for installing platform-independent CLR assemblies
+function anycpu_assembly_dir() {
+	echo "/usr/share/mono/assemblies/${1}$(directory_modificator_for_slot $2)"
+}
+
+# @FUNCTION: anycpu_symlink_dir
+# @DESCRIPTION:  returns default directory for symlinks to platform-independent CLR assembly and it's dependencies
+function anycpu_symlink_dir() {
+	echo "/usr/share/mono/assemblies/${1}$(directory_modificator_for_slot $2)/bin"
+}
+
+# ========================================================================
+
+# @FUNCTION: platform_current_assembly_dir
+# @DESCRIPTION:  returns default directory for installing platform-dependent CLR assemblies
+function platform_current_assembly_dir() {
+	echo "$(platform_assembly_dir ${PN} ${SLOT})"
+}
+
+# @FUNCTION: platform_current_symlink_dir
+# @DESCRIPTION:  returns default directory for symlinks to platform-dependent CLR assembly and it's dependencies
+function platform_current_symlink_dir() {
+	echo "$(platform_symlink_dir ${PN} ${SLOT})"
+}
+
+# @FUNCTION: anycpu_current_assembly_dir
+# @DESCRIPTION:  returns default directory for installing platform-independent CLR assemblies
+function anycpu_current_assembly_dir() {
+	echo "$(anycpu_assembly_dir ${PN} ${SLOT})"
+}
+
+# @FUNCTION: anycpu_current_symlink_dir
+# @DESCRIPTION:  returns default directory for symlinks to platform-independent CLR assembly and it's dependencies
+function anycpu_current_symlink_dir() {
+	echo "$(anycpu_symlink_dir ${PN} ${SLOT})"
+}
+
+# ========================================================================
 
 # @FUNCTION: dotnet_multilib_comply
 # @DESCRIPTION:  multilib comply
