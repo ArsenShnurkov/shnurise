@@ -3,12 +3,12 @@ DEPEND=>=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 >=dev-dotnet/msbuildtasks-1
 DESCRIPTION=The C# port of ANTLR 3 (Rubtime library)
 EAPI=6
 HOMEPAGE=https://github.com/antlr/antlr3
-IUSE=+net45 debug developer doc net45 net45 gac pkg-config pkg-config symlink
+IUSE=+net45 debug developer doc net45 net45 gac pkg-config pkg-config
 KEYWORDS=~amd64 ~x86
 LICENSE=BSD
 RDEPEND=>=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 dev-lang/mono
 RESTRICT=mirror
 SLOT=31
 SRC_URI=https://github.com/antlr/antlr3/archive/69f890e6433edfce316f09f9fa6b7ebf20551344.tar.gz -> dev-dotnet-antlr3-runtime-3.1.3.tar.gz https://github.com/mono/mono/raw/master/mcs/class/mono.snk
-_eclasses_=desktop	b1d22ac8bdd4679ab79c71aca235009d	dotnet	7ee9478bcb41cef4f2d1c1d451903b04	epatch	a1bf4756dba418a7238f3be0cb010c54	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	gac	8676bb004075396887abfc3761616db1	ltprune	2729691420b6deeda2a90b1f1183fb55	mono-env	059a05efbba66d5bdcc2dd74d91f82f8	mono-pkg-config	640aa55a8fdc6a72cc28cdff9f47bc81	msbuild	9a7a8e4c642748bedc5b06124f0ed58c	msbuild-framework	ad136e035beb92578d260ba838c4b6ae	multilib	1d91b03d42ab6308b5f4f6b598ed110e	preserve-libs	ef207dc62baddfddfd39a164d9797648	toolchain-funcs	2f8b8f320bee13b71a8a54cc6d09e08a	vcs-clean	2a0f74a496fa2b1552c4f3398258b7bf	versionator	2352c3fc97241f6a02042773c8287748
+_eclasses_=desktop	b1d22ac8bdd4679ab79c71aca235009d	dotnet	7ee9478bcb41cef4f2d1c1d451903b04	epatch	a1bf4756dba418a7238f3be0cb010c54	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	gac	8676bb004075396887abfc3761616db1	ltprune	2729691420b6deeda2a90b1f1183fb55	mono-env	059a05efbba66d5bdcc2dd74d91f82f8	mono-pkg-config	b95f2b63f7562739a5d3e67398e2f13c	msbuild	9a7a8e4c642748bedc5b06124f0ed58c	msbuild-framework	ad136e035beb92578d260ba838c4b6ae	multilib	1d91b03d42ab6308b5f4f6b598ed110e	preserve-libs	ef207dc62baddfddfd39a164d9797648	toolchain-funcs	2f8b8f320bee13b71a8a54cc6d09e08a	vcs-clean	2a0f74a496fa2b1552c4f3398258b7bf	versionator	2352c3fc97241f6a02042773c8287748
 _md5_=55d56b1b1df350664f0199e2991af8d9

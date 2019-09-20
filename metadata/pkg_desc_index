@@ -12,7 +12,7 @@ dev-dotnet/autofac-web 3.0.0.0-r1: An addictive .NET IoC container
 dev-dotnet/buildtools 1.0.27: Build tools that are necessary for building the .NET Core projects
 dev-dotnet/castle-core 1.2.0-r2 4.0.0_beta1-r1: including Castle DynamicProxy, Logging Services and DictionaryAdapter
 dev-dotnet/cecil 0.10_beta7_p2018031901-r1: System.Reflection alternative to generate and inspect .NET executables/libraries
-dev-dotnet/command-line-api 0.0.0.0_p1499: Library for building command line applications with extensible middleware pipeline
+dev-dotnet/command-line-api 0.0.0.0_p1499-r1: Library for building command line applications with extensible middleware pipeline
 dev-dotnet/dotnetzip-semverd 1.9.3-r4: create, extract, or update zip files with C# (=DotNetZip+SemVer)
 dev-dotnet/eto-parse 1.4.0_p20150907-r3: CLI parser with API, recursive descent, LL(k), for BNF, EBNF and Gold Grammars
 dev-dotnet/fluent-nhibernate 2.0.2-r1: XML-less, compile safe, automated, convention-based mappings for NHibernate
