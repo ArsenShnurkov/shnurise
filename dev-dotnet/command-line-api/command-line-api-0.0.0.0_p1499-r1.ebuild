@@ -13,7 +13,9 @@ HOMEPAGE="https://github.com/dotnet/command-line-api"
 DESCRIPTION="Library for building command line applications with extensible middleware pipeline"
 
 
-inherit dotnet
+inherit dotnet mono-pkg-config
+
+IUSE="+pkg-config"
 
 GITHUB_ACCOUNT="dotnet"
 GITHUB_REPONAME="command-line-api"
@@ -38,6 +40,15 @@ src_prepare() {
 	eapply_user
 }
 
+
+# https://stackoverflow.com/a/21941473/4158543
+anycpu_dlls()
+{
+	declare -a ANYCPU_DLLS
+	ANYCPU_DLLS+=("${S}/src/System.CommandLine/bin/Release/System.CommandLine.dll")
+	echo ${ANYCPU_DLLS[@]}
+}
+
 src_compile() {
 	cd "${S}/src/System.CommandLine" || die
 	mkdir -p bin/Release || die
@@ -49,9 +60,14 @@ src_compile() {
 		/t:library /out:bin/Release/System.CommandLine.dll || die
 }
 
+
 src_install() {
-	insinto "$(anycpu_current_assembly_dir)"
-	doins "${S}/src/System.CommandLine/bin/Release/System.CommandLine.dll"
+	#insinto "$(anycpu_current_assembly_dir)"
+	#doins "${S}/src/System.CommandLine/bin/Release/System.CommandLine.dll"
+
+	einfo "=== making .pc file ==="
+	einfo "$(anycpu_current_assembly_dir)" $(anycpu_dlls)
+	elib "$(anycpu_current_assembly_dir)" $(anycpu_dlls)
 
 	dosym "$(anycpu_current_assembly_dir)/System.CommandLine.dll" "$(anycpu_current_symlink_dir)/System.CommandLine.dll"
 }
