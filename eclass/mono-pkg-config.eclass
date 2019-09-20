@@ -13,7 +13,7 @@ case ${EAPI:-0} in
 	6) ;;
 esac
 
-IUSE+=" pkg-config symlink"
+IUSE+=" pkg-config"
 
 DEPEND+=" virtual/pkgconfig"
 
@@ -28,7 +28,7 @@ DEPEND+=" virtual/pkgconfig"
 # @FUNCTION: einstall_pc_file
 # @DESCRIPTION:  installs .pc file
 # The file format contains predefined metadata keywords and freeform variables (like ${prefix} and ${exec_prefix})
-# $1 = ${PN}
+# $1 = ${CATEGORY}/${PN}
 # $2 = ${PV}
 # $3 = myassembly1 # path and filename with extension of the first .dll
 # $4 = myassembly2 # path and filename with extension of the second .dll
@@ -38,19 +38,16 @@ einstall_pc_file()
 	if use pkg-config; then
 		local PC_NAME="$1"
 		local PC_VERSION="$2"
+		shift 2
+
 		local PC_DESCRIPTION="${DESCRIPTION}"
 
-		local PC_INTERNAL_NAME="${PN}"
-
 		# keep verbatim, do not change it to "/usr/$(get_libdir)/pkgconfig"
-		local PC_DIRECTORY="/usr/lib/pkgconfig"
+		local PC_DIRECTORY="/usr/share/pkgconfig"
 
 		local PC_FILENAME="${CATEGORY}-${PN}"
 		local PC_FILENAME_WITH_SLOT="${PC_FILENAME}${APPENDIX}"
 
-		PC_DIRECTORY_VER="${PC_DIRECTORY}/${PC_FILENAME_WITH_SLOT}"
-
-		shift 2
 		if [ "$#" == "0" ]; then
 			die "no assembly names given"
 		fi
@@ -61,7 +58,6 @@ einstall_pc_file()
 		done
 
 		dodir "${PC_DIRECTORY}"
-		dodir "${PC_DIRECTORY_VER}"
 
 		ebegin "Installing ${PC_FILENAME_WITH_SLOT}.pc file"
 
@@ -76,11 +72,11 @@ einstall_pc_file()
 		# (they only requires sed escaping for replacement path)
 		sed \
 			-e "s:@PC_VERSION@:${PC_VERSION}:" \
-			-e "s:@Name@:${PC_INTERNAL_NAME}:" \
+			-e "s:@Name@:${PC_NAME}:" \
 			-e "s\\@DESCRIPTION@\\${PC_DESCRIPTION}\\" \
 			-e "s:@LIBDIR@:$(get_libdir):" \
 			-e "s*@LIBS@*${DLL_REFERENCES}*" \
-			<<-EOF >"${D}/${PC_DIRECTORY_VER}/${PC_FILENAME_WITH_SLOT}.pc" || die
+			<<-EOF >"${D}/${PC_DIRECTORY}/${PC_FILENAME_WITH_SLOT}.pc" || die
 				prefix=\${pcfiledir}/../..
 				exec_prefix=\${prefix}
 				libdir=\${exec_prefix}/@LIBDIR@
@@ -90,38 +86,37 @@ einstall_pc_file()
 				Libs: @LIBS@
 			EOF
 
-		einfo PKG_CONFIG_PATH="${D}/${PC_DIRECTORY_VER}" pkg-config --exists "${PC_FILENAME_WITH_SLOT}"
-		PKG_CONFIG_PATH="${D}/${PC_DIRECTORY_VER}" pkg-config --exists "${PC_FILENAME_WITH_SLOT}" || die ".pc file failed to validate."
+		einfo PKG_CONFIG_PATH="${D}/${PC_DIRECTORY}" pkg-config --exists "${PC_FILENAME_WITH_SLOT}"
+		PKG_CONFIG_PATH="${D}/${PC_DIRECTORY}" pkg-config --exists "${PC_FILENAME_WITH_SLOT}" || die ".pc file failed to validate."
 		eend $?
-
-		if use symlink; then
-			if [ "${PC_FILENAME}" != "PC_FILENAME_WITH_SLOT" ]; then
-				einfo "SymLinking ${PC_DIRECTORY_VER}/${PC_FILENAME_WITH_SLOT}.pc file as ${PC_DIRECTORY}/${PC_FILENAME}.pc"
-				dosym "${PC_DIRECTORY_VER}/${PC_FILENAME_WITH_SLOT}.pc" "${PC_DIRECTORY}/${PC_FILENAME}.pc"
-			fi
-		fi
 	fi
 }
 
 # @FUNCTION: elib
 # @DESCRIPTION: installs .dll file into filesystem
-# $1 = path to assembly file to install
+# $1 = path to install directory
+# $2 = myassembly1 # path and filename with extension of the first .dll
+# $3 = myassembly2 # path and filename with extension of the second .dll
+# $N = myassemblyN-1 # other names
 elib () {
-	local INSTALL_PATH="$(library_assembly_dir)"
+	local INSTALL_PATH="$1" # $(library_assembly_dir)
+	shift 1
 	einfo "installing into ${INSTALL_PATH}"
 	insinto "${INSTALL_PATH}"
-	local DLL_LIST
+	declare -a DLL_LIST
 	# https://unix.stackexchange.com/questions/128204/what-does-while-test-gt-0-do/128207
 	while ${1+:} false ; do
 		# https://stackoverflow.com/questions/2664740/extract-file-basename-without-path-and-extension-in-bash
 		local ASSEMBLY_FILENAMEWEXT="${1##*/}"
 		local ASSEMBLY_FILENAME="${ASSEMBLY_FILENAMEWEXT%.*}"
-		einfo "as ${ASSEMBLY_FILENAMEWEXT} and ${ASSEMBLY_FILENAME}"
+		einfo "ASSEMBLY_FILENAMEWEXT=${ASSEMBLY_FILENAMEWEXT}, ASSEMBLY_FILENAME=${ASSEMBLY_FILENAME}"
+		einfo "doins \"$1\""
 		doins "$1"
 		einfo "elib: $1 is installed as ${INSTALL_PATH}/${ASSEMBLY_FILENAMEWEXT}"
-		DLL_LIST+=" ${INSTALL_PATH}/${ASSEMBLY_FILENAMEWEXT}"
+		DLL_LIST+=( "${INSTALL_PATH}/${ASSEMBLY_FILENAMEWEXT}" )
 		shift
 	done
-	einstall_pc_file "${PN}" "${PV}" ${DLL_LIST}
-	einfo "elib: .pc-file is created"
+	einfo "einstall_pc_file \"${PN}\" \"${PV}\" ${DLL_LIST[@]}"
+	einstall_pc_file "${CATEGORY}/${PN}" "${PV}" ${DLL_LIST[@]}
+	einfo "elib finished"
 }
