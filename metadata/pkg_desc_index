@@ -41,8 +41,8 @@ dev-dotnet/remotion-linq 2.1.2-r1: Library to create full-featured LINQ provider
 dev-dotnet/remotion-linq-eagerfetching 2.1.0-r1: Library to create full-featured LINQ providers (fetching).
 dev-dotnet/roslyn-tools 0.0.0_p2019011903: 'Tools used in Roslyn based repos
 dev-dotnet/slntools 1.1.3_p201508170-r2: library for merging .sln files, and cli-tool
-dev-dotnet/ssh-config-parser 1.0: C#/.NET parser for OpenSSH config files
-dev-dotnet/ssh-net 2016.1.0_p33: SSH.NET is a Secure Shell (SSH) library for .NET, optimized for parallelism.
+dev-dotnet/ssh-config-parser 1.0-r1: C#/.NET parser for OpenSSH config files
+dev-dotnet/ssh-net 2016.1.0_p33-r1: SSH.NET is a Secure Shell (SSH) library for .NET, optimized for parallelism.
 dev-dotnet/system-collections-immutable 2.0.0_pre: part of CoreFX
 dev-dotnet/system-reflection-metadata 2.0.0_pre: part of CoreFX
 dev-gaclibs/Autopsy-Formats-PeCoff 1.0: Safe and static parsing for PE/COFF/LIB formats
