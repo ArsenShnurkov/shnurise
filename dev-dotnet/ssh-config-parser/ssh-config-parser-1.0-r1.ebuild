@@ -1,13 +1,22 @@
 # Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
-KEYWORDS="~amd64 ~x86"
+EAPI="6" # valid EAPI assignment must occur on or before line: 5
+
+KEYWORDS="~amd64 ~x86 ~ppc"
 RESTRICT+=" mirror"
 
 SLOT="0"
 
-COMMON_DEPEND="
+GITHUB_ACCOUNT="JeremySkinner"
+GITHUB_REPONAME="Ssh-Config-Parser"
+REPOSITORY="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_REPONAME}"
+
+HOMEPAGE="https://github.com/JeremySkinner/Ssh-Config-Parser"
+DESCRIPTION="C#/.NET parser for OpenSSH config files"
+LICENSE="MIT" # LICENSE_URL="${REPOSITORY}/blob/master/LICENSE"
+
+COMMON_DEPEND=">=dev-lang/mono-6
 "
 DEPEND="${COMMON_DEPEND}
 "
@@ -22,28 +31,26 @@ inherit dotnet
 # mono-pkg-config allows to install .pc-files for monodevelop
 inherit mono-pkg-config
 
-HOMEPAGE="https://github.com/JeremySkinner/Ssh-Config-Parser"
-DESCRIPTION="C#/.NET parser for OpenSSH config files"
-LICENSE="MIT"
-
-REPO_NAME="Ssh-Config-Parser"
-REPO_OWNER="JeremySkinner"
-REPOSITORY="https://github.com/${REPO_OWNER}/${NAME}"
-LICENSE_URL="${REPOSITORY}/blob/master/LICENSE"
 
 EGIT_COMMIT="04152ebc42ff81b11497cdbacfeb7ab95e79b37f"
-EGIT_SHORT_COMMIT=${EGIT_COMMIT:0:7}
-SRC_URI="https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/tarball/${EGIT_COMMIT} -> ${CATEGORY}-${PN}-${PV}.tar.gz"
-S="${WORKDIR}/${REPO_OWNER}-${REPO_NAME}-${EGIT_SHORT_COMMIT}"
+
+SRC_URI="https://codeload.github.com/${GITHUB_ACCOUNT}/${GITHUB_REPONAME}/tar.gz/${EGIT_COMMIT} -> ${CATEGORY}-${PN}-${PV}.tar.gz"
+S="${WORKDIR}/${GITHUB_REPONAME}-${EGIT_COMMIT}"
 
 RESTRICT+=" test"
 
-ASSEMBLY_NAMES=("Ssh.Config.Parser")
+src_prepare() {
+	eapply_user
+}
+
 DQUOTE='"'
+ASSEMBLY_NAMES=("Ssh.Config.Parser")
+ASSEMBLY_FILES=()
 
 src_compile() {
 	local PARAMETERS="/target:library"
 	PARAMETERS+=" /recurse:${S}/SshConfigParser/*.cs"
+	PARAMETERS+=" /langversion:8.0"
 	if (use debug); then
 		PARAMETERS+=" /debug:full"
 	fi
@@ -53,15 +60,18 @@ src_compile() {
 }
 
 src_install() {
-	insinto $(library_assembly_dir)
-	for assembly_name in ${ASSEMBLY_NAMES[*]} ; do
+	local INSTALL_DIR="$(anycpu_current_assembly_dir)"
+	insinto "${INSTALL_DIR}"
+	for assembly_name in "${ASSEMBLY_NAMES[@]}" ; do
 		ASSEMBLY_NAME="${WORKDIR}/${assembly_name}"
 		einfo "installing  ${DQUOTE}${ASSEMBLY_NAME}.dll${DQUOTE}"
 		doins "${ASSEMBLY_NAME}.dll"
+		dosym "${INSTALL_DIR}/${assembly_name}.dll" "$(anycpu_current_symlink_dir)/${assembly_name}.dll"
+		ASSEMBLY_FILES+=( "${INSTALL_DIR}/${assembly_name}.dll")
 		if (use debug); then
 			einfo "installing  ${DQUOTE}${ASSEMBLY_NAME}.pdb${DQUOTE}"
 			doins "${ASSEMBLY_NAME}.pdb"
 		fi
 	done
-	einstall_pc_file "${PN}" "1.0" ${ASSEMBLY_NAMES[*]}
+	einstall_pc_file "${CATEGORY}/${PN}" "${PV}" "${ASSEMBLY_FILES[@]}"
 }
