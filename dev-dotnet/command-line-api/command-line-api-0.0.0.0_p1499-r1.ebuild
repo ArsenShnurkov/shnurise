@@ -3,38 +3,41 @@
 
 EAPI="6" # valid EAPI assignment must occur on or before line: 5
 
-#KEYWORDS="~amd64 ~x86"
 KEYWORDS="~amd64 ~x86 ~ppc"
-RESTRICT="mirror"
+RESTRICT+=" mirror"
 
 SLOT="0"
 
-HOMEPAGE="https://github.com/dotnet/command-line-api"
-DESCRIPTION="Library for building command line applications with extensible middleware pipeline"
-
-
-inherit dotnet mono-pkg-config
-
-IUSE="+pkg-config"
-
 GITHUB_ACCOUNT="dotnet"
 GITHUB_REPONAME="command-line-api"
-EGIT_COMMIT="0c8d7fea8bf5f3e8eefa1e1040accaf2a1117b2b"
-
-SRC_URI="https://codeload.github.com/${GITHUB_ACCOUNT}/${GITHUB_REPONAME}/tar.gz/${EGIT_COMMIT} -> ${PN}-${PV}.tar.gz"
-S="${WORKDIR}/${GITHUB_REPONAME}-${EGIT_COMMIT}"
-
-LICENSE="MIT" # https://github.com/dotnet/command-line-api/blob/master/LICENSE.md
+REPOSITORY="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_REPONAME}"
 
 HOMEPAGE="https://github.com/dotnet/command-line-api"
 DESCRIPTION="Library for building command line applications with extensible middleware pipeline"
+LICENSE="MIT" # LICENSE_URL="${REPOSITORY}/blob/master/LICENSE.md
 
 COMMON_DEPEND=">=dev-lang/mono-6
 "
-RDEPEND="${COMMON_DEPEND}
-"
 DEPEND="${COMMON_DEPEND}
 "
+RDEPEND="${COMMON_DEPEND}
+"
+
+USE_DOTNET="net45"
+IUSE="+${USE_DOTNET} +pkg-config"
+
+# dotnet.eclass adds dependency "dev-lang/mono" and allows to use C# compiler
+inherit dotnet
+# mono-pkg-config allows to install .pc-files for monodevelop
+inherit mono-pkg-config
+
+
+EGIT_COMMIT="0c8d7fea8bf5f3e8eefa1e1040accaf2a1117b2b"
+
+SRC_URI="https://codeload.github.com/${GITHUB_ACCOUNT}/${GITHUB_REPONAME}/tar.gz/${EGIT_COMMIT} -> ${CATEGORY}-${PN}-${PV}.tar.gz"
+S="${WORKDIR}/${GITHUB_REPONAME}-${EGIT_COMMIT}"
+
+RESTRICT+=" test"
 
 src_prepare() {
 	eapply_user
@@ -62,13 +65,14 @@ src_compile() {
 
 
 src_install() {
-	#insinto "$(anycpu_current_assembly_dir)"
+	local INSTALL_DIR="$(anycpu_current_assembly_dir)"
+	insinto "${INSTALL_DIR}"
 	#doins "${S}/src/System.CommandLine/bin/Release/System.CommandLine.dll"
 
 	einfo "=== making .pc file ==="
 	einfo "$(anycpu_current_assembly_dir)" $(anycpu_dlls)
 	elib "$(anycpu_current_assembly_dir)" $(anycpu_dlls)
 
-	dosym "$(anycpu_current_assembly_dir)/System.CommandLine.dll" "$(anycpu_current_symlink_dir)/System.CommandLine.dll"
+	dosym "${INSTALL_DIR}/System.CommandLine.dll" "$(anycpu_current_symlink_dir)/System.CommandLine.dll"
 }
 
