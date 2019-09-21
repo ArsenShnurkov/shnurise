@@ -54,6 +54,8 @@ dev-dotnet/npgsql:machine - register ADO .NET data provider in machine.config
 dev-dotnet/npgsql:pkg-config - create .pc file(s) for .dll(s) installed to gac
 dev-dotnet/slntools:developer - enables debug information for any of debug and release builds
 dev-dotnet/slntools:nupkg - creates local nuget package
+dev-dotnet/ssh-config-parser:developer - enables debug information for any of debug and release builds
+dev-dotnet/ssh-config-parser:nupkg - creates local nuget package
 dev-gaclibs/Autopsy-Formats-PeCoff:debug - Create .mdb files for release configuration
 dev-gaclibs/github-api:debug - Create .mdb files for release configuration
 dev-lang/mono-patched:pax_kernel - Enable if the user plans to run the package under a pax enabled hardened kernel
@@ -66,6 +68,8 @@ dev-util/nunit:developer - enables debug information for any of debug and releas
 dev-util/nunit:nupkg - creates local nuget package
 dev-util/nunit2:developer - enables debug information for any of debug and release builds
 dev-util/nunit2:nupkg - creates local nuget package
+dev-util/sftp-file-transfer:developer - enables debug information for any of debug and release builds
+dev-util/sftp-file-transfer:nupkg - creates local nuget package
 net-libs/xulrunner:custom-optimization - Fine-tune custom compiler optimizations
 www-servers/xsp:modmono - install mod-mono-server
 www-servers/xsp:openrc - install init.d scripts
