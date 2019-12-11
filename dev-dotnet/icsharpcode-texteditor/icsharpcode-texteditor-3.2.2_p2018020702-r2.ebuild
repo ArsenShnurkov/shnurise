@@ -1,6 +1,5 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI="6"
 RESTRICT="mirror"
@@ -9,66 +8,81 @@ KEYWORDS="~amd64 ~x86 ~ppc"
 SLOT="0"
 
 USE_DOTNET="net45"
-IUSE="+${USE_DOTNET} +pkgconfig"
+IUSE="+${USE_DOTNET} +pkgconfig debug"
 
-inherit eutils msbuild gac mono-pkg-config
+# inherit eutils 
+inherit dotnet
+inherit mono-pkg-config
 
 DESCRIPTION="ICSharpCode.TextEditor library"
-LICENSE="MIT"
-
+LICENSE="LGPL-2.1" # https://github.com/gitextensions/ICSharpCode.TextEditor/issues/18
+ 
 PROJECTNAME="ICSharpCode.TextEditor"
 HOMEPAGE="https://github.com/ArsenShnurkov/${PROJECTNAME}"
 EGIT_COMMIT="38c21a56f969047ef109b400ac5a57ca9df097fa"
-SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${P}.zip
-	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${P}.zip"
 S="${WORKDIR}/${PROJECTNAME}-${EGIT_COMMIT}"
 
-#DEPEND="|| ( >=dev-lang/mono-3.4.0 <dev-lang/mono-9999 )	"
-RDEPEND="${DEPEND}"
-
-METAFILETOBUILD="ICSharpCode.TextEditor.sln"
 ASSEMBLY_NAME="ICSharpCode.TextEditor"
 ASSEMBLY_VERSION="${PV}"
 
-KEY2="${DISTDIR}/mono.snk"
-
-function output_filename ( ) {
+function obj_dir ( ) {
 	local DIR=""
 	if use debug; then
 		DIR="Debug"
 	else
 		DIR="Release"
 	fi
-	echo "Project/bin/${DIR}/${ASSEMBLY_NAME}.dll"
+	echo "${WORKDIR}/obj/${DIR}"
+}
+
+function bin_dir ( ) {
+	local DIR=""
+	if use debug; then
+		DIR="Debug"
+	else
+		DIR="Release"
+	fi
+	echo "${WORKDIR}/bin/${DIR}"
+}
+
+function output_filename ( ) {
+	echo "$(bin_dir)/${ASSEMBLY_NAME}.dll"
 }
 
 src_compile() {
-	emsbuild "/p:SignAssembly=true" "/p:PublicSign=true" "/p:AssemblyOriginatorKeyFile=${KEY2}" "${METAFILETOBUILD}"
-	sn -R "$(output_filename)" "${KEY2}" || die
+	einfo "Compiling code files"
+	mkdir -p $(bin_dir) || die
+	local NAMESPACE=ICSharpCode.TextEditor.Resources.
+	csc /t:library ${S}/Project/**/*.cs \
+		/resource:${S}/Project/Resources/RightArrow.cur,${NAMESPACE}RightArrow.cur \
+		/resource:${S}/Project/Resources/TextEditorControl.bmp,${NAMESPACE}TextEditorControl.bmp \
+		/resource:${S}/Project/Resources/SyntaxModes.xml,${NAMESPACE}SyntaxModes.xml \
+		/resource:${S}/Project/Resources/Mode.xsd,${NAMESPACE}Mode.xsd \
+		/resource:${S}/Project/Resources/HTML-Mode.xshd,${NAMESPACE}HTML-Mode.xshd \
+		/resource:${S}/Project/Resources/XML-Mode.xshd,${NAMESPACE}XML-Mode.xshd \
+		/resource:${S}/Project/Resources/CSharp-Mode.xshd,${NAMESPACE}CSharp-Mode.xshd \
+		/resource:${S}/Project/Resources/ASPX.xshd,${NAMESPACE}ASPX.xshd \
+		/resource:${S}/Project/Resources/Patch-Mode.xshd,${NAMESPACE}Patch-Mode.xshd \
+		/resource:${S}/Project/Resources/Tex-Mode.xshd,${NAMESPACE}Tex-Mode.xshd \
+		/resource:${S}/Project/Resources/BAT-Mode.xshd,${NAMESPACE}BAT-Mode.xshd \
+		/resource:${S}/Project/Resources/CPP-Mode.xshd,${NAMESPACE}CPP-Mode.xshd \
+		/resource:${S}/Project/Resources/JavaScript-Mode.xshd,${NAMESPACE}JavaScript-Mode.xshd \
+		/resource:${S}/Project/Resources/Python-Mode.xshd,${NAMESPACE}Python-Mode.xshd \
+		/resource:${S}/Project/Resources/Java-Mode.xshd,${NAMESPACE}Java-Mode.xshd \
+		/resource:${S}/Project/Resources/PHP-Mode.xshd,${NAMESPACE}PHP-Mode.xshd \
+		/resource:${S}/Project/Resources/VBNET-Mode.xshd,${NAMESPACE}VBNET-Mode.xshd \
+		/resource:${S}/Project/Resources/Boo.xshd,${NAMESPACE}Boo.xshd \
+		/resource:${S}/Project/Resources/Coco-Mode.xshd,${NAMESPACE}Coco-Mode.xshd \
+		/out:$(output_filename) || die
 }
 
 src_install() {
-	elib "$(output_filename)"
+	local INSTALL_DIR="$(anycpu_current_assembly_dir)"
+	einfo "$(output_filename)" -\> "${INSTALL_DIR}"
+	insinto "${INSTALL_DIR}"
 
-	insinto "/gac"
-	doins "$(output_filename)"
-}
+	elib "${INSTALL_DIR}" "$(output_filename)"
 
-pkg_preinst()
-{
-	echo mv "${D}/gac/${ASSEMBLY_NAME}.dll" "${T}/${ASSEMBLY_NAME}.dll"
-	mv "${D}/gac/${ASSEMBLY_NAME}.dll" "${T}/${ASSEMBLY_NAME}.dll" || die
-	echo rm -rf "${D}/gac"
-	rm -rf "${D}/gac" || die
-}
-
-pkg_postinst()
-{
-	egacadd "${T}/${ASSEMBLY_NAME}.dll"
-	rm "${T}/${ASSEMBLY_NAME}.dll" || die
-}
-
-pkg_prerm()
-{
-	egacdel "${ASSEMBLY_NAME}, Version=${ASSEMBLY_VERSION}, Culture=neutral, PublicKeyToken=0738eb9f132ed756"
+	dosym "${INSTALL_DIR}/${ASSEMBLY_NAME}.dll" "$(anycpu_current_symlink_dir)/${ASSEMBLY_NAME}.dll"
 }
