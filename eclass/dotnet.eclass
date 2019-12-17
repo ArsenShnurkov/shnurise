@@ -18,7 +18,7 @@ esac
 
 inherit eutils
 #inherit versionator
-inherit eapi7-ver
+#inherit eapi7-ver
 inherit mono-env
 
 # >=mono-0.92 versions using mcs -pkg:foo-sharp require shared memory, so we set the

@@ -3,13 +3,13 @@
 
 EAPI="7"
 
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="~amd64 ~x86"
 RESTRICT="mirror"
 
 SLOT="1"
 
 USE_DOTNET="net45"
-IUSE="+${USE_DOTNET} debug +pkg-config +symlink"
+IUSE=" debug +${USE_DOTNET} +pkg-config +symlink"
 
 inherit dotnet
 inherit mono-pkg-config
@@ -24,27 +24,45 @@ SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${CATEGORY}-${PN}-${PV}.ta
 	"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
-DLLNAME=${NAME}
-FULLSLN=${NAME}.sln
+PROJECT_REL_DIR=${NAME}
+ASSEMBLY_NAME=${NAME}
+
+function bin_dir ( ) {
+	local DIR=""
+	if use debug; then
+		DIR="Debug"
+	else
+		DIR="Release"
+	fi
+	echo "${WORKDIR}/bin/${DIR}"
+}
+
+function output_filename ( ) {
+	echo "$(bin_dir)/${ASSEMBLY_NAME}.dll"
+}
 
 src_prepare() {
-	sed -i "/AllRules.ruleset/d" "${S}/${NAME}/${NAME}.csproj"
-	empt-csproj --dir="${S}/${NAME}" --remove-signing
-	empt-csproj --dir="${S}/${NAME}" --remove-reference "Microsoft.Contracts"
-	empt-sln --sln-file "${S}/${FULLSLN}" --remove-proj "NDepend.Path.Tests"
-
 	rm "${S}/NDepend.Path/NDepend.Helpers/IReadOnlyList.cs" || die
-	sed -i "/IReadOnlyList.cs/d" "${S}/${NAME}/${NAME}.csproj"
-	
+
 	sed -i '1 i\using System.Collections.Generic;' NDepend.Path/NDepend.Path/PathHelpers.cs || die
 
 	eapply_user
 }
 
 src_compile() {
-	:;
+	einfo "Compiling $(output_filename)"
+	mkdir -p $(bin_dir) || die
+	csc "${S}/${PROJECT_REL_DIR}"/**/*.cs \
+		/t:library /out:$(output_filename) || die
 }
 
 src_install() {
-	:;
+	local INSTALL_DIR="$(anycpu_current_assembly_dir)"
+
+	insinto "${INSTALL_DIR}"
+	elib "${INSTALL_DIR}" "$(output_filename)"
+
+	dosym "${INSTALL_DIR}/${ASSEMBLY_NAME}.dll" "$(anycpu_current_symlink_dir)/${ASSEMBLY_NAME}.dll"
+
+	einstall_pc_file "${CATEGORY}/${PN}" "${VERSION}" /usr/share/mono/assemblies/${PN}/${ASSEMBLY_NAME}.dll
 }
