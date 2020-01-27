@@ -28,13 +28,7 @@ PROJECT_REL_DIR=${NAME}
 ASSEMBLY_NAME=${NAME}
 
 function bin_dir ( ) {
-	local DIR=""
-	if use debug; then
-		DIR="Debug"
-	else
-		DIR="Release"
-	fi
-	echo "${WORKDIR}/bin/${DIR}"
+	echo "${WORKDIR}/bin/$(usedebug_tostring)"
 }
 
 function output_filename ( ) {
@@ -52,7 +46,7 @@ src_prepare() {
 src_compile() {
 	einfo "Compiling $(output_filename)"
 	mkdir -p $(bin_dir) || die
-	csc "${S}/${PROJECT_REL_DIR}"/**/*.cs \
+	csc $(csharp_sources "${S}/${PROJECT_REL_DIR}") \
 		/t:library /out:$(output_filename) || die
 }
 

@@ -62,6 +62,28 @@ fi
 # SRC_URI+=" https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
 # I was unable to append SRC_URI variable this ^^ way
 
+# @FUNCTION: csharp_sources
+# @DESCRIPTION: recursively returns all .cs files from directory in $1
+function csharp_sources() {
+	local DIR_NAME=$1
+	for f in "${DIR_NAME}"/*; do
+		if [ -d $f ];
+		then
+			csharp_sources "$f"
+		else
+			case "$f" in
+			*.cs ) 
+			        # it's source code file
+				echo -n "$f "
+			        ;;
+			*)
+			        # it's not
+			        ;;
+			esac
+		fi
+	done
+}
+
 # @FUNCTION: dotnet_expand
 # @DESCRIPTION: expands values from the DOTNET_TARGETS variable
 dotnet_expand() {

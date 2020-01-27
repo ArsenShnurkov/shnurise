@@ -1,7 +1,7 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI="7"
 RESTRICT="mirror"
 KEYWORDS="~amd64 ~x86"
 
@@ -11,8 +11,6 @@ USE_DOTNET="net45"
 IUSE="debug +${USE_DOTNET} +pkg-config"
 
 inherit dotnet
-#inherit eapi7-ver
-VERSION=$(ver_cut 1-3 ${PV})
 inherit mono-pkg-config
 
 DESCRIPTION="ICSharpCode.TextEditor library"
@@ -28,13 +26,7 @@ ASSEMBLY_NAME="ICSharpCode.TextEditor"
 ASSEMBLY_VERSION="${PV}"
 
 function bin_dir ( ) {
-	local DIR=""
-	if use debug; then
-		DIR="Debug"
-	else
-		DIR="Release"
-	fi
-	echo "${WORKDIR}/bin/${DIR}"
+	echo "${WORKDIR}/bin/$(usedebug_tostring)"
 }
 
 function output_filename ( ) {
@@ -42,10 +34,14 @@ function output_filename ( ) {
 }
 
 src_compile() {
-	einfo "Compiling code files"
 	mkdir -p $(bin_dir) || die
 	local NAMESPACE=ICSharpCode.TextEditor.Resources.
-	csc /t:library "${S}/Project"/**/*.cs \
+	local SOURCES=$(csharp_sources "${S}"/Project)
+#	einfo "Compiling code files"
+#	for n in ${SOURCES}; do
+#		einfo "$n"
+#	done
+	csc  ${SOURCES} \
 		"/resource:${S}/Project/Resources/RightArrow.cur,${NAMESPACE}RightArrow.cur" \
 		"/resource:${S}/Project/Resources/TextEditorControl.bmp,${NAMESPACE}TextEditorControl.bmp" \
 		"/resource:${S}/Project/Resources/SyntaxModes.xml,${NAMESPACE}SyntaxModes.xml" \
@@ -65,7 +61,7 @@ src_compile() {
 		"/resource:${S}/Project/Resources/VBNET-Mode.xshd,${NAMESPACE}VBNET-Mode.xshd" \
 		"/resource:${S}/Project/Resources/Boo.xshd,${NAMESPACE}Boo.xshd" \
 		"/resource:${S}/Project/Resources/Coco-Mode.xshd,${NAMESPACE}Coco-Mode.xshd" \
-		/out:$(output_filename) || die
+		/target:library /out:$(output_filename) || die
 }
 
 src_install() {
@@ -76,5 +72,6 @@ src_install() {
 
 	dosym "${INSTALL_DIR}/${ASSEMBLY_NAME}.dll" "$(anycpu_current_symlink_dir)/${ASSEMBLY_NAME}.dll"
 
+	local VERSION=$(ver_cut 1-3 ${PV})
 	einstall_pc_file "dev-dotnet/icsharpcode-texteditor" "${VERSION}" /usr/share/mono/assemblies/icsharpcode-texteditor/ICSharpCode.TextEditor.dll
 }
