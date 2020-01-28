@@ -13,7 +13,7 @@ IUSE="+${USE_DOTNET} debug developer symlink"
 
 inherit dotnet
 inherit desktop
-inherit gnome2-utils 
+inherit xdg-utils
 
 DESCRIPTION="mypad text editor"
 LICENSE="MIT"
@@ -117,7 +117,8 @@ function install_dir() {
 }
 
 pkg_preinst() {
-	gnome2_icon_savelist
+	#gnome2_icon_savelist
+	:;
 }
 
 src_prepare(){
@@ -185,9 +186,9 @@ src_install() {
 }
 
 pkg_postinst() {
-	gnome2_icon_cache_update
+	xdg_icon_cache_update
 }
 
 pkg_postrm() {
-	gnome2_icon_cache_update
+	xdg_icon_cache_update
 }
