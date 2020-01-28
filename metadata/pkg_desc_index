@@ -1,4 +1,4 @@
-app-editors/mypad 1.0.4-r1 1.0.5_pre20181226: mypad text editor
+app-editors/mypad 1.0.4-r1 1.0.5_pre20181226 1.0.5: mypad text editor
 app-emulation/qemu 2.6.0: QEMU + Kernel-based Virtual Machine userland tools
 app-eselect/eselect-msbuild 15.9: msbuild eselect module
 app-misc/aha 0.4.7.2: Ansi HTML Adapter
