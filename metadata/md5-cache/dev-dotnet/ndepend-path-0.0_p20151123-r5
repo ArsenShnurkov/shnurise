@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile install prepare setup
+DEPEND=virtual/pkgconfig
+DESCRIPTION=C# framework for paths operations: Absolute, Drive Letter, UNC, Relative, prefix
+EAPI=7
+HOMEPAGE=https://github.com/psmacchia/NDepend.Path
+IUSE=debug +net45 +pkg-config +symlink net45 pkg-config
+KEYWORDS=~amd64 ~x86
+LICENSE=MIT
+RESTRICT=mirror
+SLOT=1
+SRC_URI=https://github.com/psmacchia/NDepend.Path/archive/96008fcfbc137eac6fd327387b80b14909a581a1.tar.gz -> dev-dotnet-ndepend-path-0.0_p20151123.tar.gz
+_eclasses_=dotnet	a416dc029781b2fc33af072ff78be845	eutils	fcb2aa98e1948b835b5ae66ca52868c5	mono-env	059a05efbba66d5bdcc2dd74d91f82f8	mono-pkg-config	b95f2b63f7562739a5d3e67398e2f13c
+_md5_=7874629b6fffe880f59f74051e5742f2
