@@ -16,7 +16,10 @@ case ${EAPI:-0} in
 	*) ;; #if [[ ${USE_DOTNET} ]]; then REQUIRED_USE="|| (${USE_DOTNET})"; fi;;
 esac
 
-inherit eutils versionator mono-env
+inherit eutils
+#inherit versionator
+#inherit eapi7-ver
+inherit mono-env
 
 # >=mono-0.92 versions using mcs -pkg:foo-sharp require shared memory, so we set the
 # shared dir to ${T} so that ${T}/.wapi can be used during the install process.
@@ -58,6 +61,28 @@ fi
 
 # SRC_URI+=" https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
 # I was unable to append SRC_URI variable this ^^ way
+
+# @FUNCTION: csharp_sources
+# @DESCRIPTION: recursively returns all .cs files from directory in $1
+function csharp_sources() {
+	local DIR_NAME=$1
+	for f in "${DIR_NAME}"/*; do
+		if [ -d $f ];
+		then
+			csharp_sources "$f"
+		else
+			case "$f" in
+			*.cs ) 
+			        # it's source code file
+				echo -n "$f "
+			        ;;
+			*)
+			        # it's not
+			        ;;
+			esac
+		fi
+	done
+}
 
 # @FUNCTION: dotnet_expand
 # @DESCRIPTION: expands values from the DOTNET_TARGETS variable
