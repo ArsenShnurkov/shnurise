@@ -26,14 +26,14 @@ dev-dotnet/msbuild-roslyn-csc 15.4 15.7 15.9: C# compiler with rich code analysi
 dev-dotnet/msbuild-tasks-api 15.4.8.0-r2 15.7.180.61344-r2 15.9.20.62856-r2: msbuild libraries for writing Task-derived classes
 dev-dotnet/msbuildtasks 1.5.0.260_pre-r1: The MSBuild Community Tasks Project is an open source project for MSBuild tasks.
 dev-dotnet/ndepend-path 0.0_p20151123-r5: C# framework for paths operations: Absolute, Drive Letter, UNC, Relative, prefix
-dev-dotnet/newtonsoft-json 6.0.8-r1 7.0.1_p20150831 8.0.1_p20151229: Json.NET is a popular high-performance JSON framework for .NET
+dev-dotnet/newtonsoft-json 6.0.8-r1: Json.NET is a popular high-performance JSON framework for .NET
 dev-dotnet/nhibernate 4.1.1: NHibernate Object Relational Mapper
 dev-dotnet/nhibernate-core 3.3.4-r2 5.0.0-r2: NHibernate Object Relational Mapper
 dev-dotnet/nhibernate-iesi-collections 4.0.2-r2: C#, LinkedHashSet<T>, SynchronizedSet<T>, ReadOnlySet<T>
 dev-dotnet/nhibernate-linq 1.0.0.0_p2010050601-r1: Contributions to NHibernate
 dev-dotnet/npgsql 3.1.6-r2 4.0.4: allows any program developed for .NET framework to access a PostgreSQL database
 dev-dotnet/nuget 1.1-r1 2.8.1-r1: Nuget - .NET Package Manager
-dev-dotnet/pliant 0.4.1_p2016081902 0.4.2.1: modified Earley parser in C# inspired by the Marpa Parser project
+dev-dotnet/pliant 0.4.2.1: modified Earley parser in C# inspired by the Marpa Parser project
 dev-dotnet/remotion-linq 2.1.2-r1: Library to create full-featured LINQ providers.
 dev-dotnet/remotion-linq-eagerfetching 2.1.0-r1: Library to create full-featured LINQ providers (fetching).
 dev-dotnet/roslyn-tools 0.0.0_p2019011903: 'Tools used in Roslyn based repos
