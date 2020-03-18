@@ -202,7 +202,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Collections.Immutable" />
+    <Reference Include="System.Collections.Immutable">
+      <HintPath>System_Collections_Immutable_dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
     <Reference Include="Microsoft.Build.Framework, Version=$(VersionNumber), Culture=neutral, PublicKeyToken=$(PublicKeyToken)" >
       <HintPath>../Framework/bin/$(Configuration)/Microsoft.Build.Framework.dll</HintPath>
