@@ -5,7 +5,4 @@
 		<email>dotnet@gentoo.org</email>
 		<description>Gentoo Dotnet Project</description>
 	</maintainer>
-	<use>
-		<flag name='developer'></flag>
-	</use>
 </pkgmetadata>
