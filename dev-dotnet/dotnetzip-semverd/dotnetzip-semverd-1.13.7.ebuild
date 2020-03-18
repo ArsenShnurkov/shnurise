@@ -6,12 +6,12 @@ EAPI="7"
 KEYWORDS="~amd64 ~ppc ~x86"
 RESTRICT="mirror"
 
-SLOT="0"
+SLOT="13"
 
 USE_DOTNET="net45"
 IUSE="+${USE_DOTNET} developer debug +pkg-config +symlink"
 
-inherit dotnet
+inherit dotnet mono-pkg-config
 
 EGIT_COMMIT="080d4131ccb8f202aea543b46e861488e906ac8a"
 
@@ -31,11 +31,19 @@ DEPEND="${COMMON_DEPEND}
 "
 
 function bin_dir ( ) {
-	echo "${WORKDIR}/bin/$(usedebug_tostring)"
+	echo "${WORKDIR}/$(output_relpath)"
 }
 
 function references1() {
 	echo -n " " /reference:System.dll
+}
+
+function sources1() {
+	echo -n " " $(csharp_sources "${S}/src/Zip_Reduced")
+	echo -n " " $(csharp_sources "${S}/src/BZip2")
+	echo -n " " $(csharp_sources "${S}/src/Zip.Shared")
+	echo -n " " $(csharp_sources "${S}/src/Zlib.Shared")
+	echo -n " " "${S}/src/SolutionInfo.cs"
 }
 
 function output_filename1( ) {
@@ -48,15 +56,19 @@ function output_arguments1 ( ) {
 }
 
 src_prepare() {
+	rm "${S}/src/BZip2/Properties/AssemblyInfo.cs" || die
+	mv "${S}/src/Zip Reduced" "${S}/src/Zip_Reduced" || die
 	eapply_user
 }
 
 src_compile() {
 	mkdir -p $(bin_dir) || die
-	einfo "/usr/bin/csc $(references1)  $(csharp_sources ${S}/src/Zip Reduced) $(output_arguments1)"
-	/usr/bin/csc $(references1)  $(csharp_sources '${S}/src/Zip Reduced') $(output_arguments1) || die
+	einfo /usr/bin/csc $(references1) $(sources1) $(output_arguments1)
+	/usr/bin/csc $(references1) $(sources1) $(output_arguments1) || die
 }
 
 src_install() {
-	elib "$(output_filename1)"
+	einfo "$(output_filename1)"
+	local INSTALL_DIR="$(anycpu_current_assembly_dir)"
+	elib ${INSTALL_DIR} "$(output_filename1)"
 }
