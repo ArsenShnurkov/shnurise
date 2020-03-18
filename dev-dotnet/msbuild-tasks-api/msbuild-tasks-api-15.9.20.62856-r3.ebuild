@@ -36,6 +36,7 @@ COMMON_DEPEND=">=dev-lang/mono-5.2.0.196
 RDEPEND="${COMMON_DEPEND}
 "
 DEPEND="${COMMON_DEPEND}
+	>=dev-dotnet/system-collections-immutable-2.0.0_pre-r1
 "
 
 UT_PROJ=Microsoft.Build.Utilities.Core
