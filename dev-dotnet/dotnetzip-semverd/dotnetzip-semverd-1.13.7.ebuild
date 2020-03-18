@@ -9,7 +9,7 @@ RESTRICT="mirror"
 SLOT="13"
 
 USE_DOTNET="net45"
-IUSE="+${USE_DOTNET} developer debug +pkg-config +symlink"
+IUSE="+${USE_DOTNET} +pkg-config debug source"
 
 inherit dotnet mono-pkg-config
 
@@ -46,13 +46,28 @@ function sources1() {
 	echo -n " " "${S}/src/SolutionInfo.cs"
 }
 
-function output_filename1( ) {
-	echo "$(bin_dir)/Ionic.Zip.Reduced.dll"
-}
+SRC_INSTALL_DIR=/usr/src/dev-dotnet/dotnetzip-semverd
 
 function output_arguments1 ( ) {
+	#output type and name
 	local OUTPUT_TYPE="library" # https://docs.microsoft.com/ru-ru/dotnet/csharp/language-reference/compiler-options/target-exe-compiler-option
 	echo  "/target:${OUTPUT_TYPE}" "/out:$(output_filename1)"
+
+	# for reproducible builds
+	echo -n " " -deterministic
+
+	# debug information options
+	if use debug; then
+		echo -n " " /debug:full
+		echo -n " " /pdb:$(bin_dir)/Ionic.Zip.Reduced.pdb
+
+		# options for source-level debugging
+		echo -n " " /pathmap:path1=${S},path2=${SRC_INSTALL_DIR}
+	fi
+}
+
+function output_filename1( ) {
+	echo "$(bin_dir)/Ionic.Zip.Reduced.dll"
 }
 
 src_prepare() {
@@ -71,4 +86,18 @@ src_install() {
 	einfo "$(output_filename1)"
 	local INSTALL_DIR="$(anycpu_current_assembly_dir)"
 	elib ${INSTALL_DIR} "$(output_filename1)"
+	if use debug; then
+		insinto "${INSTALL_DIR}"
+		doins "$(bin_dir)/Ionic.Zip.Reduced.pdb"
+	fi
+	if use source; then
+		for f in $(sources1); do
+			# https://stackoverflow.com/questions/10986794/remove-part-of-path-on-unix
+			local FULL_DIR_NAME=$(dirname $f)
+			local RELPATH=${FULL_DIR_NAME#${S}/}
+			einfo "SRC: " ${RELPATH} '/' $(basename $f)
+			insinto "${SRC_INSTALL_DIR}/${RELPATH}"
+			doins $f
+		done
+	fi
 }

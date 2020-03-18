@@ -62,9 +62,6 @@ fi
 # SRC_URI+=" https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
 # I was unable to append SRC_URI variable this ^^ way
 
-QUOTE="'"
-DQUOTE='"'
-
 # @FUNCTION: csharp_sources
 # @DESCRIPTION: recursively returns all .cs files from directory in $1
 function csharp_sources() {
@@ -77,7 +74,7 @@ function csharp_sources() {
 			case "$f" in
 			*.cs ) 
 			        # it's source code file
-				echo -n ' ' ${DQUOTE}$f${DQUOTE}
+				echo -n ' ' $f
 			        ;;
 			*)
 			        # it's not
