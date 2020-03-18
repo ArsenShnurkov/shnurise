@@ -1,16 +1,16 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
-EAPI=6
+EAPI="7"
 RESTRICT="mirror"
 KEYWORDS="~amd64"
+
 SLOT="0"
 
 USE_DOTNET="net45"
 IUSE="+${USE_DOTNET} +gac developer debug doc"
 
-inherit gac dotnet
+inherit xbuild gac
 
 GITHUB_ACCOUNT="dotnet"
 GITHUB_PROJECTNAME="corefx"
@@ -27,15 +27,15 @@ COMMON_DEPEND=">=dev-lang/mono-5.2.0.196
 RDEPEND="${COMMON_DEPEND}
 "
 DEPEND="${COMMON_DEPEND}
-	dev-dotnet/buildtools
-	>=dev-dotnet/msbuildtasks-1.5.0.240
 "
 
 PROJ1=System.Collections.Immutable
 PROJ1_DIR=src/${PROJ1}/src
 
 src_prepare() {
-	cp "${FILESDIR}/mono-${PROJ1}.csproj" "${S}/${PROJ1_DIR}/" || die
+	cp "${FILESDIR}/mono-${PROJ1}-r1.csproj" "${S}/${PROJ1_DIR}/mono-${PROJ1}.csproj" || die
+	cp "${FILESDIR}/SR.cs" "${S}/${PROJ1_DIR}/SR.cs" || die
+	cp "${FILESDIR}/AV.cs" "${S}/${PROJ1_DIR}/AV.cs" || die
 	eapply_user
 }
 

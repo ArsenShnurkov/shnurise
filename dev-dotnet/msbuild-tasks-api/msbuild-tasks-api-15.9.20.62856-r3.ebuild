@@ -1,14 +1,15 @@
-# Copyright 1999-2019 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI="7"
 RESTRICT="mirror"
 KEYWORDS="~amd64 ~x86 ~ppc"
 
 # see docs:
 # https://github.com/gentoo/gentoo/commit/59a1a0dda7300177a263eb1de347da493f09fdee
 # https://devmanual.gentoo.org/eclass-reference/eapi7-ver.eclass/index.html
-inherit eapi7-ver
+# inherit eapi7-ver
+
 SLOT="$(ver_cut 1-2)"
 
 VER="${SLOT}.0.0" # version of resulting .dll files in GAC
@@ -36,6 +37,7 @@ COMMON_DEPEND=">=dev-lang/mono-5.2.0.196
 RDEPEND="${COMMON_DEPEND}
 "
 DEPEND="${COMMON_DEPEND}
+	>=dev-dotnet/system-collections-immutable-2.0.0_pre-r1
 "
 
 UT_PROJ=Microsoft.Build.Utilities.Core
@@ -48,6 +50,8 @@ src_prepare() {
 	REGEX='s/PublicKeyToken=[0-9a-f]+/PublicKeyToken='$(token)'/g'
 	sed -E ${REGEX} "${FILESDIR}/${PV}/mono-${FW_PROJ}.csproj" > "${S}/${FW_DIR}/mono-${FW_PROJ}.csproj" || die
 	sed -E ${REGEX} "${FILESDIR}/${PV}/mono-${UT_PROJ}.csproj" > "${S}/${UT_DIR}/mono-${UT_PROJ}.csproj" || die
+	# for $(get_libdir) see https://dev.gentoo.org/~ulm/pms/head/pms.html#x1-13500012.3.15
+	sed -i "s:System_Collections_Immutable_dll:/usr/$(get_libdir)/mono/gac/System.Collections.Immutable/2.0.0.0__0738eb9f132ed756/System.Collections.Immutable.dll:g" "${S}/${UT_DIR}/mono-${UT_PROJ}.csproj" || die
 	sed -E ${REGEX} -i ${S}/src/MSBuild/app.config || die
 	sed -E ${REGEX} -i ${S}/src/Build/Resources/Constants.cs || die
 	sed -E ${REGEX} -i ${S}/src/Tasks/Microsoft.Common.tasks || die
