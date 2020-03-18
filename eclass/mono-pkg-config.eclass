@@ -1,9 +1,8 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 # @ECLASS: mono-pkg-config.eclass
-# @MAINTAINER: cynede@gentoo.org
+# @MAINTAINER: dotnet@gentoo.org
 # @BLURB: functions for registring in gac
 # @DESCRIPTION:
 # interacts with pkg-config tools
