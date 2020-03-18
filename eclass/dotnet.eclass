@@ -67,7 +67,7 @@ fi
 function csharp_sources() {
 	local DIR_NAME=$1
 	for f in "${DIR_NAME}"/*; do
-		if [ -d $f ];
+		if [ -d "$f" ];
 		then
 			csharp_sources "$f"
 		else

@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="7"
@@ -30,8 +30,21 @@ RDEPEND="${COMMON_DEPEND}
 DEPEND="${COMMON_DEPEND}
 "
 
-function output_filename ( ) {
-	echo "src/Zip Reduced/bin/$(usedebug_tostring)/Ionic.Zip.Reduced.dll"
+function bin_dir ( ) {
+	echo "${WORKDIR}/bin/$(usedebug_tostring)"
+}
+
+function references1() {
+	echo -n " " /reference:System.dll
+}
+
+function output_filename1( ) {
+	echo "$(bin_dir)/Ionic.Zip.Reduced.dll"
+}
+
+function output_arguments1 ( ) {
+	local OUTPUT_TYPE="library" # https://docs.microsoft.com/ru-ru/dotnet/csharp/language-reference/compiler-options/target-exe-compiler-option
+	echo  "/target:${OUTPUT_TYPE}" "/out:$(output_filename1)"
 }
 
 src_prepare() {
@@ -39,9 +52,11 @@ src_prepare() {
 }
 
 src_compile() {
-	emsbuild "src/Zip Reduced/Zip Reduced.csproj"
+	mkdir -p $(bin_dir) || die
+	einfo "/usr/bin/csc $(references1)  $(csharp_sources ${S}/src/Zip Reduced) $(output_arguments1)"
+	/usr/bin/csc $(references1)  $(csharp_sources '${S}/src/Zip Reduced') $(output_arguments1) || die
 }
 
 src_install() {
-	elib "$(output_filename)"
+	elib "$(output_filename1)"
 }
