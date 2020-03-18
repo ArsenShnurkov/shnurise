@@ -45,7 +45,6 @@ dev-db/sharphsql:gac - sign assembly with strongname and install into gac
 dev-db/sharphsql:nupkg - build ,nuget package and install into distributive-dependent path
 dev-db/sharphsql:test - automatically turned on when FEATURES=test is set
 dev-dotnet/cecil:pkg-config - create .pc file(s) for .dll(s) installed to gac
-dev-dotnet/dotnetzip-semverd:developer - 
 dev-dotnet/mono-options:developer - n/a
 dev-dotnet/mono-options:gac - n/a
 dev-dotnet/mono-options:nupkg - n/a

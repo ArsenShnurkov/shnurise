@@ -12,7 +12,7 @@ dev-dotnet/buildtools 1.0.27: Build tools that are necessary for building the .N
 dev-dotnet/castle-core 1.2.0-r2 4.0.0_beta1-r1: including Castle DynamicProxy, Logging Services and DictionaryAdapter
 dev-dotnet/cecil 0.10_beta7_p2018031901-r1: System.Reflection alternative to generate and inspect .NET executables/libraries
 dev-dotnet/command-line-api 0.0.0.0_p1499-r1: Library for building command line applications with extensible middleware pipeline
-dev-dotnet/dotnetzip-semverd 1.9.3-r4: create, extract, or update zip files with C# (=DotNetZip+SemVer)
+dev-dotnet/dotnetzip-semverd 1.13.7: create, extract, or update zip files with C# (=DotNetZip+SemVer)
 dev-dotnet/fluent-nhibernate 2.0.2-r1: XML-less, compile safe, automated, convention-based mappings for NHibernate
 dev-dotnet/htmlparsersharp 1.0.0.0-r20150614: Validator.nu HTML Parser, a HTML5 parser, port from Java Version 1.4 to C#
 dev-dotnet/icsharpcode-nrefactory 5.5.1: NRefactory supports analysis of C# source code
