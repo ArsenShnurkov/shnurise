@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile install prepare setup
+DEPEND=>=dev-lang/mono-5.2.0.196 dev-lang/mono
+DESCRIPTION=part of CoreFX
+EAPI=7
+HOMEPAGE=https://github.com/dotnet/corefx/tree/master/src/System.Collections.Immutable
+IUSE=+net45 +gac developer debug doc net45 gac pkg-config
+KEYWORDS=~amd64
+LICENSE=MIT
+RDEPEND=>=dev-lang/mono-5.2.0.196 dev-lang/mono
+RESTRICT=mirror
+SLOT=0
+SRC_URI=https://github.com/dotnet/corefx/archive/247068fbd97c534dc13b3b9d037f67b03dbe57a5.tar.gz -> corefx-dotnet-2.0.0_pre.tar.gz
+_eclasses_=dotnet	978985b1c88cff3d70355bdc2fba673f	eutils	fcb2aa98e1948b835b5ae66ca52868c5	gac	8676bb004075396887abfc3761616db1	mono-env	059a05efbba66d5bdcc2dd74d91f82f8	xbuild	c67583c573f4ca4d63e61dcd2b353b51
+_md5_=b7dd0bb68389ca76a6fb467f959a340f

@@ -23,7 +23,7 @@ dev-dotnet/microsoft-extensions-commandlineutils 2.3.4: Command line parsing and
 dev-dotnet/microsoft-net-sdk 2.1.300: 'Microsoft.NET.Sdk' for msbuild
 dev-dotnet/msbuild-defaulttasks 15.4.8.0 15.7.180.61344 15.9.20.62856: default tasks for Microsoft Build Engine (MSBuild)
 dev-dotnet/msbuild-roslyn-csc 15.4 15.7 15.9: C# compiler with rich code analysis APIs
-dev-dotnet/msbuild-tasks-api 15.4.8.0-r2 15.7.180.61344-r2 15.9.20.62856-r2: msbuild libraries for writing Task-derived classes
+dev-dotnet/msbuild-tasks-api 15.4.8.0-r2 15.7.180.61344-r2 15.9.20.62856-r3: msbuild libraries for writing Task-derived classes
 dev-dotnet/msbuildtasks 1.5.0.260_pre-r1: The MSBuild Community Tasks Project is an open source project for MSBuild tasks.
 dev-dotnet/ndepend-path 0.0_p20151123-r5: C# framework for paths operations: Absolute, Drive Letter, UNC, Relative, prefix
 dev-dotnet/newtonsoft-json 6.0.8-r1: Json.NET is a popular high-performance JSON framework for .NET
@@ -40,7 +40,7 @@ dev-dotnet/roslyn-tools 0.0.0_p2019011903: 'Tools used in Roslyn based repos
 dev-dotnet/slntools 1.1.3_p201508170-r2: library for merging .sln files, and cli-tool
 dev-dotnet/ssh-config-parser 1.0-r1: C#/.NET parser for OpenSSH config files
 dev-dotnet/ssh-net 2016.1.0_p33-r1: SSH.NET is a Secure Shell (SSH) library for .NET, optimized for parallelism.
-dev-dotnet/system-collections-immutable 2.0.0_pre: part of CoreFX
+dev-dotnet/system-collections-immutable 2.0.0_pre-r1: part of CoreFX
 dev-dotnet/system-reflection-metadata 2.0.0_pre: part of CoreFX
 dev-gaclibs/Autopsy-Formats-PeCoff 1.0: Safe and static parsing for PE/COFF/LIB formats
 dev-gaclibs/github-api 0.0-r20150331: C# API for github, based on RestSharp
