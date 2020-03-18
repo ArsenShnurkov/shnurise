@@ -1,25 +1,25 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
-EAPI="6"
+EAPI="7"
 
 KEYWORDS="~amd64 ~ppc ~x86"
 RESTRICT="mirror"
 
-SLOT="1"
+SLOT="0"
 
 USE_DOTNET="net45"
 IUSE="+${USE_DOTNET} developer debug +pkg-config +symlink"
 
-inherit msbuild mono-pkg-config
+inherit dotnet
 
-SRC_URI="https://github.com/haf/DotNetZip.Semverd/archive/v1.9.3.tar.gz -> ${CATEGORY}-${PN}-${PV}.tar.gz
-	"
+EGIT_COMMIT="080d4131ccb8f202aea543b46e861488e906ac8a"
 
-S="${WORKDIR}/DotNetZip.Semverd-${PV}"
-
+NAME="DotNetZip.Semverd"
 HOMEPAGE="https://github.com/haf/DotNetZip.Semverd"
+SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
+S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
+
 DESCRIPTION="create, extract, or update zip files with C# (=DotNetZip+SemVer)"
 LICENSE="MS-PL" # https://github.com/haf/DotNetZip.Semverd/blob/master/LICENSE
 
@@ -35,7 +35,6 @@ function output_filename ( ) {
 }
 
 src_prepare() {
-	eapply "${FILESDIR}/version-${PV}.patch"
 	eapply_user
 }
 
