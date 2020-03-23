@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -17,10 +17,8 @@ inherit gac
 GITHUB_ACCOUNT="natemcmaster"
 GITHUB_REPONAME="CommandLineUtils"
 EGIT_COMMIT="cf83608801e780ef98f5fe1527ca141a6454cc36"
-S="${WORKDIR}/${GITHUB_REPONAME}-${EGIT_COMMIT}"
 SRC_URI="https://codeload.github.com/${GITHUB_ACCOUNT}/${GITHUB_REPONAME}/tar.gz/${EGIT_COMMIT} -> ${CATEGORY}-${PN}-${PV}.tar.gz"
-# https://github.com/mono/mono/raw/master/mcs/class/ecma.pub
-# https://github.com/mono/mono/raw/master/mcs/class/mono.snk
+S="${WORKDIR}/${GITHUB_REPONAME}-${EGIT_COMMIT}"
 
 HOMEPAGE="https://natemcmaster.github.io/CommandLineUtils/"
 DESCRIPTION="Command line parsing and utilities for .NET Core and .NET Framework"
