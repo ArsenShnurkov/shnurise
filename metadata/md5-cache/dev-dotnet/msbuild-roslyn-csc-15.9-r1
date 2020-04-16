@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile install prepare setup
+DEPEND=>=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 msbuild_targets_msbuild15-9? ( dev-dotnet/msbuild-tasks-api:15.9 dev-dotnet/msbuild-defaulttasks:15.9 ) dev-dotnet/msbuild-tasks-api dev-lang/mono
+DESCRIPTION=C# compiler with rich code analysis APIs
+EAPI=7
+HOMEPAGE=https://github.com/dotnet/roslyn
+IUSE=net45 msbuild_targets_msbuild15-9 +msbuild +gac +mskey +debug developer net45 gac pkg-config
+KEYWORDS=~amd64 ~x86
+LICENSE=Apache2.0
+RDEPEND=>=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 msbuild_targets_msbuild15-9? ( dev-dotnet/msbuild-tasks-api:15.9 dev-dotnet/msbuild-defaulttasks:15.9 ) dev-lang/mono
+RESTRICT=mirror
+SLOT=0
+SRC_URI=https://github.com/dotnet/roslyn/archive/ec1cde8b77c7bca654888681037f55aa0e62dd19.tar.gz -> roslyn-15.9.tar.gz mskey? ( https://github.com/Microsoft/msbuild/raw/master/src/MSFT.snk ) https://github.com/mono/mono/raw/master/mcs/class/mono.snk
+_eclasses_=dotnet	978985b1c88cff3d70355bdc2fba673f	eutils	fcb2aa98e1948b835b5ae66ca52868c5	gac	8676bb004075396887abfc3761616db1	mono-env	059a05efbba66d5bdcc2dd74d91f82f8	msbuild-framework	b4fe27dd62f230c8f78ce908fa2c5d62	xbuild	c67583c573f4ca4d63e61dcd2b353b51
+_md5_=93753d96ed188d41b34e91fe02f5ace0
