@@ -1,18 +1,18 @@
-# Copyright 1999-2019 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI="7"
 SLOT="0"
 
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64 ~x86"
 RESTRICT="mirror"
 
 USE_DOTNET="net45"
-USE_MSBUILD="msbuild15-9 msbuild15-7 msbuild15-4"
+USE_MSBUILD="msbuild15-9"
 
 # inherit directive is placed before IUSE line because of dotnet_expand and msbuild_expand functions
-inherit msbuild-framework
 
+inherit msbuild-framework
 inherit xbuild gac
 
 NAME="roslyn"
@@ -27,12 +27,12 @@ S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 DESCRIPTION="C# compiler with rich code analysis APIs"
 LICENSE="Apache2.0" # https://github.com/dotnet/roslyn/blob/master/License.txt
 
-IUSE="$(dotnet_expand ${USE_DOTNET}) $(msbuild_expand ${USE_MSBUILD}) +msbuild +gac mskey +debug developer"
+IUSE="$(dotnet_expand ${USE_DOTNET}) $(msbuild_expand ${USE_MSBUILD}) +msbuild +gac +mskey +debug developer"
 
 COMMON_DEPEND=">=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999
-	msbuild_targets_msbuild15-7? (
-		dev-dotnet/msbuild-tasks-api:15.7
-		dev-dotnet/msbuild-defaulttasks:15.7
+	msbuild_targets_msbuild15-9? (
+		dev-dotnet/msbuild-tasks-api:15.9  
+		dev-dotnet/msbuild-defaulttasks:15.9
 	)
 "
 
@@ -40,8 +40,10 @@ RDEPEND="${COMMON_DEPEND}
 "
 
 DEPEND="${COMMON_DEPEND}
-	dev-dotnet/msbuildtasks
 "
+# BDEPEND
+# dev-dotnet/msbuildtasks
+
 
 METAFILE_FO_BUILD="${S}/src/Compilers/Core/MSBuildTask/mono-MSBuildTask.csproj"
 

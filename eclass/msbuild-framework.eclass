@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 # @ECLASS: msbuild-framework.eclass
@@ -7,12 +7,11 @@
 # @DESCRIPTION: contain paths in the VFS
 
 case ${EAPI:-0} in
-	0) die "this eclass doesn't support EAPI 0" ;;
-	1|2|3) ;;
+	0|1|2|3|4|5|6) die "this eclass doesn't support EAPI 0..6" ;;
 	*) ;; #if [[ ${USE_MSBUILD} ]]; then REQUIRED_USE="|| (${USE_MSBUILD})"; fi;;
 esac
 
-inherit versionator
+#inherit versionator
 
 DEPEND+=" dev-dotnet/msbuild-tasks-api"
 
@@ -35,8 +34,17 @@ MSBuildExtensionsPath () {
 # @FUNCTION: MSBuildToolsVersion
 # @DESCRIPTION: version of tools
 # for use only from slotted ebuilds
-MSBuildToolsVersion () {
-	echo "$(get_version_component_range 1 ${SLOT}).0"
+BuildToolsVersion () {
+	# https://dev.gentoo.org/~mgorny/articles/the-ultimate-guide-to-eapi-7.html#replacing-versionator-eclass-uses
+	# get_version_component_range -> ver_cut
+	#
+	# https://devmanual.gentoo.org/eclass-reference/eapi7-ver.eclass/index.html
+	# ver_cut <range> [<version>]
+	#    Print the substring of the version string containing components defined by the <range> and the version separators between them. Processes <version> if specified, ${PV} otherwise.
+	#
+	# A range can be specified as 'm' for m-th version component, 'm-' for all components starting with m-th or 'm-n' for components starting at m-th and ending at n-th (inclusive).
+	# If the range spans outside the version string, it is truncated silently. 
+	echo "$(ver_cut 1-2 ${SLOT}).0"
 }
 
 # @FUNCTION: MSBuildBinPath
@@ -56,4 +64,3 @@ MSBuildBinPath () {
 MSBuildSdksPath () {
 	echo "$(MSBuildBinPath)/Sdks"
 }
-
