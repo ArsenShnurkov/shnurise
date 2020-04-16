@@ -11,7 +11,7 @@ RDEPEND="
 
 DEPEND="
 	dev-util/msbuild
-	>=dev-dotnet/msbuildtasks-1.5.0.240-r1
 	app-eselect/eselect-msbuild
 	dev-dotnet/microsoft-net-sdk
 "
+#	>=dev-dotnet/msbuildtasks-1.5.0.240-r1
