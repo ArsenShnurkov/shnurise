@@ -3,7 +3,7 @@
 
 EAPI="7"
 RESTRICT="mirror"
-KEYWORDS="~amd64 ~x86 ~ppc"
+KEYWORDS="amd64"
 
 # see docs:
 # https://github.com/gentoo/gentoo/commit/59a1a0dda7300177a263eb1de347da493f09fdee
@@ -15,9 +15,9 @@ SLOT="$(ver_cut 1-2)"
 VER="${SLOT}.0.0" # version of resulting .dll files in GAC
 
 USE_DOTNET="net45"
-IUSE="+${USE_DOTNET} +gac +mskey debug  developer"
+IUSE="+${USE_DOTNET} +gac +mskey pkg-config debug  developer"
 
-inherit xbuild gac
+inherit xbuild gac mono-pkg-config
 
 GITHUB_ACCOUNT="Microsoft"
 GITHUB_PROJECTNAME="msbuild"
@@ -76,6 +76,6 @@ src_compile() {
 src_install() {
 	egacinstall "${S}/${FW_DIR}/bin/$(usedebug_tostring)/${FW_PROJ}.dll"
 	egacinstall "${S}/${UT_DIR}/bin/$(usedebug_tostring)/${UT_PROJ}.dll"
+	einstall_pc_file ${FW_PROJ} ${PV} '${libdir}'/mono/${PN}/${FW_PROJ}.dll
+	einstall_pc_file ${UT_PROJ} ${PV} '${libdir}'/mono/${PN}/${UT_PROJ}.dll
 }
-
-

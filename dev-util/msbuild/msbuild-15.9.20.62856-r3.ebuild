@@ -1,14 +1,10 @@
-# Copyright 1999-2019 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI="7"
 RESTRICT="mirror"
-KEYWORDS="~amd64 ~x86 ~ppc"
+KEYWORDS="amd64"
 
-# see docs:
-# https://github.com/gentoo/gentoo/commit/59a1a0dda7300177a263eb1de347da493f09fdee
-# https://devmanual.gentoo.org/eclass-reference/eapi7-ver.eclass/index.html
-inherit eapi7-ver 
 SLOT="$(ver_cut 1-2)"
 
 SLOT_OF_API="${SLOT}" # slot for ebuild with API of msbuild
@@ -39,6 +35,7 @@ LICENSE="MIT" # https://github.com/Microsoft/msbuild/blob/master/LICENSE
 COMMON_DEPEND=">=dev-lang/mono-5.2.0.196
 	dev-dotnet/msbuild-tasks-api:${SLOT_OF_API} developer? ( dev-dotnet/msbuild-tasks-api:${SLOT_OF_API}[developer] )
 	dev-dotnet/msbuild-defaulttasks:${SLOT_OF_API} developer? ( dev-dotnet/msbuild-defaulttasks:${SLOT_OF_API}[developer] )
+	dev-dotnet/system-collections-immutable[pkg-config]
 	roslyn? ( dev-dotnet/msbuild-roslyn-csc )
 "
 RDEPEND="${COMMON_DEPEND}

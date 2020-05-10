@@ -1,10 +1,9 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
-EAPI=6
+EAPI="7"
 
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64"
 SLOT="0"
 RESTRICT="mirror"
 
@@ -18,7 +17,7 @@ USE_DOTNET="net45"
 # pkg-config = register in pkg-config database
 IUSE="${USE_DOTNET} debug developer +gac pkg-config nupkg test"
 
-inherit dotnet xbuild gac
+inherit dotnet xbuild gac mono-pkg-config
 
 NAME="Newtonsoft.Json"
 HOMEPAGE="https://github.com/JamesNK/${NAME}"
@@ -40,8 +39,8 @@ DEPEND="${COMMON_DEPENDENCIES}
 
 PDEPEND="test? ( dev-dotnet/newtonsoft-json-test )
 	nupkg? ( dev-dotnet/newtonsoft-json-testdev-nupkg )
-	pkg-config? ( dev-dotnet/newtonsoft-json-testdev-pkg-config )
 "
+# pkg-config? ( dev-dotnet/newtonsoft-json-testdev-pkg-config )
 
 METAFILETOBUILD=Src/Newtonsoft.Json/Newtonsoft.Json.csproj
 
@@ -86,5 +85,9 @@ src_install() {
 
 	if use gac; then
 		egacinstall "${FINAL_DLL}"
+	fi
+
+	if use pkg-config; then
+		einstall_pc_file Newtonsoft.Json ${PV} '${libdir}/mono/newtonsoft-json/Newtonsoft.Json.dll'
 	fi
 }

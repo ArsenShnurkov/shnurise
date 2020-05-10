@@ -1,16 +1,15 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
-EAPI=6
+EAPI="7"
 RESTRICT="mirror"
-KEYWORDS="~amd64"
+KEYWORDS="amd64"
 SLOT="0"
 
 USE_DOTNET="net45"
 IUSE="+${USE_DOTNET} +gac developer debug doc +symlink"
 
-inherit dotnet gac mono-pkg-config
+inherit dotnet xbuild gac mono-pkg-config
 
 GITHUB_ACCOUNT="dotnet"
 GITHUB_PROJECTNAME="buildtools"
@@ -25,7 +24,7 @@ LICENSE="MIT" # https://github.com/dotnet/buildtools/blob/master/LICENSE
 #	dev-dotnet/newtonsoft-json
 COMMON_DEPEND=">=dev-lang/mono-5.2.0.196
 	dev-dotnet/msbuild-tasks-api
-	=dev-dotnet/newtonsoft-json-6.0.8-r1[gac]
+	=dev-dotnet/newtonsoft-json-6.0.8-r1[pkg-config]
 "
 RDEPEND="${COMMON_DEPEND}
 "
@@ -73,6 +72,6 @@ src_install() {
 	insinto "/usr/lib/mono/xbuild"
 	doins "${S}/src/Microsoft.DotNet.Build.Tasks/PackageFiles/resources.targets"
 	if use symlink; then
-		dosym "/usr/$(get_libdir)/mono/gac/${PROJ1}/1.0.27.0__0738eb9f132ed756/${PROJ1}.dll" "/usr/lib/mono/xbuild/${PROJ1}.dll"
+		dosym "$(gac_dir)/${PROJ1}/1.0.27.0__0738eb9f132ed756/${PROJ1}.dll" "/usr/lib/mono/xbuild/${PROJ1}.dll"
 	fi
 }

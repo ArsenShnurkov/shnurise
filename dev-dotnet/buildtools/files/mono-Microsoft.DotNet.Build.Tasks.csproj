@@ -109,7 +109,7 @@
     <Reference Include="System.IO.Compression.FileSystem" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\MSBuild.Community.Tasks.Targets" />
+  <Import Project="$(MSBuildExtensionsPath)/MSBuildCommunityTasks/MSBuild.Community.Tasks.Targets" />
   <Target Name="BeforeBuild">
     <PropertyGroup Condition=" '$(VersionNumber)' == '' ">
        <VersionNumber>1.0.27.0</VersionNumber>

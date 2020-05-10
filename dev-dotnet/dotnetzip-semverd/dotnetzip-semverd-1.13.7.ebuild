@@ -3,7 +3,7 @@
 
 EAPI="7"
 
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="amd64"
 RESTRICT="mirror"
 
 SLOT="13"
@@ -86,10 +86,12 @@ src_install() {
 	einfo "$(output_filename1)"
 	local INSTALL_DIR="$(anycpu_current_assembly_dir)"
 	elib ${INSTALL_DIR} "$(output_filename1)"
+#	einstall_pc_file "Ionic.Zip.Reduced" ${PV} '$(libdir)'/mono/${PN}/Ionic.Zip.Reduced.dll
 	if use debug; then
 		insinto "${INSTALL_DIR}"
 		doins "$(bin_dir)/Ionic.Zip.Reduced.pdb"
 	fi
+
 	if use source; then
 		for f in $(sources1); do
 			# https://stackoverflow.com/questions/10986794/remove-part-of-path-on-unix

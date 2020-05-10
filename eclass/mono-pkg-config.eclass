@@ -44,7 +44,7 @@ einstall_pc_file()
 		# keep verbatim, do not change it to "/usr/$(get_libdir)/pkgconfig"
 		local PC_DIRECTORY="/usr/share/pkgconfig"
 
-		local PC_FILENAME="${CATEGORY}-${PN}"
+		local PC_FILENAME="${PC_NAME}"
 		local PC_FILENAME_WITH_SLOT="${PC_FILENAME}${APPENDIX}"
 
 		if [ "$#" == "0" ]; then
@@ -102,7 +102,6 @@ elib () {
 	shift 1
 	einfo "installing into ${INSTALL_PATH}"
 	insinto "${INSTALL_PATH}"
-	declare -a DLL_LIST
 	# https://unix.stackexchange.com/questions/128204/what-does-while-test-gt-0-do/128207
 	while ${1+:} false ; do
 		# https://stackoverflow.com/questions/2664740/extract-file-basename-without-path-and-extension-in-bash
@@ -112,10 +111,10 @@ elib () {
 		einfo "doins \"$1\""
 		doins "$1"
 		einfo "elib: $1 is installed as ${INSTALL_PATH}/${ASSEMBLY_FILENAMEWEXT}"
-		DLL_LIST+=( "${INSTALL_PATH}/${ASSEMBLY_FILENAMEWEXT}" )
+
+		einstall_pc_file "${ASSEMBLY_FILENAME}" "${PV}" "${INSTALL_PATH}/${ASSEMBLY_FILENAMEWEXT}"
+
 		shift
 	done
-	einfo "einstall_pc_file \"${PN}\" \"${PV}\" ${DLL_LIST[@]}"
-	einstall_pc_file "${CATEGORY}/${PN}" "${PV}" ${DLL_LIST[@]}
 	einfo "elib finished"
 }

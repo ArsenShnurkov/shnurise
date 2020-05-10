@@ -1,16 +1,16 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=6
+EAPI="7"
 RESTRICT="mirror"
-KEYWORDS="~amd64"
+KEYWORDS="amd64"
 SLOT="0"
 
 USE_DOTNET="net45"
-IUSE="+${USE_DOTNET} +gac developer debug doc"
+IUSE="+${USE_DOTNET} +gac pkg-config developer debug doc"
 
-inherit gac dotnet
+inherit gac dotnet xbuild mono-pkg-config
 
 GITHUB_ACCOUNT="dotnet"
 GITHUB_PROJECTNAME="corefx"
@@ -23,7 +23,7 @@ DESCRIPTION="part of CoreFX"
 LICENSE="MIT" # https://github.com/dotnet/corefx/blob/master/LICENSE.TXT
 
 COMMON_DEPEND=">=dev-lang/mono-5.2.0.196
-	dev-dotnet/system-collections-immutable
+	dev-dotnet/system-collections-immutable[pkg-config]
 "
 RDEPEND="${COMMON_DEPEND}
 "

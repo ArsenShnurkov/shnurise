@@ -25,6 +25,19 @@ RDEPEND+=" dev-lang/mono"
 #	https://github.com/mono/mono/raw/master/mcs/class/mono.snk
 #	"
 
+# @FUNCTION: gac_root
+# @DESCRIPTION:  returns location of GAC directory root
+function gac_root {
+#	echo /usr/$(get_libdir)
+	echo /usr/lib
+}
+
+# @FUNCTION: gac_dir
+# @DESCRIPTION:  returns location of GAC directory
+function gac_dir {
+	echo $(gac_root)/mono/gac
+}
+
 # @FUNCTION: token
 # @DESCRIPTION:  returns Microsoft's PublicKeyToken or mono's one depending on USE="mskey"
 function token {
@@ -58,14 +71,14 @@ egacinstall() {
 	if use gac; then
 		if use pkg-config; then
 			gacutil -i "${1}" \
-				-root "${ED}"/usr/$(get_libdir) \
-				-gacdir /usr/$(get_libdir) \
+				-root "${ED}"$(gac_root) \
+				-gacdir $(gac_dir) \
 				-package ${2:-${GACPN:-${PN}}} \
 				|| die "installing ${1} into the Global Assembly Cache failed"
 		else
 			gacutil -i "${1}" \
-				-root "${ED}"/usr/$(get_libdir) \
-				-gacdir /usr/$(get_libdir) \
+				-root "${ED}"$(gac_root) \
+				-gacdir $(gac_dir) \
 				|| die "installing ${1} into the Global Assembly Cache failed"
 		fi
 	fi
@@ -83,12 +96,10 @@ egac() {
 # @DESCRIPTION:  install package to GAC
 egacadd() {
 	if use gac; then
-		GACROOT="${PREFIX}/usr/$(get_libdir)"
-		GACDIR="/usr/$(get_libdir)/mono/gac"
-		einfo gacutil -i "${PREFIX}/${1}" -root "${GACROOT}" -gacdir "${GACDIR}"
+		einfo gacutil -i "${PREFIX}/${1}" -root "$(gac_root)" -gacdir "$(gac_dir)"
 		gacutil -i "${PREFIX}/${1}" \
-			-root ${GACROOT} \
-			-gacdir ${GACDIR} \
+			-root $(gac_root) \
+			-gacdir $(gac_dir) \
 			|| die "installing ${1} into the Global Assembly Cache failed"
 	fi
 }
@@ -97,12 +108,10 @@ egacadd() {
 # @DESCRIPTION:  remove package from GAC
 egacdel() {
 	if use gac; then
-		GACROOT="${PREFIX}/usr/$(get_libdir)"
-		GACDIR="/usr/$(get_libdir)/mono/gac"
 		einfo gacutil -u "${1}" -root "${GACROOT}" -gacdir "${GACDIR}"
 		gacutil -u "${1}" \
-			-root ${GACROOT} \
-			-gacdir ${GACDIR}
+			-root $(gac_root) \
+			-gacdir $(gac_dir) 
 		# don't die
 	fi
 }

@@ -3,14 +3,14 @@
 
 EAPI="7"
 RESTRICT="mirror"
-KEYWORDS="~amd64"
+KEYWORDS="amd64"
 
 SLOT="0"
 
 USE_DOTNET="net45"
-IUSE="+${USE_DOTNET} +gac developer debug doc"
+IUSE="+${USE_DOTNET} +gac pkg-config developer debug doc"
 
-inherit xbuild gac
+inherit xbuild gac mono-pkg-config
 
 GITHUB_ACCOUNT="dotnet"
 GITHUB_PROJECTNAME="corefx"
@@ -67,5 +67,5 @@ src_install() {
 	fi
 
 	egacinstall "${PROJ1_DIR}/bin/${CONFIGURATION}/${PROJ1}.dll"
-	einstall_pc_file "${PN}" "${PV}" "${PROJ1}"
+	einstall_pc_file "System.Collections.Immutable" "${PV}" '${libdir}'"/mono/${PN}/${PROJ1}.dll"
 }

@@ -1,10 +1,9 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
-EAPI=6
+EAPI="7"
 
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="amd64"
 RESTRICT="mirror"
 
 SLOT="1"
@@ -13,8 +12,6 @@ if [ "${SLOT}" != "0" ]; then
 fi
 
 USE_DOTNET="net45"
-
-inherit versionator
 
 # xbuild here can't be changed to msbuild
 # because tasks from this package is used to build dev-dotnet/msbuild-defaulttasks
@@ -27,7 +24,7 @@ IUSE="+${USE_DOTNET} +debug developer +msbuild +xbuild +symlink"
 
 HOMEPAGE="https://github.com/loresoft/msbuildtasks"
 EGIT_COMMIT="abaab03d71fc07b020a860f6d407f6814cb0f6d5"
-TARBALL_FILENAME="${PN}-$(get_version_component_range 1-4)"
+TARBALL_FILENAME="${PN}-$(ver_cut 1-4)"
 TARBALL_EXT=".tar.gz"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}${TARBALL_EXT} -> ${TARBALL_FILENAME}${TARBALL_EXT}
 	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
@@ -73,6 +70,7 @@ src_prepare() {
 	eapply "${FILESDIR}/remove-sandcastle-task.patch"
 	eapply "${FILESDIR}/csproj.patch"
 	eapply "${FILESDIR}/location.patch"
+	eapply "${FILESDIR}/encryption.patch"
 	sed -i "s?/usr/lib/mono/4.5?/usr/lib/mono/4.5/MSBuild.Community.Tasks${APPENDIX}?g" "${S}/$(project_relpath)/$(targets_filename)" || die
 #	sed -i 's/Microsoft.Build.Framework/Microsoft.Build.Framework, Version=15.9.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756/g' "$(metafile_to_build)" || die
 	sed -i 's/Microsoft.Build.Utilities.v4.0/Microsoft.Build.Utilities.Core/g' "$(metafile_to_build)" || die

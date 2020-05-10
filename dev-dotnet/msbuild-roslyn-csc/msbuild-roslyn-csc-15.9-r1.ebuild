@@ -4,7 +4,7 @@
 EAPI="7"
 SLOT="0"
 
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64"
 RESTRICT="mirror"
 
 USE_DOTNET="net45"
@@ -31,7 +31,7 @@ IUSE="$(dotnet_expand ${USE_DOTNET}) $(msbuild_expand ${USE_MSBUILD}) +msbuild +
 
 COMMON_DEPEND=">=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999
 	msbuild_targets_msbuild15-9? (
-		dev-dotnet/msbuild-tasks-api:15.9  
+		dev-dotnet/msbuild-tasks-api:15.9
 		dev-dotnet/msbuild-defaulttasks:15.9
 	)
 "
