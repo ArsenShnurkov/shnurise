@@ -3,16 +3,16 @@
 
 EAPI="7"
 
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64"
 RESTRICT="mirror"
 
 SLOT="0" # if ommitted gives the message: "SLOT: invalid value: ''" during "ebuild digest" operation
 
 USE_DOTNET="net45"
 
-IUSE="+${USE_DOTNET} debug developer"
+IUSE="+${USE_DOTNET} pkg-config debug developer"
 
-inherit dotnet
+inherit dotnet mono-pkg-config
 
 DESCRIPTION="API for managing Apache and mod-mono-server4"
 
@@ -30,6 +30,15 @@ if [ "${SLOT}" != "0" ]; then
 	APPENDIX="-${SLOT}"
 fi
 
+function install_dir() {
+#	echo "/usr/lib/ApacheModmono.Web.Administration${APPENDIX}"
+	echo "$(anycpu_current_assembly_dir)"
+}
+
+function references() {
+	echo -n " " /reference:System.dll
+}
+
 function obj_dir ( ) {
 	echo "${WORKDIR}/obj/$(usedebug_tostring)"
 }
@@ -38,18 +47,10 @@ function bin_dir ( ) {
 	echo "${WORKDIR}/bin/$(usedebug_tostring)"
 }
 
-function references() {
-	echo -n " " /reference:System.dll
-}
-
 function output_arguments ( ) {
 	local OUTPUT_TYPE="library" # https://docs.microsoft.com/ru-ru/dotnet/csharp/language-reference/compiler-options/target-exe-compiler-option
 	local OUTPUT_NAME="$(bin_dir)/ApacheModmono.Web.Administration.dll"
 	echo  "/target:${OUTPUT_TYPE}" "/out:${OUTPUT_NAME}"
-}
-
-function install_dir() {
-	echo "/usr/lib/ApacheModmono.Web.Administration${APPENDIX}"
 }
 
 src_compile() {
@@ -60,4 +61,5 @@ src_compile() {
 src_install() {
 	insinto "$(install_dir)"
 	doins "$(bin_dir)/ApacheModmono.Web.Administration.dll"
+	einstall_pc_file "ApacheModmono.Web.Administration" "${PV}" $(install_dir)/ApacheModmono.Web.Administration.dll
 }
