@@ -78,7 +78,8 @@ src_install() {
 		local etarget="$( msbuild_expand ${target} )"
 		if use ${etarget}; then
 			local TARGET_SLOT=${target//msbuild/}
-			TargetVersion=${TARGET_SLOT//-/.}
+			#TargetVersion=${TARGET_SLOT//-/.}
+			TargetVersion=$(ver_cut 1 ${TARGET_SLOT}).0
 			insinto "/usr/share/msbuild/${MSBuildToolsVersion}/Roslyn/"
 			doins "${S}/src/Compilers/Core/MSBuildTask/Microsoft.CSharp.Core.targets"
 			doins "${S}/src/Compilers/Core/MSBuildTask/Microsoft.VisualBasic.Core.targets"

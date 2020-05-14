@@ -50,11 +50,12 @@ src_install() {
 		local etarget="$( msbuild_expand ${target} )"
 		if use ${etarget}; then
 			local TARGET_SLOT=${target//msbuild/}
-			MSBuildToolsVersion=${TARGET_SLOT//-/.}
-			#       /usr/share/msbuild/15.9/bin/Sdks/Microsoft.NET.Sdk/Sdk
-			insinto /usr/share/msbuild/${MSBuildToolsVersion}/bin/Sdks/Microsoft.NET.Sdk/Sdk
+			#MSBuildToolsVersion=${TARGET_SLOT//-/.}
+			# /usr/share/msbuild/15.9/bin/Sdks/Microsoft.NET.Sdk/Sdk
+			MSBuildToolsVersion=$(ver_cut 1 $TARGET_SLOT).0
+			insinto /usr/share/msbuild/${MSBuildToolsVersion}/bin/Sdks/Microsoft.NET.Sdk/sdk
 			doins -r "${S}"/src/Tasks/Microsoft.NET.Build.Tasks/sdk/*
-			insinto /usr/share/msbuild/${MSBuildToolsVersion}/bin/Sdks/Microsoft.NET.Sdk/Targets
+			insinto /usr/share/msbuild/${MSBuildToolsVersion}/bin/Sdks/Microsoft.NET.Sdk/targets
 			doins -r "${S}"/src/Tasks/Microsoft.NET.Build.Tasks/targets/*
                 fi
 	    done

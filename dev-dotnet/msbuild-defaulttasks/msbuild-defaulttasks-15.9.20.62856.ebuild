@@ -80,9 +80,10 @@ src_compile() {
 src_install() {
 	egacinstall "$(output_filename)"
 
-#	insinto "$(MSBuildBinPath)"
-	insinto "/usr/share/msbuild/$(ver_cut 1 ${SLOT}).0/bin"
+	#insinto "/usr/share/msbuild/$(ver_cut 1 ${SLOT}).0/bin"
+	insinto "$(MSBuildBinPath)"
 	doins "$(output_filename)"
+	insinto "$(MSBuildToolsPath)"
 	doins "${FILESDIR}/${SLOT}/Microsoft.Common.tasks"
 }
 
