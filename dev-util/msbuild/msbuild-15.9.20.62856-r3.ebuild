@@ -86,25 +86,29 @@ src_compile() {
 }
 
 src_install() {
-	TargetVersion=${SLOT}
+	TargetVersion=$(ver_cut 1 ${SLOT}).0
 
-	einfo "Deploying props into $(MSBuildExtensionsPath)/$(MSBuildToolsVersion)"
-	insinto "$(MSBuildExtensionsPath)/$(MSBuildToolsVersion)"
-	doins "${S}/src/Tasks/Microsoft.Common.props"
+#	einfo "Deploying props into $(MSBuildExtensionsPath)/$(MSBuildToolsVersion)"
+#	insinto "$(MSBuildExtensionsPath)/$(MSBuildToolsVersion)"
+#	doins "${S}/src/Tasks/Microsoft.Common.props"
 
 	einfo "Deploying targets into $(MSBuildBinPath)"
 	insinto "$(MSBuildBinPath)"
 	newins "${PROJ2_DIR}/bin/$(usedebug_tostring)/${PROJ2}.exe" MSBuild.exe
 	doins "${FILESDIR}/${PV}/MSBuild.exe.config"
-	doins "${S}/src/Tasks/Microsoft.CSharp.targets"
-	doins "${S}/src/Tasks/Microsoft.CSharp.CurrentVersion.targets"
+
+	doins "${S}/src/Tasks/Microsoft.Common.props"
 	doins "${S}/src/Tasks/Microsoft.Common.targets"
 	doins "${S}/src/Tasks/Microsoft.Common.CurrentVersion.targets"
-	doins "${S}/src/Tasks/Microsoft.NETFramework.targets"
-	doins "${S}/src/Tasks/Microsoft.NETFramework.CurrentVersion.targets"
 	doins "${S}/src/Tasks/Microsoft.Common.overridetasks"
+
+	doins "${S}/src/Tasks/Microsoft.CSharp.targets"
+	doins "${S}/src/Tasks/Microsoft.CSharp.CurrentVersion.targets"
+
 	doins "${S}/src/Tasks/Microsoft.NETFramework.props"
+	doins "${S}/src/Tasks/Microsoft.NETFramework.targets"
 	doins "${S}/src/Tasks/Microsoft.NETFramework.CurrentVersion.props"
+	doins "${S}/src/Tasks/Microsoft.NETFramework.CurrentVersion.targets"
 
 	keepdir "$(MSBuildSdksPath)"
 
