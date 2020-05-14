@@ -11,7 +11,7 @@ SLOT_OF_API="${SLOT}" # slot for ebuild with API of msbuild
 VER="${PV}" # version of resulting msbuild.exe
 
 USE_DOTNET="net46"
-IUSE="+${USE_DOTNET} +gac +mskey developer debug +roslyn symlink"
+IUSE="+${USE_DOTNET} +gac +mskey developer debug sources +roslyn symlink"
 
 inherit xbuild gac
 
@@ -60,6 +60,7 @@ src_prepare() {
 	sed -E ${REGEX} -i ${S}/src/Tasks/Microsoft.Common.overridetasks || die
 	sed "s/15.1./15.9./g" -i "${S}/src/Shared/Constants.cs" || die
 	sed "s/15.1./15.9./g" -i "${S}/src/Tasks/Microsoft.Common.overridetasks" || die
+	eapply "${FILESDIR}/${PV}/sdk-diag.patch"
 	eapply_user
 }
 

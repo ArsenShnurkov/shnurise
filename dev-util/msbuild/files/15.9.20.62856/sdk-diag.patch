@@ -1,0 +1,65 @@
+--- a/src/Build/BackEnd/Components/SdkResolution/DefaultSdkResolver.cs
++++ b/src/Build/BackEnd/Components/SdkResolution/DefaultSdkResolver.cs
+@@ -4,6 +4,7 @@
+ using Microsoft.Build.Framework;
+ using Microsoft.Build.Shared;
+ using System.IO;
++using System;
+ 
+ using SdkResolverBase = Microsoft.Build.Framework.SdkResolver;
+ using SdkResolverContextBase = Microsoft.Build.Framework.SdkResolverContext;
+@@ -31,6 +32,10 @@
+         {
+             var sdkPath = Path.Combine(BuildEnvironmentHelper.Instance.MSBuildSDKsPath, sdk.Name, "Sdk");
+ 
++            Console.WriteLine("sdkPath = " + sdkPath);
++            bool directoryExists = FileUtilities.DirectoryExistsNoThrow(sdkPath);
++            Console.WriteLine("directoryExists = " + directoryExists.ToString());
++
+             // Note: On failure MSBuild will log a generic message, no need to indicate a failure reason here.
+             return FileUtilities.DirectoryExistsNoThrow(sdkPath)
+                 ? factory.IndicateSuccess(sdkPath, string.Empty)
+--- a/src/Build/BackEnd/Components/SdkResolution/SdkResolverService.cs
++++ b/src/Build/BackEnd/Components/SdkResolution/SdkResolverService.cs
+@@ -11,6 +11,7 @@
+ using System.Collections.Concurrent;
+ using System.Collections.Generic;
+ using System.Reflection;
++using System.Diagnostics;
+ 
+ namespace Microsoft.Build.BackEnd.SdkResolution
+ {
+@@ -101,9 +102,15 @@
+             SdkLogger buildEngineLogger = new SdkLogger(loggingContext);
+ 
+             loggingContext.LogComment(MessageImportance.Low, "SdkResolving", sdk.ToString());
++//            StackTrace st = new StackTrace(true);
++//            loggingContext.LogCommentFromText(MessageImportance.Low, st.ToString());
++
++            loggingContext.LogCommentFromText(MessageImportance.Low, "Total resolvers count = " + _resolvers.Count.ToString() );
+ 
+             foreach (SdkResolver sdkResolver in _resolvers)
+             {
++                loggingContext.LogCommentFromText(MessageImportance.Low, "sdkResolver.Name = " + sdkResolver.Name );
++
+                 SdkResolverContext context = new SdkResolverContext(buildEngineLogger, projectPath, solutionPath, ProjectCollection.Version, interactive)
+                 {
+                     State = GetResolverState(submissionId, sdkResolver)
+@@ -154,6 +161,8 @@
+                     // Associate the element location of the resolved SDK reference
+                     result.ElementLocation = sdkReferenceLocation;
+ 
++                    loggingContext.LogCommentFromText(MessageImportance.Low, "~1 Success" + result.Path);
++
+                     return result;
+                 }
+ 
+@@ -173,6 +182,8 @@
+                 }
+             }
+ 
++            loggingContext.LogCommentFromText(MessageImportance.Low, "~2 " + sdk.ToString());
++
+             return new SdkResult(sdk, null, null);
+         }
+ 
