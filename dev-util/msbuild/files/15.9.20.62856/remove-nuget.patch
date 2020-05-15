@@ -1,0 +1,19 @@
+--- a/src/Tasks/Microsoft.Common.CrossTargeting.targets
++++ b/src/Tasks/Microsoft.Common.CrossTargeting.targets
+@@ -130,16 +130,6 @@
+   -->
+   <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
+ 
+-  <!--
+-    This will import NuGet restore targets. We need restore to work before any package assets are available.
+-  -->
+-  <PropertyGroup>
+-    <NuGetRestoreTargets Condition="'$(NuGetRestoreTargets)'=='' and '$([MSBuild]::IsRunningFromVisualStudio())'=='true'">$(MSBuildToolsPath32)\..\..\..\Common7\IDE\CommonExtensions\Microsoft\NuGet\NuGet.targets</NuGetRestoreTargets>
+-    <NuGetRestoreTargets Condition="'$(NuGetRestoreTargets)'==''">$(MSBuildToolsPath)\NuGet.targets</NuGetRestoreTargets>
+-  </PropertyGroup>
+-
+-  <Import Project="$(NuGetRestoreTargets)" />
+-
+   <Import Project="$(CustomAfterMicrosoftCommonCrossTargetingTargets)" Condition="'$(CustomAfterMicrosoftCommonCrossTargetingTargets)' != '' and Exists('$(CustomAfterMicrosoftCommonCrossTargetingTargets)')"/>
+ 
+   <!--

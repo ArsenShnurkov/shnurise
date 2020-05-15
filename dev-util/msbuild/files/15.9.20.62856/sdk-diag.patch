@@ -10,9 +10,9 @@
  using SdkResolverContextBase = Microsoft.Build.Framework.SdkResolverContext;
 @@ -31,6 +32,10 @@
          {
-             var sdkPath = Path.Combine(BuildEnvironmentHelper.Instance.MSBuildSDKsPath, sdk.Name, "Sdk");
+             var sdkPath = Path.Combine(BuildEnvironmentHelper.Instance.MSBuildSDKsPath, sdk.Name, "sdk");
  
-+            Console.WriteLine("sdkPath = " + sdkPath);
++            Console.WriteLine("Path.Combine(BuildEnvironmentHelper.Instance.MSBuildSDKsPath, sdk.Name, \"sdk\") = " + sdkPath);
 +            bool directoryExists = FileUtilities.DirectoryExistsNoThrow(sdkPath);
 +            Console.WriteLine("directoryExists = " + directoryExists.ToString());
 +

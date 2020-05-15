@@ -1,0 +1,11 @@
+--- a/src/Compilers/Core/MSBuildTask/CopyRefAssembly.cs
++++ b/src/Compilers/Core/MSBuildTask/CopyRefAssembly.cs
+@@ -40,7 +40,7 @@
+ 
+             if (File.Exists(DestinationPath))
+             {
+-                Guid source;
++                Guid source=Guid.Empty;
+                 try
+                 {
+                     source = ExtractMvid(SourcePath);

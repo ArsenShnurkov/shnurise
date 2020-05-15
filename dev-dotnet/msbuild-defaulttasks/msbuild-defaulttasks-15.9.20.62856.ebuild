@@ -5,13 +5,14 @@ EAPI="7"
 RESTRICT="mirror"
 KEYWORDS="amd64"
 
-SLOT="$(ver_cut 1-2)"
-
+SLOT="$(ver_cut 1-2 ${PV})"
 SLOT_OF_API="${SLOT}" # slot for ebuild with API of msbuild
+
 VER="${SLOT_OF_API}.0.0" # version of resulting .dll files in GAC
 
 USE_DOTNET="net46"
 IUSE="+${USE_DOTNET} +gac +mskey debug developer"
+MSBUILD_TARGET="msbuild${SLOT/./-}"
 
 # msbuild-framework.eclass is inherited to get the access to the locations 
 # $(MSBuildBinPath) and $(MSBuildSdksPath)
@@ -80,7 +81,6 @@ src_compile() {
 src_install() {
 	egacinstall "$(output_filename)"
 
-	#insinto "/usr/share/msbuild/$(ver_cut 1 ${SLOT}).0/bin"
 	insinto "$(MSBuildBinPath)"
 	doins "$(output_filename)"
 	insinto "$(MSBuildToolsPath)"

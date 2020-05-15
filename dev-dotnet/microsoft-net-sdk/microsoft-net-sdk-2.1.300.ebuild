@@ -10,8 +10,10 @@ RESTRICT="mirror"
 USE_DOTNET="net45"
 USE_MSBUILD="msbuild15-9 msbuild15-7 msbuild15-4"
 
+inherit msbuild-framework
+
 # inherit directive is placed before IUSE line because of dotnet_expand and msbuild_expand functions
-inherit dotnet msbuild-framework
+inherit dotnet
 
 IUSE="$(dotnet_expand ${USE_DOTNET}) $(msbuild_expand ${USE_MSBUILD}) +msbuild"
 
@@ -50,13 +52,12 @@ src_install() {
 		local etarget="$( msbuild_expand ${target} )"
 		if use ${etarget}; then
 			local TARGET_SLOT=${target//msbuild/}
-			#MSBuildToolsVersion=${TARGET_SLOT//-/.}
-			# /usr/share/msbuild/15.9/bin/Sdks/Microsoft.NET.Sdk/Sdk
-			MSBuildToolsVersion=$(ver_cut 1 $TARGET_SLOT).0
-			insinto /usr/share/msbuild/${MSBuildToolsVersion}/bin/Sdks/Microsoft.NET.Sdk/sdk
+			MSBUILD_TARGET="${target}"
+			insinto $(MSBuildSdksPath)/Microsoft.NET.Sdk/sdk
 			doins -r "${S}"/src/Tasks/Microsoft.NET.Build.Tasks/sdk/*
-			insinto /usr/share/msbuild/${MSBuildToolsVersion}/bin/Sdks/Microsoft.NET.Sdk/targets
+			insinto $(MSBuildSdksPath)/Microsoft.NET.Sdk/targets
 			doins -r "${S}"/src/Tasks/Microsoft.NET.Build.Tasks/targets/*
+			doins -r "${S}"/src/Tasks/Common/targets/*
                 fi
 	    done
 	fi 

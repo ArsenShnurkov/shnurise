@@ -25,16 +25,16 @@ msbuild_expand() {
 	echo "${res}"
 }
 
-# @FUNCTION: MSBuildExtensionsPath
-# @DESCRIPTION: root directory for different version of tools
-MSBuildExtensionsPath () {
-	echo "/usr/share/msbuild"
-}
-
-# @FUNCTION: MSBuildToolsVersion
+# @FUNCTION: BuildToolsVersion
 # @DESCRIPTION: version of tools
 # for use only from slotted ebuilds
 BuildToolsVersion () {
+	# https://stackoverflow.com/questions/3601515/how-to-check-if-a-variable-is-set-in-bash
+	if [ -z ${MSBUILD_TARGET+x} ]; then
+		local VER="$(ver_cut 1-2 ${SLOT})"
+		MSBUILD_TARGET="msbuild${VER/./-}"
+	fi
+
 	# https://dev.gentoo.org/~mgorny/articles/the-ultimate-guide-to-eapi-7.html#replacing-versionator-eclass-uses
 	# get_version_component_range -> ver_cut
 	#
@@ -43,19 +43,22 @@ BuildToolsVersion () {
 	#    Print the substring of the version string containing components defined by the <range> and the version separators between them. Processes <version> if specified, ${PV} otherwise.
 	#
 	# A range can be specified as 'm' for m-th version component, 'm-' for all components starting with m-th or 'm-n' for components starting at m-th and ending at n-th (inclusive).
-	# If the range spans outside the version string, it is truncated silently. 
-	echo "$(ver_cut 1-2 ${SLOT}).0"
+	# If the range spans outside the version string, it is truncated silently.
+	local DEF=${MSBUILD_TARGET/msbuild/}
+	echo ${DEF/-/.}
+}
+
+# @FUNCTION: MSBuildExtensionsPath
+# @DESCRIPTION: root directory for different version of tools
+MSBuildExtensionsPath () {
+	echo "/usr/share/msbuild"
 }
 
 # @FUNCTION: MSBuildToolsPath
 # @DESCRIPTION: location of .target files
 # https://docs.microsoft.com/en-US/visualstudio/msbuild/msbuild-dot-targets-files?view=vs-2019
 MSBuildToolsPath () {
-	# https://stackoverflow.com/questions/3601515/how-to-check-if-a-variable-is-set-in-bash
-	if [ -z ${TargetVersion+x} ]; then
-		TargetVersion = "${SLOT}"
-	fi
-	echo "$(MSBuildExtensionsPath)/${TargetVersion}"
+	echo "$(MSBuildExtensionsPath)/$(BuildToolsVersion)"
 }
 
 # @FUNCTION: MSBuildBinPath
@@ -67,7 +70,24 @@ MSBuildBinPath () {
 
 # @FUNCTION: MSBuildSdksPath
 # @DESCRIPTION: location of Sdks directory
-# for use only from slotted ebuilds
+# .../bin/Sdks relationship is hardcoded in line 
+#     defaultSdkPath = Path.Combine(CurrentMSBuildToolsDirectory, "Sdks");
+# of file
+# https://github.com/microsoft/msbuild/blob/master/src/Shared/BuildEnvironmentHelper.cs#L593
+# it can be overriden with environment variable
+# MSBuildSDKsPath=/usr/share/msbuild/15.9/Sdks msbuild ACME.net.sln
+# but not from MSBuild.exe.config
+# that is why "$(MSBuildBinPath)/Sdks" instead of "$(MSBuildToolsPath)/Sdks"
 MSBuildSdksPath () {
 	echo "$(MSBuildBinPath)/Sdks"
+}
+
+# @FUNCTION: RoslynTargetsPath
+# @DESCRIPTION: location of .targets files for roslyn compiler
+# this eclass promotes
+# "$(MSBuildBinPath)/Roslyn"
+# mono installs it's own copy at path
+# /usr/lib/mono/msbuild/Current/bin/Roslyn
+RoslynTargetsPath () {
+	echo "$(MSBuildBinPath)/Roslyn"
 }

@@ -176,7 +176,7 @@
   <Import Project="/usr/lib/mono/xbuild/MSBuildCommunityTasks/MSBuild.Community.Tasks.Targets" />
   <Target Name="BeforeBuild">
     <PropertyGroup Condition=" '$(VersionNumber)' == '' ">
-      <VersionNumber>15.4.8</VersionNumber>
+      <VersionNumber>Current</VersionNumber>
     </PropertyGroup>
     <AssemblyInfo CodeLanguage="C#" OutputFile="AV.cs" AssemblyVersion="$(VersionNumber)" AssemblyFileVersion="$(VersionNumber)" />
   </Target>

@@ -5,13 +5,14 @@ EAPI="7"
 RESTRICT="mirror"
 KEYWORDS="amd64"
 
-SLOT="$(ver_cut 1-2)"
-
+SLOT="$(ver_cut 1-2 ${PV})"
 SLOT_OF_API="${SLOT}" # slot for ebuild with API of msbuild
+
 VER="${PV}" # version of resulting msbuild.exe
 
 USE_DOTNET="net46"
 IUSE="+${USE_DOTNET} +gac +mskey developer debug sources +roslyn symlink"
+MSBUILD_TARGET="msbuild${SLOT/./-}"
 
 inherit xbuild gac
 
@@ -36,7 +37,7 @@ COMMON_DEPEND=">=dev-lang/mono-5.2.0.196
 	dev-dotnet/msbuild-tasks-api:${SLOT_OF_API} developer? ( dev-dotnet/msbuild-tasks-api:${SLOT_OF_API}[developer] )
 	dev-dotnet/msbuild-defaulttasks:${SLOT_OF_API} developer? ( dev-dotnet/msbuild-defaulttasks:${SLOT_OF_API}[developer] )
 	dev-dotnet/system-collections-immutable[pkg-config]
-	roslyn? ( dev-dotnet/msbuild-roslyn-csc )
+	roslyn? ( dev-dotnet/msbuild-roslyn-csc[msbuild_targets_msbuild15-9] )
 "
 RDEPEND="${COMMON_DEPEND}
 "
@@ -54,13 +55,17 @@ src_prepare() {
 	REGEX='s/PublicKeyToken=[0-9a-f]+/PublicKeyToken='$(token)'/g'
 	sed -E ${REGEX} "${FILESDIR}/${PV}/mono-${PROJ1}.csproj" > "${S}/${PROJ1_DIR}/mono-${PROJ1}.csproj" || die
 	sed -E ${REGEX} "${FILESDIR}/${PV}/mono-${PROJ2}.csproj" > "${S}/${PROJ2_DIR}/mono-${PROJ2}.csproj" || die
+	sed "s/Current/${PV}/g" -i "${S}/${PROJ1_DIR}/mono-${PROJ1}.csproj" || die
+	sed "s/Current/${PV}/g" -i "${S}/${PROJ2_DIR}/mono-${PROJ2}.csproj" || die
 	sed -E ${REGEX} -i "${S}/src/MSBuild/app.config" || die
 	sed -E ${REGEX} -i ${S}/src/Build/Resources/Constants.cs || die
 	sed -E ${REGEX} -i ${S}/src/Tasks/Microsoft.Common.tasks || die
 	sed -E ${REGEX} -i ${S}/src/Tasks/Microsoft.Common.overridetasks || die
 	sed "s/15.1./15.9./g" -i "${S}/src/Shared/Constants.cs" || die
+	sed "s/15.0/15.9/g" -i "${S}/src/Shared/Constants.cs" || die
 	sed "s/15.1./15.9./g" -i "${S}/src/Tasks/Microsoft.Common.overridetasks" || die
 	eapply "${FILESDIR}/${PV}/dirpath-case-correction.patch"
+	eapply "${FILESDIR}/${PV}/remove-nuget.patch"
 	eapply "${FILESDIR}/${PV}/sdk-diag.patch"
 	eapply_user
 }
@@ -87,8 +92,6 @@ src_compile() {
 }
 
 src_install() {
-	TargetVersion=$(ver_cut 1 ${SLOT}).0
-
 #	einfo "Deploying props into $(MSBuildExtensionsPath)/$(MSBuildToolsVersion)"
 #	doins "${S}/src/Tasks/Microsoft.Common.props"
 
@@ -101,6 +104,7 @@ src_install() {
 	doins "${S}/src/Tasks/Microsoft.Common.overridetasks"
 	doins "${S}/src/Tasks/Microsoft.Common.props"
 	doins "${S}/src/Tasks/Microsoft.Common.targets"
+	doins "${S}/src/Tasks/Microsoft.Common.CrossTargeting.targets"
 	doins "${S}/src/Tasks/Microsoft.Common.CurrentVersion.targets"
 
 	doins "${S}/src/Tasks/Microsoft.NETFramework.props"
@@ -109,6 +113,7 @@ src_install() {
 	doins "${S}/src/Tasks/Microsoft.NETFramework.CurrentVersion.targets"
 
 	doins "${S}/src/Tasks/Microsoft.CSharp.targets"
+	doins "${S}/src/Tasks/Microsoft.CSharp.CrossTargeting.targets"
 	doins "${S}/src/Tasks/Microsoft.CSharp.CurrentVersion.targets"
 
 	keepdir "$(MSBuildSdksPath)"
@@ -116,20 +121,20 @@ src_install() {
 	egacinstall "${PROJ1_DIR}/bin/$(usedebug_tostring)/${PROJ1}.dll"
 
 	if use debug; then
-		make_wrapper msbuild-${SLOT} "/usr/bin/mono --debug $(MSBuildBinPath)/MSBuild.exe"
+		make_wrapper ${MSBUILD_TARGET} "/usr/bin/mono --debug $(MSBuildBinPath)/MSBuild.exe"
 	else
-		make_wrapper msbuild-${SLOT} "/usr/bin/mono $(MSBuildBinPath)/MSBuild.exe"
+		make_wrapper ${MSBUILD_TARGET} "/usr/bin/mono $(MSBuildBinPath)/MSBuild.exe"
 	fi
 
 	if use symlink; then
-		dosym ${EPREFIX}/usr/bin/msbuild-${SLOT} /usr/bin/msbuild || die
+		dosym "${EPREFIX}/usr/bin/${MSBUILD_TARGET}" /usr/bin/msbuild || die
 	fi
 }
 
 pkg_postinst() {
-	if ! has "msbuild${SLOT/./-}" ${MSBUILD_TARGETS}; then
+	if ! has ${MSBUILD_TARGET} ${MSBUILD_TARGETS}; then
 		   elog "To install Sdks for this version of msbuild, you will need to"
-		   elog "add msbuild${SLOT/./-} to your MSBUILD_TARGETS USE_EXPAND variable."
+		   elog "add ${MSBUILD_TARGET} to your MSBUILD_TARGETS USE_EXPAND variable."
 		   elog
 	fi
 }
