@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # @ECLASS: dotnet.eclass
@@ -7,7 +7,7 @@
 # @DESCRIPTION:
 # The dotnet eclass contains common environment settings that are useful for
 # dotnet packages.  Currently, it 
-# exports MONO_SHARED_DIR ans
+# exports MONO_SHARED_DIR and
 # sets LC_ALL in order to prevent errors during compilation of dotnet packages.
 
 case ${EAPI:-0} in
@@ -17,8 +17,6 @@ case ${EAPI:-0} in
 esac
 
 inherit eutils
-#inherit versionator
-#inherit eapi7-ver
 inherit mono-env
 
 # >=mono-0.92 versions using mcs -pkg:foo-sharp require shared memory, so we set the
@@ -55,46 +53,11 @@ for x in ${USE_DOTNET}; do
 	esac
 done
 
-if [ "${SLOT}" != "0" ]; then
-	APPENDIX="-${SLOT}"
-fi
-
-# SRC_URI+=" https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
-# I was unable to append SRC_URI variable this ^^ way
-
-# @FUNCTION: csharp_sources
-# @DESCRIPTION: recursively returns all .cs files from directory in $1
-function csharp_sources() {
-	local DIR_NAME=$1
-	for f in "${DIR_NAME}"/*; do
-		if [ -d "$f" ];
-		then
-			csharp_sources "$f"
-		else
-			case "$f" in
-			*.cs ) 
-			        # it's source code file
-				echo -n ' ' $f
-			        ;;
-			*)
-			        # it's not
-			        ;;
-			esac
-		fi
-	done
-}
-
-# @FUNCTION: dotnet_expand
-# @DESCRIPTION: expands values from the DOTNET_TARGETS variable
-dotnet_expand() {
-	# do nothing for now
-	echo "$@"
-}
-
 # @FUNCTION: dotnet_pkg_setup
-# @DESCRIPTION:  This function set FRAMEWORK variable
+# @DESCRIPTION: This function set FRAMEWORK environment variable
 dotnet_pkg_setup() {
 	EBUILD_FRAMEWORK=""
+	mono-env_pkg_setup
 	for x in ${USE_DOTNET} ; do
 		case ${x} in
 			net45) EBF="4.5"; if use net45; then F="${EBF}";fi;;
@@ -129,23 +92,28 @@ dotnet_pkg_setup() {
 	einfo " -- USING .NET ${FRAMEWORK} FRAMEWORK -- "
 }
 
-# @FUNCTION: usedebug_tostring
-# @DESCRIPTION:  returns strings "Debug" or "Release" depending from USE="debug"
-function usedebug_tostring ( ) {
-	local DIR=""
-	if use debug; then
-		DIR="Debug"
-	else
-		DIR="Release"
-	fi
-	echo "${DIR}"
+# @FUNCTION: dotnet_expand
+# @DESCRIPTION: expands values from the DOTNET_TARGETS variable
+dotnet_expand() {
+	# do nothing for now
+	echo "$@"
 }
 
-# @FUNCTION: output_relpath
-# @DESCRIPTION:  returns default relative directory for Debug or Release configuration depending from USE="debug"
-function output_relpath ( ) {
-	echo "bin/$(usedebug_tostring)"
+function directory_modificator_for_slot()
+{
+	local MODIFICATOR=""
+	if [ "${1}" != "0" ]; then
+		MODIFICATOR="-${1}"
+	fi
+	echo "${MODIFICATOR}"
 }
+
+APPENDIX=$(directory_modificator_for_slot ${SLOT})
+#if [ "${SLOT}" != "0" ]; then
+#	APPENDIX="-${SLOT}"
+#fi
+
+# ================== Various locations ==============================
 
 # @FUNCTION: framework_api_dir
 # @DESCRIPTION: returns path to mono-api assemblies
@@ -176,17 +144,6 @@ function library_assembly_dir() {
 # @OBSOLETE: use platform_assembly_dir and anycpy_assembly_dir
 function executable_assembly_dir() {
 	echo "/usr/share/${PN}${APPENDIX}"
-}
-
-# ========================================================================
-
-function directory_modificator_for_slot()
-{
-	local MODIFICATOR=""
-	if [ "${1}" != "0" ]; then
-		MODIFICATOR="-${1}"
-	fi
-	echo "${MODIFICATOR}"
 }
 
 # @FUNCTION: platform_assembly_dir
@@ -240,6 +197,90 @@ function anycpu_current_symlink_dir() {
 }
 
 # ========================================================================
+
+function reference_framework() {
+	echo -n " " /reference:${1}.dll
+}
+
+function reference_project() {
+	echo -n " " /reference:$(bin_dir)/$1.dll
+}
+
+function reference_dependency() {
+	local REF=$(pkg-config --libs ${1}) || die
+	echo -n " " ${REF}
+}
+
+# @FUNCTION: csharp_sources
+# @DESCRIPTION: recursively returns all .cs files from directory in $1
+function csharp_sources() {
+	local DIR_NAME=$1
+	for f in "${DIR_NAME}"/*; do
+		if [ -d "$f" ];
+		then
+			csharp_sources "$f"
+		else
+			case "$f" in
+			*.cs ) 
+			        # it's source code file
+				echo -n ' ' $f
+			        ;;
+			*)
+			        # it's not
+			        ;;
+			esac
+		fi
+	done
+}
+
+
+# @FUNCTION: usedebug_tostring
+# @DESCRIPTION:  returns strings "Debug" or "Release" depending from USE="debug"
+function usedebug_tostring ( ) {
+	local DIR=""
+	if use debug; then
+		DIR="Debug"
+	else
+		DIR="Release"
+	fi
+	echo "${DIR}"
+}
+
+# @FUNCTION: output_relpath
+# @DESCRIPTION:  returns default relative directory for Debug or Release configuration depending from USE="debug"
+function output_relpath ( ) {
+	echo "bin/$(usedebug_tostring)"
+}
+
+function bin_dir ( ) {
+	echo "${WORKDIR}/$(output_relpath)"
+}
+
+# https://stackoverflow.com/questions/233081/whats-the-obj-directory-for-in-net
+#function obj_dir ( ) {
+#	echo "${WORKDIR}/obj/$(usedebug_tostring)"
+#}
+
+# https://docs.microsoft.com/ru-ru/dotnet/csharp/language-reference/compiler-options/target-library-compiler-option
+function output_dll() {
+	local OUTPUT_TYPE="library" 
+	local OUTPUT_NAME="$(bin_dir)/$1.dll"
+	echo "/target:${OUTPUT_TYPE}" "/out:${OUTPUT_NAME}"
+}
+
+# https://docs.microsoft.com/ru-ru/dotnet/csharp/language-reference/compiler-options/target-exe-compiler-option
+function output_exe() {
+	local OUTPUT_TYPE="exe" 
+	local OUTPUT_NAME="$(bin_dir)/$1.exe"
+	echo "/target:${OUTPUT_TYPE}" "/out:${OUTPUT_NAME}"
+}
+
+# @FUNCTION: ecsc
+# @DESCRIPTION: wraps call to C# compiler, hides it's location and contains die call if failed
+function ecsc() {
+	einfo /usr/bin/csc $@
+	/usr/bin/csc $@ || die "Compilation failed"
+}
 
 # @FUNCTION: dotnet_multilib_comply
 # @DESCRIPTION:  multilib comply

@@ -63,31 +63,17 @@ KEY2="${DISTDIR}/mono.snk"
 src_compile() {
 	exbuild /p:SignAssembly=true "/p:AssemblyOriginatorKeyFile=${KEY2}" "${METAFILETOBUILD}"
 
-	if use debug; then
-		DIR="Debug"
-	else
-		DIR="Release"
-	fi
-
-	FINAL_DLL=Src/Newtonsoft.Json/bin/${DIR}/Net45/Newtonsoft.Json.dll
+	local FINAL_DLL=${S}/Src/Newtonsoft.Json/bin/$(usedebug_tostring)/Net45/Newtonsoft.Json.dll
 
 	sn -R "${FINAL_DLL}" "${KEY2}" || die
 }
 
 src_install() {
-	if use debug; then
-		DIR="Debug"
-	else
-		DIR="Release"
-	fi
-
-	FINAL_DLL=Src/Newtonsoft.Json/bin/${DIR}/Net45/Newtonsoft.Json.dll
+	local FINAL_DLL=${S}/Src/Newtonsoft.Json/bin/$(usedebug_tostring)/Net45/Newtonsoft.Json.dll
 
 	if use gac; then
 		egacinstall "${FINAL_DLL}"
 	fi
 
-	if use pkg-config; then
-		einstall_pc_file Newtonsoft.Json ${PV} '${libdir}/mono/newtonsoft-json/Newtonsoft.Json.dll'
-	fi
+	elib  "$(anycpu_current_assembly_dir)" "${FINAL_DLL}"
 }

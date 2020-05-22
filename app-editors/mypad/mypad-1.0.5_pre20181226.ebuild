@@ -30,10 +30,6 @@ DEPEND="
 	"
 RDEPEND="${DEPEND}	"
 
-if [ "${SLOT}" != "0" ]; then
-	APPENDIX="-${SLOT}"
-fi
-
 function obj_dir ( ) {
 	echo "${WORKDIR}/obj/$(usedebug_tostring)"
 }
@@ -130,7 +126,8 @@ src_compile() {
 	mkdir -p $(bin_dir) || die
 einfo === 1 ===
 	einfo /usr/bin/csc $(references1)  $(csharp_sources "${S}/MyPad.Plugins") $(output_arguments1)
-	/usr/bin/csc $(references1)  $(csharp_sources "${S}/MyPad.Plugins") $(output_arguments1) || die
+	/usr/bin/csc $(references1)  $(csharp_sources "${S}/MyPad.Plugins") $(output_arguments1) || die- dlloutput_N
+
 einfo === 2 ===
 	mkdir -p "$(obj_dir)" || die
 	cd "$(obj_dir)" || die
