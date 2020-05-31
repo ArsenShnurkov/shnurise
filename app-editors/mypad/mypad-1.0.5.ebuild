@@ -3,7 +3,7 @@
 
 EAPI="7"
 
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64"
 RESTRICT="mirror"
 
 SLOT="3"
@@ -43,7 +43,8 @@ function bin_dir ( ) {
 }
 
 function references1() {
-	echo -n " " /reference:System.dll
+	echo -n \
+		$(reference_framework System)
 }
 
 function output_arguments1 ( ) {
@@ -53,18 +54,19 @@ function output_arguments1 ( ) {
 }
 
 function references2() {
-	echo -n " " /reference:/usr/share/mono/assemblies/icsharpcode-texteditor/ICSharpCode.TextEditor.dll
-	echo -n " " /reference:/usr/share/mono/assemblies/ndepend-path-1/NDepend.Path.dll
-	echo -n " " /reference:$(bin_dir)/MyPad.Plugins.dll
-	echo -n " " /reference:System.dll
-	echo -n " " /reference:System.Core.dll
-	echo -n " " /reference:System.Drawing.dll
-	echo -n " " /reference:System.Windows.Forms.dll
-	echo -n " " /reference:System.Xml.dll
-	echo -n " " /reference:System.Runtime.Remoting.dll
-	echo -n " " /reference:System.Web.dll
-	echo -n " " /reference:System.Configuration.dll
-	echo -n " " /reference:System.ServiceModel.dll
+	echo -n \
+		$(reference_dependency ICSharpCode.TextEditor) \
+		$(reference_dependency NDepend.Path-1) \
+		$(reference_project MyPad.Plugins) \
+		$(reference_framework System.Core) \
+		$(reference_framework System.Drawing) \
+		$(reference_framework System.Windows.Forms) \
+		$(reference_framework System.Xml) \
+		$(reference_framework System.Web) \
+		$(reference_framework System.Runtime.Remoting) \
+		$(reference_framework System.Configuration) \
+		$(reference_framework System.ServiceModel) \
+		$(reference_framework System)
 }
 
 function resgen_inputs() {

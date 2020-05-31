@@ -3,7 +3,7 @@
 
 EAPI="7"
 RESTRICT="mirror"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64"
 
 SLOT="0"
 
@@ -73,5 +73,5 @@ src_install() {
 	dosym "${INSTALL_DIR}/${ASSEMBLY_NAME}.dll" "$(anycpu_current_symlink_dir)/${ASSEMBLY_NAME}.dll"
 
 	local VERSION=$(ver_cut 1-3 ${PV})
-	einstall_pc_file "dev-dotnet/icsharpcode-texteditor" "${VERSION}" /usr/share/mono/assemblies/icsharpcode-texteditor/ICSharpCode.TextEditor.dll
+	einstall_pc_file "ICSharpCode.TextEditor" "${VERSION}" /usr/share/mono/assemblies/icsharpcode-texteditor/ICSharpCode.TextEditor.dll
 }

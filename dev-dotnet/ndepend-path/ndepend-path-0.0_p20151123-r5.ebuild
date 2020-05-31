@@ -3,7 +3,7 @@
 
 EAPI="7"
 
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64"
 RESTRICT="mirror"
 
 SLOT="1"
@@ -58,5 +58,6 @@ src_install() {
 
 	dosym "${INSTALL_DIR}/${ASSEMBLY_NAME}.dll" "$(anycpu_current_symlink_dir)/${ASSEMBLY_NAME}.dll"
 
-	einstall_pc_file "${CATEGORY}/${PN}" "${VERSION}" /usr/share/mono/assemblies/${PN}/${ASSEMBLY_NAME}.dll
+	# einstall_pc_file "${CATEGORY}/${PN}"
+	einstall_pc_file "${ASSEMBLY_NAME}" "${VERSION}" /usr/share/mono/assemblies/${PN}${APPENDIX}/${ASSEMBLY_NAME}.dll
 }
