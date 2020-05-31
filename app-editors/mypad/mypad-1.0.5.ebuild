@@ -28,7 +28,9 @@ DEPEND="
 	>=dev-dotnet/icsharpcode-texteditor-3.2.2_p2018020702-r1
 	>=dev-dotnet/ndepend-path-0.0_p20151123-r1
 	"
-RDEPEND="${DEPEND}	"
+RDEPEND="${DEPEND}
+	dev-lang/mono
+	"
 
 if [ "${SLOT}" != "0" ]; then
 	APPENDIX="-${SLOT}"
