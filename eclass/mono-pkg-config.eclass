@@ -27,7 +27,7 @@ DEPEND+=" virtual/pkgconfig"
 # @FUNCTION: einstall_pc_file
 # @DESCRIPTION:  installs .pc file
 # The file format contains predefined metadata keywords and freeform variables (like ${prefix} and ${exec_prefix})
-# $1 = ${CATEGORY}/${PN}
+# $1 = name of package (in terms of pkg-config utility)
 # $2 = ${PV}
 # $3 = myassembly1 # path and filename with extension of the first .dll
 # $4 = myassembly2 # path and filename with extension of the second .dll
@@ -45,7 +45,7 @@ einstall_pc_file()
 		local PC_DIRECTORY="/usr/share/pkgconfig"
 
 		local PC_FILENAME="${PC_NAME}"
-		local PC_FILENAME_WITH_SLOT="${PC_FILENAME}${APPENDIX}"
+		local PC_FILENAME_WITH_SLOT="${PC_FILENAME}-${PC_VERSION}"
 
 		if [ "$#" == "0" ]; then
 			die "no assembly names given"

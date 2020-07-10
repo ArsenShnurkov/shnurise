@@ -1,6 +1,5 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 # @ECLASS: dotbuildtask.eclass
 # @MAINTAINER: cynede@gentoo.org
@@ -22,24 +21,50 @@ get_MSBuildExtensionsPath() {
 	echo /usr/share/msbuild
 }
 
-# @FUNCTION: get_MSBuildExtensionsPath
-# @DESCRIPTION: returns path to .targets files
+# @FUNCTION: einstask
+# @DESCRIPTION: installs Tasks.dll into default location
+# first argument is .dll name which is installed into $(get_dotlibdir)
+# get_dotlibdir is not defined anywhere!!!
+# all other arguments are files which are installed into $(get_MSBuildExtensionsPath)
 einstask() {
-	local state=a
+	if [[ $# -lt 1 ]]; then
+		die "Illegal number of parameters"
+	fi
+	elog installing msbuild task dll "$1" into "$(get_MSBuildExtensionsPath)"
+	insinto "$(get_MSBuildExtensionsPath)"
+	doins $1
+
+	shift
+
 	for var in "$@"
 	do
-		case "${state}" in
-		a)
-			elog installing msbuild task dll "${var}" into "$(get_dotlibdir)"
-			insinto "$(get_dotlibdir)"
-			doins ${var}
-			insinto "$(get_MSBuildExtensionsPath)"
-			state=b
-			;;
-		b)
 			elog installing file task dll "${var}" into "$(get_MSBuildExtensionsPath)"
+			insinto "$(get_MSBuildExtensionsPath)"
 			doins ${var}
-			;;
-		esac
+	done
+}
+
+get_MSBuildSdksPath() {
+	echo "$(get_MSBuildExtensionsPath)/Sdks"
+}
+
+# @FUNCTION: einssdk
+# @DESCRIPTION: installs *.props and *.targets into default location for Sdk
+# first argument is Sdk name
+# all other arguments are files which are installed into $(get_MSBuildSdksPath)
+einssdk() {
+	if [[ $# -lt 1 ]]; then
+		die "Illegal number of parameters"
+	fi
+	local SDK_NAME=$1
+
+	shift
+
+	local INSTALL_PATH="$(get_MSBuildSdksPath)/${SDK_NAME}/Sdk"
+	insinto "${INSTALL_PATH}"
+	for var in "$@"
+	do
+			elog installing file "${var}" into "${INSTALL_PATH}"
+			doins ${var}
 	done
 }
