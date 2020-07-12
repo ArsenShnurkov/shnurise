@@ -39,8 +39,8 @@ src_compile() {
 src_install () {
 	einstask "$(bin_dir)/Gentoo.NET.Sdk.Tasks.dll"
 	einssdk "Gentoo.NET.Sdk" \
-		"${S}/Gentoo.NET.Sdk/sdk/Sdk.targets" \
-		"${S}/Gentoo.NET.Sdk/sdk/Sdk.props"
+		"${S}/Gentoo.NET.Sdk/sdk/Sdk.props" \
+		"${S}/Gentoo.NET.Sdk/sdk/Sdk.targets"
 }
 
 pkg_postinst() {
