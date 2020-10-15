@@ -65,7 +65,7 @@ MSBuildToolsPath () {
 # @DESCRIPTION: location of msbuild.exe
 # for use only from slotted ebuilds
 MSBuildBinPath () {
-	echo "$(MSBuildToolsPath)/bin"
+	echo "$(MSBuildToolsPath)"
 }
 
 # @FUNCTION: MSBuildSdksPath

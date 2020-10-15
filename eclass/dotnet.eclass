@@ -11,8 +11,7 @@
 # sets LC_ALL in order to prevent errors during compilation of dotnet packages.
 
 case ${EAPI:-0} in
-	0) die "this eclass doesn't support EAPI 0" ;;
-	1|2|3) ;;
+	0|1|2|3|4|5|6) die "this eclass doesn't support EAPI-${EAPI:-0}" ;;
 	*) ;; #if [[ ${USE_DOTNET} ]]; then REQUIRED_USE="|| (${USE_DOTNET})"; fi;;
 esac
 
@@ -70,14 +69,14 @@ dotnet_pkg_setup() {
 				FRAMEWORK="${F}";
 			fi
 		else
-			version_is_at_least "${F}" "${FRAMEWORK}" || FRAMEWORK="${F}"
+			ver_test "${F}" -gt "${FRAMEWORK}" || FRAMEWORK="${F}"
 		fi
 		if [[ -z ${EBUILD_FRAMEWORK} ]]; then
 			if [[ ${EBF} ]]; then
 				EBUILD_FRAMEWORK="${EBF}";
 			fi
 		else
-			version_is_at_least "${EBF}" "${EBUILD_FRAMEWORK}" || EBUILD_FRAMEWORK="${EBF}"
+			ver_test "${EBF}" -gt "${EBUILD_FRAMEWORK}" || EBUILD_FRAMEWORK="${EBF}"
 		fi
 	done
 	if [[ -z ${FRAMEWORK} ]]; then

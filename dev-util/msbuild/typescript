@@ -1,0 +1,817 @@
+Script started on 2020-10-09 22:27:35+03:00 [TERM="xterm-256color" TTY="/dev/pts/7" COLUMNS="151" LINES="35"]
+]0;root@hostname:/var/db/repos/shnurise/dev-util/msbuild[01;31mhostname[01;34m /var/db/repos/shnurise/dev-util/msbuild #[00m emerge -1 =dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5 
+]0;emergeCalculating dependencies   - | - \ - | - | - \ - - | | \ | - - / - | / / \ - - | / - \ \ / / - \ - | | \ \ / | | / / \ / \ - / - | | \ - | / - - | | | / / / \ | - \ \... done!
+
+>>> Verifying ebuild manifests
+
+>>> Emerging ([33;01m1[39;49;00m of [33;01m1[39;49;00m) [32mdev-dotnet/msbuild-tasks-api-15.9.20.62856-r5::shnurise[39;49;00m
+]0;emerge: (1 of 1) dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5 Clean[32;01m * [39;49;00mmsbuild-Microsoft-15.9.20.62856.tar.gz SHA256 SHA512 WHIRLPOOL size ;-) ...                                                                  [34;01m[ [39;49;00m[32;01mok[39;49;00m[34;01m ][39;49;00m
+[32;01m * [39;49;00mMSFT.snk SHA256 SHA512 WHIRLPOOL size ;-) ...                                                                                                [34;01m[ [39;49;00m[32;01mok[39;49;00m[34;01m ][39;49;00m
+[32;01m * [39;49;00mmono.snk SHA256 SHA512 WHIRLPOOL size ;-) ...                                                                                                [34;01m[ [39;49;00m[32;01mok[39;49;00m[34;01m ][39;49;00m
+]0;emerge: (1 of 1) dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5 Compile [32;01m*[0m  -- USING .NET 4.5 FRAMEWORK -- 
+>>> Unpacking source...
+>>> Unpacking msbuild-Microsoft-15.9.20.62856.tar.gz to /var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work
+>>> Unpacking MSFT.snk to /var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work
+unpack MSFT.snk: file format not recognized. Ignoring.
+>>> Unpacking mono.snk to /var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work
+unpack mono.snk: file format not recognized. Ignoring.
+>>> Source unpacked in /var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work
+>>> Preparing source in /var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e ...
+ [32;01m*[0m PublicKeyToken=b03f5f7f11d50a3a
+>>> Source prepared.
+>>> Configuring source in /var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e ...
+>>> Source configured.
+>>> Compiling source in /var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e ...
+ [32;01m*[0m /v:detailed /p:MonoBuild=true /p:TargetFrameworkVersion=v4.6 /p:Configuration=Release /p:DebugSymbols=False /p:PublicKeyToken=b03f5f7f11d50a3a /p:VersionNumber=15.9.0.0 /p:RootPath=/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e /p:SignAssembly=true /p:DelaySign=true /p:AssemblyOriginatorKeyFile=/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/distdir/MSFT.snk /var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj
+
+>>>> xbuild tool is deprecated and will be removed in future updates, use msbuild instead <<<<
+
+XBuild Engine Version 14.0
+Mono, Version 6.13.0.0
+Copyright (C) 2005-2013 Various Mono authors
+Loading default tasks for ToolsVersion: 14.0 from /usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.tasks
+
+Build started 10/09/2020 22:27:48.
+__________________________________________________
+/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj: Importing project /usr/local/lib/mono/xbuild/14.0/bin/Microsoft.CSharp.targets from extension path /usr/local/lib/mono/xbuild
+/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.CSharp.targets: Importing project /usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets 
+/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets: Importing project /usr/local/lib/mono/xbuild/14.0/Microsoft.Common.props from extension path /usr/local/lib/mono/xbuild
+/usr/local/lib/mono/xbuild/14.0/Microsoft.Common.props: Importing project /usr/local/lib/mono/xbuild/14.0/Imports/Microsoft.Common.props/ImportBefore/Microsoft.NuGet.ImportBefore.props from extension path /usr/local/lib/mono/xbuild
+/usr/local/lib/mono/xbuild/14.0/Imports/Microsoft.Common.props/ImportBefore/Microsoft.NuGet.ImportBefore.props: Importing project /usr/local/lib/mono/xbuild/Microsoft/NuGet/Microsoft.NuGet.props from extension path /usr/local/lib/mono/xbuild
+/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets: Importing project /usr/local/lib/mono/xbuild/14.0/Microsoft.Common.targets/ImportAfter/Microsoft.NuGet.ImportAfter.targets from extension path /usr/local/lib/mono/xbuild
+/usr/local/lib/mono/xbuild/14.0/Microsoft.Common.targets/ImportAfter/Microsoft.NuGet.ImportAfter.targets: Importing project /usr/local/lib/mono/xbuild/Microsoft/NuGet/Microsoft.NuGet.targets from extension path /usr/local/lib/mono/xbuild
+[36mProject "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" (default target(s)):[0m
+[0m/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj: Importing project /usr/local/lib/mono/xbuild/14.0/bin/Microsoft.CSharp.targets from extension path /usr/local/lib/mono/xbuild[0m
+[0m/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.CSharp.targets: Importing project /usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets [0m
+[0m/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets: Importing project /usr/local/lib/mono/xbuild/14.0/Microsoft.Common.props from extension path /usr/local/lib/mono/xbuild[0m
+[0m/usr/local/lib/mono/xbuild/14.0/Microsoft.Common.props: Importing project /usr/local/lib/mono/xbuild/14.0/Imports/Microsoft.Common.props/ImportBefore/Microsoft.NuGet.ImportBefore.props from extension path /usr/local/lib/mono/xbuild[0m
+[0m/usr/local/lib/mono/xbuild/14.0/Imports/Microsoft.Common.props/ImportBefore/Microsoft.NuGet.ImportBefore.props: Importing project /usr/local/lib/mono/xbuild/Microsoft/NuGet/Microsoft.NuGet.props from extension path /usr/local/lib/mono/xbuild[0m
+[0m/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets: Importing project /usr/local/lib/mono/xbuild/14.0/Microsoft.Common.targets/ImportAfter/Microsoft.NuGet.ImportAfter.targets from extension path /usr/local/lib/mono/xbuild[0m
+[0m/usr/local/lib/mono/xbuild/14.0/Microsoft.Common.targets/ImportAfter/Microsoft.NuGet.ImportAfter.targets: Importing project /usr/local/lib/mono/xbuild/Microsoft/NuGet/Microsoft.NuGet.targets from extension path /usr/local/lib/mono/xbuild[0m
+[0mBuilding target "_CheckForInvalidConfigurationAndPlatform" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets").[0m
+[0mDone building target "_CheckForInvalidConfigurationAndPlatform" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets").[0m
+[0mBuilding target "Build" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets").[0m
+[0mBuilding target "BuildOnlySettings" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "Build" depends on it.[0m
+[0mDone building target "BuildOnlySettings" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "Build" depends on it.[0m
+[0mBuilding target "BeforeBuild" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj"); "Build" depends on it.[0m
+[36m	Target BeforeBuild:[0m
+[36m	Task "WriteCodeFragment"[0m
+[0m		Using task WriteCodeFragment from Microsoft.Build.Tasks.WriteCodeFragment, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[0m		Emitted specified code into "AV.cs".[0m
+[36m	Done executing task "WriteCodeFragment"[0m
+[36m	Done building target "BeforeBuild" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj".[0m
+[0mDone building target "BeforeBuild" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj"); "Build" depends on it.[0m
+[0mBuilding target "CoreBuild" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "Build" depends on it.[0m
+[0mBuilding target "PrepareForBuild" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[0mBuilding target "AssignLinkMetadata" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "PrepareForBuild" depends on it.[0m
+[0mDone building target "AssignLinkMetadata" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "PrepareForBuild" depends on it.[0m
+[36m	Target PrepareForBuild:[0m
+[36m	Task "Message"[0m
+[0m		Using task Message from Microsoft.Build.Tasks.Message, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[0m		Configuration: Release Platform: AnyCPU[0m
+[36m	Done executing task "Message"[0m
+[36m	Task "FindAppConfigFile"[0m
+[0m		Using task FindAppConfigFile from Microsoft.Build.Tasks.FindAppConfigFile, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "FindAppConfigFile"[0m
+[36m	Task "MakeDir"[0m
+[0m		Using task MakeDir from Microsoft.Build.Tasks.MakeDir, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[0m		Created directory "bin/Release/"[0m
+[0m		Created directory "obj/Release/"[0m
+[36m	Done executing task "MakeDir"[0m
+[36m	Done building target "PrepareForBuild" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj".[0m
+[0mDone building target "PrepareForBuild" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[0mBuilding target "GetFrameworkPaths" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[36m	Target GetFrameworkPaths:[0m
+[36m	Task "GetFrameworkPath"[0m
+[0m		Using task GetFrameworkPath from Microsoft.Build.Tasks.GetFrameworkPath, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "GetFrameworkPath"[0m
+[36m	Task "CreateProperty"[0m
+[0m		Using task CreateProperty from Microsoft.Build.Tasks.CreateProperty, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "CreateProperty"[0m
+[36m	Done building target "GetFrameworkPaths" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj".[0m
+[0mDone building target "GetFrameworkPaths" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[0mBuilding target "GetReferenceAssemblyPaths" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[36m	Target GetReferenceAssemblyPaths:[0m
+[36m	Task "CreateProperty"[0m
+[0m		Using task CreateProperty from Microsoft.Build.Tasks.CreateProperty, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "CreateProperty"[0m
+[36m	Task "GetReferenceAssemblyPaths"[0m
+[0m		Using task GetReferenceAssemblyPaths from Microsoft.Build.Tasks.GetReferenceAssemblyPaths, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[0m		Looking for framework '.NETFramework,Version=v4.6' in root path '/usr/local/lib/mono/4.5/../xbuild-frameworks'[0m
+[0m		Found framework definition list '/usr/local/lib/mono/4.5/../xbuild-frameworks/.NETFramework/v4.6/RedistList/FrameworkList.xml' for framework '.NETFramework,Version=v4.6'[0m
+[36m	Done executing task "GetReferenceAssemblyPaths"[0m
+[36m	Done building target "GetReferenceAssemblyPaths" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj".[0m
+[0mDone building target "GetReferenceAssemblyPaths" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[0mBuilding target "PreBuildEvent" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[0mTarget PreBuildEvent skipped due to false condition: '$(PreBuildEvent)' != ''[0m
+[0mDone building target "PreBuildEvent" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[0mBuilding target "ResolveReferences" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[0mBuilding target "BeforeResolveReferences" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "ResolveReferences" depends on it.[0m
+[0mDone building target "BeforeResolveReferences" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "ResolveReferences" depends on it.[0m
+[0mBuilding target "ResolveProjectReferences" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "ResolveReferences" depends on it.[0m
+[0mBuilding target "SplitProjectReferencesByExistent" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "ResolveProjectReferences" depends on it.[0m
+[0mBuilding target "AssignProjectConfiguration" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "SplitProjectReferencesByExistent" depends on it.[0m
+[0mTarget AssignProjectConfiguration skipped due to false condition: '@(ProjectReference)' != ''[0m
+[0mDone building target "AssignProjectConfiguration" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "SplitProjectReferencesByExistent" depends on it.[0m
+[0mDone building target "SplitProjectReferencesByExistent" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "ResolveProjectReferences" depends on it.[0m
+[0mDone building target "ResolveProjectReferences" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "ResolveReferences" depends on it.[0m
+[0mBuilding target "ResolveAssemblyReferences" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "ResolveReferences" depends on it.[0m
+[0mBuilding target "ResolveNuGetPackageAssets" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/Microsoft/NuGet/Microsoft.NuGet.targets"); "ResolveAssemblyReferences" depends on it.[0m
+[0mTarget ResolveNuGetPackageAssets skipped due to false condition: '$(ResolveNuGetPackages)' == 'true' and exists('$(ProjectLockFile)')[0m
+[0mDone building target "ResolveNuGetPackageAssets" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/Microsoft/NuGet/Microsoft.NuGet.targets"); "ResolveAssemblyReferences" depends on it.[0m
+[0mBuilding target "_AddCorlibReference" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.CSharp.targets"); "ResolveAssemblyReferences" depends on it.[0m
+[0mDone building target "_AddCorlibReference" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.CSharp.targets"); "ResolveAssemblyReferences" depends on it.[0m
+[36m	Target ResolveAssemblyReferences:[0m
+[36m	Task "CreateItem"[0m
+[0m		Using task CreateItem from Microsoft.Build.Tasks.CreateItem, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "CreateItem"[0m
+[36m	Task "CreateItem"[0m
+[0m		Using task CreateItem from Microsoft.Build.Tasks.CreateItem, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "CreateItem"[0m
+[36m	Task "ResolveAssemblyReference"[0m
+[0m		Using task ResolveAssemblyReference from Microsoft.Build.Tasks.ResolveAssemblyReference, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[0m		TargetFrameworkDirectories:[0m
+[0m			/usr/local/lib/mono/4.6-api/[0m
+[0m			/usr/local/lib/mono/4.6-api//Facades/[0m
+[0m		SearchPaths:[0m
+[0m			{CandidateAssemblyFiles}[0m
+[0m			{HintPathFromItem}[0m
+[0m			{TargetFrameworkDirectory}[0m
+[0m			{PkgConfig}[0m
+[0m			{GAC}[0m
+[0m			{RawFileName}[0m
+[0m			bin/Release/[0m
+[0m		Primary Reference System[0m
+[0m			Reference System resolved to /usr/local/lib/mono/4.6-api/System.dll. CopyLocal = False[0m
+[0m			Reference found at search path {TargetFrameworkDirectory}[0m
+[0m		For searchpath {CandidateAssemblyFiles}[0m
+[0m		Warning: {CandidateAssemblyFiles} not supported currently[0m
+[0m		For searchpath {HintPathFromItem}[0m
+[0m		HintPath attribute not found[0m
+[0m		For searchpath {TargetFrameworkDirectory}[0m
+[0m		Primary Reference System.Xaml[0m
+[0m			Reference System.Xaml resolved to /usr/local/lib/mono/4.6-api/System.Xaml.dll. CopyLocal = False[0m
+[0m			Reference found at search path {TargetFrameworkDirectory}[0m
+[0m		For searchpath {CandidateAssemblyFiles}[0m
+[0m		Warning: {CandidateAssemblyFiles} not supported currently[0m
+[0m		For searchpath {HintPathFromItem}[0m
+[0m		HintPath attribute not found[0m
+[0m		For searchpath {TargetFrameworkDirectory}[0m
+[0m		Primary Reference System.Core[0m
+[0m			Reference System.Core resolved to /usr/local/lib/mono/4.6-api/System.Core.dll. CopyLocal = False[0m
+[0m			Reference found at search path {TargetFrameworkDirectory}[0m
+[0m		For searchpath {CandidateAssemblyFiles}[0m
+[0m		Warning: {CandidateAssemblyFiles} not supported currently[0m
+[0m		For searchpath {HintPathFromItem}[0m
+[0m		HintPath attribute not found[0m
+[0m		For searchpath {TargetFrameworkDirectory}[0m
+[0m		Primary Reference from AssemblyFiles /usr/local/lib/mono/4.6-api//mscorlib.dll[0m
+[36m	Done executing task "ResolveAssemblyReference"[0m
+[36m	Done building target "ResolveAssemblyReferences" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj".[0m
+[0mDone building target "ResolveAssemblyReferences" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "ResolveReferences" depends on it.[0m
+[0mBuilding target "AfterResolveReferences" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "ResolveReferences" depends on it.[0m
+[0mDone building target "AfterResolveReferences" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "ResolveReferences" depends on it.[0m
+[0mBuilding target "ImplicitlyExpandDesignTimeFacades" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "ResolveReferences" depends on it.[0m
+[0mDone building target "ImplicitlyExpandDesignTimeFacades" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "ResolveReferences" depends on it.[0m
+[0mDone building target "ResolveReferences" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[0mBuilding target "CopyFilesMarkedCopyLocal" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[36m	Target CopyFilesMarkedCopyLocal:[0m
+[36m	Task "Copy"[0m
+[0m		Using task Copy from Microsoft.Build.Tasks.Copy, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "Copy"[0m
+[36m	Done building target "CopyFilesMarkedCopyLocal" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj".[0m
+[0mDone building target "CopyFilesMarkedCopyLocal" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[0mBuilding target "PrepareResources" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[0mBuilding target "ResolveNuGetPackageAssets" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/Microsoft/NuGet/Microsoft.NuGet.targets"); "PrepareResources" depends on it.[0m
+[0mTarget ResolveNuGetPackageAssets skipped due to false condition: '$(ResolveNuGetPackages)' == 'true' and exists('$(ProjectLockFile)')[0m
+[0mDone building target "ResolveNuGetPackageAssets" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/Microsoft/NuGet/Microsoft.NuGet.targets"); "PrepareResources" depends on it.[0m
+[0mBuilding target "AssignTargetPaths" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "PrepareResources" depends on it.[0m
+[36m	Target AssignTargetPaths:[0m
+[36m	Task "AssignTargetPath"[0m
+[0m		Using task AssignTargetPath from Microsoft.Build.Tasks.AssignTargetPath, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "AssignTargetPath"[0m
+[36m	Task "AssignTargetPath"[0m
+[0m		Using task AssignTargetPath from Microsoft.Build.Tasks.AssignTargetPath, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "AssignTargetPath"[0m
+[36m	Task "AssignTargetPath"[0m
+[0m		Using task AssignTargetPath from Microsoft.Build.Tasks.AssignTargetPath, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "AssignTargetPath"[0m
+[36m	Done building target "AssignTargetPaths" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj".[0m
+[0mDone building target "AssignTargetPaths" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "PrepareResources" depends on it.[0m
+[0mBuilding target "SplitResourcesByCulture" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "PrepareResources" depends on it.[0m
+[36m	Target SplitResourcesByCulture:[0m
+[36m	Task "AssignCulture"[0m
+[0m		Using task AssignCulture from Microsoft.Build.Tasks.AssignCulture, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "AssignCulture"[0m
+[36m	Task "CreateItem"[0m
+[0m		Using task CreateItem from Microsoft.Build.Tasks.CreateItem, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "CreateItem"[0m
+[36m	Task "CreateItem"[0m
+[0m		Using task CreateItem from Microsoft.Build.Tasks.CreateItem, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "CreateItem"[0m
+[36m	Done building target "SplitResourcesByCulture" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj".[0m
+[0mDone building target "SplitResourcesByCulture" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "PrepareResources" depends on it.[0m
+[0mBuilding target "CreateManifestResourceNames" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.CSharp.targets"); "PrepareResources" depends on it.[0m
+[0mDone building target "CreateManifestResourceNames" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.CSharp.targets"); "PrepareResources" depends on it.[0m
+[0mBuilding target "CopyNonResxEmbeddedResources" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "PrepareResources" depends on it.[0m
+[0mTarget CopyNonResxEmbeddedResources skipped due to false condition: '@(NonResxWithCulture)' != '' or '@(NonResxWithNoCulture)' != '' or '@(ManifestNonResxWithCulture)' != '' or '@(ManifestNonResxWithNoCulture)' != ''[0m
+[0mDone building target "CopyNonResxEmbeddedResources" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "PrepareResources" depends on it.[0m
+[0mBuilding target "GenerateResources" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "PrepareResources" depends on it.[0m
+[0mDone building target "GenerateResources" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "PrepareResources" depends on it.[0m
+[0mBuilding target "GenerateSatelliteAssemblies" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "PrepareResources" depends on it.[0m
+[36m	Target GenerateSatelliteAssemblies:[0m
+[0m	No input files were specified for target GenerateSatelliteAssemblies, skipping.[0m
+[36m	Done building target "GenerateSatelliteAssemblies" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj".[0m
+[0mDone building target "GenerateSatelliteAssemblies" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "PrepareResources" depends on it.[0m
+[0mBuilding target "CompileLicxFiles" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "PrepareResources" depends on it.[0m
+[0mTarget CompileLicxFiles skipped due to false condition: '@(LicxFiles)' != ''[0m
+[0mDone building target "CompileLicxFiles" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "PrepareResources" depends on it.[0m
+[0mDone building target "PrepareResources" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[0mBuilding target "Compile" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[0mBuilding target "GenerateTargetFrameworkMonikerAttribute" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "Compile" depends on it.[0m
+[0mBuilding target "_GenerateTargetFrameworkMonikerAttribute" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "GenerateTargetFrameworkMonikerAttribute" depends on it.[0m
+[36m	Target _GenerateTargetFrameworkMonikerAttribute:[0m
+[0m	Target _GenerateTargetFrameworkMonikerAttribute needs to be built as output file 'obj/Release/.NETFramework,Version=v4.6.AssemblyAttribute.cs' does not exist.[0m
+[36m	Task "WriteLinesToFile"[0m
+[0m		Using task WriteLinesToFile from Microsoft.Build.Tasks.WriteLinesToFile, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "WriteLinesToFile"[0m
+[36m	Done building target "_GenerateTargetFrameworkMonikerAttribute" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj".[0m
+[0mDone building target "_GenerateTargetFrameworkMonikerAttribute" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "GenerateTargetFrameworkMonikerAttribute" depends on it.[0m
+[0mDone building target "GenerateTargetFrameworkMonikerAttribute" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "Compile" depends on it.[0m
+[0mBuilding target "BeforeCompile" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "Compile" depends on it.[0m
+[0mDone building target "BeforeCompile" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "Compile" depends on it.[0m
+[0mBuilding target "_TimestampBeforeCompile" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "Compile" depends on it.[0m
+[0mTarget _TimestampBeforeCompile skipped due to false condition: '$(RunPostBuildEvent)' == 'OnOutputUpdated'[0m
+[0mDone building target "_TimestampBeforeCompile" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "Compile" depends on it.[0m
+[0mBuilding target "CoreCompile" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.CSharp.targets"); "Compile" depends on it.[0m
+[36m	Target CoreCompile:[0m
+[0m	Target CoreCompile needs to be built as output file 'obj/Release/Microsoft.Build.Framework.dll' does not exist.[0m
+[36m	Task "Csc"[0m
+[0m		Using task Csc from Microsoft.Build.Tasks.Csc, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[0m		Tool /usr/local/lib/mono/4.5/csc.exe execution started with arguments: /noconfig /debug:pdbonly /delaysign+ /debug- /keyfile:/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/distdir/MSFT.snk /optimize+ /out:obj/Release/Microsoft.Build.Framework.dll AV.cs ../Shared/Constants.cs ../Shared/BinaryWriterExtensions.cs Sdk/SdkResolverContext.cs Sdk/SdkReference.cs Sdk/SdkResultFactory.cs Sdk/SdkLogger.cs Sdk/SdkResolver.cs Sdk/SdkResult.cs Profiler/ProfilerResult.cs Profiler/EvaluationLocation.cs Profiler/EvaluationIdProvider.cs Properties/AssemblyInfo.cs FxCopExclusions/Microsoft.Build.Framework.Suppressions.cs Sdk/SdkResolverContext.cs Sdk/SdkReference.cs Sdk/SdkResultFactory.cs Sdk/SdkLogger.cs Sdk/SdkResolver.cs Sdk/SdkResult.cs Profiler/ProfilerResult.cs Profiler/EvaluationLocation.cs Profiler/EvaluationIdProvider.cs Properties/AssemblyInfo.cs FxCopExclusions/Microsoft.Build.Framework.Suppressions.cs LoggerException.cs ProjectStartedEventArgs.cs BuildStatusEventArgs.cs INodeLogger.cs ITaskFactory2.cs BuildMessageEventArgs.cs OutputAttribute.cs IBuildEngine5.cs BuildStartedEventArgs.cs ExternalProjectFinishedEventArgs.cs IEventSource2.cs ExternalProjectStartedEventArgs.cs BuildWarningEventArgs.cs IBuildEngine.cs ITaskHost.cs ProjectFinishedEventArgs.cs TaskCommandLineEventArgs.cs RunInMTAAttribute.cs BuildEventContext.cs ProjectImportedEventArgs.cs TaskFinishedEventArgs.cs TaskStartedEventArgs.cs MetaProjectGeneratedEventArgs.cs ITaskFactory.cs RequiredAttribute.cs BuildEventArgs.cs LazyFormattedBuildEventArgs.cs LoadInSeparateAppDomainAttribute.cs TaskPropertyInfo.cs ICancelableTask.cs RunInSTAAttribute.cs IEventSource.cs RequiredRuntimeAttribute.cs TelemetryEventArgs.cs BuildFinishedEventArgs.cs IEventSource3.cs TargetStartedEventArgs.cs IBuildEngine4.cs IEventRedirector.cs IForwardingLogger.cs ITaskItem2.cs TargetFinishedEventArgs.cs ITaskItem.cs ProjectEvaluationStartedEventArgs.cs TargetSkippedEventArgs.cs ProjectEvaluationFinishedEventArgs.cs TargetBuiltReason.cs IProjectElement.cs IBuildEngine2.cs IBuildEngine3.cs ITask.cs IGeneratedTask.cs BuildEngineResult.cs BuildErrorEventArgs.cs CriticalBuildMessageEventArgs.cs ILogger.cs TestInfo.cs CustomBuildEventArgs.cs AV.cs XamlTypes/Argument.cs XamlTypes/BaseProperty.cs XamlTypes/BoolProperty.cs XamlTypes/Category.cs XamlTypes/CategorySchema.cs XamlTypes/ContentType.cs XamlTypes/DataSource.cs XamlTypes/DynamicEnumProperty.cs XamlTypes/EnumProperty.cs XamlTypes/EnumValue.cs XamlTypes/FileExtension.cs XamlTypes/IntProperty.cs XamlTypes/IProjectSchemaNode.cs XamlTypes/ItemType.cs XamlTypes/NameValuePair.cs XamlTypes/ProjectSchemaDefinitions.cs XamlTypes/Rule.cs XamlTypes/RuleBag.cs XamlTypes/RuleSchema.cs XamlTypes/StringListProperty.cs XamlTypes/StringProperty.cs XamlTypes/ValueEditor.cs obj/Release/.NETFramework,Version=v4.6.AssemblyAttribute.cs /target:library /define:"STANDALONEBUILD;FEATURE_64BIT_ENVIRONMENT_QUERY;FEATURE_APARTMENT_STATE;FEATURE_APM;FEATURE_APPDOMAIN;FEATURE_APPDOMAIN_UNHANDLED_EXCEPTION;FEATURE_ASSEMBLY_LOADFROM;FEATURE_ASSEMBLY_LOCATION;FEATURE_ASSEMBLYNAME_CULTUREINFO;FEATURE_ASSEMBLYNAME_CLONE;FEATURE_TYPE_GETCONSTRUCTOR;FEATURE_BINARY_SERIALIZATION;FEATURE_COM_INTEROP;FEATURE_CONSOLE_BUFFERWIDTH;FEATURE_CONSTRAINED_EXECUTION;FEATURE_CHARSET_AUTO;FEATURE_CODEDOM;FEATURE_CODETASKFACTORY;FEATURE_CULTUREINFO_CONSOLE_FALLBACK;FEATURE_CULTUREINFO_GETCULTUREINFO;FEATURE_CULTUREINFO_GETCULTURES;FEATURE_DOTNETVERSION;FEATURE_ENVIRONMENT_SYSTEMDIRECTORY;FEATURE_FUSION_COMPAREASSEMBLYIDENTITY;FEATURE_GAC;FEATURE_GET_COMMANDLINE;FEATURE_HANDLE_SAFEWAITHANDLE;FEATURE_HANDLEPROCESSCORRUPTEDSTATEEXCEPTIONS;FEATURE_HANDLEREF;FEATURE_HTTP_LISTENER;FEATURE_INSTALLED_MSBUILD;FEATURE_LEGACY_GETFULLPATH;FEATURE_MEMORYSTREAM_GETBUFFER;FEATURE_NAMED_PIPES_FULL_DUPLEX;FEATURE_OSVERSION;FEATURE_PERFORMANCE_COUNTERS;FEATURE_PIPE_SECURITY;FEATURE_PFX_SIGNING;FEATURE_REFLECTION_EMIT_DEBUG_INFO;FEATURE_REGISTRY_TOOLSETS;FEATURE_REGISTRY_SDKS;FEATURE_REGISTRYHIVE_DYNDATA;FEATURE_RESGEN;FEATURE_RESOURCE_EXPOSURE;FEATURE_RESOURCEMANAGER_GETRESOURCESET;FEATURE_RESX_RESOURCE_READER;FEATURE_RUN_EXE_IN_TESTS;USE_MSBUILD_DLL_EXTN;FEATURE_SECURITY_PRINCIPAL_WINDOWS;FEATURE_SPECIAL_FOLDERS;FEATURE_STRING_INTERN;FEATURE_STRONG_NAMES;FEATURE_SYSTEM_CONFIGURATION;FEATURE_SYSTEMPAGESIZE;FEATURE_TASK_GENERATERESOURCES;FEATURE_TASKHOST;FEATURE_THREAD_ABORT;FEATURE_THREAD_CULTURE;FEATURE_THREAD_PRIORITY;FEATURE_MULTIPLE_TOOLSETS;FEATURE_NODE_REUSE;FEATURE_TYPE_INVOKEMEMBER;FEATURE_TYPE_GETINTERFACE;FEATURE_USERINTERACTIVE;FEATURE_USERDOMAINNAME;FEATURE_VARIOUS_EXCEPTIONS;FEATURE_XAML_TYPES;FEATURE_XAMLTASKFACTORY;FEATURE_XML_SOURCE_URI;FEATURE_XML_LOADPATH;FEATURE_XMLTEXTREADER;FEATURE_DEBUGGER;FEATURE_WIN32_REGISTRY;FEATURE_WORKINGSET;FEATURE_MSCOREE" /nostdlib /reference:/usr/local/lib/mono/4.6-api/System.dll /reference:/usr/local/lib/mono/4.6-api/System.Xaml.dll /reference:/usr/local/lib/mono/4.6-api/System.Core.dll /reference:/usr/local/lib/mono/4.6-api//mscorlib.dll /warn:4[0m
+[0m		Environment variables being passed to the tool:[0m
+[0m		Microsoft (R) Visual C# Compiler version 3.7.0-1.20262.2 (d6aa790a)[0m
+[0m		Copyright (C) Microsoft Corporation. All rights reserved.[0m
+[33mCSC:  warning CS2002: Source file 'Sdk/SdkResolverContext.cs' specified multiple times[0m
+[33mCSC:  warning CS2002: Source file 'Sdk/SdkReference.cs' specified multiple times[0m
+[33mCSC:  warning CS2002: Source file 'Sdk/SdkResultFactory.cs' specified multiple times[0m
+[33mCSC:  warning CS2002: Source file 'Sdk/SdkLogger.cs' specified multiple times[0m
+[33mCSC:  warning CS2002: Source file 'Sdk/SdkResolver.cs' specified multiple times[0m
+[33mCSC:  warning CS2002: Source file 'Sdk/SdkResult.cs' specified multiple times[0m
+[33mCSC:  warning CS2002: Source file 'Profiler/ProfilerResult.cs' specified multiple times[0m
+[33mCSC:  warning CS2002: Source file 'Profiler/EvaluationLocation.cs' specified multiple times[0m
+[33mCSC:  warning CS2002: Source file 'Profiler/EvaluationIdProvider.cs' specified multiple times[0m
+[33mCSC:  warning CS2002: Source file 'Properties/AssemblyInfo.cs' specified multiple times[0m
+[33mCSC:  warning CS2002: Source file 'FxCopExclusions/Microsoft.Build.Framework.Suppressions.cs' specified multiple times[0m
+[33mCSC:  warning CS2002: Source file 'AV.cs' specified multiple times[0m
+[0m		Tool /usr/local/lib/mono/4.5/csc.exe execution finished.[0m
+[36m	Done executing task "Csc"[0m
+[36m	Done building target "CoreCompile" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj".[0m
+[0mDone building target "CoreCompile" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.CSharp.targets"); "Compile" depends on it.[0m
+[0mBuilding target "_TimestampAfterCompile" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "Compile" depends on it.[0m
+[0mTarget _TimestampAfterCompile skipped due to false condition: '$(RunPostBuildEvent)' == 'OnOutputUpdated'[0m
+[0mDone building target "_TimestampAfterCompile" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "Compile" depends on it.[0m
+[0mBuilding target "AfterCompile" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "Compile" depends on it.[0m
+[0mDone building target "AfterCompile" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "Compile" depends on it.[0m
+[0mDone building target "Compile" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[0mBuilding target "PrepareForRun" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[0mBuilding target "DeployOutputFiles" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "PrepareForRun" depends on it.[0m
+[0mBuilding target "_CopyDeployFilesToOutputDirectory" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "DeployOutputFiles" depends on it.[0m
+[0mBuilding target "GetCopyToOutputDirectoryItems" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "_CopyDeployFilesToOutputDirectory" depends on it.[0m
+[0mDone building target "GetCopyToOutputDirectoryItems" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "_CopyDeployFilesToOutputDirectory" depends on it.[0m
+[0mBuilding target "_CopyDeployFilesToOutputDirectoryAlways" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "_CopyDeployFilesToOutputDirectory" depends on it.[0m
+[0mTarget _CopyDeployFilesToOutputDirectoryAlways skipped due to false condition: '@(ItemsToCopyToOutputDirectoryAlways)' != ''[0m
+[0mDone building target "_CopyDeployFilesToOutputDirectoryAlways" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "_CopyDeployFilesToOutputDirectory" depends on it.[0m
+[0mBuilding target "_CopyDeployFilesToOutputDirectoryPreserveNewest" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "_CopyDeployFilesToOutputDirectory" depends on it.[0m
+[0mTarget _CopyDeployFilesToOutputDirectoryPreserveNewest skipped due to false condition: '@(ItemsToCopyToOutputDirectoryPreserveNewest)' != ''[0m
+[0mDone building target "_CopyDeployFilesToOutputDirectoryPreserveNewest" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "_CopyDeployFilesToOutputDirectory" depends on it.[0m
+[0mDone building target "_CopyDeployFilesToOutputDirectory" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "DeployOutputFiles" depends on it.[0m
+[0mBuilding target "_CopyAppConfigFile" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "DeployOutputFiles" depends on it.[0m
+[0mTarget _CopyAppConfigFile skipped due to false condition: '@(AppConfigWithTargetPath)' != ''[0m
+[0mDone building target "_CopyAppConfigFile" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "DeployOutputFiles" depends on it.[0m
+[36m	Target DeployOutputFiles:[0m
+[36m	Task "Copy"[0m
+[0m		Using task Copy from Microsoft.Build.Tasks.Copy, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[0m		Copying file from '/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/obj/Release/Microsoft.Build.Framework.dll' to '/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/bin/Release/Microsoft.Build.Framework.dll'[0m
+[36m	Done executing task "Copy"[0m
+[36m	Done building target "DeployOutputFiles" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj".[0m
+[0mDone building target "DeployOutputFiles" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "PrepareForRun" depends on it.[0m
+[0mDone building target "PrepareForRun" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[0mBuilding target "_RecordCleanFile" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[0mBuilding target "_GetCompileOutputsForClean" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "_RecordCleanFile" depends on it.[0m
+[36m	Target _GetCompileOutputsForClean:[0m
+[36m	Task "CreateItem"[0m
+[0m		Using task CreateItem from Microsoft.Build.Tasks.CreateItem, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "CreateItem"[0m
+[36m	Done building target "_GetCompileOutputsForClean" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj".[0m
+[0mDone building target "_GetCompileOutputsForClean" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "_RecordCleanFile" depends on it.[0m
+[36m	Target _RecordCleanFile:[0m
+[36m	Task "ReadLinesFromFile"[0m
+[0m		Using task ReadLinesFromFile from Microsoft.Build.Tasks.ReadLinesFromFile, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "ReadLinesFromFile"[0m
+[36m	Task "FindUnderPath"[0m
+[0m		Using task FindUnderPath from Microsoft.Build.Tasks.FindUnderPath, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "FindUnderPath"[0m
+[36m	Task "RemoveDuplicates"[0m
+[0m		Using task RemoveDuplicates from Microsoft.Build.Tasks.RemoveDuplicates, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "RemoveDuplicates"[0m
+[36m	Task "WriteLinesToFile"[0m
+[0m		Using task WriteLinesToFile from Microsoft.Build.Tasks.WriteLinesToFile, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "WriteLinesToFile"[0m
+[36m	Done building target "_RecordCleanFile" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj".[0m
+[0mDone building target "_RecordCleanFile" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[0mBuilding target "PostBuildEvent" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[0mTarget PostBuildEvent skipped due to false condition: '$(PostBuildEvent)' != '' and
+			('$(RunPostBuildEvent)' != 'OnOutputUpdated' or
+			  '$(_AssemblyModifiedTimeBeforeCompile)' != '$(_AssemblyModifiedTimeAfterCompile)')[0m
+[0mDone building target "PostBuildEvent" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[0mDone building target "CoreBuild" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "Build" depends on it.[0m
+[0mBuilding target "AfterBuild" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "Build" depends on it.[0m
+[0mDone building target "AfterBuild" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "Build" depends on it.[0m
+[0mDone building target "Build" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets").[0m
+[36mDone building project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj".[0m
+[0m[0m
+[0mBuild succeeded.[0m
+[0m
+Warnings:[0m
+[33m[0m
+[33m/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj (default targets) ->
+/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.CSharp.targets (CoreCompile target) ->
+[0m
+[33m	CSC:  warning CS2002: Source file 'Sdk/SdkResolverContext.cs' specified multiple times[0m
+[33m	CSC:  warning CS2002: Source file 'Sdk/SdkReference.cs' specified multiple times[0m
+[33m	CSC:  warning CS2002: Source file 'Sdk/SdkResultFactory.cs' specified multiple times[0m
+[33m	CSC:  warning CS2002: Source file 'Sdk/SdkLogger.cs' specified multiple times[0m
+[33m	CSC:  warning CS2002: Source file 'Sdk/SdkResolver.cs' specified multiple times[0m
+[33m	CSC:  warning CS2002: Source file 'Sdk/SdkResult.cs' specified multiple times[0m
+[33m	CSC:  warning CS2002: Source file 'Profiler/ProfilerResult.cs' specified multiple times[0m
+[33m	CSC:  warning CS2002: Source file 'Profiler/EvaluationLocation.cs' specified multiple times[0m
+[33m	CSC:  warning CS2002: Source file 'Profiler/EvaluationIdProvider.cs' specified multiple times[0m
+[33m	CSC:  warning CS2002: Source file 'Properties/AssemblyInfo.cs' specified multiple times[0m
+[33m	CSC:  warning CS2002: Source file 'FxCopExclusions/Microsoft.Build.Framework.Suppressions.cs' specified multiple times[0m
+[33m	CSC:  warning CS2002: Source file 'AV.cs' specified multiple times[0m
+[33m[0m
+[0m	 12 Warning(s)[0m
+[0m	 0 Error(s)[0m
+[0m[0m
+[0mTime Elapsed 00:00:01.5839240[0m
+Mono StrongName - version 6.13.0.0
+StrongName utility for signing assemblies
+Copyright 2002, 2003 Motus Technologies. Copyright 2004-2008 Novell. BSD licensed.
+
+Assembly /var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/bin/Release/Microsoft.Build.Framework.dll signed.
+ [32;01m*[0m /v:detailed /p:MonoBuild=true /p:TargetFrameworkVersion=v4.6 /p:Configuration=Release /p:DebugSymbols=False /p:PublicKeyToken=b03f5f7f11d50a3a /p:VersionNumber=15.9.0.0 /p:RootPath=/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e /p:SignAssembly=true /p:DelaySign=true /p:AssemblyOriginatorKeyFile=/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/distdir/MSFT.snk /var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj
+
+>>>> xbuild tool is deprecated and will be removed in future updates, use msbuild instead <<<<
+
+XBuild Engine Version 14.0
+Mono, Version 6.13.0.0
+Copyright (C) 2005-2013 Various Mono authors
+Loading default tasks for ToolsVersion: 14.0 from /usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.tasks
+
+Build started 10/09/2020 22:27:50.
+__________________________________________________
+/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj: Importing project /usr/local/lib/mono/xbuild/14.0/bin/Microsoft.CSharp.targets from extension path /usr/local/lib/mono/xbuild
+/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.CSharp.targets: Importing project /usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets 
+/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets: Importing project /usr/local/lib/mono/xbuild/14.0/Microsoft.Common.props from extension path /usr/local/lib/mono/xbuild
+/usr/local/lib/mono/xbuild/14.0/Microsoft.Common.props: Importing project /usr/local/lib/mono/xbuild/14.0/Imports/Microsoft.Common.props/ImportBefore/Microsoft.NuGet.ImportBefore.props from extension path /usr/local/lib/mono/xbuild
+/usr/local/lib/mono/xbuild/14.0/Imports/Microsoft.Common.props/ImportBefore/Microsoft.NuGet.ImportBefore.props: Importing project /usr/local/lib/mono/xbuild/Microsoft/NuGet/Microsoft.NuGet.props from extension path /usr/local/lib/mono/xbuild
+/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets: Importing project /usr/local/lib/mono/xbuild/14.0/Microsoft.Common.targets/ImportAfter/Microsoft.NuGet.ImportAfter.targets from extension path /usr/local/lib/mono/xbuild
+/usr/local/lib/mono/xbuild/14.0/Microsoft.Common.targets/ImportAfter/Microsoft.NuGet.ImportAfter.targets: Importing project /usr/local/lib/mono/xbuild/Microsoft/NuGet/Microsoft.NuGet.targets from extension path /usr/local/lib/mono/xbuild
+[36mProject "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" (default target(s)):[0m
+[0m/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj: Importing project /usr/local/lib/mono/xbuild/14.0/bin/Microsoft.CSharp.targets from extension path /usr/local/lib/mono/xbuild[0m
+[0m/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.CSharp.targets: Importing project /usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets [0m
+[0m/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets: Importing project /usr/local/lib/mono/xbuild/14.0/Microsoft.Common.props from extension path /usr/local/lib/mono/xbuild[0m
+[0m/usr/local/lib/mono/xbuild/14.0/Microsoft.Common.props: Importing project /usr/local/lib/mono/xbuild/14.0/Imports/Microsoft.Common.props/ImportBefore/Microsoft.NuGet.ImportBefore.props from extension path /usr/local/lib/mono/xbuild[0m
+[0m/usr/local/lib/mono/xbuild/14.0/Imports/Microsoft.Common.props/ImportBefore/Microsoft.NuGet.ImportBefore.props: Importing project /usr/local/lib/mono/xbuild/Microsoft/NuGet/Microsoft.NuGet.props from extension path /usr/local/lib/mono/xbuild[0m
+[0m/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets: Importing project /usr/local/lib/mono/xbuild/14.0/Microsoft.Common.targets/ImportAfter/Microsoft.NuGet.ImportAfter.targets from extension path /usr/local/lib/mono/xbuild[0m
+[0m/usr/local/lib/mono/xbuild/14.0/Microsoft.Common.targets/ImportAfter/Microsoft.NuGet.ImportAfter.targets: Importing project /usr/local/lib/mono/xbuild/Microsoft/NuGet/Microsoft.NuGet.targets from extension path /usr/local/lib/mono/xbuild[0m
+[0mBuilding target "_CheckForInvalidConfigurationAndPlatform" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets").[0m
+[0mDone building target "_CheckForInvalidConfigurationAndPlatform" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets").[0m
+[0mBuilding target "Build" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets").[0m
+[0mBuilding target "BuildOnlySettings" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "Build" depends on it.[0m
+[0mDone building target "BuildOnlySettings" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "Build" depends on it.[0m
+[0mBuilding target "BeforeBuild" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj"); "Build" depends on it.[0m
+[36m	Target BeforeBuild:[0m
+[36m	Task "WriteCodeFragment"[0m
+[0m		Using task WriteCodeFragment from Microsoft.Build.Tasks.WriteCodeFragment, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[0m		Emitted specified code into "AV.cs".[0m
+[36m	Done executing task "WriteCodeFragment"[0m
+[36m	Done building target "BeforeBuild" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj".[0m
+[0mDone building target "BeforeBuild" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj"); "Build" depends on it.[0m
+[0mBuilding target "CoreBuild" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "Build" depends on it.[0m
+[0mBuilding target "PrepareForBuild" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[0mBuilding target "AssignLinkMetadata" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "PrepareForBuild" depends on it.[0m
+[0mDone building target "AssignLinkMetadata" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "PrepareForBuild" depends on it.[0m
+[36m	Target PrepareForBuild:[0m
+[36m	Task "Message"[0m
+[0m		Using task Message from Microsoft.Build.Tasks.Message, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[0m		Configuration: Release Platform: AnyCPU[0m
+[36m	Done executing task "Message"[0m
+[36m	Task "FindAppConfigFile"[0m
+[0m		Using task FindAppConfigFile from Microsoft.Build.Tasks.FindAppConfigFile, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "FindAppConfigFile"[0m
+[36m	Task "MakeDir"[0m
+[0m		Using task MakeDir from Microsoft.Build.Tasks.MakeDir, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[0m		Created directory "bin/Release/"[0m
+[0m		Created directory "obj/Release/"[0m
+[36m	Done executing task "MakeDir"[0m
+[36m	Done building target "PrepareForBuild" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj".[0m
+[0mDone building target "PrepareForBuild" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[0mBuilding target "GetFrameworkPaths" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[36m	Target GetFrameworkPaths:[0m
+[36m	Task "GetFrameworkPath"[0m
+[0m		Using task GetFrameworkPath from Microsoft.Build.Tasks.GetFrameworkPath, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "GetFrameworkPath"[0m
+[36m	Task "CreateProperty"[0m
+[0m		Using task CreateProperty from Microsoft.Build.Tasks.CreateProperty, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "CreateProperty"[0m
+[36m	Done building target "GetFrameworkPaths" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj".[0m
+[0mDone building target "GetFrameworkPaths" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[0mBuilding target "GetReferenceAssemblyPaths" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[36m	Target GetReferenceAssemblyPaths:[0m
+[36m	Task "CreateProperty"[0m
+[0m		Using task CreateProperty from Microsoft.Build.Tasks.CreateProperty, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "CreateProperty"[0m
+[36m	Task "GetReferenceAssemblyPaths"[0m
+[0m		Using task GetReferenceAssemblyPaths from Microsoft.Build.Tasks.GetReferenceAssemblyPaths, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[0m		Looking for framework '.NETFramework,Version=v4.6' in root path '/usr/local/lib/mono/4.5/../xbuild-frameworks'[0m
+[0m		Found framework definition list '/usr/local/lib/mono/4.5/../xbuild-frameworks/.NETFramework/v4.6/RedistList/FrameworkList.xml' for framework '.NETFramework,Version=v4.6'[0m
+[36m	Done executing task "GetReferenceAssemblyPaths"[0m
+[36m	Done building target "GetReferenceAssemblyPaths" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj".[0m
+[0mDone building target "GetReferenceAssemblyPaths" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[0mBuilding target "PreBuildEvent" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[0mTarget PreBuildEvent skipped due to false condition: '$(PreBuildEvent)' != ''[0m
+[0mDone building target "PreBuildEvent" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[0mBuilding target "ResolveReferences" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[0mBuilding target "BeforeResolveReferences" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "ResolveReferences" depends on it.[0m
+[0mDone building target "BeforeResolveReferences" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "ResolveReferences" depends on it.[0m
+[0mBuilding target "ResolveProjectReferences" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "ResolveReferences" depends on it.[0m
+[0mBuilding target "SplitProjectReferencesByExistent" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "ResolveProjectReferences" depends on it.[0m
+[0mBuilding target "AssignProjectConfiguration" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "SplitProjectReferencesByExistent" depends on it.[0m
+[0mTarget AssignProjectConfiguration skipped due to false condition: '@(ProjectReference)' != ''[0m
+[0mDone building target "AssignProjectConfiguration" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "SplitProjectReferencesByExistent" depends on it.[0m
+[0mDone building target "SplitProjectReferencesByExistent" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "ResolveProjectReferences" depends on it.[0m
+[0mDone building target "ResolveProjectReferences" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "ResolveReferences" depends on it.[0m
+[0mBuilding target "ResolveAssemblyReferences" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "ResolveReferences" depends on it.[0m
+[0mBuilding target "ResolveNuGetPackageAssets" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/Microsoft/NuGet/Microsoft.NuGet.targets"); "ResolveAssemblyReferences" depends on it.[0m
+[0mTarget ResolveNuGetPackageAssets skipped due to false condition: '$(ResolveNuGetPackages)' == 'true' and exists('$(ProjectLockFile)')[0m
+[0mDone building target "ResolveNuGetPackageAssets" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/Microsoft/NuGet/Microsoft.NuGet.targets"); "ResolveAssemblyReferences" depends on it.[0m
+[0mBuilding target "_AddCorlibReference" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.CSharp.targets"); "ResolveAssemblyReferences" depends on it.[0m
+[0mDone building target "_AddCorlibReference" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.CSharp.targets"); "ResolveAssemblyReferences" depends on it.[0m
+[36m	Target ResolveAssemblyReferences:[0m
+[36m	Task "CreateItem"[0m
+[0m		Using task CreateItem from Microsoft.Build.Tasks.CreateItem, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "CreateItem"[0m
+[36m	Task "CreateItem"[0m
+[0m		Using task CreateItem from Microsoft.Build.Tasks.CreateItem, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "CreateItem"[0m
+[36m	Task "ResolveAssemblyReference"[0m
+[0m		Using task ResolveAssemblyReference from Microsoft.Build.Tasks.ResolveAssemblyReference, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[0m		TargetFrameworkDirectories:[0m
+[0m			/usr/local/lib/mono/4.6-api/[0m
+[0m			/usr/local/lib/mono/4.6-api//Facades/[0m
+[0m		SearchPaths:[0m
+[0m			{CandidateAssemblyFiles}[0m
+[0m			{HintPathFromItem}[0m
+[0m			{TargetFrameworkDirectory}[0m
+[0m			{PkgConfig}[0m
+[0m			{GAC}[0m
+[0m			{RawFileName}[0m
+[0m			bin/Release/[0m
+[0m		Primary Reference System[0m
+[0m			Reference System resolved to /usr/local/lib/mono/4.6-api/System.dll. CopyLocal = False[0m
+[0m			Reference found at search path {TargetFrameworkDirectory}[0m
+[0m		For searchpath {CandidateAssemblyFiles}[0m
+[0m		Warning: {CandidateAssemblyFiles} not supported currently[0m
+[0m		For searchpath {HintPathFromItem}[0m
+[0m		HintPath attribute not found[0m
+[0m		For searchpath {TargetFrameworkDirectory}[0m
+[0m		Primary Reference System.Xml[0m
+[0m			Reference System.Xml resolved to /usr/local/lib/mono/4.6-api/System.Xml.dll. CopyLocal = False[0m
+[0m			Reference found at search path {TargetFrameworkDirectory}[0m
+[0m		For searchpath {CandidateAssemblyFiles}[0m
+[0m		Warning: {CandidateAssemblyFiles} not supported currently[0m
+[0m		For searchpath {HintPathFromItem}[0m
+[0m		HintPath attribute not found[0m
+[0m		For searchpath {TargetFrameworkDirectory}[0m
+[0m		Primary Reference System.Configuration[0m
+[0m			Reference System.Configuration resolved to /usr/local/lib/mono/4.6-api/System.Configuration.dll. CopyLocal = False[0m
+[0m			Reference found at search path {TargetFrameworkDirectory}[0m
+[0m		For searchpath {CandidateAssemblyFiles}[0m
+[0m		Warning: {CandidateAssemblyFiles} not supported currently[0m
+[0m		For searchpath {HintPathFromItem}[0m
+[0m		HintPath attribute not found[0m
+[0m		For searchpath {TargetFrameworkDirectory}[0m
+[0m		Primary Reference System.Runtime.Serialization[0m
+[0m			Reference System.Runtime.Serialization resolved to /usr/local/lib/mono/4.6-api/System.Runtime.Serialization.dll. CopyLocal = False[0m
+[0m			Reference found at search path {TargetFrameworkDirectory}[0m
+[0m		For searchpath {CandidateAssemblyFiles}[0m
+[0m		Warning: {CandidateAssemblyFiles} not supported currently[0m
+[0m		For searchpath {HintPathFromItem}[0m
+[0m		HintPath attribute not found[0m
+[0m		For searchpath {TargetFrameworkDirectory}[0m
+[0m		Primary Reference System.Collections.Immutable[0m
+[0m		HintPath /usr/lib64/mono/gac/System.Collections.Immutable/2.0.0.0__0738eb9f132ed756/System.Collections.Immutable.dll does not exist.[0m
+[33m/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets:  warning : Reference 'System.Collections.Immutable' not resolved[0m
+[0m		For searchpath {CandidateAssemblyFiles}[0m
+[0m		Warning: {CandidateAssemblyFiles} not supported currently[0m
+[0m		For searchpath {HintPathFromItem}[0m
+[0m		Considered /usr/lib64/mono/gac/System.Collections.Immutable/2.0.0.0__0738eb9f132ed756/System.Collections.Immutable.dll, but it does not exist.[0m
+[0m		For searchpath {TargetFrameworkDirectory}[0m
+[0m		Considered target framework dir /usr/local/lib/mono/4.6-api/, assembly named 'System.Collections.Immutable' not found.[0m
+[0m		Considered target framework dir /usr/local/lib/mono/4.6-api//Facades/, assembly named 'System.Collections.Immutable' not found.[0m
+[0m		For searchpath {PkgConfig}[0m
+[0m		Considered System.Collections.Immutable, but could not find in any pkg-config files.[0m
+[0m		For searchpath {GAC}[0m
+[0m		Considered System.Collections.Immutable, but could not find in the GAC.[0m
+[0m		For searchpath {RawFileName}[0m
+[0m		Considered 'System.Collections.Immutable' as a file, but the file does not exist[0m
+[0m		For searchpath bin/Release/[0m
+[0m		Considered '/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/bin/Release/System.Collections.Immutable' as a file, but the file does not exist[0m
+[0m		Considered '/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/bin/Release/System.Collections.Immutable.exe' as a file, but the file does not exist[0m
+[0m		Considered '/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/bin/Release/System.Collections.Immutable.dll' as a file, but the file does not exist[0m
+[0m		Primary Reference System.Runtime.InteropServices.RuntimeInformation[0m
+[0m			Reference System.Runtime.InteropServices.RuntimeInformation resolved to /usr/local/lib/mono/4.6-api/System.Runtime.InteropServices.RuntimeInformation.dll. CopyLocal = False[0m
+[0m			Reference found at search path {TargetFrameworkDirectory}[0m
+[0m		For searchpath {CandidateAssemblyFiles}[0m
+[0m		Warning: {CandidateAssemblyFiles} not supported currently[0m
+[0m		For searchpath {HintPathFromItem}[0m
+[0m		HintPath attribute not found[0m
+[0m		For searchpath {TargetFrameworkDirectory}[0m
+[0m		Primary Reference Microsoft.Build.Framework, Version=15.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[0m			Reference Microsoft.Build.Framework, Version=15.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a resolved to ../Framework/bin/Release/Microsoft.Build.Framework.dll. CopyLocal = True[0m
+[0m			Reference found at search path {HintPathFromItem}[0m
+[0m		For searchpath {CandidateAssemblyFiles}[0m
+[0m		Warning: {CandidateAssemblyFiles} not supported currently[0m
+[0m		For searchpath {HintPathFromItem}[0m
+[0m		Primary Reference System.Core[0m
+[0m			Reference System.Core resolved to /usr/local/lib/mono/4.6-api/System.Core.dll. CopyLocal = False[0m
+[0m			Reference found at search path {TargetFrameworkDirectory}[0m
+[0m		For searchpath {CandidateAssemblyFiles}[0m
+[0m		Warning: {CandidateAssemblyFiles} not supported currently[0m
+[0m		For searchpath {HintPathFromItem}[0m
+[0m		HintPath attribute not found[0m
+[0m		For searchpath {TargetFrameworkDirectory}[0m
+[0m		Primary Reference from AssemblyFiles /usr/local/lib/mono/4.6-api//mscorlib.dll[0m
+[0m		Dependency System.Xaml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089[0m
+[0m			Required by Microsoft.Build.Framework, Version=15.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[0m			Reference System.Xaml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 resolved to /usr/local/lib/mono/4.6-api/System.Xaml.dll.[0m
+[0m			Reference found at search path {TargetFrameworkDirectory}[0m
+[0m		For searchpath /var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/bin/Release[0m
+[0m		Considered '/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/bin/Release/System.Xaml' as a file, but the file does not exist[0m
+[0m		Considered '/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/bin/Release/System.Xaml.exe' as a file, but the file does not exist[0m
+[0m		Considered '/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/bin/Release/System.Xaml.dll' as a file, but the file does not exist[0m
+[0m		For searchpath {CandidateAssemblyFiles}[0m
+[0m		Warning: {CandidateAssemblyFiles} not supported currently[0m
+[0m		For searchpath {HintPathFromItem}[0m
+[0m		HintPath attribute not found[0m
+[0m		For searchpath {TargetFrameworkDirectory}[0m
+[0m			This is CopyLocal false as it is in the GAC,target framework directory or provided by a package.[0m
+[36m	Done executing task "ResolveAssemblyReference"[0m
+[36m	Done building target "ResolveAssemblyReferences" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj".[0m
+[0mDone building target "ResolveAssemblyReferences" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "ResolveReferences" depends on it.[0m
+[0mBuilding target "AfterResolveReferences" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "ResolveReferences" depends on it.[0m
+[0mDone building target "AfterResolveReferences" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "ResolveReferences" depends on it.[0m
+[0mBuilding target "ImplicitlyExpandDesignTimeFacades" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "ResolveReferences" depends on it.[0m
+[0mDone building target "ImplicitlyExpandDesignTimeFacades" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "ResolveReferences" depends on it.[0m
+[0mDone building target "ResolveReferences" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[0mBuilding target "CopyFilesMarkedCopyLocal" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[36m	Target CopyFilesMarkedCopyLocal:[0m
+[36m	Task "Copy"[0m
+[0m		Using task Copy from Microsoft.Build.Tasks.Copy, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[0m		Copying file from '/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/bin/Release/Microsoft.Build.Framework.dll' to '/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/bin/Release/Microsoft.Build.Framework.dll'[0m
+[36m	Done executing task "Copy"[0m
+[36m	Done building target "CopyFilesMarkedCopyLocal" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj".[0m
+[0mDone building target "CopyFilesMarkedCopyLocal" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[0mBuilding target "PrepareResources" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[0mBuilding target "ResolveNuGetPackageAssets" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/Microsoft/NuGet/Microsoft.NuGet.targets"); "PrepareResources" depends on it.[0m
+[0mTarget ResolveNuGetPackageAssets skipped due to false condition: '$(ResolveNuGetPackages)' == 'true' and exists('$(ProjectLockFile)')[0m
+[0mDone building target "ResolveNuGetPackageAssets" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/Microsoft/NuGet/Microsoft.NuGet.targets"); "PrepareResources" depends on it.[0m
+[0mBuilding target "AssignTargetPaths" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "PrepareResources" depends on it.[0m
+[36m	Target AssignTargetPaths:[0m
+[36m	Task "AssignTargetPath"[0m
+[0m		Using task AssignTargetPath from Microsoft.Build.Tasks.AssignTargetPath, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "AssignTargetPath"[0m
+[36m	Task "AssignTargetPath"[0m
+[0m		Using task AssignTargetPath from Microsoft.Build.Tasks.AssignTargetPath, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "AssignTargetPath"[0m
+[36m	Task "AssignTargetPath"[0m
+[0m		Using task AssignTargetPath from Microsoft.Build.Tasks.AssignTargetPath, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "AssignTargetPath"[0m
+[36m	Done building target "AssignTargetPaths" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj".[0m
+[0mDone building target "AssignTargetPaths" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "PrepareResources" depends on it.[0m
+[0mBuilding target "SplitResourcesByCulture" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "PrepareResources" depends on it.[0m
+[36m	Target SplitResourcesByCulture:[0m
+[36m	Task "AssignCulture"[0m
+[0m		Using task AssignCulture from Microsoft.Build.Tasks.AssignCulture, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "AssignCulture"[0m
+[36m	Task "CreateItem"[0m
+[0m		Using task CreateItem from Microsoft.Build.Tasks.CreateItem, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "CreateItem"[0m
+[36m	Task "CreateItem"[0m
+[0m		Using task CreateItem from Microsoft.Build.Tasks.CreateItem, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "CreateItem"[0m
+[36m	Done building target "SplitResourcesByCulture" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj".[0m
+[0mDone building target "SplitResourcesByCulture" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "PrepareResources" depends on it.[0m
+[0mBuilding target "CreateManifestResourceNames" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.CSharp.targets"); "PrepareResources" depends on it.[0m
+[36m	Target CreateManifestResourceNames:[0m
+[36m	Task "CreateCSharpManifestResourceName"[0m
+[0m		Using task CreateCSharpManifestResourceName from Microsoft.Build.Tasks.CreateCSharpManifestResourceName, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "CreateCSharpManifestResourceName"[0m
+[36m	Done building target "CreateManifestResourceNames" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj".[0m
+[0mDone building target "CreateManifestResourceNames" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.CSharp.targets"); "PrepareResources" depends on it.[0m
+[0mBuilding target "CopyNonResxEmbeddedResources" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "PrepareResources" depends on it.[0m
+[0mTarget CopyNonResxEmbeddedResources skipped due to false condition: '@(NonResxWithCulture)' != '' or '@(NonResxWithNoCulture)' != '' or '@(ManifestNonResxWithCulture)' != '' or '@(ManifestNonResxWithNoCulture)' != ''[0m
+[0mDone building target "CopyNonResxEmbeddedResources" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "PrepareResources" depends on it.[0m
+[0mBuilding target "GenerateResources" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "PrepareResources" depends on it.[0m
+[36m	Target GenerateResources:[0m
+[36m	Task "GenerateResource"[0m
+[0m		Using task GenerateResource from Microsoft.Build.Tasks.GenerateResource, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[0m		Resource file 'obj/Release/Microsoft.Build.Utilities.Resources.Strings.resources' is newer than the source file 'Resources/Strings.resx', skipping.[0m
+[0m		Tool /usr/local/lib/mono/4.5/resgen.exe execution started with arguments: /useSourcePath /compile "Resources/Strings.resx,obj/Release/Microsoft.Build.Utilities.Resources.Strings.resources" [0m
+[0m		Environment variables being passed to the tool:[0m
+[0m			MONO_IOMAP=drive[0m
+[0m		Read in 54 resources from '/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/Resources/Strings.resx'[0m
+[0m		Writing resource file...  Done.[0m
+[0m		Tool /usr/local/lib/mono/4.5/resgen.exe execution finished.[0m
+[0m		Resource file 'obj/Release/Microsoft.Build.Utilities.Resources.Strings.shared.resources' is newer than the source file '../Shared/Resources/Strings.shared.resx', skipping.[0m
+[0m		Tool /usr/local/lib/mono/4.5/resgen.exe execution started with arguments: /useSourcePath /compile "../Shared/Resources/Strings.shared.resx,obj/Release/Microsoft.Build.Utilities.Resources.Strings.shared.resources" [0m
+[0m		Environment variables being passed to the tool:[0m
+[0m			MONO_IOMAP=drive[0m
+[0m		Read in 55 resources from '/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Shared/Resources/Strings.shared.resx'[0m
+[0m		Writing resource file...  Done.[0m
+[0m		Tool /usr/local/lib/mono/4.5/resgen.exe execution finished.[0m
+[36m	Done executing task "GenerateResource"[0m
+[36m	Done building target "GenerateResources" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj".[0m
+[0mDone building target "GenerateResources" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "PrepareResources" depends on it.[0m
+[0mBuilding target "GenerateSatelliteAssemblies" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "PrepareResources" depends on it.[0m
+[36m	Target GenerateSatelliteAssemblies:[0m
+[0m	No input files were specified for target GenerateSatelliteAssemblies, skipping.[0m
+[36m	Done building target "GenerateSatelliteAssemblies" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj".[0m
+[0mDone building target "GenerateSatelliteAssemblies" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "PrepareResources" depends on it.[0m
+[0mBuilding target "CompileLicxFiles" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "PrepareResources" depends on it.[0m
+[0mTarget CompileLicxFiles skipped due to false condition: '@(LicxFiles)' != ''[0m
+[0mDone building target "CompileLicxFiles" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "PrepareResources" depends on it.[0m
+[0mDone building target "PrepareResources" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[0mBuilding target "Compile" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[0mBuilding target "GenerateTargetFrameworkMonikerAttribute" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "Compile" depends on it.[0m
+[0mBuilding target "_GenerateTargetFrameworkMonikerAttribute" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "GenerateTargetFrameworkMonikerAttribute" depends on it.[0m
+[36m	Target _GenerateTargetFrameworkMonikerAttribute:[0m
+[0m	Target _GenerateTargetFrameworkMonikerAttribute needs to be built as output file 'obj/Release/.NETFramework,Version=v4.6.AssemblyAttribute.cs' does not exist.[0m
+[36m	Task "WriteLinesToFile"[0m
+[0m		Using task WriteLinesToFile from Microsoft.Build.Tasks.WriteLinesToFile, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "WriteLinesToFile"[0m
+[36m	Done building target "_GenerateTargetFrameworkMonikerAttribute" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj".[0m
+[0mDone building target "_GenerateTargetFrameworkMonikerAttribute" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "GenerateTargetFrameworkMonikerAttribute" depends on it.[0m
+[0mDone building target "GenerateTargetFrameworkMonikerAttribute" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "Compile" depends on it.[0m
+[0mBuilding target "BeforeCompile" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "Compile" depends on it.[0m
+[0mDone building target "BeforeCompile" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "Compile" depends on it.[0m
+[0mBuilding target "_TimestampBeforeCompile" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "Compile" depends on it.[0m
+[0mTarget _TimestampBeforeCompile skipped due to false condition: '$(RunPostBuildEvent)' == 'OnOutputUpdated'[0m
+[0mDone building target "_TimestampBeforeCompile" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "Compile" depends on it.[0m
+[0mBuilding target "CoreCompile" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.CSharp.targets"); "Compile" depends on it.[0m
+[36m	Target CoreCompile:[0m
+[0m	Target CoreCompile needs to be built as output file 'obj/Release/Microsoft.Build.Utilities.Core.dll' does not exist.[0m
+[36m	Task "Csc"[0m
+[0m		Using task Csc from Microsoft.Build.Tasks.Csc, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[0m		Tool /usr/local/lib/mono/4.5/csc.exe execution started with arguments: /noconfig /debug:pdbonly /delaysign+ /debug- /keyfile:/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/distdir/MSFT.snk /optimize+ /out:obj/Release/Microsoft.Build.Utilities.Core.dll /resource:obj/Release/Microsoft.Build.Utilities.Resources.Strings.resources,Microsoft.Build.Utilities.Core.Strings.resources /resource:obj/Release/Microsoft.Build.Utilities.Resources.Strings.shared.resources,Microsoft.Build.Utilities.Core.Strings.shared.resources AV.cs /var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Shared/FileSystem/SafeFileHandle.cs /var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Shared/FileSystem/WindowsFileSystem.cs /var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Shared/FileSystem/WindowsNative.cs /var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Shared/FileSystem/FileSystems.cs /var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Shared/FileSystem/NativeWin32Exception.cs /var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Shared/FileSystem/CachingFileSystemWrapper.cs /var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Shared/FileSystem/ManagedFileSystem.cs /var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Shared/FileSystem/IFileSystem.cs /var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Shared/FileSystem/MSBuildOnWindowsFileSystem.cs ../Shared/ReuseableStringBuilder.cs ../Shared/AssemblyFolders/AssemblyFoldersEx.cs ../Shared/AssemblyFolders/AssemblyFoldersFromConfig.cs ../Shared/AssemblyFolders/Serialization/AssemblyFolderCollection.cs ../Shared/AssemblyFolders/Serialization/AssemblyFolderItem.cs ../Shared/IConstrainedEqualityComparer.cs ../Shared/BuildEnvironmentHelper.cs ../Shared/FxCopExclusions/Microsoft.Build.Shared.Suppressions.cs ../Shared/CanonicalError.cs ../Shared/Constants.cs ../Shared/ExtensionFoldersRegistryKey.cs ../Shared/FileDelegates.cs ../Shared/CopyOnWriteDictionary.cs ../Shared/EncodingUtilities.cs ../Shared/ErrorUtilities.cs ../Shared/EscapingUtilities.cs ../Shared/EventArgsFormatting.cs ../Shared/ExceptionHandling.cs ../Shared/EscapingStringExtensions/EscapingStringExtensions.cs ../Shared/FileUtilities.cs ../Shared/FileMatcher.cs ../Shared/FileUtilitiesRegex.cs ../Shared/FrameworkLocationHelper.cs ../Shared/HybridDictionary.cs ../Shared/InternalErrorException.cs ../Shared/IKeyed.cs ../Shared/MSBuildNameIgnoreCaseComparer.cs ../Shared/Modifiers.cs ../Shared/NativeMethodsShared.cs ../Shared/AssemblyUtilities.cs ../Shared/InprocTrackingNativeMethods.cs ../Shared/OpportunisticIntern.cs ../Shared/ReadOnlyEmptyCollection.cs ../Shared/ReadOnlyEmptyDictionary.cs ../Shared/RegistryDelegates.cs ../Shared/RegistryHelper.cs ../Shared/ResourceUtilities.cs ../Shared/StringBuilderCache.cs ../Shared/TaskLoggingHelper.cs ../Shared/TempFileUtilities.cs ../Shared/Tracing.cs ../Shared/VersionUtilities.cs ../Shared/ToolsetElement.cs ../Shared/VisualStudioLocationHelper.cs ../Shared/Traits.cs ../Shared/EnvironmentUtilities.cs TrackedDependencies/CanonicalTrackedOutputFiles.cs TrackedDependencies/CanonicalTrackedInputFiles.cs TrackedDependencies/CanonicalTrackedFilesHelper.cs TrackedDependencies/FlatTrackingData.cs TrackedDependencies/DependencyTableCache.cs TrackedDependencies/TrackedDependencies.cs TrackedDependencies/FileTracker.cs FxCopExclusions/Microsoft.Build.Utilities.Suppressions.cs AssemblyFolders/AssemblyFoldersExInfo.cs AssemblyFolders/AssemblyFoldersFromConfigInfo.cs TrackedDependencies/CanonicalTrackedOutputFiles.cs TrackedDependencies/CanonicalTrackedInputFiles.cs TrackedDependencies/CanonicalTrackedFilesHelper.cs TrackedDependencies/FlatTrackingData.cs TrackedDependencies/DependencyTableCache.cs TrackedDependencies/TrackedDependencies.cs TrackedDependencies/FileTracker.cs FxCopExclusions/Microsoft.Build.Utilities.Suppressions.cs AssemblyFolders/AssemblyFoldersExInfo.cs AssemblyFolders/AssemblyFoldersFromConfigInfo.cs ExtensionSDK.cs ApiContract.cs Task.cs CommandLineBuilder.cs AppDomainIsolatedTask.cs AssemblyResources.cs TaskItem.cs SDKType.cs ProcessExtensions.cs ToolTask.cs ToolLocationHelper.cs Logger.cs PlatformManifest.cs TargetPlatformSDK.cs AssemblyInfo.cs ProcessorArchitecture.cs SDKManifest.cs MuxLogger.cs obj/Release/.NETFramework,Version=v4.6.AssemblyAttribute.cs /target:library /unsafe+ /define:"STANDALONEBUILD;FEATURE_64BIT_ENVIRONMENT_QUERY;FEATURE_APARTMENT_STATE;FEATURE_APM;FEATURE_APPDOMAIN;FEATURE_APPDOMAIN_UNHANDLED_EXCEPTION;FEATURE_ASSEMBLY_LOADFROM;FEATURE_ASSEMBLY_LOCATION;FEATURE_ASSEMBLYNAME_CULTUREINFO;FEATURE_ASSEMBLYNAME_CLONE;FEATURE_TYPE_GETCONSTRUCTOR;FEATURE_BINARY_SERIALIZATION;FEATURE_COM_INTEROP;FEATURE_CONSOLE_BUFFERWIDTH;FEATURE_CONSTRAINED_EXECUTION;FEATURE_CHARSET_AUTO;FEATURE_CODEDOM;FEATURE_CODETASKFACTORY;FEATURE_CULTUREINFO_CONSOLE_FALLBACK;FEATURE_CULTUREINFO_GETCULTUREINFO;FEATURE_CULTUREINFO_GETCULTURES;FEATURE_DOTNETVERSION;FEATURE_ENVIRONMENT_SYSTEMDIRECTORY;FEATURE_FUSION_COMPAREASSEMBLYIDENTITY;FEATURE_GAC;FEATURE_GET_COMMANDLINE;FEATURE_HANDLE_SAFEWAITHANDLE;FEATURE_HANDLEPROCESSCORRUPTEDSTATEEXCEPTIONS;FEATURE_HANDLEREF;FEATURE_HTTP_LISTENER;FEATURE_INSTALLED_MSBUILD;FEATURE_LEGACY_GETFULLPATH;FEATURE_MEMORYSTREAM_GETBUFFER;FEATURE_NAMED_PIPES_FULL_DUPLEX;FEATURE_OSVERSION;FEATURE_PERFORMANCE_COUNTERS;FEATURE_PIPE_SECURITY;FEATURE_PFX_SIGNING;FEATURE_REFLECTION_EMIT_DEBUG_INFO;FEATURE_REGISTRY_TOOLSETS;FEATURE_REGISTRY_SDKS;FEATURE_REGISTRYHIVE_DYNDATA;FEATURE_RESGEN;FEATURE_RESOURCE_EXPOSURE;FEATURE_RESOURCEMANAGER_GETRESOURCESET;FEATURE_RESX_RESOURCE_READER;FEATURE_RUN_EXE_IN_TESTS;USE_MSBUILD_DLL_EXTN;FEATURE_SECURITY_PRINCIPAL_WINDOWS;FEATURE_SPECIAL_FOLDERS;FEATURE_STRING_INTERN;FEATURE_STRONG_NAMES;FEATURE_SYSTEM_CONFIGURATION;FEATURE_SYSTEMPAGESIZE;FEATURE_TASK_GENERATERESOURCES;FEATURE_TASKHOST;FEATURE_THREAD_ABORT;FEATURE_THREAD_CULTURE;FEATURE_THREAD_PRIORITY;FEATURE_MULTIPLE_TOOLSETS;FEATURE_NODE_REUSE;FEATURE_TYPE_INVOKEMEMBER;FEATURE_TYPE_GETINTERFACE;FEATURE_USERINTERACTIVE;FEATURE_USERDOMAINNAME;FEATURE_VARIOUS_EXCEPTIONS;FEATURE_XAML_TYPES;FEATURE_XAMLTASKFACTORY;FEATURE_XML_SOURCE_URI;FEATURE_XML_LOADPATH;FEATURE_XMLTEXTREADER;FEATURE_DEBUGGER;FEATURE_WIN32_REGISTRY;FEATURE_WORKINGSET;FEATURE_MSCOREE" /nostdlib /reference:/usr/local/lib/mono/4.6-api/System.dll /reference:/usr/local/lib/mono/4.6-api/System.Xml.dll /reference:/usr/local/lib/mono/4.6-api/System.Configuration.dll /reference:/usr/local/lib/mono/4.6-api/System.Runtime.Serialization.dll /reference:/usr/local/lib/mono/4.6-api/System.Runtime.InteropServices.RuntimeInformation.dll /reference:../Framework/bin/Release/Microsoft.Build.Framework.dll /reference:/usr/local/lib/mono/4.6-api/System.Core.dll /reference:/usr/local/lib/mono/4.6-api//mscorlib.dll /warn:4[0m
+[0m		Environment variables being passed to the tool:[0m
+[0m		Microsoft (R) Visual C# Compiler version 3.7.0-1.20262.2 (d6aa790a)[0m
+[0m		Copyright (C) Microsoft Corporation. All rights reserved.[0m
+[33mCSC:  warning CS2002: Source file 'TrackedDependencies/CanonicalTrackedOutputFiles.cs' specified multiple times[0m
+[33mCSC:  warning CS2002: Source file 'TrackedDependencies/CanonicalTrackedInputFiles.cs' specified multiple times[0m
+[33mCSC:  warning CS2002: Source file 'TrackedDependencies/CanonicalTrackedFilesHelper.cs' specified multiple times[0m
+[33mCSC:  warning CS2002: Source file 'TrackedDependencies/FlatTrackingData.cs' specified multiple times[0m
+[33mCSC:  warning CS2002: Source file 'TrackedDependencies/DependencyTableCache.cs' specified multiple times[0m
+[33mCSC:  warning CS2002: Source file 'TrackedDependencies/TrackedDependencies.cs' specified multiple times[0m
+[33mCSC:  warning CS2002: Source file 'TrackedDependencies/FileTracker.cs' specified multiple times[0m
+[33mCSC:  warning CS2002: Source file 'FxCopExclusions/Microsoft.Build.Utilities.Suppressions.cs' specified multiple times[0m
+[33mCSC:  warning CS2002: Source file 'AssemblyFolders/AssemblyFoldersExInfo.cs' specified multiple times[0m
+[33mCSC:  warning CS2002: Source file 'AssemblyFolders/AssemblyFoldersFromConfigInfo.cs' specified multiple times[0m
+[31m/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Shared/FileMatcher.cs(13,26): error CS0234: The type or namespace name 'Immutable' does not exist in the namespace 'System.Collections' (are you missing an assembly reference?)[0m
+[31m/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Shared/FileMatcher.cs(183,24): error CS0246: The type or namespace name 'ImmutableArray<>' could not be found (are you missing a using directive or an assembly reference?)[0m
+[31m/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Shared/FileMatcher.cs(206,24): error CS0246: The type or namespace name 'ImmutableArray<>' could not be found (are you missing a using directive or an assembly reference?)[0m
+[31m/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Shared/FileMatcher.cs(272,24): error CS0246: The type or namespace name 'ImmutableArray<>' could not be found (are you missing a using directive or an assembly reference?)[0m
+[31m/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Shared/FileMatcher.cs(340,24): error CS0246: The type or namespace name 'ImmutableArray<>' could not be found (are you missing a using directive or an assembly reference?)[0m
+[31m/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Shared/FileMatcher.cs(41,67): error CS0246: The type or namespace name 'ImmutableArray<>' could not be found (are you missing a using directive or an assembly reference?)[0m
+[31m/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Shared/FileMatcher.cs(44,55): error CS0246: The type or namespace name 'ImmutableArray<>' could not be found (are you missing a using directive or an assembly reference?)[0m
+[31m/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Shared/FileMatcher.cs(62,81): error CS0246: The type or namespace name 'ImmutableArray<>' could not be found (are you missing a using directive or an assembly reference?)[0m
+[31m/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Shared/FileMatcher.cs(75,124): error CS0246: The type or namespace name 'ImmutableArray<>' could not be found (are you missing a using directive or an assembly reference?)[0m
+[31m/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Shared/FileMatcher.cs(129,27): error CS0246: The type or namespace name 'ImmutableArray<>' could not be found (are you missing a using directive or an assembly reference?)[0m
+[0m		Tool /usr/local/lib/mono/4.5/csc.exe execution finished.[0m
+[36m	Task "Csc" execution -- FAILED[0m
+[36m	Done building target "CoreCompile" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj".-- FAILED[0m
+[0mDone building target "CoreCompile" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.CSharp.targets"); "Compile" depends on it.[0m
+[0mDone building target "Compile" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "CoreBuild" depends on it.[0m
+[0mOnError for target CoreBuild skipped due to false condition:  '$(RunPostBuildEvent)' == 'Always' or '$(RunPostBuildEvent)' == 'OnOutputUpdated'[0m
+[0mBuilding target "_RecordCleanFile" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets").[0m
+[0mBuilding target "_GetCompileOutputsForClean" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "_RecordCleanFile" depends on it.[0m
+[0mDone building target "_GetCompileOutputsForClean" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "_RecordCleanFile" depends on it.[0m
+[36m	Target _RecordCleanFile:[0m
+[36m	Task "ReadLinesFromFile"[0m
+[0m		Using task ReadLinesFromFile from Microsoft.Build.Tasks.ReadLinesFromFile, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "ReadLinesFromFile"[0m
+[36m	Task "FindUnderPath"[0m
+[0m		Using task FindUnderPath from Microsoft.Build.Tasks.FindUnderPath, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "FindUnderPath"[0m
+[36m	Task "RemoveDuplicates"[0m
+[0m		Using task RemoveDuplicates from Microsoft.Build.Tasks.RemoveDuplicates, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "RemoveDuplicates"[0m
+[36m	Task "WriteLinesToFile"[0m
+[0m		Using task WriteLinesToFile from Microsoft.Build.Tasks.WriteLinesToFile, Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a[0m
+[36m	Done executing task "WriteLinesToFile"[0m
+[36m	Done building target "_RecordCleanFile" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj".[0m
+[0mDone building target "_RecordCleanFile" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets").[0m
+[0mDone building target "CoreBuild" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets"); "Build" depends on it.[0m
+[0mDone building target "Build" in project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj" ("/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets").[0m
+[36mDone building project "/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj".-- FAILED[0m
+[0m[0m
+[0mBuild FAILED.[0m
+[0m
+Warnings:[0m
+[33m[0m
+[33m/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj (default targets) ->
+/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets (ResolveAssemblyReferences target) ->
+[0m
+[33m	/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.Common.targets:  warning : Reference 'System.Collections.Immutable' not resolved[0m
+[33m[0m
+[33m/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj (default targets) ->
+/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.CSharp.targets (CoreCompile target) ->
+[0m
+[33m	CSC:  warning CS2002: Source file 'TrackedDependencies/CanonicalTrackedOutputFiles.cs' specified multiple times[0m
+[33m	CSC:  warning CS2002: Source file 'TrackedDependencies/CanonicalTrackedInputFiles.cs' specified multiple times[0m
+[33m	CSC:  warning CS2002: Source file 'TrackedDependencies/CanonicalTrackedFilesHelper.cs' specified multiple times[0m
+[33m	CSC:  warning CS2002: Source file 'TrackedDependencies/FlatTrackingData.cs' specified multiple times[0m
+[33m	CSC:  warning CS2002: Source file 'TrackedDependencies/DependencyTableCache.cs' specified multiple times[0m
+[33m	CSC:  warning CS2002: Source file 'TrackedDependencies/TrackedDependencies.cs' specified multiple times[0m
+[33m	CSC:  warning CS2002: Source file 'TrackedDependencies/FileTracker.cs' specified multiple times[0m
+[33m	CSC:  warning CS2002: Source file 'FxCopExclusions/Microsoft.Build.Utilities.Suppressions.cs' specified multiple times[0m
+[33m	CSC:  warning CS2002: Source file 'AssemblyFolders/AssemblyFoldersExInfo.cs' specified multiple times[0m
+[33m	CSC:  warning CS2002: Source file 'AssemblyFolders/AssemblyFoldersFromConfigInfo.cs' specified multiple times[0m
+[33m[0m
+[0mErrors:[0m
+[31m[0m
+[31m/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj (default targets) ->
+/usr/local/lib/mono/xbuild/14.0/bin/Microsoft.CSharp.targets (CoreCompile target) ->
+[0m
+[31m	/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Shared/FileMatcher.cs(13,26): error CS0234: The type or namespace name 'Immutable' does not exist in the namespace 'System.Collections' (are you missing an assembly reference?)[0m
+[31m	/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Shared/FileMatcher.cs(183,24): error CS0246: The type or namespace name 'ImmutableArray<>' could not be found (are you missing a using directive or an assembly reference?)[0m
+[31m	/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Shared/FileMatcher.cs(206,24): error CS0246: The type or namespace name 'ImmutableArray<>' could not be found (are you missing a using directive or an assembly reference?)[0m
+[31m	/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Shared/FileMatcher.cs(272,24): error CS0246: The type or namespace name 'ImmutableArray<>' could not be found (are you missing a using directive or an assembly reference?)[0m
+[31m	/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Shared/FileMatcher.cs(340,24): error CS0246: The type or namespace name 'ImmutableArray<>' could not be found (are you missing a using directive or an assembly reference?)[0m
+[31m	/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Shared/FileMatcher.cs(41,67): error CS0246: The type or namespace name 'ImmutableArray<>' could not be found (are you missing a using directive or an assembly reference?)[0m
+[31m	/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Shared/FileMatcher.cs(44,55): error CS0246: The type or namespace name 'ImmutableArray<>' could not be found (are you missing a using directive or an assembly reference?)[0m
+[31m	/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Shared/FileMatcher.cs(62,81): error CS0246: The type or namespace name 'ImmutableArray<>' could not be found (are you missing a using directive or an assembly reference?)[0m
+[31m	/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Shared/FileMatcher.cs(75,124): error CS0246: The type or namespace name 'ImmutableArray<>' could not be found (are you missing a using directive or an assembly reference?)[0m
+[31m	/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Shared/FileMatcher.cs(129,27): error CS0246: The type or namespace name 'ImmutableArray<>' could not be found (are you missing a using directive or an assembly reference?)[0m
+[31m[0m
+[0m	 11 Warning(s)[0m
+[0m	 10 Error(s)[0m
+[0m[0m
+[0mTime Elapsed 00:00:01.6256110[0m
+ [31;01m*[0m ERROR: dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5::shnurise failed (compile phase):
+ [31;01m*[0m   (no error message)
+ [31;01m*[0m 
+ [31;01m*[0m Call stack:
+ [31;01m*[0m     ebuild.sh, line 125:  Called src_compile
+ [31;01m*[0m   environment, line 969:  Called exbuild_raw '/v:detailed' '/p:MonoBuild=true' '/p:TargetFrameworkVersion=v4.6' '/p:Configuration=Release' '/p:DebugSymbols=False' '/p:PublicKeyToken=b03f5f7f11d50a3a' '/p:VersionNumber=15.9.0.0' '/p:RootPath=/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e' '/p:SignAssembly=true' '/p:DelaySign=true' '/p:AssemblyOriginatorKeyFile=/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/distdir/MSFT.snk' '/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj'
+ [31;01m*[0m   environment, line 747:  Called die
+ [31;01m*[0m The specific snippet of code:
+ [31;01m*[0m       xbuild "$@" || die
+ [31;01m*[0m 
+ [31;01m*[0m If you need support, post the output of `emerge --info '=dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5::shnurise'`,
+ [31;01m*[0m the complete build log and the output of `emerge -pqv '=dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5::shnurise'`.
+ [31;01m*[0m The complete build log is located at '/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/temp/build.log'.
+ [31;01m*[0m The ebuild environment file is located at '/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/temp/environment'.
+ [31;01m*[0m Working directory: '/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e'
+ [31;01m*[0m S: '/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e'
+
+>>> [31;01mFailed[39;49;00m to emerge [32mdev-dotnet/msbuild-tasks-api-15.9.20.62856-r5[39;49;00m, Log file:
+
+>>>  '[32m/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/temp/build.log[39;49;00m'
+
+[32;01m * [39;49;00mMessages for package [32mdev-dotnet/msbuild-tasks-api-15.9.20.62856-r5[39;49;00m:
+
+[32;01m * [39;49;00m/v:detailed /p:MonoBuild=true /p:TargetFrameworkVersion=v4.6 /p:Configuration=Release /p:DebugSymbols=False /p:PublicKeyToken=b03f5f7f11d50a3a /p:VersionNumber=15.9.0.0 /p:RootPath=/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e /p:SignAssembly=true /p:DelaySign=true /p:AssemblyOriginatorKeyFile=/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/distdir/MSFT.snk /var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Framework/mono-Microsoft.Build.Framework.csproj
+[32;01m * [39;49;00m/v:detailed /p:MonoBuild=true /p:TargetFrameworkVersion=v4.6 /p:Configuration=Release /p:DebugSymbols=False /p:PublicKeyToken=b03f5f7f11d50a3a /p:VersionNumber=15.9.0.0 /p:RootPath=/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e /p:SignAssembly=true /p:DelaySign=true /p:AssemblyOriginatorKeyFile=/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/distdir/MSFT.snk /var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj
+[31;01m * [39;49;00mERROR: dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5::shnurise failed (compile phase):
+[31;01m * [39;49;00m  (no error message)
+[31;01m * [39;49;00m
+[31;01m * [39;49;00mCall stack:
+[31;01m * [39;49;00m    ebuild.sh, line 125:  Called src_compile
+[31;01m * [39;49;00m  environment, line 969:  Called exbuild_raw '/v:detailed' '/p:MonoBuild=true' '/p:TargetFrameworkVersion=v4.6' '/p:Configuration=Release' '/p:DebugSymbols=False' '/p:PublicKeyToken=b03f5f7f11d50a3a' '/p:VersionNumber=15.9.0.0' '/p:RootPath=/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e' '/p:SignAssembly=true' '/p:DelaySign=true' '/p:AssemblyOriginatorKeyFile=/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/distdir/MSFT.snk' '/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e/src/Utilities/mono-Microsoft.Build.Utilities.Core.csproj'
+[31;01m * [39;49;00m  environment, line 747:  Called die
+[31;01m * [39;49;00mThe specific snippet of code:
+[31;01m * [39;49;00m      xbuild "$@" || die
+[31;01m * [39;49;00m
+[31;01m * [39;49;00mIf you need support, post the output of `emerge --info '=dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5::shnurise'`,
+[31;01m * [39;49;00mthe complete build log and the output of `emerge -pqv '=dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5::shnurise'`.
+[31;01m * [39;49;00mThe complete build log is located at '/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/temp/build.log'.
+[31;01m * [39;49;00mThe ebuild environment file is located at '/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/temp/environment'.
+[31;01m * [39;49;00mWorking directory: '/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e'
+[31;01m * [39;49;00mS: '/var/tmp/portage/dev-dotnet/msbuild-tasks-api-15.9.20.62856-r5/work/msbuild-88f5fadfbef809b7ed2689f72319b7d91792460e'
+]0;root@:/var/db/repos/shnurise/dev-util/msbuild]0;root@hostname:/var/db/repos/shnurise/dev-util/msbuild[01;31mhostname[01;34m /var/db/repos/shnurise/dev-util/msbuild #[00m exit
+exit
+
+Script done on 2020-10-09 22:27:57+03:00 [COMMAND_EXIT_CODE="1"]

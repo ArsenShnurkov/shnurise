@@ -1,0 +1,681 @@
+Script started on 2020-10-09 01:14:14+03:00 [TERM="xterm-256color" TTY="/dev/pts/7" COLUMNS="173" LINES="49"]
+]777;notify;Command completed;exit\]777;precmd\]0;user@hostname:/var/db/repos/shnurise/www-servers/xsp\]7;file://hostname/var/db/repos/shnurise/www-servers/xsp\]0;user@hostname:/var/db/repos/shnurise/www-servers/xsp[01;32muser@hostname[01;34m /var/db/repos/shnurise/www-servers/xsp $[00m sudo emerge -av [K[K[Kv xsp-4.8[K7.1[C[C=xsp-4.7.1
+]777;preexec\Password: 
+]0;emerge
+[32mThese are the packages that would be merged, in order:[39;49;00m
+
+Calculating dependencies   - | / | - | / / | | \ | / - - / | | \ / - - / / \ | - | - / \ - / \ / - / \ | - / | | | \ | - | \ / \ \ - / - / \ | / / / - / - \ | \ / \ - - / | -... done!
+[[32;01mebuild[39;49;00m   [33;01mR[39;49;00m    ] [32;01mwww-servers/xsp-4.7.1::shnurise[39;49;00m  USE="[31;01mmodmono[39;49;00m [31;01mnet45[39;49;00m [31;01msystemd[39;49;00m [31;01mxsp[39;49;00m [34;01m-doc[39;49;00m [34;01m-examples[39;49;00m [34;01m-fastcgi[39;49;00m [34;01m-net35[39;49;00m [34;01m-net40[39;49;00m [34;01m-openrc[39;49;00m [34;01m-test[39;49;00m" 0 KiB
+
+Total: 1 package (1 reinstall), Size of downloads: 0 KiB
+
+
+>>> Verifying ebuild manifests
+
+>>> Emerging ([33;01m1[39;49;00m of [33;01m1[39;49;00m) [32mwww-servers/xsp-4.7.1::shnurise[39;49;00m
+]0;emerge: (1 of 1) www-servers/xsp-4.7.1 Clean[32;01m * [39;49;00mxsp-4.7.1.tar.gz SHA256 SHA512 WHIRLPOOL size ;-) ...                                                                                                              [34;01m[ [39;49;00m[32;01mok[39;49;00m[34;01m ][39;49;00m
+]0;emerge: (1 of 1) www-servers/xsp-4.7.1 Compile [32;01m*[0m  -- USING .NET 4.5 FRAMEWORK -- 
+>>> Unpacking source...
+>>> Unpacking xsp-4.7.1.tar.gz to /var/tmp/portage/www-servers/xsp-4.7.1/work
+>>> Source unpacked in /var/tmp/portage/www-servers/xsp-4.7.1/work
+>>> Preparing source in /var/tmp/portage/www-servers/xsp-4.7.1/work/xsp-b7190dd996b2c652630297ed9b1b9907602b0d4f ...
+ [32;01m*[0m Applying acme.patch ...
+[A[165C [34;01m[ [32;01mok[34;01m ][0m
+ [32;01m*[0m Applying aclocal-fix.patch ...
+patching file Makefile.am
+Hunk #1 succeeded at 1 with fuzz 1.
+[A[165C [34;01m[ [32;01mok[34;01m ][0m
+ [32;01m*[0m Running aclocal -I build/m4/shamrock -I build/m4/shave ...
+[A[165C [34;01m[ [32;01mok[34;01m ][0m
+libtoolize: putting auxiliary files in '.'.
+libtoolize: copying file './ltmain.sh'
+libtoolize: putting macros in AC_CONFIG_MACRO_DIRS, 'build/m4'.
+libtoolize: copying file 'build/m4/libtool.m4'
+libtoolize: copying file 'build/m4/ltoptions.m4'
+libtoolize: copying file 'build/m4/ltsugar.m4'
+libtoolize: copying file 'build/m4/ltversion.m4'
+libtoolize: copying file 'build/m4/lt~obsolete.m4'
+libtoolize: Consider adding '-I build/m4' to ACLOCAL_AMFLAGS in Makefile.am.
+ [32;01m*[0m Running autoconf ...
+[A[165C [34;01m[ [32;01mok[34;01m ][0m
+ [32;01m*[0m Running automake --add-missing --copy --force-missing --gnu --add-missing --force --copy ...
+[A[165C [34;01m[ [32;01mok[34;01m ][0m
+>>> Source prepared.
+>>> Configuring source in /var/tmp/portage/www-servers/xsp-4.7.1/work/xsp-b7190dd996b2c652630297ed9b1b9907602b0d4f ...
+ * econf: updating xsp-b7190dd996b2c652630297ed9b1b9907602b0d4f/config.sub with /usr/share/gnuconfig/config.sub
+ * econf: updating xsp-b7190dd996b2c652630297ed9b1b9907602b0d4f/config.guess with /usr/share/gnuconfig/config.guess
+./configure --prefix=/usr --build=x86_64-pc-linux-gnu --host=x86_64-pc-linux-gnu --mandir=/usr/share/man --infodir=/usr/share/info --datadir=/usr/share --sysconfdir=/etc --localstatedir=/var/lib --disable-dependency-tracking --disable-silent-rules --docdir=/usr/share/doc/xsp-4.7.1 --htmldir=/usr/share/doc/xsp-4.7.1/html --with-sysroot=/ --libdir=/usr/lib64 --enable-maintainer-mode
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking target system type... x86_64-pc-linux-gnu
+checking for a BSD-compatible install... /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking whether to enable maintainer-specific portions of Makefiles... yes
+checking for gawk... (cached) gawk
+checking how to print strings... printf
+checking whether make supports the include directive... yes (GNU style)
+checking for x86_64-pc-linux-gnu-gcc... x86_64-pc-linux-gnu-gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether x86_64-pc-linux-gnu-gcc accepts -g... yes
+checking for x86_64-pc-linux-gnu-gcc option to accept ISO C89... none needed
+checking whether x86_64-pc-linux-gnu-gcc understands -c and -o together... yes
+checking dependency style of x86_64-pc-linux-gnu-gcc... none
+checking for a sed that does not truncate output... /bin/sed
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for fgrep... /bin/grep -F
+checking for ld used by x86_64-pc-linux-gnu-gcc... /usr/x86_64-pc-linux-gnu/bin/ld
+checking if the linker (/usr/x86_64-pc-linux-gnu/bin/ld) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/x86_64-pc-linux-gnu-nm -B
+checking the name lister (/usr/bin/x86_64-pc-linux-gnu-nm -B) interface... BSD nm
+checking whether ln -s works... yes
+checking the maximum length of command line arguments... 1572864
+checking how to convert x86_64-pc-linux-gnu file names to x86_64-pc-linux-gnu format... func_convert_file_noop
+checking how to convert x86_64-pc-linux-gnu file names to toolchain format... func_convert_file_noop
+checking for /usr/x86_64-pc-linux-gnu/bin/ld option to reload object files... -r
+checking for x86_64-pc-linux-gnu-objdump... x86_64-pc-linux-gnu-objdump
+checking how to recognize dependent libraries... pass_all
+checking for x86_64-pc-linux-gnu-dlltool... no
+checking for dlltool... no
+checking how to associate runtime and link libraries... printf %s\n
+checking for x86_64-pc-linux-gnu-ar... x86_64-pc-linux-gnu-ar
+checking for archiver @FILE support... @
+checking for x86_64-pc-linux-gnu-strip... x86_64-pc-linux-gnu-strip
+checking for x86_64-pc-linux-gnu-ranlib... x86_64-pc-linux-gnu-ranlib
+checking command to parse /usr/bin/x86_64-pc-linux-gnu-nm -B output from x86_64-pc-linux-gnu-gcc object... ok
+checking for sysroot... /
+checking for a working dd... /bin/dd
+checking how to truncate binary pipes... /bin/dd bs=4096 count=1
+checking for x86_64-pc-linux-gnu-mt... no
+checking for mt... no
+checking if : is a manifest tool... no
+checking how to run the C preprocessor... x86_64-pc-linux-gnu-gcc -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if x86_64-pc-linux-gnu-gcc supports -fno-rtti -fno-exceptions... no
+checking for x86_64-pc-linux-gnu-gcc option to produce PIC... -fPIC -DPIC
+checking if x86_64-pc-linux-gnu-gcc PIC flag -fPIC -DPIC works... yes
+checking if x86_64-pc-linux-gnu-gcc static flag -static works... yes
+checking if x86_64-pc-linux-gnu-gcc supports -c -o file.o... yes
+checking if x86_64-pc-linux-gnu-gcc supports -c -o file.o... (cached) yes
+checking whether the x86_64-pc-linux-gnu-gcc linker (/usr/x86_64-pc-linux-gnu/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking for send... yes
+checking for recv... yes
+checking for bind... yes
+checking for listen... yes
+checking for accept... yes
+checking for chmod... yes
+checking for unlink... yes
+checking for fork... yes
+checking for execv... yes
+checking for exit... yes
+checking for getpid... yes
+checking for getuid... yes
+checking for geteuid... yes
+checking for getgid... yes
+checking for getegid... yes
+checking for setreuid... yes
+checking for setregid... yes
+checking for strlen... yes
+checking for strncpy... yes
+checking for strncmp... yes
+checking for printf... yes
+checking for fprintf... yes
+checking for snprintf... yes
+checking for vprintf... yes
+checking for strftime... yes
+checking for time... yes
+checking for perror... yes
+checking for x86_64-pc-linux-gnu-pkg-config... /usr/bin/x86_64-pc-linux-gnu-pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for mono >= 2.10.0... yes
+checking for dmcs... /usr/local/bin/dmcs
+checking for mono... /usr/local/bin/mono
+checking for gacutil... /usr/local/bin/gacutil
+checking for sn... /usr/local/bin/sn
+checking for Mono 4.5 GAC for System.Core.dll... found
+checking for Mono 4.5 GAC for System.Configuration.dll... found
+checking for Mono 4.5 GAC for System.Data.dll... found
+checking for Mono 4.5 GAC for System.Web.dll... found
+checking for Mono 4.5 GAC for Mono.Posix.dll... found
+checking for Mono 4.5 GAC for Mono.Security.dll... found
+checking for Mono 4.5 GAC for Mono.Data.Sqlite.dll... found
+checking for mdoc... /usr/local/bin/mdoc
+checking for sed... /bin/sed
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating build/Makefile
+config.status: creating build/m4/Makefile
+config.status: creating build/m4/shave/shave
+config.status: creating build/m4/shave/shave-libtool
+config.status: creating docs/Makefile
+config.status: creating docs/Mono.FastCGI/Makefile
+config.status: creating docs/Mono.WebServer/Makefile
+config.status: creating man/Makefile
+config.status: creating packaging/Makefile
+config.status: creating packaging/opensuse/Makefile
+config.status: creating scripts/Makefile
+config.status: creating lib/Makefile
+config.status: creating shim/Makefile
+config.status: creating src/Makefile
+config.status: creating src/Mono.WebServer.Apache/Makefile
+config.status: creating src/Mono.WebServer.FastCgi/Makefile
+config.status: creating src/Mono.WebServer.XSP/Makefile
+config.status: creating src/Mono.WebServer/Makefile
+config.status: creating src/Mono.WebServer.Fpm/Makefile
+config.status: creating test/1.1/Makefile
+config.status: creating test/1.1/asp.net/Makefile
+config.status: creating test/1.1/authtest/Makefile
+config.status: creating test/1.1/customcontrol/Makefile
+config.status: creating test/1.1/databind/Makefile
+config.status: creating test/1.1/handlers/Makefile
+config.status: creating test/1.1/html/Makefile
+config.status: creating test/1.1/webcontrols/Makefile
+config.status: creating test/1.1/webservice/Makefile
+config.status: creating test/2.0/Makefile
+config.status: creating test/2.0/gridview/Makefile
+config.status: creating test/2.0/masterpages/Makefile
+config.status: creating test/2.0/menu/Makefile
+config.status: creating test/2.0/treeview/Makefile
+config.status: creating test/App_Code/Makefile
+config.status: creating test/Makefile
+config.status: creating test/controls/Makefile
+config.status: creating tools/Makefile
+config.status: creating tools/asp_state/Makefile
+config.status: creating tools/dbsessmgr/Makefile
+config.status: creating tools/mono-asp-apps/Makefile
+config.status: creating unittests/Makefile
+config.status: creating unittests/Tests.XSP.Security/Makefile
+config.status: creating unittests/webroot/Makefile
+config.status: creating xsp.spec
+config.status: creating man/xsp.1
+config.status: creating man/dbsessmgr.1
+config.status: creating man/asp-state.1
+config.status: creating man/mono-asp-apps.1
+config.status: creating src/Mono.WebServer/AssemblyInfo2.cs
+config.status: creating src/Mono.WebServer/AssemblyInfo4.cs
+config.status: creating src/Mono.WebServer.Apache/AssemblyInfo.cs
+config.status: creating src/Mono.WebServer.FastCgi/AssemblyInfo.cs
+config.status: creating src/Mono.WebServer.Fpm/AssemblyInfo.cs
+config.status: creating src/Mono.WebServer.XSP/AssemblyInfo.cs
+config.status: creating src/Mono.WebServer.XSP/xsp.pc
+config.status: creating src/Mono.WebServer.XSP/xsp-2.pc
+config.status: creating src/Mono.WebServer.XSP/xsp-4.pc
+config.status: creating tools/asp_state/AssemblyInfo.cs
+config.status: creating tools/dbsessmgr/AssemblyInfo.cs
+config.status: executing depfiles commands
+config.status: executing libtool commands
+
+xsp-4.7.1
+
+  Build Environment
+    Install prefix:          /usr
+    Datadir:                 /usr/share
+    Libdir:                  /usr/lib64
+    Build documentation:     yes
+    Mono compiler:           /usr/local/bin/dmcs
+    Target frameworks:       .NET 4.5
+    Build SQLite samples:    yes
+>>> Source configured.
+>>> Compiling source in /var/tmp/portage/www-servers/xsp-4.7.1/work/xsp-b7190dd996b2c652630297ed9b1b9907602b0d4f ...
+Microsoft (R) Build Engine version 15.9.20.62856 for .NET Framework
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Building the projects in this solution one at a time. To enable parallel build, please add the "/m" switch.
+Build started 10/09/2020 01:15:02.
+/var/tmp/portage/www-servers/xsp-4.7.1/work/xsp-b7190dd996b2c652630297ed9b1b9907602b0d4f/xsp.sln.metaproj(2,10): error MSB4132: The tools version "15.0" is unrecognized. Available tools versions are "Current", "15.9".
+
+Build FAILED.
+
+  /var/tmp/portage/www-servers/xsp-4.7.1/work/xsp-b7190dd996b2c652630297ed9b1b9907602b0d4f/xsp.sln.metaproj(2,10): error MSB4132: The tools version "15.0" is unrecognized. Available tools versions are "Current", "15.9".
+
+    0 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:00:00.22
+>>> Source compiled.
+>>> Test phase [not enabled]: www-servers/xsp-4.7.1
+
+>>> Install www-servers/xsp-4.7.1 into /var/tmp/portage/www-servers/xsp-4.7.1/image
+make -j1 DESTDIR=/var/tmp/portage/www-servers/xsp-4.7.1/image install 
+Making install in build
+Making install in m4
+Making install in man
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/share/man/man1'
+ /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c -m 644 xsp.1 mod-mono-server.1 fastcgi-mono-server.1 dbsessmgr.1 asp-state.1 '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/share/man/man1'
+Making install in src
+Making install in Mono.WebServer
+  DMCS  /out:4.0/Mono.WebServer2.dll
+Note: dmcs is deprecated, please use mcs instead!
+Package exported to: /var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib/mono/4.5/Mono.WebServer2.dll -> ../gac/Mono.WebServer2/0.4.0.0__0738eb9f132ed756/Mono.WebServer2.dll
+Installed ../../src/Mono.WebServer/4.0/Mono.WebServer2.dll into the gac (/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib/mono/gac)
+Making install in Mono.WebServer.XSP
+  DMCS  /out:xsp4.exe
+Note: dmcs is deprecated, please use mcs instead!
+././main.cs(44,14): warning CS0649: Field `Mono.WebServer.XSP.Server.key' is never assigned to, and will always have its default value `null'
+././XSPWorker.cs(52,27): warning CS0649: Field `Mono.WebServer.XSP.XSPWorker.ssl' is never assigned to, and will always have its default value `null'
+Compilation succeeded - 2 warning(s)
+Package exported to: /var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib/mono/4.5/xsp4.exe -> ../gac/xsp4/4.7.1.0__0738eb9f132ed756/xsp4.exe
+Installed ../../src/Mono.WebServer.XSP/xsp4.exe into the gac (/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib/mono/gac)
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/pkgconfig'
+ /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c -m 644 xsp-2.pc xsp-4.pc '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/pkgconfig'
+Making install in Mono.WebServer.Apache
+  DMCS  /out:mod-mono-server4.exe
+Note: dmcs is deprecated, please use mcs instead!
+./ModMonoRequest.cs(74,17): warning CS0649: Field `Mono.WebServer.ModMonoRequest.mod_mono_config' is never assigned to, and will always have its default value
+Compilation succeeded - 1 warning(s)
+Package exported to: /var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib/mono/4.5/mod-mono-server4.exe -> ../gac/mod-mono-server4/4.7.1.0__0738eb9f132ed756/mod-mono-server4.exe
+Installed ../../src/Mono.WebServer.Apache/mod-mono-server4.exe into the gac (/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib/mono/gac)
+Making install in Mono.WebServer.FastCgi
+  DMCS  /out:fastcgi-mono-server4.exe
+Note: dmcs is deprecated, please use mcs instead!
+././Request.cs(572,11): warning CS0612: `Mono.WebServer.FastCgi.Record.CopyTo(byte[], int)' is obsolete
+././Server/FakeGenericServer.cs(37,29): warning CS0067: The event `Mono.WebServer.FastCgi.FakeGenericServer<T>.RequestReceived' is never used
+././Server/OnDemandServer.cs(42,29): warning CS0067: The event `Mono.WebServer.FastCgi.OnDemandServer.RequestReceived' is never used
+Compilation succeeded - 3 warning(s)
+Package exported to: /var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib/mono/4.5/fastcgi-mono-server4.exe -> ../gac/fastcgi-mono-server4/4.7.1.0__0738eb9f132ed756/fastcgi-mono-server4.exe
+Installed ../../src/Mono.WebServer.FastCgi/fastcgi-mono-server4.exe into the gac (/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib/mono/gac)
+Making install in Mono.WebServer.Fpm
+  DMCS  /out:mono-fpm.exe
+Note: dmcs is deprecated, please use mcs instead!
+././Connection.cs(39,29): warning CS0067: The event `Mono.WebServer.Fpm.Connection.RequestReceived' is never used
+Compilation succeeded - 1 warning(s)
+Package exported to: /var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib/mono/4.5/mono-fpm.exe -> ../gac/mono-fpm/4.7.1.0__0738eb9f132ed756/mono-fpm.exe
+Installed ../../src/Mono.WebServer.Fpm/mono-fpm.exe into the gac (/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib/mono/gac)
+Making install in test
+Making install in controls
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/controls/'
+ /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c -m 644 BreadCrumbs_2.0.ascx MonoSamplesHeader.ascx FileList.ascx '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/controls/'
+Making install in 1.1
+Making install in authtest
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/1.1/authtest'
+ /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c -m 644 index.aspx login.aspx web.config '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/1.1/authtest'
+Making install in asp.net
+  DMCS  codebehind1.dll
+Note: dmcs is deprecated, please use mcs instead!
+  DMCS  typedesc.dll
+Note: dmcs is deprecated, please use mcs instead!
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/1.1/asp.net'
+ /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c -m 644 browsercaps.aspx codebehind1.aspx code-render.aspx body.inc header.inc registertest1.ascx registertest2.ascx includetest.aspx registertest.aspx server-side-object.aspx session1.aspx typedesc.aspx index.aspx transfer1.aspx transfer2.aspx serial.aspx '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/1.1/asp.net'
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/bin'
+ /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c codebehind1.dll typedesc.dll '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/bin'
+Making install in webcontrols
+  DMCS  dbpage_test_setup.exe
+Note: dmcs is deprecated, please use mcs instead!
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/1.1/webcontrols'
+ /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c -m 644 listitem.aspx temperature.aspx validator1.aspx web_adrotator.aspx web_button.aspx web_checkbox.aspx web_checkboxlist.aspx web_datagrid.aspx web_datagrid_command.aspx web_dropdownlist.aspx web_hyperlink.aspx web_image.aspx web_imagebutton.aspx web_label.aspx web_linkbutton.aspx web_listbox.aspx web_literal.aspx web_panel.aspx web_placeholder.aspx web_radiobutton.aspx web_radiobuttonlist.aspx web_regularexpressionvalidator.aspx web_comparevalidator.aspx web_repeater.aspx web_table2.aspx web_table.aspx web_textbox.aspx web_xml.aspx calendar.aspx datalist.aspx dbpage1.aspx dbpage2.aspx people.xml web_adrotator.xml peopletable.xsl index.aspx '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/1.1/webcontrols'
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/1.1/webcontrols'
+ /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c dbpage_test_setup.exe '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/1.1/webcontrols'
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/1.1/webcontrols'
+ /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c -m 644 dbpage1.sqlite dbpage2.sqlite '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/1.1/webcontrols'
+Making install in html
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/1.1/html'
+ /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c -m 644 button.aspx htmlanchor.aspx htmlbutton.aspx htmlgeneric.aspx htmlimage.aspx htmlinputbutton.aspx htmlinputcheckbox.aspx htmlinputfile.aspx htmlinputhidden.aspx htmlinputimage.aspx htmlinputradiobutton.aspx htmlinputtext.aspx htmlselect.aspx htmltable.aspx htmltextarea.aspx index.aspx '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/1.1/html'
+Making install in webservice
+  DMCS  extensions.dll
+Note: dmcs is deprecated, please use mcs instead!
+  DMCS  ServiceClient.exe
+Note: dmcs is deprecated, please use mcs instead!
+./Reference.cs(60,4): warning CS0618: `System.Web.Services.Protocols.SoapHeaderAttribute.Required' is obsolete: `This property will be removed from a future version. The presence of a particular header in a SOAP message is no longer enforced'
+./Reference.cs(67,4): warning CS0618: `System.Web.Services.Protocols.SoapHeaderAttribute.Required' is obsolete: `This property will be removed from a future version. The presence of a particular header in a SOAP message is no longer enforced'
+./Reference.cs(75,4): warning CS0618: `System.Web.Services.Protocols.SoapHeaderAttribute.Required' is obsolete: `This property will be removed from a future version. The presence of a particular header in a SOAP message is no longer enforced'
+./Reference.cs(83,4): warning CS0618: `System.Web.Services.Protocols.SoapHeaderAttribute.Required' is obsolete: `This property will be removed from a future version. The presence of a particular header in a SOAP message is no longer enforced'
+./Reference.cs(90,4): warning CS0618: `System.Web.Services.Protocols.SoapHeaderAttribute.Required' is obsolete: `This property will be removed from a future version. The presence of a particular header in a SOAP message is no longer enforced'
+Compilation succeeded - 5 warning(s)
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/1.1/webservice'
+ /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c -m 644 ConverterService.asmx TestService.asmx ServiceClient.exe.config CompressExtension.cs index.aspx '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/1.1/webservice'
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/bin'
+ /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c extensions.dll '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/bin'
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test'
+ /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c ServiceClient.exe extensions.dll '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test'
+Making install in databind
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/1.1/databind'
+ /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c -m 644 databind-arraylist.aspx databind-attribute.aspx databind-class.aspx databind-template.aspx index.aspx '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/1.1/databind'
+Making install in handlers
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/1.1/handlers'
+ /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c -m 644 chunked.ashx empty.ashx monodoc.ashx webhandler.ashx async.ashx index.aspx '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/1.1/handlers'
+Making install in customcontrol
+  DMCS  tabcontrol.dll
+Note: dmcs is deprecated, please use mcs instead!
+  DMCS  tabcontrol2.dll
+Note: dmcs is deprecated, please use mcs instead!
+tabcontrol2.cs(89,9): warning CS0618: `System.Web.UI.Page.GetPostBackEventReference(System.Web.UI.Control)' is obsolete: `The recommended alternative is ClientScript.GetPostBackEventReference. http://go.microsoft.com/fwlink/?linkid=14202'
+Compilation succeeded - 1 warning(s)
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/1.1/customcontrol'
+ /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c -m 644 tabcontrol2.aspx tabcontrol.aspx index.aspx '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/1.1/customcontrol'
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/bin'
+ /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c tabcontrol.dll tabcontrol2.dll '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/bin'
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/1.1/'
+ /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c -m 644 index.aspx '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/1.1/'
+Making install in 2.0
+Making install in menu
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/2.0/menu'
+ /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c -m 644 menu1.aspx menu2.aspx stock_copy_24.png stock_cut_24.png stock_paste_24.png index.aspx '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/2.0/menu'
+Making install in treeview
+  DMCS  treeview.dll
+Note: dmcs is deprecated, please use mcs instead!
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/2.0/treeview'
+ /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c -m 644 populate-on-demand.aspx populate.cs treeview.aspx treeview-databound.aspx index.aspx '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/2.0/treeview'
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/bin'
+ /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c treeview.dll '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/bin'
+Making install in masterpages
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/2.0/masterpages'
+ /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c -m 644 simple.master simple.aspx frame.master content1.aspx content2.aspx index.aspx '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/2.0/masterpages'
+Making install in gridview
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/2.0/gridview'
+ /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c -m 644 BasicGrid.aspx data.xml index.aspx ObjectBoundGrid.aspx '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/2.0/gridview'
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/2.0/'
+ /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c -m 644 index.aspx '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/2.0/'
+Making install in App_Code
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/App_Code/'
+ /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c -m 644 Application.cs '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test/App_Code/'
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test'
+ /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c -m 644 mod-mono-server.exe.config index.aspx xsp.exe.config web.config global.asax mono.png monobutton.png mono-powered-big.png small-icon.png sample.webapp favicon.ico mono-xsp.css Web.sitemap missing_components.aspx '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/xsp/test'
+Making install in tools
+Making install in asp_state
+  DMCS  /out:asp-state4.exe
+Note: dmcs is deprecated, please use mcs instead!
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib/xsp/4.0'
+ /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c -m 644 asp-state4.exe.config '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib/xsp/4.0'
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib/xsp/4.0'
+ /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c asp-state4.exe '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib/xsp/4.0'
+Making install in dbsessmgr
+  DMCS  dbsessmgr4.exe
+Note: dmcs is deprecated, please use mcs instead!
+dbsessmgr.cs(109,35): warning CS0612: `System.Reflection.Assembly.LoadWithPartialName(string)' is obsolete
+Compilation succeeded - 1 warning(s)
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib/xsp/4.0'
+ /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c -m 644 dbsessmgr4.exe.config '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib/xsp/4.0'
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib/xsp/4.0'
+ /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c dbsessmgr4.exe '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib/xsp/4.0'
+Making install in mono-asp-apps
+Making install in scripts
+dd asp-state2 dd
+dd dbsessmgr2 dd
+dd asp-state dd
+dd dbsessmgr dd
+dd asp-state4 dd
+dd dbsessmgr4 dd
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/bin'
+ /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c xsp2 mod-mono-server2 fastcgi-mono-server2 asp-state2 dbsessmgr2 asp-state dbsessmgr xsp mod-mono-server fastcgi-mono-server xsp4 mod-mono-server4 fastcgi-mono-server4 asp-state4 dbsessmgr4 mono-fpm '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/bin'
+Making install in packaging
+Making install in opensuse
+Making install in lib
+libtool: compile:  /bin/sh /var/tmp/portage/www-servers/xsp-4.7.1/work/xsp-b7190dd996b2c652630297ed9b1b9907602b0d4f/build/m4/shave/shave cc x86_64-pc-linux-gnu-gcc -DPACKAGE_NAME=\"xsp\" -DPACKAGE_TARNAME=\"xsp\" -DPACKAGE_VERSION=\"4.7.1\" "-DPACKAGE_STRING=\"xsp 4.7.1\"" -DPACKAGE_BUGREPORT=\"http://bugzilla.xamarin.com/\" -DPACKAGE_URL=\"\" -DPACKAGE=\"xsp\" -DVERSION=\"4.7.1\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_DLFCN_H=1 -DLT_OBJDIR=\".libs/\" -DHAVE_SEND=1 -DHAVE_RECV=1 -DHAVE_BIND=1 -DHAVE_LISTEN=1 -DHAVE_ACCEPT=1 -DHAVE_CHMOD=1 -DHAVE_UNLINK=1 -DHAVE_FORK=1 -DHAVE_EXECV=1 -DHAVE_EXIT=1 -DHAVE_GETPID=1 -DHAVE_GETUID=1 -DHAVE_GETEUID=1 -DHAVE_GETGID=1 -DHAVE_GETEGID=1 -DHAVE_SETREUID=1 -DHAVE_SETREGID=1 -DHAVE_STRLEN=1 -DHAVE_STRNCPY=1 -DHAVE_STRNCMP=1 -DHAVE_PRINTF=1 -DHAVE_FPRINTF=1 -DHAVE_SNPRINTF=1 -DHAVE_VPRINTF=1 -DHAVE_STRFTIME=1 -DHAVE_TIME=1 -DHAVE_PERROR=1 -I. -Wall -O2 -pipe -c fpm_helper.c  -fPIC -DPIC -o .libs/libfpm_helper_la-fpm_helper.o
+  CC    fpm_helper.o
+libtool: compile:  /bin/sh /var/tmp/portage/www-servers/xsp-4.7.1/work/xsp-b7190dd996b2c652630297ed9b1b9907602b0d4f/build/m4/shave/shave cc x86_64-pc-linux-gnu-gcc -DPACKAGE_NAME=\"xsp\" -DPACKAGE_TARNAME=\"xsp\" -DPACKAGE_VERSION=\"4.7.1\" "-DPACKAGE_STRING=\"xsp 4.7.1\"" -DPACKAGE_BUGREPORT=\"http://bugzilla.xamarin.com/\" -DPACKAGE_URL=\"\" -DPACKAGE=\"xsp\" -DVERSION=\"4.7.1\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_DLFCN_H=1 -DLT_OBJDIR=\".libs/\" -DHAVE_SEND=1 -DHAVE_RECV=1 -DHAVE_BIND=1 -DHAVE_LISTEN=1 -DHAVE_ACCEPT=1 -DHAVE_CHMOD=1 -DHAVE_UNLINK=1 -DHAVE_FORK=1 -DHAVE_EXECV=1 -DHAVE_EXIT=1 -DHAVE_GETPID=1 -DHAVE_GETUID=1 -DHAVE_GETEUID=1 -DHAVE_GETGID=1 -DHAVE_GETEGID=1 -DHAVE_SETREUID=1 -DHAVE_SETREGID=1 -DHAVE_STRLEN=1 -DHAVE_STRNCPY=1 -DHAVE_STRNCMP=1 -DHAVE_PRINTF=1 -DHAVE_FPRINTF=1 -DHAVE_SNPRINTF=1 -DHAVE_VPRINTF=1 -DHAVE_STRFTIME=1 -DHAVE_TIME=1 -DHAVE_PERROR=1 -I. -Wall -O2 -pipe -c fpm_helper.c -o libfpm_helper_la-fpm_helper.o >/dev/null 2>&1
+libtool: link: x86_64-pc-linux-gnu-gcc -shared  -fPIC -DPIC  .libs/libfpm_helper_la-fpm_helper.o    -O2 -Wl,-O1 -Wl,--as-needed   -Wl,-soname -Wl,libfpm_helper.so.0 -o .libs/libfpm_helper.so.0.0.0
+libtool: link: (cd ".libs" && rm -f "libfpm_helper.so.0" && ln -s "libfpm_helper.so.0.0.0" "libfpm_helper.so.0")
+libtool: link: (cd ".libs" && rm -f "libfpm_helper.so" && ln -s "libfpm_helper.so.0.0.0" "libfpm_helper.so")
+libtool: link: x86_64-pc-linux-gnu-ar cru .libs/libfpm_helper.a  libfpm_helper_la-fpm_helper.o
+libtool: link: x86_64-pc-linux-gnu-ranlib .libs/libfpm_helper.a
+libtool: link: ( cd ".libs" && rm -f "libfpm_helper.la" && ln -s "../libfpm_helper.la" "libfpm_helper.la" )
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64'
+ /bin/sh ../libtool   --mode=install /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c   libfpm_helper.la '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64'
+libtool: install: /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c .libs/libfpm_helper.so.0.0.0 /var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/libfpm_helper.so.0.0.0
+libtool: install: (cd /var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64 && { ln -s -f libfpm_helper.so.0.0.0 libfpm_helper.so.0 || { rm -f libfpm_helper.so.0 && ln -s libfpm_helper.so.0.0.0 libfpm_helper.so.0; }; })
+libtool: install: (cd /var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64 && { ln -s -f libfpm_helper.so.0.0.0 libfpm_helper.so || { rm -f libfpm_helper.so && ln -s libfpm_helper.so.0.0.0 libfpm_helper.so; }; })
+libtool: install: /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c .libs/libfpm_helper.lai /var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/libfpm_helper.la
+libtool: install: /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c .libs/libfpm_helper.a /var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/libfpm_helper.a
+libtool: install: chmod 644 /var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/libfpm_helper.a
+libtool: install: x86_64-pc-linux-gnu-ranlib /var/tmp/portage/www-servers/xsp-4.7.1/image/usr/lib64/libfpm_helper.a
+libtool: [31mwarning[0m: [1mremember to run 'libtool --finish /usr/lib64'[0m
+Making install in shim
+  CC    shim-shim.o
+[01m[Kshim.c:[m[K In function '[01m[Kmain[m[K':
+[01m[Kshim.c:190:5:[m[K [01;35m[Kwarning: [m[Kignoring return value of '[01m[Ksetreuid[m[K', declared with attribute warn_unused_result [[01;35m[K-Wunused-result[m[K]
+  190 |     [01;35m[Ksetreuid (euid, euid)[m[K;
+      |     [01;35m[K^~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[Kshim.c:192:5:[m[K [01;35m[Kwarning: [m[Kignoring return value of '[01m[Ksetregid[m[K', declared with attribute warn_unused_result [[01;35m[K-Wunused-result[m[K]
+  192 |     [01;35m[Ksetregid (egid, egid)[m[K;
+      |     [01;35m[K^~~~~~~~~~~~~~~~~~~~~[m[K
+libtool: link: /bin/sh /var/tmp/portage/www-servers/xsp-4.7.1/work/xsp-b7190dd996b2c652630297ed9b1b9907602b0d4f/build/m4/shave/shave cc x86_64-pc-linux-gnu-gcc -Wall -O2 -pipe -Wl,-O1 -Wl,--as-needed -o shim shim-shim.o 
+  CC    shim
+ /bin/mkdir -p '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/bin'
+  /bin/sh ../libtool   --mode=install /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c shim '/var/tmp/portage/www-servers/xsp-4.7.1/image/usr/bin'
+libtool: install: /usr/lib/portage/python3.7/ebuild-helpers/xattr/install -c shim /var/tmp/portage/www-servers/xsp-4.7.1/image/usr/bin/shim
+libtoolize: putting auxiliary files in '.'.
+libtoolize: copying file './ltmain.sh'
+libtoolize: putting macros in AC_CONFIG_MACRO_DIRS, 'build/m4'.
+libtoolize: copying file 'build/m4/libtool.m4'
+libtoolize: copying file 'build/m4/ltoptions.m4'
+libtoolize: copying file 'build/m4/ltsugar.m4'
+libtoolize: copying file 'build/m4/ltversion.m4'
+libtoolize: copying file 'build/m4/lt~obsolete.m4'
+libtoolize: Consider adding '-I build/m4' to ACLOCAL_AMFLAGS in Makefile.am.
+>>> Completed installing www-servers/xsp-4.7.1 into /var/tmp/portage/www-servers/xsp-4.7.1/image
+
+ [32;01m*[0m Final size of build directory: 8776 KiB (8.5 MiB)
+ [32;01m*[0m Final size of installed tree:   768 KiB
+
+removing executable bit: /usr/lib64/libfpm_helper.la
+strip: x86_64-pc-linux-gnu-strip --strip-unneeded -N __gentoo_check_ldflags__ -R .comment -R .GCC.command.line -R .note.gnu.gold-version
+   /usr/lib64/libfpm_helper.so.0.0.0
+   /usr/lib64/libfpm_helper.a
+   /usr/bin/shim
+
+>>> Installing ([33;01m1[39;49;00m of [33;01m1[39;49;00m) [32mwww-servers/xsp-4.7.1::shnurise[39;49;00m
+]0;emerge: (1 of 1) www-servers/xsp-4.7.1 Merge [32;01m*[39;49;00m checking 54 files for package collisions
+>>> Merging www-servers/xsp-4.7.1 to /
+--- /lib/
+--- /lib/systemd/
+--- /lib/systemd/system/
+>>> /lib/systemd/system/mod-mono-server.service
+>>> /lib/systemd/system/mono-xsp4.service
+--- /etc/
+--- /etc/mod-mono-server/
+--- /etc/mod-mono-server/conf.d/
+>>> /etc/mod-mono-server/conf.d/.keep_www-servers_xsp-0
+>>> /etc/mod-mono-server/mono.webapp
+--- /etc/xsp4/
+--- /etc/xsp4/conf.d/
+>>> /etc/xsp4/conf.d/.keep_www-servers_xsp-0
+>>> /etc/xsp4/mono.webapp
+--- /usr/
+--- /usr/share/
+--- /usr/share/man/
+--- /usr/share/man/man1/
+>>> /usr/share/man/man1/xsp.1.bz2
+>>> /usr/share/man/man1/asp-state.1.bz2
+>>> /usr/share/man/man1/mod-mono-server.1.bz2
+>>> /usr/share/man/man1/fastcgi-mono-server.1.bz2
+>>> /usr/share/man/man1/dbsessmgr.1.bz2
+--- /usr/lib/
+--- /usr/lib/mono/
+--- /usr/lib/mono/gac/
+--- /usr/lib/mono/gac/mono-fpm/
+--- /usr/lib/mono/gac/mono-fpm/4.7.1.0__0738eb9f132ed756/
+>>> /usr/lib/mono/gac/mono-fpm/4.7.1.0__0738eb9f132ed756/mono-fpm.exe
+>>> /usr/lib/mono/gac/mono-fpm/4.7.1.0__0738eb9f132ed756/mono-fpm.exe.mdb
+--- /usr/lib/mono/gac/Mono.WebServer2/
+--- /usr/lib/mono/gac/Mono.WebServer2/0.4.0.0__0738eb9f132ed756/
+>>> /usr/lib/mono/gac/Mono.WebServer2/0.4.0.0__0738eb9f132ed756/Mono.WebServer2.dll.mdb
+>>> /usr/lib/mono/gac/Mono.WebServer2/0.4.0.0__0738eb9f132ed756/Mono.WebServer2.dll
+--- /usr/lib/mono/gac/fastcgi-mono-server4/
+--- /usr/lib/mono/gac/fastcgi-mono-server4/4.7.1.0__0738eb9f132ed756/
+>>> /usr/lib/mono/gac/fastcgi-mono-server4/4.7.1.0__0738eb9f132ed756/fastcgi-mono-server4.exe
+>>> /usr/lib/mono/gac/fastcgi-mono-server4/4.7.1.0__0738eb9f132ed756/fastcgi-mono-server4.exe.mdb
+--- /usr/lib/mono/gac/xsp4/
+--- /usr/lib/mono/gac/xsp4/4.7.1.0__0738eb9f132ed756/
+>>> /usr/lib/mono/gac/xsp4/4.7.1.0__0738eb9f132ed756/xsp4.exe
+>>> /usr/lib/mono/gac/xsp4/4.7.1.0__0738eb9f132ed756/xsp4.exe.mdb
+--- /usr/lib/mono/gac/mod-mono-server4/
+--- /usr/lib/mono/gac/mod-mono-server4/4.7.1.0__0738eb9f132ed756/
+>>> /usr/lib/mono/gac/mod-mono-server4/4.7.1.0__0738eb9f132ed756/mod-mono-server4.exe
+>>> /usr/lib/mono/gac/mod-mono-server4/4.7.1.0__0738eb9f132ed756/mod-mono-server4.exe.mdb
+--- /usr/lib/mono/4.5/
+>>> /usr/lib/mono/4.5/xsp4.exe -> ../gac/xsp4/4.7.1.0__0738eb9f132ed756/xsp4.exe
+>>> /usr/lib/mono/4.5/mono-fpm.exe -> ../gac/mono-fpm/4.7.1.0__0738eb9f132ed756/mono-fpm.exe
+>>> /usr/lib/mono/4.5/fastcgi-mono-server4.exe -> ../gac/fastcgi-mono-server4/4.7.1.0__0738eb9f132ed756/fastcgi-mono-server4.exe
+>>> /usr/lib/mono/4.5/mod-mono-server4.exe -> ../gac/mod-mono-server4/4.7.1.0__0738eb9f132ed756/mod-mono-server4.exe
+>>> /usr/lib/mono/4.5/Mono.WebServer2.dll -> ../gac/Mono.WebServer2/0.4.0.0__0738eb9f132ed756/Mono.WebServer2.dll
+--- /usr/lib/xsp/
+--- /usr/lib/xsp/4.0/
+>>> /usr/lib/xsp/4.0/dbsessmgr4.exe
+>>> /usr/lib/xsp/4.0/asp-state4.exe.config
+>>> /usr/lib/xsp/4.0/asp-state4.exe
+>>> /usr/lib/xsp/4.0/dbsessmgr4.exe.config
+--- /usr/lib64/
+>>> /usr/lib64/libfpm_helper.a
+--- /usr/lib64/pkgconfig/
+>>> /usr/lib64/pkgconfig/xsp-4.pc
+>>> /usr/lib64/pkgconfig/xsp-2.pc
+--- /usr/lib64/xsp/
+>>> /usr/lib64/libfpm_helper.so.0 -> libfpm_helper.so.0.0.0
+>>> /usr/lib64/libfpm_helper.so.0.0.0
+>>> /usr/lib64/libfpm_helper.so -> libfpm_helper.so.0.0.0
+>>> /usr/lib64/libfpm_helper.la
+--- /usr/bin/
+>>> /usr/bin/mono-fpm
+>>> /usr/bin/asp-state
+>>> /usr/bin/fastcgi-mono-server
+>>> /usr/bin/mod-mono-server
+>>> /usr/bin/shim
+>>> /usr/bin/dbsessmgr2
+>>> /usr/bin/xsp2
+>>> /usr/bin/xsp
+>>> /usr/bin/asp-state4
+>>> /usr/bin/fastcgi-mono-server4
+>>> /usr/bin/dbsessmgr
+>>> /usr/bin/asp-state2
+>>> /usr/bin/xsp4
+>>> /usr/bin/mod-mono-server4
+>>> /usr/bin/mod-mono-server2
+>>> /usr/bin/dbsessmgr4
+>>> /usr/bin/fastcgi-mono-server2
+>>> Safely unmerging already-installed instance...
+No package files given... Grabbing a set.
+--- replaced obj /usr/share/man/man1/xsp.1.bz2
+--- replaced obj /usr/share/man/man1/mod-mono-server.1.bz2
+--- replaced obj /usr/share/man/man1/fastcgi-mono-server.1.bz2
+--- replaced obj /usr/share/man/man1/dbsessmgr.1.bz2
+--- replaced obj /usr/share/man/man1/asp-state.1.bz2
+--- replaced dir /usr/share/man/man1
+--- replaced dir /usr/share/man
+--- replaced dir /usr/share
+--- replaced dir /usr/lib64/xsp
+--- replaced obj /usr/lib64/pkgconfig/xsp-4.pc
+--- replaced obj /usr/lib64/pkgconfig/xsp-2.pc
+--- replaced dir /usr/lib64/pkgconfig
+--- replaced obj /usr/lib64/libfpm_helper.so.0.0.0
+--- replaced sym /usr/lib64/libfpm_helper.so.0
+--- replaced sym /usr/lib64/libfpm_helper.so
+--- replaced obj /usr/lib64/libfpm_helper.la
+--- replaced obj /usr/lib64/libfpm_helper.a
+--- replaced dir /usr/lib64
+--- replaced obj /usr/lib/xsp/4.0/dbsessmgr4.exe.config
+--- replaced obj /usr/lib/xsp/4.0/dbsessmgr4.exe
+--- replaced obj /usr/lib/xsp/4.0/asp-state4.exe.config
+--- replaced obj /usr/lib/xsp/4.0/asp-state4.exe
+--- replaced dir /usr/lib/xsp/4.0
+--- replaced dir /usr/lib/xsp
+<<<          obj /usr/lib/monodoc/sources/Mono.WebServer.zip
+<<<          obj /usr/lib/monodoc/sources/Mono.WebServer.tree
+<<<          obj /usr/lib/monodoc/sources/Mono.WebServer.source
+<<<          obj /usr/lib/monodoc/sources/Mono.FastCGI.zip
+<<<          obj /usr/lib/monodoc/sources/Mono.FastCGI.tree
+<<<          obj /usr/lib/monodoc/sources/Mono.FastCGI.source
+--- replaced obj /usr/lib/mono/gac/xsp4/4.7.1.0__0738eb9f132ed756/xsp4.exe.mdb
+--- replaced obj /usr/lib/mono/gac/xsp4/4.7.1.0__0738eb9f132ed756/xsp4.exe
+--- replaced dir /usr/lib/mono/gac/xsp4/4.7.1.0__0738eb9f132ed756
+--- replaced dir /usr/lib/mono/gac/xsp4
+--- replaced obj /usr/lib/mono/gac/mono-fpm/4.7.1.0__0738eb9f132ed756/mono-fpm.exe.mdb
+--- replaced obj /usr/lib/mono/gac/mono-fpm/4.7.1.0__0738eb9f132ed756/mono-fpm.exe
+--- replaced dir /usr/lib/mono/gac/mono-fpm/4.7.1.0__0738eb9f132ed756
+--- replaced dir /usr/lib/mono/gac/mono-fpm
+--- replaced obj /usr/lib/mono/gac/mod-mono-server4/4.7.1.0__0738eb9f132ed756/mod-mono-server4.exe.mdb
+--- replaced obj /usr/lib/mono/gac/mod-mono-server4/4.7.1.0__0738eb9f132ed756/mod-mono-server4.exe
+--- replaced dir /usr/lib/mono/gac/mod-mono-server4/4.7.1.0__0738eb9f132ed756
+--- replaced dir /usr/lib/mono/gac/mod-mono-server4
+--- replaced obj /usr/lib/mono/gac/fastcgi-mono-server4/4.7.1.0__0738eb9f132ed756/fastcgi-mono-server4.exe.mdb
+--- replaced obj /usr/lib/mono/gac/fastcgi-mono-server4/4.7.1.0__0738eb9f132ed756/fastcgi-mono-server4.exe
+--- replaced dir /usr/lib/mono/gac/fastcgi-mono-server4/4.7.1.0__0738eb9f132ed756
+--- replaced dir /usr/lib/mono/gac/fastcgi-mono-server4
+--- replaced obj /usr/lib/mono/gac/Mono.WebServer2/0.4.0.0__0738eb9f132ed756/Mono.WebServer2.dll.mdb
+--- replaced obj /usr/lib/mono/gac/Mono.WebServer2/0.4.0.0__0738eb9f132ed756/Mono.WebServer2.dll
+--- replaced dir /usr/lib/mono/gac/Mono.WebServer2/0.4.0.0__0738eb9f132ed756
+--- replaced dir /usr/lib/mono/gac/Mono.WebServer2
+--- replaced dir /usr/lib/mono/gac
+--- replaced sym /usr/lib/mono/4.5/xsp4.exe
+--- replaced sym /usr/lib/mono/4.5/mono-fpm.exe
+--- replaced sym /usr/lib/mono/4.5/mod-mono-server4.exe
+--- replaced sym /usr/lib/mono/4.5/fastcgi-mono-server4.exe
+--- replaced sym /usr/lib/mono/4.5/Mono.WebServer2.dll
+--- replaced dir /usr/lib/mono/4.5
+--- replaced dir /usr/lib/mono
+--- replaced dir /usr/lib
+--- replaced obj /usr/bin/xsp4
+--- replaced obj /usr/bin/xsp2
+--- replaced obj /usr/bin/xsp
+--- replaced obj /usr/bin/shim
+--- replaced obj /usr/bin/mono-fpm
+--- replaced obj /usr/bin/mod-mono-server4
+--- replaced obj /usr/bin/mod-mono-server2
+--- replaced obj /usr/bin/mod-mono-server
+--- replaced obj /usr/bin/fastcgi-mono-server4
+--- replaced obj /usr/bin/fastcgi-mono-server2
+--- replaced obj /usr/bin/fastcgi-mono-server
+--- replaced obj /usr/bin/dbsessmgr4
+--- replaced obj /usr/bin/dbsessmgr2
+--- replaced obj /usr/bin/dbsessmgr
+--- replaced obj /usr/bin/asp-state4
+--- replaced obj /usr/bin/asp-state2
+--- replaced obj /usr/bin/asp-state
+--- replaced dir /usr/bin
+--- replaced dir /usr
+--- replaced obj /lib/systemd/system/mono-xsp4.service
+--- replaced obj /lib/systemd/system/mod-mono-server.service
+--- replaced dir /lib/systemd/system
+--- replaced dir /lib/systemd
+--- replaced dir /lib
+--- replaced obj /etc/xsp4/mono.webapp
+--- replaced obj /etc/xsp4/conf.d/.keep_www-servers_xsp-0
+--- replaced dir /etc/xsp4/conf.d
+--- replaced dir /etc/xsp4
+--- replaced obj /etc/mod-mono-server/mono.webapp
+--- replaced obj /etc/mod-mono-server/conf.d/.keep_www-servers_xsp-0
+--- replaced dir /etc/mod-mono-server/conf.d
+--- replaced dir /etc/mod-mono-server
+--- replaced dir /etc
+<<<          dir /usr/lib/monodoc/sources
+<<<          dir /usr/lib/monodoc
+>>> Regenerating /etc/ld.so.cache...
+>>> Original instance of package unmerged safely.
+>>> www-servers/xsp-4.7.1 merged.
+>>> Regenerating /etc/ld.so.cache...
+]0;emerge: (1 of 1) www-servers/xsp-4.7.1 Clean Post>>> Auto-cleaning packages...
+
+>>> No outdated packages were found on your system.
+
+[32;01m * [39;49;00mGNU info directory index is up-to-date.
+]0;root@:]777;notify;Command completed;sudo emerge -v =xsp-4.7.1\]777;precmd\]0;user@hostname:/var/db/repos/shnurise/www-servers/xsp\]7;file://hostname/var/db/repos/shnurise/www-servers/xsp\]0;user@hostname:/var/db/repos/shnurise/www-servers/xsp[01;32muser@hostname[01;34m /var/db/repos/shnurise/www-servers/xsp $[00m exit
+]777;preexec\exit
+
+Script done on 2020-10-09 01:15:29+03:00 [COMMAND_EXIT_CODE="0"]

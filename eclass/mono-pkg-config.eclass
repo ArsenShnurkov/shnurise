@@ -37,6 +37,7 @@ einstall_pc_file()
 	if use pkg-config; then
 		local PC_NAME="$1"
 		local PC_VERSION="$2"
+		einfo "PC_NAME=${PC_NAME}, PC_VERSION=${PC_VERSION}"
 		shift 2
 
 		local PC_DESCRIPTION="${DESCRIPTION}"
@@ -44,8 +45,8 @@ einstall_pc_file()
 		# keep verbatim, do not change it to "/usr/$(get_libdir)/pkgconfig"
 		local PC_DIRECTORY="/usr/share/pkgconfig"
 
-		local PC_FILENAME="${PC_NAME}"
-		local PC_FILENAME_WITH_SLOT="${PC_FILENAME}-${PC_VERSION}"
+		local PC_FILENAME="${PC_NAME}-${PC_VERSION}"
+		local PC_FILENAME_EXT="${PC_FILENAME}.pc"
 
 		if [ "$#" == "0" ]; then
 			die "no assembly names given"
@@ -58,7 +59,7 @@ einstall_pc_file()
 
 		dodir "${PC_DIRECTORY}"
 
-		ebegin "Installing ${PC_FILENAME_WITH_SLOT}.pc file"
+		ebegin "Installing ${PC_FILENAME_EXT} file"
 
 		# @Name@: A human-readable name for the library or package. This does not affect usage of the pkg-config tool,
 		# which uses the name of the .pc file.
@@ -75,7 +76,7 @@ einstall_pc_file()
 			-e "s\\@DESCRIPTION@\\${PC_DESCRIPTION}\\" \
 			-e "s:@LIBDIR@:$(get_libdir):" \
 			-e "s*@LIBS@*${DLL_REFERENCES}*" \
-			<<-EOF >"${D}/${PC_DIRECTORY}/${PC_FILENAME_WITH_SLOT}.pc" || die
+			<<-EOF >"${D}/${PC_DIRECTORY}/${PC_FILENAME_EXT}" || die
 				prefix=\${pcfiledir}/../..
 				exec_prefix=\${prefix}
 				libdir=\${exec_prefix}/@LIBDIR@
@@ -85,8 +86,8 @@ einstall_pc_file()
 				Libs: @LIBS@
 			EOF
 
-		einfo PKG_CONFIG_PATH="${D}/${PC_DIRECTORY}" pkg-config --exists "${PC_FILENAME_WITH_SLOT}"
-		PKG_CONFIG_PATH="${D}/${PC_DIRECTORY}" pkg-config --exists "${PC_FILENAME_WITH_SLOT}" || die ".pc file failed to validate."
+		einfo PKG_CONFIG_PATH="${D}/${PC_DIRECTORY}" pkg-config --exists "${PC_FILENAME}"
+		PKG_CONFIG_PATH="${D}/${PC_DIRECTORY}" pkg-config --exists "${PC_FILENAME}" || die ".pc file failed to validate."
 		eend $?
 	fi
 }

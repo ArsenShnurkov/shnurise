@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="7"
-SLOT="0"
+SLOT="4.5.0"
 KEYWORDS="amd64"
 RESTRICT="mirror"
 
@@ -13,8 +13,8 @@ inherit dotnet
 inherit mono-pkg-config
 
 HOMEPAGE="https://github.com/dotnet/runtime"
-DESCRIPTION="low-level functionality for manipulating pointers"
-LICENSE="MIT" // https://github.com/dotnet/runtime/blob/master/LICENSE.TXT
+DESCRIPTION="Provides the System.ValueTuple structs, which implement the underlying types for tuples in C#"
+LICENSE="MIT" # https://github.com/dotnet/runtime/blob/master/LICENSE.TXT
 S="${WORKDIR}"
 
 src_compile() {
@@ -22,5 +22,5 @@ src_compile() {
 }
 
 src_install() {
-	einstall_pc_file "System.Runtime.CompilerServices.Unsafe" "4.5" "/usr/lib/mono/4.5/System.Runtime.CompilerServices.Unsafe.dll"
+	einstall_pc_file "System.ValueTuple" "${SLOT}" "/usr/lib/mono/4.8-api/Facades/System.Runtime.dll"
 }
