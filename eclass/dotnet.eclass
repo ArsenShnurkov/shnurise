@@ -17,6 +17,7 @@ esac
 
 inherit eutils
 inherit mono-env
+inherit dotnet-native
 
 # >=mono-0.92 versions using mcs -pkg:foo-sharp require shared memory, so we set the
 # shared dir to ${T} so that ${T}/.wapi can be used during the install process.
@@ -279,46 +280,6 @@ function output_exe() {
 function ecsc() {
 	einfo /usr/bin/csc $@
 	/usr/bin/csc $@ || die "Compilation failed"
-}
-
-# @FUNCTION: dotnet_multilib_comply
-# @DESCRIPTION:  multilib comply
-dotnet_multilib_comply() {
-	use !prefix && has "${EAPI:-0}" 0 1 2 && ED="${D}"
-	local dir finddirs=() mv_command=${mv_command:-mv}
-	if [[ -d "${ED}/usr/lib" && "$(get_libdir)" != "lib" ]]
-	then
-		if ! [[ -d "${ED}"/usr/"$(get_libdir)" ]]
-		then
-			mkdir "${ED}"/usr/"$(get_libdir)" || die "Couldn't mkdir ${ED}/usr/$(get_libdir)"
-		fi
-		${mv_command} "${ED}"/usr/lib/* "${ED}"/usr/"$(get_libdir)"/ || die "Moving files into correct libdir failed"
-		rm -rf "${ED}"/usr/lib
-		for dir in "${ED}"/usr/"$(get_libdir)"/pkgconfig "${ED}"/usr/share/pkgconfig
-		do
-
-			if [[ -d "${dir}" && "$(find "${dir}" -name '*.pc')" != "" ]]
-			then
-				pushd "${dir}" &> /dev/null
-				sed  -i -r -e 's:/(lib)([^a-zA-Z0-9]|$):/'"$(get_libdir)"'\2:g' \
-					*.pc \
-					|| die "Sedding some sense into pkgconfig files failed."
-				popd "${dir}" &> /dev/null
-			fi
-		done
-		if [[ -d "${ED}/usr/bin" ]]
-		then
-			for exe in "${ED}/usr/bin"/*
-			do
-				if [[ "$(file "${exe}")" == *"shell script text"* ]]
-				then
-					sed -r -i -e ":/lib(/|$): s:/lib(/|$):/$(get_libdir)\1:" \
-						"${exe}" || die "Sedding some sense into ${exe} failed"
-				fi
-			done
-		fi
-
-	fi
 }
 
 EXPORT_FUNCTIONS pkg_setup

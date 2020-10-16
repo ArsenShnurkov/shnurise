@@ -1,0 +1,11 @@
+--- mono-libgdiplus-110bdc2/src/text-cairo.c	2020-10-15 09:15:00.405586024 +0300
++++ b/src/text-cairo.c	2020-10-15 09:21:01.021451683 +0300
+@@ -254,7 +254,7 @@
+ 
+ 	/* unless specified we don't consider the trailing spaces, unless there is just one space (#80680) */
+ 	if ((format->formatFlags & StringFormatFlagsMeasureTrailingSpaces) == 0) {
+-		while ((StringLen > 0) && (isspace ((int) ( *(Src + StringLen - 1)))))
++		while ( (StringLen > 0) && iswspace (Src[StringLen - 1]) )
+ 			StringLen--;
+ 		if (StringLen == 0)
+ 			StringLen = 1;

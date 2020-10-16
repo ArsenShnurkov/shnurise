@@ -1,17 +1,29 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI="7"
+
+# for calling eautoreconf, which creates "autoconf" file from "autoconf.ac"
+inherit autotools
 
 inherit eutils
+
+# for function "dotnet_multilib_comply" which is called in src_install
+inherit dotnet-native
 
 DESCRIPTION="Library for using System.Drawing with mono"
 HOMEPAGE="http://www.mono-project.com"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~arm64 ~ppc ~ppc64 ~x86 ~amd64-linux ~x86-linux ~x86-solaris"
-SRC_URI="http://download.mono-project.com/sources/${PN}/${P}.tar.gz"
+KEYWORDS="amd64 ~arm ~arm64 ~ppc ~ppc64 ~x86 ~amd64-linux ~x86-linux ~x86-solaris"
+
+# SRC_URI="http://download.mono-project.com/sources/${PN}/${P}.tar.gz"
+REPO_OWNER=mono
+REPO_NAME=libgdiplus
+EGIT_COMMIT=110bdc284272258a0d9c95db0de8fcf34b6888b0
+SRC_URI="https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/tarball/${EGIT_COMMIT} -> ${CATEGORY}-${PN}-${PV}.tar.gz"
+S="${WORKDIR}/mono-libgdiplus-110bdc2"
 
 IUSE="cairo"
 
@@ -28,16 +40,20 @@ RDEPEND=">=dev-libs/glib-2.2.3:2
 	>=x11-libs/cairo-1.8.4[X]
 	media-libs/libexif
 	>=media-libs/giflib-5.1.2
-	<media-libs/giflib-5.1.9
 	virtual/jpeg:0
 	media-libs/tiff:0
 	!cairo? ( >=x11-libs/pango-1.20 )"
 DEPEND="${RDEPEND}"
 
 PATCHES=(
-	"${FILESDIR}/iswspace.patch"
-	"${FILESDIR}/${P}-cofigure.patch"
+	"${FILESDIR}/iswspace-${PV}.patch"
 )
+
+src_prepare() {
+	default
+	eautoreconf
+#	eapply "${FILESDIR}/${PN}-${PV}-cofigure.patch"
+}
 
 src_configure() {
 	econf \
@@ -55,5 +71,9 @@ src_install () {
 		[[ -e "${docfile}" ]] && dodoc "${docfile}"
 	done
 	[[ "${DOCS[@]}" ]] && dodoc "${DOCS[@]}"
-	prune_libtool_files
+
+	# see
+	# https://mgorny.pl/articles/the-ultimate-guide-to-eapi-7.html#related-eclass-changes
+	#prune_libtool_files
+	find "${D}" -name '*.la' -delete || die
 }
