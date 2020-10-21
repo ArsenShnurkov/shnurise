@@ -1,23 +1,24 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI="7"
 
-inherit autotools eutils linux-info mono-env flag-o-matic pax-utils versionator multilib-minimal
+KEYWORDS="amd64 ~arm ~arm64 ~ppc ~ppc64 ~x86 ~amd64-linux"
 
-DESCRIPTION="Mono runtime and class libraries, a C# compiler/interpreter"
-HOMEPAGE="http://www.mono-project.com/Main_Page"
-SRC_URI="http://download.mono-project.com/sources/${PN}/${P}.tar.bz2"
-
-LICENSE="MIT LGPL-2.1 GPL-2 BSD-4 NPL-1.1 Ms-PL GPL-2-with-linking-exception IDPL"
 SLOT="0"
-
-KEYWORDS="~amd64 ~ppc ~ppc64 ~x86 ~amd64-linux"
 
 IUSE="nls minimal pax_kernel xen doc"
 
+inherit autotools eutils linux-info mono-env flag-o-matic pax-utils multilib-minimal
+
+DESCRIPTION="Mono runtime and class libraries, a C# compiler/interpreter"
+HOMEPAGE="https://www.mono-project.com/Main_Page"
+LICENSE="MIT LGPL-2.1 GPL-2 BSD-4 NPL-1.1 Ms-PL GPL-2-with-linking-exception IDPL"
+
+SRC_URI="http://download.mono-project.com/sources/mono/preview/mono-${PV}.tar.xz"
+
 COMMONDEPEND="
-	!minimal? ( >=dev-dotnet/libgdiplus-2.10 )
+	!minimal? ( >=dev-dotnet/libgdiplus-6.0.5_p64 )
 	ia64? ( sys-libs/libunwind )
 	nls? ( sys-devel/gettext )
 "
@@ -29,14 +30,12 @@ DEPEND="${COMMONDEPEND}
 	virtual/yacc
 	pax_kernel? ( sys-apps/elfix )
 	dev-util/cmake
-	!dev-lang/mono-basic
 "
 
 PATCHES=(
-	"${FILESDIR}"/${PN}-5.0.1.1-x86_32.patch
+#	"${FILESDIR}"/${PN}-5.0.1.1-x86_32.patch
+	"${FILESDIR}"/mono-5.12-try-catch.patch
 )
-
-#S="${WORKDIR}/${PN}-$(get_version_component_range 1-3)"
 
 pkg_pretend() {
 	linux-info_pkg_setup
@@ -47,7 +46,7 @@ pkg_pretend() {
 			# https://github.com/gentoo/gentoo/blob/f200e625bda8de696a28338318c9005b69e34710/eclass/linux-info.eclass#L686
 			ewarn "kernel config not found"
 			ewarn "If CONFIG_SYSVIPC is not set in your kernel .config, mono will hang while compiling."
-			ewarn "See http://bugs.gentoo.org/261869 for more info."
+			ewarn "See https://bugs.gentoo.org/261869 for more info."
 		fi
 	fi
 }
@@ -71,11 +70,8 @@ src_prepare() {
 	# mono build system can fail otherwise
 	strip-flags
 
-	#TODO: resolve problem with newer binutils
-	#bug: https://bugs.gentoo.org/show_bug.cgi?id=600664
-	#append-flags -fPIC
-
 	default
+
 	# PATCHES contains configure.ac patch
 	eautoreconf
 	multilib_copy_sources

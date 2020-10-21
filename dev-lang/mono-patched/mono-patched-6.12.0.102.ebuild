@@ -1,19 +1,18 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
-EAPI=6
+EAPI="7"
 
 inherit autotools eutils linux-info mono-env flag-o-matic pax-utils versionator multilib-minimal
 
 DESCRIPTION="Mono runtime and class libraries, a C# compiler/interpreter"
 HOMEPAGE="http://www.mono-project.com/Main_Page"
-SRC_URI="http://download.mono-project.com/sources/${PN}/nightly/${P}.tar.bz2"
+SRC_URI="file:///usr/src/raw/mono/mono-patched-${PV}.tar.gz"
 
 LICENSE="MIT LGPL-2.1 GPL-2 BSD-4 NPL-1.1 Ms-PL GPL-2-with-linking-exception IDPL"
 SLOT="0"
 
-KEYWORDS="~amd64 ~ppc ~ppc64 ~x86 ~amd64-linux"
+KEYWORDS="amd64 ~ppc ~ppc64 ~x86 ~amd64-linux"
 
 IUSE="nls minimal pax_kernel xen doc"
 
@@ -34,11 +33,10 @@ DEPEND="${COMMONDEPEND}
 "
 
 PATCHES=(
-	"${FILESDIR}"/${PN}-4.8.0.371-makedev.patch
-	"${FILESDIR}"/${PN}-4.8.0.371-x86_32.patch
+	"${FILESDIR}"/${PN}-5.0.1.1-x86_32.patch
 )
 
-S="${WORKDIR}/${PN}-$(get_version_component_range 1-3)"
+#S="${WORKDIR}/${PN}-$(get_version_component_range 1-3)"
 
 pkg_pretend() {
 	linux-info_pkg_setup
@@ -54,31 +52,7 @@ pkg_pretend() {
 	fi
 }
 
-multilib_src_install_all() {
-	insinto "/"
-	doins "${S}/mcs/class/mono.snk"
-}
-
-pkg_preinst() {
-	einfo D="${D}"
-	MONO_EXECUTABLE="${WORKDIR}/mono-4.9.0-abi_x86_32.x86/mono/mini/mono-sgen"
-	if [ ! -f "${MONO_EXECUTABLE}" ]; then
-		die "${MONO_EXECUTABLE}, MONO_EXECUTABLE is missing"
-	fi
-	SN_ASSEMBLY="${WORKDIR}/mono-4.9.0-abi_x86_32.x86/mcs/tools/security/sn.exe"
-	if [ ! -f "${SN_ASSEMBLY}" ]; then
-		die "${SN_ASSEMBLY}, SN_ASSEMBLY is missing"
-	fi
-	SNK_FILE="${D}/mono.snk"
-	if [ ! -f "${SNK_FILE}" ]; then
-		die "${SNK_FILE}, SNK_FILE is missing"
-	fi
-	"${MONO_EXECUTABLE}" "${SN_ASSEMBLY}" -i "${SNK_FILE}" "mono" || die
-	rm "${SNK_FILE}" || die
-}
-
 pkg_setup() {
-	linux-info_pkg_setup
 	mono-env_pkg_setup
 }
 
@@ -96,8 +70,6 @@ src_prepare() {
 
 	# mono build system can fail otherwise
 	strip-flags
-
-	eapply "${FILESDIR}/autofac.patch"
 
 	#TODO: resolve problem with newer binutils
 	#bug: https://bugs.gentoo.org/show_bug.cgi?id=600664
