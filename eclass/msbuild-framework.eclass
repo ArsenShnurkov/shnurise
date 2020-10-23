@@ -61,17 +61,11 @@ BuildToolsVersion () {
 	echo $(target_to_slot "${MSBUILD_TARGET}")
 }
 
-# @FUNCTION: MSBuildExtensionsPath
-# @DESCRIPTION: root directory for different version of tools
-MSBuildExtensionsPath () {
-	echo "/usr/share/msbuild"
-}
-
 # @FUNCTION: MSBuildToolsPath
 # @DESCRIPTION: location of .target files
 # https://docs.microsoft.com/en-US/visualstudio/msbuild/msbuild-dot-targets-files?view=vs-2019
 MSBuildToolsPath () {
-	echo "$(MSBuildExtensionsPath)/$(BuildToolsVersion)"
+	echo "/usr/share/msbuild/$(BuildToolsVersion)"
 }
 
 # @FUNCTION: MSBuildBinPath
@@ -81,14 +75,20 @@ MSBuildBinPath () {
 	echo "$(MSBuildToolsPath)"
 }
 
+# @FUNCTION: MSBuildExtensionsPath
+# @DESCRIPTION: root directory for different version of tools
+MSBuildExtensionsPath () {
+	echo "$(MSBuildToolsPath)"
+}
+
 # @FUNCTION: MSBuildSdksPath
 # @DESCRIPTION: location of Sdks directory
-# .../bin/Sdks relationship is hardcoded in line 
+# ./Sdks relative position to MSBuildToolsPath is hardcoded in line 
 #     defaultSdkPath = Path.Combine(CurrentMSBuildToolsDirectory, "Sdks");
 # of file
-# https://github.com/microsoft/msbuild/blob/master/src/Shared/BuildEnvironmentHelper.cs#L593
+# https://github.com/dotnet/msbuild/blob/master/src/Shared/BuildEnvironmentHelper.cs#L590
 # it can be overriden with environment variable
-# MSBuildSDKsPath=/usr/share/msbuild/15.9/Sdks msbuild ACME.net.sln
+# MSBuildSDKsPath=/usr/share/msbuild/15.9/Sdks msbuild some_project.sln
 # but not from MSBuild.exe.config
 # that is why "$(MSBuildBinPath)/Sdks" instead of "$(MSBuildToolsPath)/Sdks"
 MSBuildSdksPath () {
