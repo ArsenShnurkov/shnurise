@@ -15,7 +15,7 @@ inherit msbuild-framework
 # inherit directive is placed before IUSE line because of dotnet_expand and msbuild_expand functions
 inherit dotnet
 
-IUSE="$(dotnet_expand ${USE_DOTNET}) $(msbuild_expand ${USE_MSBUILD}) +msbuild"
+IUSE="+$(dotnet_expand ${USE_DOTNET}) $(msbuild_expand ${USE_MSBUILD}) +msbuild"
 
 GITHUB_REPONAME="sdk"
 GITHUB_ACCOUNT="dotnet"
