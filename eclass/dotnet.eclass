@@ -70,7 +70,9 @@ dotnet_pkg_setup() {
 				FRAMEWORK="${F}";
 			fi
 		else
-			ver_test "${F}" -gt "${FRAMEWORK}" || FRAMEWORK="${F}"
+			if [[ ${F} ]]; then
+				ver_test "${F}" -gt "${FRAMEWORK}" || FRAMEWORK="${F}"
+			fi
 		fi
 		if [[ -z ${EBUILD_FRAMEWORK} ]]; then
 			if [[ ${EBF} ]]; then
@@ -82,7 +84,7 @@ dotnet_pkg_setup() {
 	done
 	if [[ -z ${FRAMEWORK} ]]; then
 		if [[ -z ${EBUILD_FRAMEWORK} ]]; then
-			FRAMEWORK="4.0"
+			FRAMEWORK="4.5"
 			elog "Ebuild doesn't contain USE_DOTNET="
 		else
 			FRAMEWORK="${EBUILD_FRAMEWORK}"
