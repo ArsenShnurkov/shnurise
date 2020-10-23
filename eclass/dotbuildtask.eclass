@@ -13,12 +13,12 @@ case ${EAPI:-0} in
 	*) ;; #if [[ ${USE_DOTNET} ]]; then REQUIRED_USE="|| (${USE_DOTNET})"; fi;;
 esac
 
-inherit multilib msbuild
+inherit multilib msbuild-framework msbuild
 
 # @FUNCTION: get_MSBuildExtensionsPath
 # @DESCRIPTION: returns path to .targets files
 get_MSBuildExtensionsPath() {
-	echo /usr/share/msbuild
+	echo /usr/share/msbuild/$(target_to_slot ${MSBUILD_TARGET})
 }
 
 # @FUNCTION: einstask
@@ -26,21 +26,28 @@ get_MSBuildExtensionsPath() {
 # first argument is .dll name which is installed into $(get_dotlibdir)
 # get_dotlibdir is not defined anywhere!!!
 # all other arguments are files which are installed into $(get_MSBuildExtensionsPath)
+#
+# see https://devmanual.gentoo.org/function-reference/install-functions/
+# «doins
+#    Install a miscellaneous file. The -r option allows directories to be installed recursively.
+#    Any symlinks encountered are installed as symlinks, when installing recursively.»
 einstask() {
 	if [[ $# -lt 1 ]]; then
 		die "Illegal number of parameters"
 	fi
-	elog installing msbuild task dll "$1" into "$(get_MSBuildExtensionsPath)"
+
+	elog einstask: destination "$(get_MSBuildExtensionsPath)"
 	insinto "$(get_MSBuildExtensionsPath)"
-	doins $1
-
-	shift
-
-	for var in "$@"
-	do
-			elog installing file task dll "${var}" into "$(get_MSBuildExtensionsPath)"
-			insinto "$(get_MSBuildExtensionsPath)"
-			doins ${var}
+	while(($#)) ; do
+		if [ -d "${1}" ] ; then
+			local files = $(find ${1} -type f)
+			elog directory with files: "${files}"
+			doins ${files}
+		else
+			elog file: "${1}"
+			doins "${1}"
+		fi
+		shift
 	done
 }
 
@@ -56,15 +63,22 @@ einssdk() {
 	if [[ $# -lt 1 ]]; then
 		die "Illegal number of parameters"
 	fi
-	local SDK_NAME=$1
+	local SDK_NAME="$1"
 
 	shift
 
-	local INSTALL_PATH="$(get_MSBuildSdksPath)/${SDK_NAME}/Sdk"
+	local INSTALL_PATH="$(get_MSBuildSdksPath)/${SDK_NAME}/sdk"
+	elog einssdk: destination "${INSTALL_PATH}"
 	insinto "${INSTALL_PATH}"
-	for var in "$@"
-	do
-			elog installing file "${var}" into "${INSTALL_PATH}"
-			doins ${var}
+
+	while(($#)) ; do
+		if [ -d "${1}" ] ; then
+			elog directory: "${1}"
+			doins -r "${1}"
+		else
+			elog file: "${1}"
+			doins "${1}"
+		fi
+		shift
 	done
 }

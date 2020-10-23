@@ -10,12 +10,13 @@ RESTRICT="mirror"
 USE_DOTNET="net45"
 USE_MSBUILD="msbuild15-9 msbuild15-7 msbuild15-4"
 
+# These two inherit directives are placed before IUSE line because of dotnet_expand and msbuild_expand functions
+inherit dotnet
 inherit msbuild-framework
 
-# inherit directive is placed before IUSE line because of dotnet_expand and msbuild_expand functions
-inherit dotnet
+IUSE="+$(dotnet_expand ${USE_DOTNET}) $(msbuild_expand ${USE_MSBUILD}) +msbuild debug developer"
 
-IUSE="+$(dotnet_expand ${USE_DOTNET}) $(msbuild_expand ${USE_MSBUILD}) +msbuild"
+inherit dotbuildtask
 
 GITHUB_REPONAME="sdk"
 GITHUB_ACCOUNT="dotnet"
@@ -51,13 +52,20 @@ src_install() {
 	    for target in ${targets[@]}; do
 		local etarget="$( msbuild_expand ${target} )"
 		if use ${etarget}; then
-			local TARGET_SLOT=${target//msbuild/}
 			MSBUILD_TARGET="${target}"
-			insinto $(MSBuildSdksPath)/Microsoft.NET.Sdk/sdk
-			doins -r "${S}"/src/Tasks/Microsoft.NET.Build.Tasks/sdk/*
+			einfo src_install: MSBUILD_TARGET="${MSBUILD_TARGET}"
+
+			#insinto $(MSBuildSdksPath)/Microsoft.NET.Sdk/sdk
+			#doins -r "${S}"/src/Tasks/Microsoft.NET.Build.Tasks/sdk/*
+			einssdk "Microsoft.NET.Sdk" \
+				"${S}"/src/Tasks/Microsoft.NET.Build.Tasks/sdk/*.props \
+				"${S}"/src/Tasks/Microsoft.NET.Build.Tasks/sdk/*.targets
 			insinto $(MSBuildSdksPath)/Microsoft.NET.Sdk/targets
-			doins -r "${S}"/src/Tasks/Microsoft.NET.Build.Tasks/targets/*
-			doins -r "${S}"/src/Tasks/Common/targets/*
+			doins "${S}"/src/Tasks/Microsoft.NET.Build.Tasks/targets/*.props
+			doins "${S}"/src/Tasks/Microsoft.NET.Build.Tasks/targets/*.targets
+			# doins "${S}"/src/Tasks/Common/targets/*.props # - no such files
+			doins "${S}"/src/Tasks/Common/targets/*.targets
+			#einstask "${S}"/src/Tasks/Microsoft.NET.Build.Tasks/bin/$(usedebug_tostring)/*
                 fi
 	    done
 	fi 
