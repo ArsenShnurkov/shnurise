@@ -1,0 +1,45 @@
+--- a/src/Mono.WebServer/Mono.WebServer.csproj
++++ b/src/Mono.WebServer/Mono.WebServer.csproj
+@@ -1,5 +1,6 @@
+ ﻿<?xml version="1.0" encoding="utf-8"?>
+ <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
++  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+   <PropertyGroup>
+     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+--- a/src/Mono.WebServer.Apache/Mono.WebServer.Apache.csproj
++++ b/src/Mono.WebServer.Apache/Mono.WebServer.Apache.csproj
+@@ -1,5 +1,6 @@
+ ﻿<?xml version="1.0" encoding="utf-8"?>
+ <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
++  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+   <PropertyGroup>
+     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+--- a/src/Mono.WebServer.FastCgi/Mono.WebServer.FastCgi.csproj
++++ b/src/Mono.WebServer.FastCgi/Mono.WebServer.FastCgi.csproj
+@@ -1,5 +1,6 @@
+ ﻿<?xml version="1.0" encoding="utf-8"?>
+ <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
++  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+   <PropertyGroup>
+     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+--- a/src/Mono.WebServer.Test/Mono.WebServer.Test.csproj
++++ b/src/Mono.WebServer.Test/Mono.WebServer.Test.csproj
+@@ -1,5 +1,6 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
++  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+   <PropertyGroup>
+     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+--- a/src/Mono.WebServer.XSP/Mono.WebServer.XSP.csproj
++++ b/src/Mono.WebServer.XSP/Mono.WebServer.XSP.csproj
+@@ -1,5 +1,6 @@
+ ﻿<?xml version="1.0" encoding="utf-8"?>
+ <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
++  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+   <PropertyGroup>
+     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>

@@ -39,6 +39,7 @@ DEPEND="${COMMON_DEPEND}"
 SANDBOX_WRITE="${SANDBOX_WRITE}:/etc/mono/registry/:/etc/mono/registry/last-btime"
 
 src_prepare() {
+#	eapply "${FILESDIR}/props.patch"
 	eapply "${FILESDIR}/acme.patch"
 	eapply "${FILESDIR}/aclocal-fix.patch"
 

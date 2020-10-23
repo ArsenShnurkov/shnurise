@@ -86,6 +86,14 @@ src_compile() {
 src_install() {
 	TargetVersion=${SLOT}
 
+	dodir "$(MSBuildExtensionsPath)"
+
+	insinto "$(MSBuildExtensionsPath)"
+	# dosym
+	# Create a symlink to the target specified as the first parameter, at the path specified by the second parameter.
+	# Note that the target is interpreted verbatim; it needs to either specify a relative path or an absolute path including ${EPREFIX}. 
+	dosym "15.9" "15.0" 
+
 	einfo "Deploying props into $(MSBuildExtensionsPath)/$(MSBuildToolsVersion)"
 	insinto "$(MSBuildExtensionsPath)/$(MSBuildToolsVersion)"
 	doins "${S}/src/Tasks/Microsoft.Common.props"
