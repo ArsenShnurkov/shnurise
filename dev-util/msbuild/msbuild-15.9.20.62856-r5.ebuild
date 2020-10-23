@@ -92,7 +92,7 @@ src_install() {
 	# dosym
 	# Create a symlink to the target specified as the first parameter, at the path specified by the second parameter.
 	# Note that the target is interpreted verbatim; it needs to either specify a relative path or an absolute path including ${EPREFIX}. 
-	dosym "15.9" "15.0" 
+	dosym "../15.9" "$(MSBuildExtensionsPath)/15.0" 
 
 	einfo "Deploying props into $(MSBuildExtensionsPath)/$(MSBuildToolsVersion)"
 	insinto "$(MSBuildExtensionsPath)/$(MSBuildToolsVersion)"
