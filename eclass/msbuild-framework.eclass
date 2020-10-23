@@ -39,10 +39,10 @@ target_to_slot() {
 	echo "${res}"
 }
 
-# @FUNCTION: BuildToolsVersion
+# @FUNCTION: MSBuildToolsVersion
 # @DESCRIPTION: version of tools
 # for use only from slotted ebuilds
-BuildToolsVersion () {
+MSBuildToolsVersion () {
 	# https://stackoverflow.com/questions/3601515/how-to-check-if-a-variable-is-set-in-bash
 	if [ -z ${MSBUILD_TARGET+x} ]; then
 		local VER="$(ver_cut 1-2 ${SLOT})"
@@ -61,23 +61,23 @@ BuildToolsVersion () {
 	echo $(target_to_slot "${MSBUILD_TARGET}")
 }
 
+# @FUNCTION: MSBuildExtensionsPath
+# @DESCRIPTION: root directory for different version of tools
+MSBuildExtensionsPath () {
+	echo "/usr/share/msbuild"
+}
+
 # @FUNCTION: MSBuildToolsPath
 # @DESCRIPTION: location of .target files
 # https://docs.microsoft.com/en-US/visualstudio/msbuild/msbuild-dot-targets-files?view=vs-2019
 MSBuildToolsPath () {
-	echo "/usr/share/msbuild/$(BuildToolsVersion)"
+	echo "$(MSBuildExtensionsPath)/$(MSBuildToolsVersion)"
 }
 
 # @FUNCTION: MSBuildBinPath
 # @DESCRIPTION: location of msbuild.exe
 # for use only from slotted ebuilds
 MSBuildBinPath () {
-	echo "$(MSBuildToolsPath)"
-}
-
-# @FUNCTION: MSBuildExtensionsPath
-# @DESCRIPTION: root directory for different version of tools
-MSBuildExtensionsPath () {
 	echo "$(MSBuildToolsPath)"
 }
 
