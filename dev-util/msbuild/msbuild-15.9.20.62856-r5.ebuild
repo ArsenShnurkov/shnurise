@@ -79,7 +79,22 @@ src_compile() {
 		fi
 	fi
 
-	exbuild_raw /v:detailed /p:TargetFrameworkVersion=v4.6 "/p:Configuration=$(usedebug_tostring)" ${SARGS} "/p:VersionNumber=${VER}" "/p:ReferencesVersion=${SLOT_OF_API}.0.0" "/p:PublicKeyToken=$(token)" "/p:RootPath=${S}" "/p:MonoBuild=true" "/p:SignAssembly=true" "/p:DelaySign=true" "/p:AssemblyOriginatorKeyFile=$(token_key)" "${S}/${PROJ2_DIR}/mono-${PROJ2}.csproj"
+	local PROPERTIES=(
+		"/p:TargetFrameworkVersion=v4.6"
+		"/p:Configuration=$(usedebug_tostring)"
+		"/p:VersionNumber=${VER}"
+		"/p:ReferencesVersion=${SLOT_OF_API}.0.0" 
+		"/p:RootPath=${S}"
+		"/p:MonoBuild=true"
+		"/p:SignAssembly=true"
+		"/p:DelaySign=true"
+		"/p:AssemblyOriginatorKeyFile=$(token_key)"
+		"/p:PublicKeyToken=$(token)"
+	)
+	# see https://unix.stackexchange.com/questions/29509/transform-an-array-into-arguments-of-a-command
+	# ${PROPERTIES[@]}
+
+	exbuild_raw /v:detailed   ${PROPERTIES[@]} ${SARGS} "${S}/${PROJ2_DIR}/mono-${PROJ2}.csproj"
 	sn -R "${PROJ1_DIR}/bin/$(usedebug_tostring)/${PROJ1}.dll" "$(signing_key)" || die
 }
 
