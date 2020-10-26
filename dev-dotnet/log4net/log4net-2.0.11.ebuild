@@ -1,24 +1,30 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="4"
+EAPI="7"
 
-inherit eutils mono multilib versionator
-
-PV_MAJOR=$(get_version_component_range 1-2)
+# ~amd64 means "not stabilised, may not work"
+KEYWORDS="~amd64"
+SLOT="0"
 
 DESCRIPTION="tool to help the programmer output log statements to a variety of output targets"
-HOMEPAGE="http://logging.apache.org/log4net/"
-SRC_URI="mirror://apache/logging/log4net/source/${P}-src.zip
-	https://dev.gentoo.org/~pacho/dotnet/log4net.snk"
-
 LICENSE="Apache-2.0"
-SLOT="0"
-KEYWORDS="amd64 x86"
+HOMEPAGE="http://logging.apache.org/log4net/"
+
+BDEPEND=">=dev-lang/mono-4.5"
+RDEPEND=">=dev-lang/mono-4.5"
+DEPEND="${RDEPEND}"
+
+# $(get_libdir) allows to determine install location of mono runtime and it's disk structures (GAC)
+# pkgconfig is also platform-dependent, but allows to use .dll files from MonoDevelop
+inherit multilib
+inherit mono
+
 IUSE=""
 
-RDEPEND=">=dev-lang/mono-2.0"
-DEPEND="${RDEPEND}"
+SRC_URI=""
+
+PV_MAJOR=$(get_version_component_range 1-2)
 
 src_compile() {
 	/usr/bin/mcs \
