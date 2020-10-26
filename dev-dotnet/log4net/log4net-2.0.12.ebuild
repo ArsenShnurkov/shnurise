@@ -32,26 +32,27 @@ EGIT_COMMIT=dbad144815221ffe4ed85efa73134583253dc75b
 SRC_URI="https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/tarball/${EGIT_COMMIT} -> ${P}.tar.gz"
 
 src_compile() {
+	# -keyfile:"${DISTDIR}"/log4net.snk \
 	/usr/bin/csc \
-		$(find src -name "*.cs") \
+		"-define:NET_2_0;NET_4_0;NET_4_5;TRACE" \
+		$(find src/log4net -name "*.cs") \
 		-t:library \
-		-keyfile:"${DISTDIR}"/log4net.snk \
 		-r:/usr/lib64/mono/gac/System.Data/4.0.0.0__b77a5c561934e089/System.Data.dll \
 		-r:/usr/lib64/mono/gac/System.Web/4.0.0.0__b03f5f7f11d50a3a/System.Web.dll \
 		-out:log4net.dll || die
 }
 
 src_install() {
-	local PV_MAJOR=$(ver_сut 1-2  ${PV})
+	local PV_MAJOR=$(ver_cut 1-2  ${PV})
 
-	egacinstall log4net.dll
-	dodir /usr/$(get_libdir)/pkgconfig
-	sed -e "s:@VERSION@:${PV}:" \
-		-e "s:@LIBDIR@:$(get_libdir):" \
-		-e "s:@NET_VERSION@:2.0:" \
-		"${FILESDIR}"/${PN}.pc.in-r1 > "${D}"/usr/$(get_libdir)/pkgconfig/${PN}-${PV}.pc
-	dosym ${PN}-${PV}.pc /usr/$(get_libdir)/pkgconfig/${PN}-${PV_MAJOR}.pc
-	dosym ${PN}-${PV}.pc /usr/$(get_libdir)/pkgconfig/${PN}.pc
+#	egacinstall log4net.dll
+#	dodir /usr/$(get_libdir)/pkgconfig
+#	sed -e "s:@VERSION@:${PV}:" \
+#		-e "s:@LIBDIR@:$(get_libdir):" \
+#		-e "s:@NET_VERSION@:2.0:" \
+#		"${FILESDIR}"/${PN}.pc.in-r1 > "${D}"/usr/$(get_libdir)/pkgconfig/${PN}-${PV}.pc
+#	dosym ${PN}-${PV}.pc /usr/$(get_libdir)/pkgconfig/${PN}-${PV_MAJOR}.pc
+#	dosym ${PN}-${PV}.pc /usr/$(get_libdir)/pkgconfig/${PN}.pc
 
-	dodoc README.txt STATUS.txt
+	dodoc README.md STATUS.txt
 }
