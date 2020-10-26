@@ -67,7 +67,7 @@ einssdk() {
 
 	shift
 
-	local INSTALL_PATH="$(get_MSBuildSdksPath)/${SDK_NAME}/sdk"
+	local INSTALL_PATH="$(get_MSBuildSdksPath)/${SDK_NAME}/Sdk"
 	elog einssdk: destination "${INSTALL_PATH}"
 	insinto "${INSTALL_PATH}"
 

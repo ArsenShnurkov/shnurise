@@ -32,13 +32,13 @@ EGIT_COMMIT=dbad144815221ffe4ed85efa73134583253dc75b
 SRC_URI="https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/tarball/${EGIT_COMMIT} -> ${P}.tar.gz"
 
 src_compile() {
-	/usr/bin/mcs \
+	/usr/bin/csc \
+		$(find src -name "*.cs") \
 		-t:library \
-		-out:log4net.dll \
 		-keyfile:"${DISTDIR}"/log4net.snk \
-		-r:System.Data \
-		-r:System.Web \
-		$(find src -name "*.cs") || die
+		-r:/usr/lib64/mono/gac/System.Data/4.0.0.0__b77a5c561934e089/System.Data.dll \
+		-r:/usr/lib64/mono/gac/System.Web/4.0.0.0__b03f5f7f11d50a3a/System.Web.dll \
+		-out:log4net.dll || die
 }
 
 src_install() {
