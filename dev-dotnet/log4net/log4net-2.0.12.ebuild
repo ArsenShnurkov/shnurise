@@ -22,9 +22,14 @@ inherit mono
 
 IUSE=""
 
-SRC_URI=""
+# vcs-snapshot.eclass will strip that first dir level and re-add /${P} , so default S works
+# eg instead of unpacking to $WORKDIR/foo-dc8s9ee1/ , it will unpack to $WORKDIR/foo-1.2.3/ as expected
+inherit vcs-snapshot
 
-PV_MAJOR=$(get_version_component_range 1-2)
+REPO_OWNER=apache
+REPO_NAME=logging-log4net
+EGIT_COMMIT=dbad144815221ffe4ed85efa73134583253dc75b
+SRC_URI="https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/tarball/${EGIT_COMMIT} -> ${P}.tar.gz"
 
 src_compile() {
 	/usr/bin/mcs \
@@ -37,6 +42,8 @@ src_compile() {
 }
 
 src_install() {
+	local PV_MAJOR=$(ver_сut 1-2  ${PV})
+
 	egacinstall log4net.dll
 	dodir /usr/$(get_libdir)/pkgconfig
 	sed -e "s:@VERSION@:${PV}:" \
