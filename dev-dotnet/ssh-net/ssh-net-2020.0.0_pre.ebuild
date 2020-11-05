@@ -1,20 +1,16 @@
-# Copyright 1999-2019 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6" # valid EAPI assignment must occur on or before line: 5
+EAPI="7" # valid EAPI assignment must occur on or before line: 5
 
 KEYWORDS="~amd64 ~x86 ~ppc"
-RESTRICT+=" mirror"
+RESTRICT+=" mirror test"
 
 SLOT="0"
 
-GITHUB_ACCOUNT="sshnet"
-GITHUB_REPONAME="SSH.NET"
-REPOSITORY="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_REPONAME}"
-
-HOMEPAGE="https://github.com/sshnet/SSH.NET"
 DESCRIPTION="SSH.NET is a Secure Shell (SSH) library for .NET, optimized for parallelism."
 LICENSE="MIT" # LICENSE_URL="${REPOSITORY}/blob/master/LICENSE"
+HOMEPAGE="https://github.com/sshnet/SSH.NET"
 
 COMMON_DEPEND="
 "
@@ -33,15 +29,15 @@ inherit mono-pkg-config
 inherit gac
 
 
-EGIT_COMMIT="bd01d971790a7c1fa73bad35b79ada90bf69e62d"
-EGIT_BRANCH="develop"
+inherit vcs-snapshot
 
-SRC_URI="https://codeload.github.com/${GITHUB_ACCOUNT}/${GITHUB_REPONAME}/tar.gz/${EGIT_COMMIT} -> ${CATEGORY}-${PN}-${PV}.tar.gz"
+GITHUB_ACCOUNT="sshnet"
+GITHUB_REPONAME="SSH.NET"
+EGIT_COMMIT="cefdc203d98cd890815e029bc759bc43ec5a9643"
+EGIT_BRANCH="develop"
+SRC_URI="https://codeload.github.com/${GITHUB_ACCOUNT}/${GITHUB_REPONAME}/tar.gz/${EGIT_COMMIT} -> ${P}.tar.gz"
 #	https://github.com/mono/mono/raw/master/mcs/class/ecma.pub
 #	https://github.com/mono/mono/raw/master/mcs/class/mono.snk
-S="${WORKDIR}/${GITHUB_REPONAME}-${EGIT_COMMIT}"
-
-RESTRICT+=" test"
 
 METAFILETOBUILD="./src/Renci.SshNet/Renci.SshNet.csproj"
 
