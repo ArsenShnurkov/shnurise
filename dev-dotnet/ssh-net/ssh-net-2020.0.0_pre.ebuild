@@ -20,7 +20,7 @@ RDEPEND="${COMMON_DEPEND}
 "
 
 USE_DOTNET="net45"
-IUSE="+${USE_DOTNET} +pkg-config gac debug"
+IUSE="+${USE_DOTNET} +pkg-config gac debug developer"
 
 inherit msbuild
 # mono-pkg-config allows to install .pc-files for monodevelop
@@ -38,6 +38,8 @@ EGIT_BRANCH="develop"
 SRC_URI="https://codeload.github.com/${GITHUB_ACCOUNT}/${GITHUB_REPONAME}/tar.gz/${EGIT_COMMIT} -> ${P}.tar.gz"
 #	https://github.com/mono/mono/raw/master/mcs/class/ecma.pub
 #	https://github.com/mono/mono/raw/master/mcs/class/mono.snk
+
+inherit gentoo-net-sdk
 
 METAFILETOBUILD="./src/Renci.SshNet/Renci.SshNet.csproj"
 
