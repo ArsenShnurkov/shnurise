@@ -19,12 +19,16 @@ inherit dotnet msbuild
 gentoo-net-sdk_src_prepare() {
 	einfo " -- REPLACING Microsoft.NET.Sdk into Gentoo.NET.Sdk -- "
 	
+	local varglobstar="$(shopt -p globstar)"
+	einfo "Old value ${varglobstar}"
 	shopt -s globstar
 	for entry in "${S}"/**/*.csproj
 	do
 		einfo "Applying for ${entry}"
 	    	eapply_gentoo_sdk "$entry"
 	done
+	${varglobstar} || die
+	einfo "Restored as ${varglobstar}"
 
 	default
 }
