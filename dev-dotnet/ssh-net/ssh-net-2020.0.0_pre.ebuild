@@ -3,7 +3,7 @@
 
 EAPI="7" # valid EAPI assignment must occur on or before line: 5
 
-KEYWORDS="~amd64 ~x86 ~ppc"
+KEYWORDS="amd64 ~x86 ~ppc"
 RESTRICT+=" mirror test"
 
 SLOT="0"
@@ -69,12 +69,16 @@ src_compile() {
 		FW_UPPER=${x:3:1}
 		FW_LOWER=${x:4:1}
 		P_FW_VERSION="/p:TargetFrameworkVersion=v${FW_UPPER}.${FW_LOWER}"
-		emsbuild_raw ${PARAMETERS} ${P_FW_VERSION} /p:Configuration=$(usedebug_tostring) /p:OutputPath="${WORKDIR}/net_${FW_UPPER}_${FW_LOWER}_$(usedebug_tostring)" "${METAFILETOBUILD}"
+		emsbuild_raw ${PARAMETERS} ${P_FW_VERSION} \
+			/p:Configuration=$(usedebug_tostring) \
+			/p:OutputPath="${WORKDIR}/net_${FW_UPPER}_${FW_LOWER}_$(usedebug_tostring)" \
+			"${METAFILETOBUILD}"
 		sn -R ${WORKDIR}/net_${FW_UPPER}_${FW_LOWER}_$(usedebug_tostring)/Renci.SshNet.dll "${KEY2}" || die
 	done
 }
 
 src_install() {
+	local ASSEMBLY_VERSION=$(ver_cut 1-3 ${PV})
 	for x in ${USE_DOTNET} ; do
 		FW_UPPER=${x:3:1}
 		FW_LOWER=${x:4:1}
@@ -99,7 +103,7 @@ src_install() {
 
 			ASSEMBLY_FILES+=( "${INSTALL_DIR}/${assembly_name}.dll" )
 		done
-		einstall_pc_file "${CATEGORY}/${PN}" "${PV}" "${ASSEMBLY_FILES[@]}"
+		einstall_pc_file "${CATEGORY}-${PN}" "${ASSEMBLY_VERSION}" "${ASSEMBLY_FILES[@]}"
 	done
 }
 
