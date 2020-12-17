@@ -37,7 +37,7 @@ HOMEPAGE="https://github.com/ArsenShnurkov/mono-packaging-tools"
 DESCRIPTION="Alternative build sequence with PkgConfig instead of NuGet"
 LICENSE="GPL-3"
 
-EGIT_COMMIT="fe4862291044ec87e2ab9dfc112e047bd68b082b"
+EGIT_COMMIT="7bdd78b2404bdc8844149795b1f276e2ddb530bb"
 GITHUB_PROJECTNAME="mono-packaging-tools"
 GITHUB_ACCOUNT="ArsenShnurkov"
 SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
@@ -63,8 +63,8 @@ src_install () {
 			local TARGET_SLOT=${target//msbuild/}
 			MSBUILD_TARGET="${target}"
 			einssdk "Gentoo.NET.Sdk" \
-				"${S}/Gentoo.NET.Sdk/sdk/Sdk.props" \
-				"${S}/Gentoo.NET.Sdk/sdk/Sdk.targets"
+				"${S}/Gentoo.NET.Sdk/Sdk/Sdk.props" \
+				"${S}/Gentoo.NET.Sdk/Sdk/Sdk.targets"
 			einstask "$(bin_dir)/Gentoo.NET.Sdk.Tasks.dll"
                 fi
 	    done
