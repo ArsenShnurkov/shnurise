@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="7"
@@ -14,7 +14,7 @@ LICENSE="BSD"
 USE_DOTNET="net45"
 IUSE="+${USE_DOTNET} pkg-config debug developer source"
 
-inherit dotnet msbuild mono-pkg-config
+inherit dotnet msbuild mono-pkg-config gentoo-net-sdk
 
 HOMEPAGE="https://github.com/ArsenShnurkov/acme.net"
 GITHUB_ACCOUNT="ArsenShnurkov"
@@ -32,10 +32,6 @@ RDEPEND="${COMMON_DEPEND}
 "
 DEPEND="${COMMON_DEPEND}
 "
-
-src_prepare() {
-	eapply_user
-}
 
 src_compile() {
 	emsbuild "ACME.net.sln"
