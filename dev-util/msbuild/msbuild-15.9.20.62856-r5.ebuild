@@ -3,7 +3,7 @@
 
 EAPI="7"
 RESTRICT="mirror"
-KEYWORDS="amd64 ~x86"
+KEYWORDS="amd64 arm64"
 
 SLOT="$(ver_cut 1-2)"
 

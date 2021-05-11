@@ -3,7 +3,7 @@
 
 EAPI="7"
 
-KEYWORDS="amd64"
+KEYWORDS="amd64 arm64"
 RESTRICT="mirror"
 
 SLOT="1"

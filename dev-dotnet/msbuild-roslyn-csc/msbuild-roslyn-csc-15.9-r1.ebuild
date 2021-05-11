@@ -4,7 +4,7 @@
 EAPI="7"
 SLOT="0"
 
-KEYWORDS="amd64"
+KEYWORDS="amd64 arm64"
 RESTRICT="mirror"
 
 USE_DOTNET="net45"
@@ -25,7 +25,7 @@ SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${NAME}-${PV}.tar.gz
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="C# compiler with rich code analysis APIs"
-LICENSE="Apache2.0" # https://github.com/dotnet/roslyn/blob/master/License.txt
+LICENSE="Apache-2.0" # https://github.com/dotnet/roslyn/blob/master/License.txt
 
 IUSE="$(dotnet_expand ${USE_DOTNET}) $(msbuild_expand ${USE_MSBUILD}) +msbuild +gac +mskey +debug developer"
 

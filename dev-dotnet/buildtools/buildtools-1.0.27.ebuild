@@ -3,7 +3,7 @@
 
 EAPI="7"
 RESTRICT="mirror"
-KEYWORDS="amd64"
+KEYWORDS="amd64 arm64"
 SLOT="0"
 
 USE_DOTNET="net45"

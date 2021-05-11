@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="7"
-KEYWORDS="amd64"
+KEYWORDS="amd64 arm64"
 RESTRICT="mirror test"
 
 SLOT="0"

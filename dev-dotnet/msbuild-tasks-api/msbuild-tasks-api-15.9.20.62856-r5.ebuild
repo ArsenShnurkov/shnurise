@@ -3,7 +3,7 @@
 
 EAPI="7"
 RESTRICT="mirror"
-KEYWORDS="amd64"
+KEYWORDS="amd64 arm64"
 
 # see docs:
 # https://github.com/gentoo/gentoo/commit/59a1a0dda7300177a263eb1de347da493f09fdee

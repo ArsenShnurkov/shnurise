@@ -3,7 +3,7 @@
 
 EAPI="7"
 
-KEYWORDS="amd64"
+KEYWORDS="amd64 arm64"
 RESTRICT="mirror"
 
 SLOT="13"
@@ -21,7 +21,7 @@ SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="create, extract, or update zip files with C# (=DotNetZip+SemVer)"
-LICENSE="MS-PL" # https://github.com/haf/DotNetZip.Semverd/blob/master/LICENSE
+LICENSE="Ms-PL" # https://github.com/haf/DotNetZip.Semverd/blob/master/LICENSE
 
 COMMON_DEPEND="
 "

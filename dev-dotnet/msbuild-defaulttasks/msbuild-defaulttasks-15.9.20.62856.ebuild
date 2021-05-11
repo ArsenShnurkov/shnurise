@@ -3,7 +3,7 @@
 
 EAPI="7"
 RESTRICT="mirror"
-KEYWORDS="amd64"
+KEYWORDS="amd64 arm64"
 
 SLOT="$(ver_cut 1-2 ${PV})"
 SLOT_OF_API="${SLOT}" # slot for ebuild with API of msbuild
