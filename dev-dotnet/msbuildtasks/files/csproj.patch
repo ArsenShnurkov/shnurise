@@ -21,7 +21,7 @@
 -      <HintPath>..\packages\DotNetZip.1.10.1\lib\net20\DotNetZip.dll</HintPath>
 -      <Private>True</Private>
 +    <Reference Include="Ionic.Zip.Reduced">
-+      <HintPath>/usr/share/dev-dotnet/dotnetzip-semverd-1/Ionic.Zip.Reduced.dll</HintPath>
++      <HintPath>/usr/share/mono/assemblies/dotnetzip-semverd-13/Ionic.Zip.Reduced.dll</HintPath>
      </Reference>
      <Reference Include="Microsoft.Build.Framework" />
      <Reference Include="Microsoft.Build.Utilities.v4.0" />
