@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="7"
@@ -24,7 +24,7 @@ LICENSE="MIT" # https://github.com/dotnet/buildtools/blob/master/LICENSE
 #	dev-dotnet/newtonsoft-json
 COMMON_DEPEND=">=dev-lang/mono-5.2.0.196
 	dev-dotnet/msbuild-tasks-api
-	=dev-dotnet/newtonsoft-json-6.0.8-r1[pkg-config]
+	>=dev-dotnet/newtonsoft-json-6.0.8-r2[pkg-config]
 "
 RDEPEND="${COMMON_DEPEND}
 "
