@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="7"
@@ -24,7 +24,7 @@ HOMEPAGE="https://github.com/JamesNK/${NAME}"
 
 EGIT_COMMIT="1497343173a181d678b4c9bbf60250a12f783f1c"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${P}.zip
-	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+	gac? ( https://github.com/mono/mono/raw/main/mcs/class/mono.snk )"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="Json.NET is a popular high-performance JSON framework for .NET"
@@ -42,8 +42,6 @@ PDEPEND="test? ( dev-dotnet/newtonsoft-json-test )
 "
 # pkg-config? ( dev-dotnet/newtonsoft-json-testdev-pkg-config )
 
-METAFILETOBUILD=Src/Newtonsoft.Json/Newtonsoft.Json.csproj
-
 src_prepare() {
 	if use gac; then
 		find . -iname "*.csproj" -print0 | xargs -0 \
@@ -58,22 +56,26 @@ src_prepare() {
 	default
 }
 
-KEY2="${DISTDIR}/mono.snk"
+final_dll() {
+	echo "${S}/Src/Newtonsoft.Json/bin/$(usedebug_tostring)/Net45/Newtonsoft.Json.dll"
+}
 
 src_compile() {
-	exbuild /p:SignAssembly=true "/p:AssemblyOriginatorKeyFile=${KEY2}" "${METAFILETOBUILD}"
+	local METAFILETOBUILD=Src/Newtonsoft.Json/Newtonsoft.Json.csproj
 
-	local FINAL_DLL=${S}/Src/Newtonsoft.Json/bin/$(usedebug_tostring)/Net45/Newtonsoft.Json.dll
-
-	sn -R "${FINAL_DLL}" "${KEY2}" || die
+	if use gac; then
+		local KEY2="${DISTDIR}/mono.snk"
+		exbuild /p:SignAssembly=true "/p:AssemblyOriginatorKeyFile=${KEY2}" "${METAFILETOBUILD}"
+		sn -R "$(final_dll)" "${KEY2}" || die
+	else
+		exbuild "${METAFILETOBUILD}"
+	fi
 }
 
 src_install() {
-	local FINAL_DLL=${S}/Src/Newtonsoft.Json/bin/$(usedebug_tostring)/Net45/Newtonsoft.Json.dll
-
 	if use gac; then
-		egacinstall "${FINAL_DLL}"
+		egacinstall "$(final_dll)"
 	fi
 
-	elib  "$(anycpu_current_assembly_dir)" "${FINAL_DLL}"
+	elib  "$(anycpu_current_assembly_dir)" "$(final_dll)"
 }
