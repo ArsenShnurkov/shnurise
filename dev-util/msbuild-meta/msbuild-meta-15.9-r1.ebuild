@@ -1,8 +1,8 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="7"
-KEYWORDS="amd64"
+KEYWORDS="amd64 arm64"
 
 SLOT="0"
 
@@ -10,7 +10,7 @@ SLOT="0"
 # inherit msbuild-framework
 # ?DEPEND=" ... dev-dotnet/gentoo-net-sdk[$(msbuild_expand msbuild15-9)]"
 # will say
-# (masked by: invalid: DEPEND: Invalid atom (dev-dotnet/gentoo-net-sdk[), token 3, 
+# (masked by: invalid: DEPEND: Invalid atom (dev-dotnet/gentoo-net-sdk[), token 3,
 # invalid: RDEPEND: Invalid atom (dev-dotnet/gentoo-net-sdk[), token 3)
 #
 # that's why the full name is used for USE-flag "msbuild_targets_msbuild15-9"
