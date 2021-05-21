@@ -25,7 +25,7 @@ GITHUB_PROJECTNAME="msbuild"
 EGIT_COMMIT="88f5fadfbef809b7ed2689f72319b7d91792460e"
 SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EGIT_COMMIT}.tar.gz -> ${GITHUB_PROJECTNAME}-${GITHUB_ACCOUNT}-${PV}.tar.gz
 	mskey? ( https://github.com/Microsoft/msbuild/raw/main/src/MSFT.snk )
-	!mskey? ( https://github.com/mono/mono/raw/main/mcs/class/mono.snk )
+	https://github.com/mono/mono/raw/main/mcs/class/mono.snk
 	"
 S="${WORKDIR}/${GITHUB_PROJECTNAME}-${EGIT_COMMIT}"
 
@@ -69,9 +69,13 @@ src_compile() {
 	fi
 
 	exbuild_raw /v:detailed /p:MonoBuild=true /p:TargetFrameworkVersion=v4.6 "/p:Configuration=$(usedebug_tostring)" /p:${SARGS} "/p:PublicKeyToken=$(token)" "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:DelaySign=true" "/p:AssemblyOriginatorKeyFile=$(token_key)" "${S}/${FW_DIR}/mono-${FW_PROJ}.csproj"
-	sn -R "${S}/${FW_DIR}/bin/$(usedebug_tostring)/${FW_PROJ}.dll" "$(signing_key)" || die
+	if use gac; then
+		sn -R "${S}/${FW_DIR}/bin/$(usedebug_tostring)/${FW_PROJ}.dll" "$(signing_key)" || die
+	fi
 	exbuild_raw /v:detailed /p:MonoBuild=true /p:TargetFrameworkVersion=v4.6 "/p:Configuration=$(usedebug_tostring)" /p:${SARGS} "/p:PublicKeyToken=$(token)" "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:DelaySign=true" "/p:AssemblyOriginatorKeyFile=$(token_key)" "${S}/${UT_DIR}/mono-${UT_PROJ}.csproj"
-	sn -R "${S}/${UT_DIR}/bin/$(usedebug_tostring)/${UT_PROJ}.dll" "$(signing_key)" || die
+	if use gac then;
+		sn -R "${S}/${UT_DIR}/bin/$(usedebug_tostring)/${UT_PROJ}.dll" "$(signing_key)" || die
+	fi
 }
 
 src_install() {
