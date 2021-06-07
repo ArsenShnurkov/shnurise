@@ -1,6 +1,5 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2021 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 # @ECLASS: go-mono.eclass
 # @MAINTAINER:
@@ -9,7 +8,7 @@
 # @DESCRIPTION:
 # Common functionality needed by all go-mono.org apps.
 
-inherit versionator mono
+inherit mono
 
 PRE_URI="http://mono.ximian.com/monobuild/preview/sources"
 
@@ -39,7 +38,7 @@ elif [[ "${PV%.9999}" != "${PV}" ]]
 then
 	GO_MONO_P=${P}
 	EGIT_REPO_URI="https://github.com/mono/${GIT_PN}.git"
-	EGIT_BRANCH="mono-$(get_version_component_range 1)-$(get_version_component_range 2)${GO_MONO_SUB_BRANCH}"
+	EGIT_BRANCH="mono-$(ver_cut 1)-$(ver_cut 2)${GO_MONO_SUB_BRANCH}"
 	SRC_URI=""
 	inherit autotools git
 else
@@ -50,10 +49,9 @@ fi
 
 NO_MONO_DEPEND=( "dev-lang/mono" "dev-dotnet/libgdiplus" "dev-dotnet/gluezilla" )
 
-if [[ "$(get_version_component_range 3)" != "9999" ]]
+if [[ "${PV%.9999}" != "${PV}" ||  "${PV}" == "9999" ]]
 then
-	GO_MONO_REL_PV="$(get_version_component_range 1-2)"
-
+	GO_MONO_REL_PV="$(ver_cut 1-2)"
 else
 	GO_MONO_REL_PV="${PV}"
 fi

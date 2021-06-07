@@ -1,19 +1,19 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=7
 
 # Watch the order of these!
 inherit autotools apache-module eutils go-mono mono-env
 
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 arm64"
 
 DESCRIPTION="Apache module for Mono"
 HOMEPAGE="https://www.mono-project.com/Mod_mono"
 LICENSE="Apache-2.0"
 SLOT="0"
 IUSE="debug"
-EGIT_COMMIT="33498058e334349a9483f51c9d571d05af2760ed"
+EGIT_COMMIT="96a6b55d69da2807ed32a362e0d9b6f19e2a8a30"
 SRC_URI="https://github.com/mono/mod_mono/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
 RESTRICT="mirror"
 S="${WORKDIR}/mod_mono-${EGIT_COMMIT}"
