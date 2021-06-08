@@ -3,15 +3,26 @@
 
 EAPI=7
 
+KEYWORDS="amd64 arm64"
+
+SLOT="0"
+
 # Watch the order of these!
 inherit autotools apache-module eutils go-mono mono-env
 
-KEYWORDS="amd64 arm64"
+# APACHE_MODULES_CONFDIR 	= /etc/apache2/modules.d/
+# https://wiki.gentoo.org/wiki/Project:Apache/Developer_Documentation
+# if use apache2; then
+#        keepdir "${APACHE_MODULES_CONFDIR}"
+# fi
+# APACHE_MODULES_CONFDIR is defined in depend.apache.eclass
+# inherit depend.apache
+# https://wiki.gentoo.org/wiki/Project:Apache/depend.apache.eclass_Documentation
+inherit depend.apache
 
 DESCRIPTION="Apache module for Mono"
 HOMEPAGE="https://www.mono-project.com/Mod_mono"
 LICENSE="Apache-2.0"
-SLOT="0"
 IUSE="debug"
 EGIT_COMMIT="96a6b55d69da2807ed32a362e0d9b6f19e2a8a30"
 SRC_URI="https://github.com/mono/mod_mono/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
