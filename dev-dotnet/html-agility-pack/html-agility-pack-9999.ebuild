@@ -34,11 +34,10 @@ else
 	fi
 fi
 
-einfo "$${SLOT}: ${SLOT}"
+einfo "\${SLOT}: ${SLOT}"
 
 if [[ ${PV} == 9999 ]] ; then
 	inherit git-r3
-#	einfo "inherit git-r3"
 else
 	RESTRICT=mirror
 	if [ -z ${EGIT_COMMIT+x} ] ; then
@@ -56,7 +55,6 @@ else
 	fi
 fi
 
-
 HOMEPAGE="https://html-agility-pack.net/"
 DESCRIPTION="Html Agility Pack is a C# parser for HTML, supports plain XPATH and XSLT"
 LICENSE="MIT"
@@ -71,7 +69,7 @@ src_unpack() {
 		git-r3_fetch
 		git-r3_checkout
 	fi
-	if [ -d ${S} ] ; then
+	if [ -d "${S}" ] ; then
 		einfo "Directory ${S} exists"
 	else
 		einfo "Directory ""${S}"" doesn't exist"
