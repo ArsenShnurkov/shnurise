@@ -11,13 +11,14 @@ LICENSE="GPL-2"
 DESCRIPTION="msbuild eselect module"
 HOMEPAGE="https://github.com/ArsenShnurkov/shnurise"
 
+inherit vcs-snapshot
+
 GITHUB_ACCOUNT="ArsenShnurkov"
 GITHUB_PROJECTNAME="eselect-msbuild"
 EGIT_COMMIT="800873226c63d478dfef87c411f507c1753abfcd"
 SRC_URI="https://codeload.github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/tar.gz/${EGIT_COMMIT} -> ${PN}-${PV}.tar.gz
 	"
-
-S="${WORKDIR}/${GITHUB_PROJECTNAME}-${EGIT_COMMIT}"
+# S="${WORKDIR}/${GITHUB_PROJECTNAME}-${EGIT_COMMIT}"
 
 RDEPEND="app-admin/eselect"
 
