@@ -28,20 +28,23 @@ LICENSE="MIT" # https://github.com/dotnet/roslyn/blob/main/License.txt
 
 RDEPEND="
     app-admin/eselect
-    app-admin/eselect-roslyn
+    app-eselect/eselect-roslyn
     "
 
 src_prepare() {
 	eapply_user
 }
 
+INSTALL_PATH="/usr/x86_64-msbin-roslyn/${PV}"
 
 src_install() {
-	local INSTALL_PATH="/usr/x86_64-msbin-roslyn/"
 	insinto ${INSTALL_PATH}
 	doins Microsoft.Net.Compilers/${PV}/*
+}
 
+pkg_postinst() {
 	if use symlink; then
-		eselect roslyn "${PN}-${PV}" || die
+		# eselect roslyn set /usr/x86_64-msbin-roslyn/csc.exe
+		eselect roslyn set "${INSTALL_PATH}/csc.exe" || die
 	fi
 }
