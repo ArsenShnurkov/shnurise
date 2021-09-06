@@ -15,10 +15,9 @@ inherit vcs-snapshot
 
 GITHUB_ACCOUNT="ArsenShnurkov"
 GITHUB_PROJECTNAME="eselect-msbuild"
-EGIT_COMMIT="3c0678e138cba8b937e52c50fff7bb6b415492ad"
+EGIT_COMMIT="3fb3ef3d42071887016a405d57681b78d955be4d"
 SRC_URI="https://codeload.github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/tar.gz/${EGIT_COMMIT} -> ${PN}-${PV}.tar.gz
 	"
-# S="${WORKDIR}/${GITHUB_PROJECTNAME}-${EGIT_COMMIT}"
 
 RDEPEND="app-admin/eselect"
 
