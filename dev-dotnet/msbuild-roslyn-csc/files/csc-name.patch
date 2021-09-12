@@ -1,0 +1,12 @@
+diff -ur a/src/Compilers/Core/MSBuildTask/Csc.cs b/src/Compilers/Core/MSBuildTask/Csc.cs
+--- a/src/Compilers/Core/MSBuildTask/Csc.cs	2017-07-28 17:55:10.000000000 +0300
++++ b/src/Compilers/Core/MSBuildTask/Csc.cs	2021-09-08 14:13:48.648771584 +0300
+@@ -169,7 +169,7 @@
+         {
+             get
+             {
+-                return "csc.exe";
++                return "csc";
+             }
+         }
+ 
