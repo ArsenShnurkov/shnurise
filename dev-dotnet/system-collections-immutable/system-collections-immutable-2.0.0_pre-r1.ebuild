@@ -67,5 +67,6 @@ src_install() {
 	fi
 
 	egacinstall "${PROJ1_DIR}/bin/${CONFIGURATION}/${PROJ1}.dll"
-	einstall_pc_file "System.Collections.Immutable" "${PV}" '${libdir}'"/mono/${PN}/${PROJ1}.dll"
+	# einstall_pc_file "System.Collections.Immutable" "${PV}" '${libdir}'"/mono/${PN}/${PROJ1}.dll"
+	einstall_pc_file "System.Collections.Immutable" "${PV}" '/usr/lib/mono/${PN}/${PROJ1}.dll"
 }

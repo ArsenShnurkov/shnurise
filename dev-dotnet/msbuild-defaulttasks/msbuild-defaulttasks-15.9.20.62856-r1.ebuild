@@ -11,12 +11,13 @@ SLOT_OF_API="${SLOT}" # slot for ebuild with API of msbuild
 VER="${SLOT_OF_API}.0.0" # version of resulting .dll files in GAC
 
 USE_DOTNET="net46"
-IUSE="+${USE_DOTNET} +gac +mskey debug developer"
+IUSE="+${USE_DOTNET} debug developer"
 MSBUILD_TARGET="msbuild${SLOT/./-}"
 
 # msbuild-framework.eclass is inherited to get the access to the locations 
 # $(MSBuildBinPath) and $(MSBuildSdksPath)
 inherit msbuild-framework xbuild gac
+inherit mono-pkg-config
 
 GITHUB_ACCOUNT="Microsoft"
 GITHUB_PROJECTNAME="msbuild"
@@ -46,10 +47,6 @@ DEPEND="${COMMON_DEPEND}
 
 PROJ=Microsoft.Build.Tasks.Core
 PROJ_DIR=src/Tasks
-
-function output_filename ( ) {
-	echo "${S}/${PROJ_DIR}/bin/$(usedebug_tostring)/${PROJ}.dll"
-}
 
 src_prepare() {
 	cp "${FILESDIR}/AV.cs" "${S}/${PROJ_DIR}" || die
@@ -314,6 +311,7 @@ ZipDirectory.cs
 Interop.cs
 SdkToolsPathUtility.cs
 system.design/stronglytypedresourcebuilder.cs
+System.Design.cs
 )
 #XamlTaskFactory/XamlTaskFactory.cs
 
@@ -384,12 +382,16 @@ src_compile() {
 	ecsc $(references) $(defines "${DEFINES[@]}") /unsafe $(csharp_sources AppConfig) $(csharp_sources ../Shared/FileSystem) $(csharp_sources ResourceHandling)  ${SOURCE_FILES[*]}  $(output_dll ${PROJ})
 }
 
+function output_filename ( ) {
+	echo "${WORKDIR}/bin/$(usedebug_tostring)/${PROJ}.dll"
+}
+
 src_install() {
 	insinto "$(MSBuildBinPath)"
 	doins "$(output_filename)"
 	einstall_pc_file "Microsoft.Build.Tasks" "15.9" "$(MSBuildBinPath)/${PROJ}.dll"
 
-	egacinstall "$(output_filename)"
+#	egacinstall "$(output_filename)"
 
 	insinto "$(MSBuildToolsPath)"
 	doins "${FILESDIR}/${SLOT}/Microsoft.Common.tasks"

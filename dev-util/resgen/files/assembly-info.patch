@@ -1,0 +1,15 @@
+--- a/mcs/tools/resgen/Assembly/AssemblyInfo.cs
++++ b/mcs/tools/resgen/Assembly/AssemblyInfo.cs
+@@ -16,12 +16,6 @@
+ 
+ // General Information about the system assembly
+ 
+-[assembly: AssemblyVersion (Consts.FxVersion)]
+-[assembly: SatelliteContractVersion (Consts.FxVersion)]
+-
+-[assembly: AssemblyInformationalVersion(Consts.FxFileVersion)]
+-	[assembly: AssemblyFileVersion(Consts.FxFileVersion)]
+-
+ [assembly: AssemblyTitle("ResGen.exe")]
+ [assembly: AssemblyDescription("ResGen.exe")]
+ [assembly: AssemblyConfiguration("Development version")]
