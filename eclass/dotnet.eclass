@@ -277,6 +277,13 @@ function output_exe() {
 	echo "/target:${OUTPUT_TYPE}" "/out:${OUTPUT_NAME}"
 }
 
+# @FUNCTION: eresgen
+# @DESCRIPTION: wraps call to Resource converter, hides it's location and contains die call if failed
+function eresgen() {
+	einfo /usr/bin/resgen $@
+	/usr/bin/resgen $@ || die "Resource conversion failed"
+}
+
 # @FUNCTION: ecsc
 # @DESCRIPTION: wraps call to C# compiler, hides it's location and contains die call if failed
 function ecsc() {
