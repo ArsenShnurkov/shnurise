@@ -10,11 +10,12 @@ RESTRICT="mirror"
 USE_DOTNET="net45"
 USE_MSBUILD="msbuild15-9"
 
-# inherit directive is placed before IUSE line because of dotnet_expand and msbuild_expand functions
-
-inherit msbuild-framework
-inherit xbuild gac
 inherit vcs-snapshot
+
+# inherit directives are placed before IUSE line because of dotnet_expand and msbuild_expand functions
+
+inherit dotnet
+inherit msbuild-framework
 
 IUSE="$(dotnet_expand ${USE_DOTNET}) $(msbuild_expand ${USE_MSBUILD}) +msbuild +debug developer"
 
@@ -54,7 +55,7 @@ src_prepare() {
 
 src_resources() {
 	local OUTNAME=""
-	OUTNAME=ErrorString.resources
+	OUTNAME=Microsoft.CodeAnalysis.BuildTasks.ErrorString.resources
 	eresgen "ErrorString.resx" "${OUTNAME}"
 	echo -n ' -resource:"'${OUTNAME}'" '
 }
@@ -118,9 +119,14 @@ src_install_one_target()
 	doins "${S}/src/Compilers/Core/MSBuildTask/Microsoft.CSharp.Core.targets"
 	doins "${S}/src/Compilers/Core/MSBuildTask/Microsoft.VisualBasic.Core.targets"
 	doins "${OUTPUT_FILENAME}"
-	if use gac; then
-		egacinstall "${OUTPUT_FILENAME}"
-	fi
+
+	# Create a symlink to the target specified as the first parameter, at the path specified by the second parameter.
+	# Note that the target is interpreted verbatim; it needs to either specify a relative path or an absolute path including ${EPREFIX}.
+	dosym "${EPREFIX}/usr/bin/csc" "$(RoslynTargetsPath)/csc"
+
+#	if use gac; then
+#		egacinstall "${OUTPUT_FILENAME}"
+#	fi
 	return 0;
 }
 
