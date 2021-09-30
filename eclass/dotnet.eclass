@@ -281,7 +281,7 @@ function output_exe() {
 # @DESCRIPTION: wraps call to Resource converter, hides it's location and contains die call if failed
 function eresgen() {
 	einfo /usr/bin/resgen $@
-	/usr/bin/resgen $@ || die "Resource conversion failed"
+	/usr/bin/resgen $@ >/dev/null || die "Resource conversion failed"
 }
 
 # @FUNCTION: ecsc

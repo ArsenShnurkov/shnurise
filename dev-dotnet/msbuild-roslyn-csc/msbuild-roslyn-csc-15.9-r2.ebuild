@@ -16,15 +16,12 @@ inherit msbuild-framework
 inherit xbuild gac
 inherit vcs-snapshot
 
-IUSE="$(dotnet_expand ${USE_DOTNET}) $(msbuild_expand ${USE_MSBUILD}) +msbuild +gac +mskey +debug developer"
+IUSE="$(dotnet_expand ${USE_DOTNET}) $(msbuild_expand ${USE_MSBUILD}) +msbuild +debug developer"
 
 NAME="roslyn"
 HOMEPAGE="https://github.com/dotnet/${NAME}"
 EGIT_COMMIT="ec1cde8b77c7bca654888681037f55aa0e62dd19"
-SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${NAME}-${PV}.tar.gz
-	mskey? ( https://github.com/Microsoft/msbuild/raw/master/src/MSFT.snk )
-	https://github.com/mono/mono/raw/master/mcs/class/mono.snk
-"
+SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${NAME}-${PV}.tar.gz"
 
 S="${WORKDIR}/roslyn-${PV}"
 
@@ -55,9 +52,12 @@ src_prepare() {
 	eapply_user
 }
 
-RESOURCES=(
-"ErrorString.resx"
-)
+src_resources() {
+	local OUTNAME=""
+	OUTNAME=ErrorString.resources
+	eresgen "ErrorString.resx" "${OUTNAME}"
+	echo -n ' -resource:"'${OUTNAME}'" '
+}
 
 SOURCES=(
 "../../Shared/BuildServerConnection.cs"
@@ -92,17 +92,28 @@ SOURCES=(
 "Vbc.cs"
 )
 
+src_references() {
+ echo -n " $(reference_dependency Microsoft.Build.Framework-15.9) "
+ echo -n " $(reference_dependency Microsoft.Build.Tasks-15.9) "
+}
+
 src_compile_one_target()
 {
 	cd "${S}/src/Compilers/Core/MSBuildTask" || die
-	# removed reference to $(reference_dependency Microsoft.Build.Tasks-15.9) 
-	ecsc $(reference_dependency Microsoft.Build.Framework-15.9) "${SOURCES[@]}" $(output_dll "${MSBUILD_TARGET}/Microsoft.Build.Tasks.CodeAnalysis")
+	mkdir -p "$(bin_dir)/${MSBUILD_TARGET}" || die
+
+	local RESOURCES="$(src_resources)"
+	einfo RESOURCES="${RESOURCES}"
+	local REFERENCES="$(src_references)"
+	einfo REFERENCES="${REFERENCES}"
+	ecsc ${RESOURCES} ${REFERENCES} "${SOURCES[@]}" $(output_dll "${MSBUILD_TARGET}/Microsoft.Build.Tasks.CodeAnalysis")
+
 	return 0;
 }
 
 src_install_one_target()
 {
-	local OUTPUT_FILENAME="${S}/src/Compilers/Core/MSBuildTask/bin/$(usedebug_tostring)/${MSBUILD_TARGET}/Microsoft.Build.Tasks.CodeAnalysis.dll"
+	local OUTPUT_FILENAME="$(bin_dir)/${MSBUILD_TARGET}/Microsoft.Build.Tasks.CodeAnalysis.dll"
 	insinto "$(RoslynTargetsPath)"
 	doins "${S}/src/Compilers/Core/MSBuildTask/Microsoft.CSharp.Core.targets"
 	doins "${S}/src/Compilers/Core/MSBuildTask/Microsoft.VisualBasic.Core.targets"
