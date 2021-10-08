@@ -1,9 +1,9 @@
-# Copyright 1999-2019 Gentoo Foundation
+# Copyright 1999-2021 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI="7"
 
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 ~arm64"
 RESTRICT="mirror"
 
 # debug = debug configuration (symbols and defines for debugging)
@@ -13,9 +13,13 @@ RESTRICT="mirror"
 # gac = install into gac
 # pkg-config = register in pkg-config database
 USE_DOTNET="net45"
-IUSE="${USE_DOTNET} +gac debug developer test +pkg-config"
+IUSE="${USE_DOTNET} +gac +pkg-config debug developer test symlink"
 
-inherit msbuild mono-pkg-config gac machine
+inherit msbuild mono-pkg-config
+
+# no need to inherit "gac", because it is inherited from "machine"
+inherit gac
+# inherit machine
 
 NAME="npgsql"
 NUSPEC_ID="${NAME}"
@@ -37,7 +41,7 @@ COMMON_DEPENDENCIES="|| ( >=dev-lang/mono-4.2 <dev-lang/mono-9999 )
 RDEPEND="${COMMON_DEPENDENCIES}
 "
 DEPEND="${COMMON_DEPENDENCIES}
-	dev-util/nunit2
+	test? ( dev-util/nunit2 )
 "
 
 PROJECT1_PATH=src/Npgsql
@@ -47,33 +51,16 @@ PROJECT1_OUT=Npgsql
 NPGSQL_CSPROJ=src/Npgsql/Npgsql.csproj
 METAFILETOBUILD=${NPGSQL_CSPROJ}
 
-src_unpack() {
-	# Installing 'NLog 3.2.0.0'.
-	# Installing 'AsyncRewriter 0.6.0'.
-	# Installing 'EntityFramework 5.0.0'.
-	# Installing 'EntityFramework 6.1.3'.
-	# Installing 'NUnit 2.6.4'.
-	enuget_download_rogue_binary "NLog" "3.2.0.0"
-	enuget_download_rogue_binary "AsyncRewriter" "0.6.0"
-	enuget_download_rogue_binary "EntityFramework" "5.0.0"
-	enuget_download_rogue_binary "EntityFramework" "6.1.3"
-	default
-}
-
 src_prepare() {
 	default
 	sed "s/\$(OutputType)/Library/; s/\$(AssemblyName)/${PROJECT1_OUT}/" "${FILESDIR}/template.csproj" > "${S}/${PROJECT1_PATH}/${PROJECT1_NAME}.csproj" || die
 }
 
 src_compile() {
-	emsbuild /p:SignAssembly=true "/p:AssemblyOriginatorKeyFile=${DISTDIR}/mono.snk" "${METAFILETOBUILD}"
+	emsbuild  /p:DefineConstants=NET451 /p:SignAssembly=true "/p:AssemblyOriginatorKeyFile=${DISTDIR}/mono.snk" "${METAFILETOBUILD}"
 	if use test; then
 		exbuild /p:SignAssembly=true "/p:AssemblyOriginatorKeyFile=${DISTDIR}/mono.snk" "test/Npgsql.Tests/Npgsql.Tests.csproj"
 	fi
-}
-
-src_test() {
-	default
 }
 
 src_install() {
@@ -88,11 +75,11 @@ src_install() {
 pkg_postinst()
 {
 	egacadd "${PREFIX}/usr/lib/mono/${EBUILD_FRAMEWORK}/Npgsql.dll"
-	emachineadd "Npgsql" "Npgsql Data Provider" "${PREFIX}/usr/lib/mono/${EBUILD_FRAMEWORK}/Npgsql.dll"
+#	emachineadd "Npgsql" "Npgsql Data Provider" "${PREFIX}/usr/lib/mono/${EBUILD_FRAMEWORK}/Npgsql.dll"
 }
 
 pkg_prerm()
 {
 	emachinedel "Npgsql" "Npgsql Data Provider" "${PREFIX}/usr/lib/mono/${EBUILD_FRAMEWORK}/Npgsql.dll"
-	egacdel "Npgsql"
+#	egacdel "Npgsql"
 }

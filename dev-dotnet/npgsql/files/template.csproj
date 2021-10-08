@@ -3,9 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <!-- >= 4.7 because of type 'System.Runtime.CompilerServices.TupleElementNamesAttribute' -->
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
-    <LangVersion>7.2</LangVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <AssemblyName>$(AssemblyName)</AssemblyName>
     <OutputType>$(OutputType)</OutputType>
     <RootNamespace>$(RootNamespace)</RootNamespace>
@@ -28,41 +26,39 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Runtime" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Runtime">
+        <HintPath>/usr/lib/mono/4.8-api/Facades/System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+        <HintPath>/usr/lib/mono/4.5/System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Data.Common" />
+    <Reference Include="System.Data">
+        <HintPath>/usr/lib/mono/4.8-api/System.Data.dll</HintPath>
+    </Reference> 
+    <Reference Include="System.Data.Common">
+        <HintPath>/usr/lib/mono/4.8-api/Facades/System.Data.Common.dll</HintPath>
+    </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Threading.Tasks" />
-    <Reference Include="System.Threading.Tasks.Extensions" />
+    <Reference Include="System.Threading.Tasks">
+        <HintPath>/usr/lib/mono/4.5/System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Transactions" Pack="false" />
     <Reference Include="System.DirectoryServices" Pack="false" />
-    <Reference Include="System.ValueTuple" />
-    <!-- Reference -->
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="**/*.cs" Exclude="AssemblyVersion.cs" />
+    <Reference Include="System.ValueTuple">
+        <HintPath>/usr/lib/mono/4.8-api/Facades/System.ValueTuple.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="NpgsqlMetaData.xml" />
     <EmbeddedResource Include="**/*.resx" />
   </ItemGroup>
+
   <ItemGroup>
-    <!-- ProjectReference -->
+    <Compile Include="**/*.cs" />
   </ItemGroup>
+
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets" />
-  <Target Name="BeforeBuild">
-    <PropertyGroup Condition=" '$(VersionNumber)' == '' ">
-      <VersionNumber>4.0.4.0</VersionNumber>
-    </PropertyGroup>
-    <AssemblyInfo CodeLanguage="C#"
-      OutputFile="$(MSBuildThisFileDirectory)/AssemblyVersion.cs" 
-      AssemblyVersion="$(VersionNumber)" 
-      AssemblyFileVersion="$(VersionNumber)"
-    />
-    <CreateItem Include="$(MSBuildThisFileDirectory)/AssemblyVersion.cs">
-      <Output TaskParameter="Include" ItemName="Compile"/>
-    </CreateItem>
-  </Target>
 </Project>

@@ -1,9 +1,9 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="7" # valid EAPI assignment must occur on or before line: 5
 
-KEYWORDS="amd64 ~x86 ~ppc"
+KEYWORDS="amd64 ~arm64"
 RESTRICT+=" mirror test"
 
 SLOT="0"
@@ -33,11 +33,9 @@ inherit vcs-snapshot
 
 GITHUB_ACCOUNT="sshnet"
 GITHUB_REPONAME="SSH.NET"
-EGIT_COMMIT="cefdc203d98cd890815e029bc759bc43ec5a9643"
-EGIT_BRANCH="develop"
+EGIT_COMMIT="acda1431d23a9196377464e6f48056dfd42cc867"
+# EGIT_BRANCH="master"
 SRC_URI="https://codeload.github.com/${GITHUB_ACCOUNT}/${GITHUB_REPONAME}/tar.gz/${EGIT_COMMIT} -> ${P}.tar.gz"
-#	https://github.com/mono/mono/raw/master/mcs/class/ecma.pub
-#	https://github.com/mono/mono/raw/master/mcs/class/mono.snk
 
 inherit gentoo-net-sdk
 

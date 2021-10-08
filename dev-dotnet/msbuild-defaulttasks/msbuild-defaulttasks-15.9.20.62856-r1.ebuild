@@ -344,6 +344,26 @@ references() {
 #		$(reference_framework System.Xaml) \
 }
 
+AssemblyName() {
+	echo -n "${PROJ}"
+}
+
+src_resources() {
+	local OUTNAME=""
+	# 1
+	OUTNAME="$(AssemblyName).Strings.resources"
+	eresgen "Resources/Strings.resx" "${OUTNAME}"
+	echo -n ' -resource:"'${OUTNAME}'" '
+	# 2
+	OUTNAME="$(AssemblyName).Strings.shared.resources"
+	eresgen "../Shared/Resources/Strings.shared.resx" "${OUTNAME}"
+	echo -n ' -resource:"'${OUTNAME}'" '
+	# 3
+	OUTNAME="$(AssemblyName).Strings.ManifestUtilities.resources"
+	eresgen "ManifestUtil/Resources/Strings.ManifestUtilities.resx" "${OUTNAME}"
+	echo -n ' -resource:"'${OUTNAME}'" '
+}
+
 # -define:<symbol list>         Define conditional compilation symbol(s) (Short form: -d)
 defines() {
 	for var in "$@"
@@ -379,7 +399,10 @@ src_compile() {
 
 	cd "${S}/${PROJ_DIR}" || die
 	mkdir -p $(bin_dir) || die
-	ecsc $(references) $(defines "${DEFINES[@]}") /unsafe $(csharp_sources AppConfig) $(csharp_sources ../Shared/FileSystem) $(csharp_sources ResourceHandling)  ${SOURCE_FILES[*]}  $(output_dll ${PROJ})
+
+	local RESOURCES="$(src_resources)"
+	einfo RESOURCES="${RESOURCES}"
+	ecsc "${RESOURCES}" $(references) $(defines "${DEFINES[@]}") /unsafe $(csharp_sources AppConfig) $(csharp_sources ../Shared/FileSystem) $(csharp_sources ResourceHandling)  ${SOURCE_FILES[*]}  $(output_dll ${PROJ})
 }
 
 function output_filename ( ) {
