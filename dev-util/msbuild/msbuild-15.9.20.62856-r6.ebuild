@@ -49,14 +49,16 @@ PROJ2=MSBuild
 PROJ2_DIR=src/MSBuild
 
 src_prepare() {
+	REGEX1='s*\$\{SLOT\}*'${SLOT}'*g'
+	sed -E ${REGEX1} "${FILESDIR}/${PV}/MSBuild.exe.config" > "${T}/MSBuild.exe.config" || die
 	einfo "PublicKeyToken=$(token)"
-	REGEX='s/PublicKeyToken=[0-9a-f]+/PublicKeyToken='$(token)'/g'
-	sed -E ${REGEX} "${FILESDIR}/${PV}/mono-${PROJ1}.csproj" > "${S}/${PROJ1_DIR}/mono-${PROJ1}.csproj" || die
-	sed -E ${REGEX} "${FILESDIR}/${PV}/mono-${PROJ2}.csproj" > "${S}/${PROJ2_DIR}/mono-${PROJ2}.csproj" || die
-	sed -E ${REGEX} -i "${S}/src/MSBuild/app.config" || die
-	sed -E ${REGEX} -i ${S}/src/Build/Resources/Constants.cs || die
-	sed -E ${REGEX} -i ${S}/src/Tasks/Microsoft.Common.tasks || die
-	sed -E ${REGEX} -i ${S}/src/Tasks/Microsoft.Common.overridetasks || die
+	REGEX2='s/PublicKeyToken=[0-9a-f]+/PublicKeyToken='$(token)'/g'
+	sed -E ${REGEX2} "${FILESDIR}/${PV}/mono-${PROJ1}.csproj" > "${S}/${PROJ1_DIR}/mono-${PROJ1}.csproj" || die
+	sed -E ${REGEX2} "${FILESDIR}/${PV}/mono-${PROJ2}.csproj" > "${S}/${PROJ2_DIR}/mono-${PROJ2}.csproj" || die
+	sed -E ${REGEX2} -i "${S}/src/MSBuild/app.config" || die
+	sed -E ${REGEX2} -i ${S}/src/Build/Resources/Constants.cs || die
+	sed -E ${REGEX2} -i ${S}/src/Tasks/Microsoft.Common.tasks || die
+	sed -E ${REGEX2} -i ${S}/src/Tasks/Microsoft.Common.overridetasks || die
 	sed "s/15.1./15.9./g" -i "${S}/src/Shared/Constants.cs" || die
 	sed "s/15.1./15.9./g" -i "${S}/src/Tasks/Microsoft.Common.overridetasks" || die
 	eapply_user
@@ -116,7 +118,10 @@ src_install() {
 	einfo "Deploying targets into $(MSBuildBinPath)"
 	insinto "$(MSBuildBinPath)"
 	newins "${PROJ2_DIR}/bin/$(usedebug_tostring)/${PROJ2}.exe" MSBuild.exe
-	doins "${FILESDIR}/${PV}/MSBuild.exe.config"
+
+#	doins "${FILESDIR}/${PV}/MSBuild.exe.config"
+	doins "${T}/MSBuild.exe.config"
+
 	doins "${S}/src/Tasks/Microsoft.CSharp.targets"
 	doins "${S}/src/Tasks/Microsoft.CSharp.CurrentVersion.targets"
 	doins "${S}/src/Tasks/Microsoft.Common.targets"
