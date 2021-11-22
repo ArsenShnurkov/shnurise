@@ -4,7 +4,7 @@
 EAPI="7"
 SLOT="0"
 
-KEYWORDS="amd64 arm64"
+KEYWORDS="amd64 ~arm64"
 RESTRICT="mirror"
 
 USE_DOTNET="net45"
@@ -21,7 +21,7 @@ IUSE="$(dotnet_expand ${USE_DOTNET}) $(msbuild_expand ${USE_MSBUILD}) +msbuild +
 
 NAME="roslyn"
 HOMEPAGE="https://github.com/dotnet/${NAME}"
-EGIT_COMMIT="ec1cde8b77c7bca654888681037f55aa0e62dd19"
+EGIT_COMMIT="c7d6f9fab845ffd943216da465022744e7d35f22"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${NAME}-${PV}.tar.gz"
 
 S="${WORKDIR}/roslyn-${PV}"
@@ -48,8 +48,8 @@ src_prepare() {
 	if ! use msbuild_targets_msbuild15-9 ; then
 		die "USE_MSBUILD is not set"
 	fi
-	eapply "${FILESDIR}/99-CopyRefAssemblyFix.patch"
-	eapply "${FILESDIR}/csc-name.patch"
+#	eapply "${FILESDIR}/99-CopyRefAssemblyFix.patch"
+#	eapply "${FILESDIR}/csc-name.patch"
 	eapply_user
 }
 
@@ -61,19 +61,24 @@ src_resources() {
 }
 
 SOURCES=(
+"../../Shared/NamedPipeUtil.cs"
 "../../Shared/BuildServerConnection.cs"
+"../../Shared/RuntimeHostInfo.cs"
 "../CommandLine/BuildProtocol.cs"
 "../CommandLine/ConsoleUtil.cs"
 "../CommandLine/NativeMethods.cs"
 "../CommandLine/CompilerServerLogger.cs"
-"../Portable/CorLightup.cs"
+"../Portable/CommitHashAttribute.cs"
 "../Portable/InternalUtilities/CommandLineUtilities.cs"
 "../Portable/InternalUtilities/CompilerOptionParseUtilities.cs"
+"../Portable/InternalUtilities/Debug.cs"
 "../Portable/InternalUtilities/IReadOnlySet.cs"
+# "../Portable/InternalUtilities/NullableAttributes.cs"
 "../Portable/InternalUtilities/PlatformInformation.cs"
 "../Portable/InternalUtilities/ReflectionUtilities.cs"
+"../Portable/InternalUtilities/RoslynString.cs"
 "../Portable/InternalUtilities/UnicodeCharacterUtilities.cs"
-"AssemblyResolution.cs"
+"ManagedToolTask.cs"
 "CanonicalError.cs"
 "MvidReader.cs"
 "CopyRefAssembly.cs"
@@ -81,7 +86,6 @@ SOURCES=(
 "CommandLineBuilderExtension.cs"
 "Csc.cs"
 "Csi.cs"
-"ErrorString.Designer.cs"
 "ICompilerOptionsHostObject.cs"
 "ICscHostObject5.cs"
 "InteractiveCompiler.cs"
@@ -91,6 +95,7 @@ SOURCES=(
 "RCWForCurrentContext.cs"
 "Utilities.cs"
 "Vbc.cs"
+"ErrorString.resx.cs"
 )
 
 src_references() {
@@ -107,7 +112,7 @@ src_compile_one_target()
 	einfo RESOURCES="${RESOURCES}"
 	local REFERENCES="$(src_references)"
 	einfo REFERENCES="${REFERENCES}"
-	ecsc ${RESOURCES} ${REFERENCES} "${SOURCES[@]}" $(output_dll "${MSBUILD_TARGET}/Microsoft.Build.Tasks.CodeAnalysis")
+	ecsc ${RESOURCES} ${REFERENCES} /nullable:enable /define:NET472 "${SOURCES[@]}" $(output_dll "${MSBUILD_TARGET}/Microsoft.Build.Tasks.CodeAnalysis")
 
 	return 0;
 }

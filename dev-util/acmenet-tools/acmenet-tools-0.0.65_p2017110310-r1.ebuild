@@ -33,8 +33,16 @@ RDEPEND="${COMMON_DEPEND}
 DEPEND="${COMMON_DEPEND}
 "
 
+src_prepare() {
+	gentoo-net-sdk_src_prepare
+	eapply "${FILESDIR}/references.patch"
+	default
+}
+
 src_compile() {
-	emsbuild "ACME.net.sln"
+#	emsbuild "ACME.net.sln"
+	emsbuild "src/Oocx.Acme/Oocx.Acme.csproj"
+#	emsbuild "src/Oocx.Acme.Console/Oocx.Acme.Console.csproj"
 }
 
 src_install() {

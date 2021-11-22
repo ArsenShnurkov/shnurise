@@ -1,0 +1,12 @@
+--- a/src/Oocx.Acme/Oocx.Acme.csproj
++++ b/src/Oocx.Acme/Oocx.Acme.csproj
+@@ -14,4 +14,7 @@
+   <ItemGroup>
+     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+   </ItemGroup>
+-</Project>
+\ 
++  <ItemGroup>
++    <Reference Include="System.Net.Http" />
++  </ItemGroup>
++</Project>
