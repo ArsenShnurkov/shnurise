@@ -50,6 +50,9 @@ src_prepare() {
 	fi
 #	eapply "${FILESDIR}/99-CopyRefAssemblyFix.patch"
 #	eapply "${FILESDIR}/csc-name.patch"
+	cd ${S}/src/Compilers/Core/MSBuildTask || die
+	eres2cs "ErrorString.resx" "ErrorString.resx.cs" "ErrorString" "Microsoft.CodeAnalysis.BuildTasks"
+	cd ${S} || die
 	eapply_user
 }
 
@@ -96,6 +99,7 @@ SOURCES=(
 "Utilities.cs"
 "Vbc.cs"
 "ErrorString.resx.cs"
+"IAnalyzerConfigFilesHostObject.cs"
 )
 
 src_references() {
@@ -112,7 +116,7 @@ src_compile_one_target()
 	einfo RESOURCES="${RESOURCES}"
 	local REFERENCES="$(src_references)"
 	einfo REFERENCES="${REFERENCES}"
-	ecsc ${RESOURCES} ${REFERENCES} /nullable:enable /define:NET472 "${SOURCES[@]}" $(output_dll "${MSBUILD_TARGET}/Microsoft.Build.Tasks.CodeAnalysis")
+	ecsc ${RESOURCES} ${REFERENCES}  /langversion:9.0 /nullable:annotations /define:NET472 "${SOURCES[@]}" $(output_dll "${MSBUILD_TARGET}/Microsoft.Build.Tasks.CodeAnalysis")
 
 	return 0;
 }

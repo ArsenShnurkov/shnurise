@@ -61,7 +61,7 @@ src_compile() {
 	mkdir -p "$(bin_dir)" || die
 
 	FRAMEWORK_DIR=/usr/lib/mono/4.8-api
-	ecsc $(csharp_sources .)  $(reference_framework ${FRAMEWORK_DIR}/Mono.Options) $(output_exe res2cs)
+	ecsc $(csharp_sources .)  $(reference_framework ${FRAMEWORK_DIR}/Mono.Options) $(reference_framework System.Design) $(output_exe res2cs)
 }
 
 src_install() {

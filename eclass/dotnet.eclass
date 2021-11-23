@@ -284,6 +284,13 @@ function eresgen() {
 	/usr/bin/resgen $@ >/dev/null || die "Resource conversion failed"
 }
 
+# @FUNCTION: eres2cs
+# @DESCRIPTION: wraps call to .cs code generator, hides it's location and contains die call if failed
+function eres2cs() {
+	einfo /usr/bin/res2cs $@
+	/usr/bin/res2cs $@ >/dev/null || die "Constants generation failed"
+}
+
 # @FUNCTION: ecsc
 # @DESCRIPTION: wraps call to C# compiler, hides it's location and contains die call if failed
 function ecsc() {
