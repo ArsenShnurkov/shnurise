@@ -49,7 +49,7 @@ src_prepare() {
 		die "USE_MSBUILD is not set"
 	fi
 #	eapply "${FILESDIR}/99-CopyRefAssemblyFix.patch"
-#	eapply "${FILESDIR}/csc-name.patch"
+	eapply "${FILESDIR}/csc-name.patch"
 	cd ${S}/src/Compilers/Core/MSBuildTask || die
 	eres2cs "ErrorString.resx" "ErrorString.resx.cs" "ErrorString" "Microsoft.CodeAnalysis.BuildTasks"
 	cd ${S} || die
