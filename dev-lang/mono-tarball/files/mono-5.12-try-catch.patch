@@ -22,7 +22,7 @@ diff -ur mono-5.9.0.398/mcs/class/System.Windows.Forms/System.Windows.Forms/Xpla
 -			return Clipboard.Item;
 +				return Clipboard.Item;
 +			}
-+			catch (Exception ex)
++			catch
 +			{
 +				return null;
 +			}
