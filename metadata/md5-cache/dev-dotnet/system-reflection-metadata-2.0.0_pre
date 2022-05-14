@@ -1,14 +1,15 @@
 DEFINED_PHASES=compile install prepare setup
-DEPEND=>=dev-lang/mono-5.2.0.196 dev-dotnet/system-collections-immutable dev-dotnet/buildtools >=dev-dotnet/msbuildtasks-1.5.0.240 dev-lang/mono
+DEPEND=>=dev-lang/mono-5.2.0.196 dev-dotnet/system-collections-immutable[pkg-config] dev-dotnet/buildtools >=dev-dotnet/msbuildtasks-1.5.0.240 dev-lang/mono virtual/pkgconfig
 DESCRIPTION=part of CoreFX
-EAPI=6
+EAPI=7
 HOMEPAGE=https://github.com/dotnet/corefx/tree/master/src/System.Reflection.Metadata
-IUSE=+net45 +gac developer debug doc gac pkg-config net45
-KEYWORDS=~amd64
+INHERIT=gac dotnet xbuild mono-pkg-config
+IUSE=+net45 +gac pkg-config developer debug doc gac pkg-config net45 net45 pkg-config
+KEYWORDS=amd64 arm64
 LICENSE=MIT
-RDEPEND=>=dev-lang/mono-5.2.0.196 dev-dotnet/system-collections-immutable dev-lang/mono
+RDEPEND=>=dev-lang/mono-5.2.0.196 dev-dotnet/system-collections-immutable[pkg-config] dev-lang/mono
 RESTRICT=mirror
 SLOT=0
 SRC_URI=https://github.com/dotnet/corefx/archive/247068fbd97c534dc13b3b9d037f67b03dbe57a5.tar.gz -> corefx-dotnet-2.0.0_pre.tar.gz
-_eclasses_=desktop	7fd20552ce4cc97e8acb132a499a7dd8	dotnet	978985b1c88cff3d70355bdc2fba673f	epatch	ed88001f77c6dd0d5f09e45c1a5b480e	estack	686eaab303305a908fd57b2fd7617800	eutils	fcb2aa98e1948b835b5ae66ca52868c5	gac	8676bb004075396887abfc3761616db1	ltprune	2729691420b6deeda2a90b1f1183fb55	mono-env	059a05efbba66d5bdcc2dd74d91f82f8	multilib	318e8ae683e57fd3ccd0d31a769d8ee8	preserve-libs	ef207dc62baddfddfd39a164d9797648	toolchain-funcs	512eb3367f507ebaa1d1d43ab7d66e6c	vcs-clean	2a0f74a496fa2b1552c4f3398258b7bf
-_md5_=785f0ff61cb7e6e92b51d5852cd785fd
+_eclasses_=gac	9eaa9a533341fdeeeb6d0a0d79a027be	edos2unix	33e347e171066657f91f8b0c72ec8773	strip-linguas	ac3ee41ee2d31d8c41a77c0838320cc7	wrapper	4a1902f969e5718126434fc35f3a0d9c	eutils	dab5d8ec471d025b79c9e6906bcf3bff	mono-env	60554e038c8ac2b080e23e280ad8382b	dotnet-native	1ef59d4bd0c2968f1b935c22608afc75	dotnet	4dd123fdd3d16de32fe13e1a8f8fdf4d	xbuild	78f85876b460ad06797ed8718688042a	mono-pkg-config	323b31014527a44410ccf6958a8afb08
+_md5_=bf4678027ea5874876017c176d2f11ef

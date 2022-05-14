@@ -1,2 +1,3 @@
-metadata/cache/
-metadata/md5-cache/
+profiles/use.local.desc
+metadata/pkg_desc_index
+metadata/md5-cache/*
