@@ -1,8 +1,8 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="5"
-inherit eutils dotnet
+EAPI="8"
+inherit dotnet
 
 DESCRIPTION="Mono copy of the Microsoft ASP.NET Web Stack (MVC, Razor etc)"
 HOMEPAGE="https://github.com/martinjt/aspnetwebstack"

@@ -1,14 +1,11 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 # @ECLASS: mpt-r20150903.eclass
 # @MAINTAINER: cynede@gentoo.org
 # @BLURB: wrappers for mono-packaging-tools package
 # @DESCRIPTION:
 # This eclass include function wrappers
-
-#inherit eutils versionator mono-env dotnet
 
 TOOLS_PATH=/usr/bin
 

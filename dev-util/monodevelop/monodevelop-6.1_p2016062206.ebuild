@@ -1,9 +1,10 @@
-# Copyright 1999-2016 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
-EAPI=6
-inherit fdo-mime gnome2-utils dotnet versionator eutils
+EAPI="8"
+KEYWORDS="amd64 ~x86"
+
+inherit xdg-utils gnome2-utils dotnet
 
 ROSLYN_COMMIT="16e117c2400d0ab930e7d89512f9894a169a0e6e"
 
@@ -14,7 +15,6 @@ SRC_URI="https://github.com/ArsenShnurkov/shnurise-tarballs/raw/master/monodevel
 	https://launchpadlibrarian.net/68057829/NUnit-2.5.10.11092.zip"
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
 IUSE="+subversion +git doc +gnome qtcurve"
 USE_DOTNET="4.5"
 
@@ -36,12 +36,13 @@ RDEPEND="${COMMON_DEPEND}
 	doc? ( dev-util/mono-docbrowser )
 	git? ( dev-vcs/git )
 	subversion? ( dev-vcs/subversion )
-	!<dev-util/monodevelop-boo-$(get_version_component_range 1-2)
-	!<dev-util/monodevelop-java-$(get_version_component_range 1-2)
-	!<dev-util/monodevelop-database-$(get_version_component_range 1-2)
-	!<dev-util/monodevelop-debugger-gdb-$(get_version_component_range 1-2)
-	!<dev-util/monodevelop-debugger-mdb-$(get_version_component_range 1-2)
-	!<dev-util/monodevelop-vala-$(get_version_component_range 1-2)"
+	!<dev-util/monodevelop-boo-$(ver_cut 1-2 ${PV})
+	!<dev-util/monodevelop-java-$(ver_cut 1-2 ${PV})
+	!<dev-util/monodevelop-database-$(ver_cut 1-2 ${PV})
+	!<dev-util/monodevelop-debugger-gdb-$(ver_cut 1-2 ${PV})
+	!<dev-util/monodevelop-debugger-mdb-$(ver_cut 1-2 ${PV})
+	!<dev-util/monodevelop-vala-$(ver_cut 1-2 ${PV})
+	"
 DEPEND="${COMMON_DEPEND}
 	>=dev-util/mono-packaging-tools-0.1.3_p2016082301-r1
 	>=dev-util/nunit-2.6.4:2

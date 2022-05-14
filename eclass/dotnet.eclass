@@ -15,8 +15,7 @@ case ${EAPI:-0} in
 	*) ;; #if [[ ${USE_DOTNET} ]]; then REQUIRED_USE="|| (${USE_DOTNET})"; fi;;
 esac
 
-inherit eutils
-inherit mono-env
+# inherit mono-env - no need to include here, it's included in dotnet-native
 inherit dotnet-native
 
 # >=mono-0.92 versions using mcs -pkg:foo-sharp require shared memory, so we set the

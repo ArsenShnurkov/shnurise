@@ -1,8 +1,10 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
-inherit fdo-mime gnome2-utils dotnet versionator eutils git-r3
+EAPI="8"
+KEYWORDS="~amd64 ~x86"
+
+inherit xdg-utils gnome2-utils dotnet git-r3
 
 DESCRIPTION="Integrated Development Environment for .NET"
 HOMEPAGE="https://www.monodevelop.com/"
@@ -12,7 +14,6 @@ LICENSE+=" GPL-2" # ikvm, mono-tools
 LICENSE+=" GPL-2-with-classpath-exception" # ikvm
 LICENSE+=" GPL-2-with-linking-exception" # libgit2
 
-KEYWORDS="~amd64 ~x86"
 SLOT="0"
 
 EGIT_COMMIT="${P}"

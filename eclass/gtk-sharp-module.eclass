@@ -1,6 +1,5 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 # @ECLASS: gtk-sharp-module.eclass
 # @MAINTAINER:
@@ -14,7 +13,7 @@
 WANT_AUTOMAKE=none
 WANT_AUTOCONF=none
 
-inherit eutils mono multilib libtool autotools base versionator
+inherit multilib libtool autotools base mono
 
 case ${EAPI:-0} in
 	2|3|4|5) ;;

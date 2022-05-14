@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # @ECLASS: msbuild-framework.eclass
@@ -10,8 +10,6 @@ case ${EAPI:-0} in
 	0|1|2|3|4|5|6) die "this eclass doesn't support EAPI 0..6" ;;
 	*) ;; #if [[ ${USE_MSBUILD} ]]; then REQUIRED_USE="|| (${USE_MSBUILD})"; fi;;
 esac
-
-#inherit versionator
 
 DEPEND+=" dev-dotnet/msbuild-tasks-api"
 

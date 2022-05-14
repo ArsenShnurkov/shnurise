@@ -1,8 +1,10 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
-inherit fdo-mime gnome2-utils dotnet versionator eutils git-r3
+EAPI="8"
+KEYWORDS="amd64 ~x86"
+
+inherit xdg-utils gnome2-utils dotnet git-r3
 
 DESCRIPTION="Integrated Development Environment for .NET"
 HOMEPAGE="https://www.monodevelop.com/"
@@ -17,7 +19,6 @@ SRC_URI="https://launchpadlibrarian.net/68057829/NUnit-2.5.10.11092.zip
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
 IUSE="+subversion +git doc +gnome qtcurve"
 
 RDEPEND=">=dev-lang/mono-3.2.8
@@ -30,12 +31,13 @@ RDEPEND=">=dev-lang/mono-3.2.8
 	net-libs/libssh2
 	sys-apps/dbus[X]
 	subversion? ( dev-vcs/subversion )
-	!<dev-util/monodevelop-boo-$(get_version_component_range 1-2)
-	!<dev-util/monodevelop-java-$(get_version_component_range 1-2)
-	!<dev-util/monodevelop-database-$(get_version_component_range 1-2)
-	!<dev-util/monodevelop-debugger-gdb-$(get_version_component_range 1-2)
-	!<dev-util/monodevelop-debugger-mdb-$(get_version_component_range 1-2)
-	!<dev-util/monodevelop-vala-$(get_version_component_range 1-2)"
+	!<dev-util/monodevelop-boo-$(ver_cut 1-2 ${PV})
+	!<dev-util/monodevelop-java-$(ver_cut 1-2 ${PV})
+	!<dev-util/monodevelop-database-$(ver_cut 1-2 ${PV})
+	!<dev-util/monodevelop-debugger-gdb-$(ver_cut 1-2 ${PV})
+	!<dev-util/monodevelop-debugger-mdb-$(ver_cut 1-2 ${PV})
+	!<dev-util/monodevelop-vala-$(ver_cut 1-2 ${PV})
+	"
 DEPEND="${RDEPEND}
 	dev-util/intltool
 	virtual/pkgconfig

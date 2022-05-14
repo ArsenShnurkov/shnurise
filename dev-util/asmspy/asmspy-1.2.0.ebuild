@@ -1,9 +1,9 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI="8"
 
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 ~x86"
 RESTRICT="mirror"
 
 SLOT="0"
@@ -11,7 +11,7 @@ SLOT="0"
 USE_DOTNET="net45"
 IUSE="+${USE_DOTNET} debug developer"
 
-inherit eutils xbuild
+inherit xbuild
 
 GITHUB_ACCOUNT="mikehadlow"
 GITHUB_REPONAME="AsmSpy"

@@ -15,7 +15,6 @@ case ${EAPI:-0} in
 	*) ;; #if [[ ${USE_DOTNET} ]]; then REQUIRED_USE="|| (${USE_DOTNET})"; fi;;
 esac
 
-inherit eutils
 inherit mono-env
 
 # Building mono, nant and many other dotnet packages is known to fail if LC_ALL

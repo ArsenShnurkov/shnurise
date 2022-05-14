@@ -1,10 +1,9 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
-EAPI="6"
+EAPI="8"
 
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 ~x86"
 RESTRICT="mirror"
 
 SLOT="5"

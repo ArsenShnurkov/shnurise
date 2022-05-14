@@ -1,9 +1,10 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="4"
+EAPI="8"
+KEYWORDS="amd64 ~x86"
 
-inherit eutils dotnet multilib
+inherit multilib dotnet
 
 MY_P=${P/-bin/}
 MY_PN=${PN/-bin/}
@@ -16,7 +17,6 @@ LICENSE="ZLIB GPL-2-with-linking-exception"
 SLOT="0"
 S=${WORKDIR}/${MY_P}
 
-KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND=">=dev-lang/mono-1.1

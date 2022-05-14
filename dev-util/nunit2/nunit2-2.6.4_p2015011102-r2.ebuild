@@ -1,17 +1,16 @@
-# Copyright 1999-2017 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
-EAPI="6"
-KEYWORDS="~amd64 ~x86"
+EAPI="8"
+KEYWORDS="amd64 ~x86"
 RESTRICT="mirror"
+
+inherit mono-env xbuild gac nupkg
 
 SLOT="2" # NUnit V2 IS NO LONGER MAINTAINED OR UPDATED.
 
 USE_DOTNET="net45"
 IUSE="+${USE_DOTNET} developer debug +gac nupkg doc"
-
-inherit mono-env xbuild gac nupkg
 
 NAME="nunitv2"
 HOMEPAGE="https://github.com/nunit/${NAME}"

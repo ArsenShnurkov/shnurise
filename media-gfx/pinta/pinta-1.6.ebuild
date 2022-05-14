@@ -1,9 +1,10 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI="8"
+KEYWORDS="amd64 ~x86"
 
-inherit autotools fdo-mime gnome2-utils mono-env
+inherit autotools xdg-utils gnome2-utils mono-env
 
 DESCRIPTION="Simple Painting for Gtk"
 HOMEPAGE="https://pinta-project.com"
@@ -11,7 +12,6 @@ SRC_URI="https://github.com/PintaProject/Pinta/archive/${PV}.tar.gz"
 
 LICENSE="MIT CC-BY-3.0"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
 
 COMMON_DEPEND=">=dev-lang/mono-4.0.2
 	>=dev-dotnet/gtk-sharp-2.12.21:2

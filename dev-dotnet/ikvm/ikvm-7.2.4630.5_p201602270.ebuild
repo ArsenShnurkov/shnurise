@@ -1,9 +1,10 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI="8"
+KEYWORDS="amd64 ~x86"
 
-inherit eutils dotnet multilib java-pkg-2
+inherit multilib java-pkg-2 dotnet
 
 DESCRIPTION="Java VM for .NET"
 HOMEPAGE="https://www.ikvm.net/ http://weblog.ikvm.net/"
@@ -23,7 +24,6 @@ SRC_URI="https://www.frijters.net/openjdk-7u4-stripped.zip
 	${GITHUB_ZIP}"
 
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
 IUSE="+net45"
 USE_DOTNET="net45"
 
