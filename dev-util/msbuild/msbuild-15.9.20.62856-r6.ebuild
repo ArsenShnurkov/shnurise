@@ -1,7 +1,7 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="7"
+EAPI="8"
 RESTRICT="mirror"
 KEYWORDS="amd64 arm64"
 
@@ -13,7 +13,9 @@ VER="${PV}" # version of resulting msbuild.exe
 USE_DOTNET="net46"
 IUSE="+${USE_DOTNET} +gac +mskey developer debug +roslyn symlink"
 
-inherit xbuild gac
+inherit wrapper
+inherit xbuild 
+inherit gac 
 
 # msbuild-framework.eclass is inherited to get the access to the locations 
 # $(MSBuildBinPath) and $(MSBuildSdksPath)
