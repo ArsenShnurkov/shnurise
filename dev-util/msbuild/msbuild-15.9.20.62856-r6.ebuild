@@ -151,8 +151,8 @@ src_install() {
 
 pkg_postinst() {
 	if ! has "msbuild${SLOT/./-}" ${MSBUILD_TARGETS}; then
-		   elog "To install Sdks for this version of msbuild, you will need to"
-		   elog "add msbuild${SLOT/./-} to your MSBUILD_TARGETS USE_EXPAND variable."
-		   elog
+		   elog "you will need to apend USE_EXPAND variable, like following"
+		   elog "MSBUILD_TARGETS=msbuild${SLOT/./-}"
+		   elog "in order to install Sdks for this version of msbuild."
 	fi
 }
