@@ -1,23 +1,26 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2028 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="7"
-KEYWORDS="amd64 arm64"
-RESTRICT="mirror"
+EAPI="8"
+
+KEYWORDS="amd64 ~arm64"
+RESTRICT+="mirror"
+RESTRICT+="test"
 
 SLOT="0"
 LICENSE="GPL-2"
 
-DESCRIPTION="msbuild eselect module"
+DESCRIPTION="roslyn eselect module"
 HOMEPAGE="https://github.com/ArsenShnurkov/shnurise"
 
 inherit vcs-snapshot
 
 GITHUB_ACCOUNT="ArsenShnurkov"
 GITHUB_PROJECTNAME="eselect-msbuild"
-EGIT_COMMIT="503f006c4b29b0a3013d92f03a44f51fb9075c23"
-SRC_URI="https://codeload.github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/tar.gz/${EGIT_COMMIT} -> ${PN}-${PV}.tar.gz
+EGIT_COMMIT="8e36a710a1fc4f9839d952dc3ebcfd973661437a"
+SRC_URI="https://codeload.github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/tar.gz/${EGIT_COMMIT} -> ${CATEGORY}-${PN}-${PV}.tar.gz
 	"
+S="${WORKDIR}/${CATEGORY}-${PN}-${PV}"
 
 RDEPEND="app-admin/eselect"
 
