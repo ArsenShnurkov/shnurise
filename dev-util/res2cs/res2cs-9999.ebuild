@@ -1,8 +1,8 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="7"
-KEYWORDS="amd64 ~arm64"
+EAPI="8"
+KEYWORDS="~amd64 ~arm64"
 RESTRICT="test mirror"
 
 DESCRIPTION="An utility to generate .cs from .resx"
@@ -23,8 +23,16 @@ if [[ ${PV} == "9999" ]] ; then
 	fi
 else
 	SLOT="0"
-	SRC_URI=""
+	REPO_OWNER=ArsenShnurkov
+	REPO_NAME=mono-packaging-tools
+	EGIT_COMMIT="39b88b23723f84d40b864d4696d37893e1641000"
+#	SRC_URI="https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/tarball/${EGIT_COMMIT} -> ${P}.tar.gz"
+#	inherit vcs-snapshot
+	SRC_URI="https://codeload.github.com/ArsenShnurkov/mono-packaging-tools/tar.gz/${EGIT_COMMIT} -> ${P}.tar.gz"
+	S="${WORKDIR}/${REPO_NAME}-${EGIT_COMMIT}/res2cs/src"
 fi
+
+inherit wrapper # for make_wrapper
 
 USE_DOTNET="net45"
 inherit dotnet
