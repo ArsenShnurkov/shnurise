@@ -108,10 +108,14 @@ src_install() {
 	dodir "$(MSBuildExtensionsPath)"
 
 	insinto "$(MSBuildExtensionsPath)"
-	# dosym
+
+	# dosym <filename> <linkname>
+	#    Performs the ln command to create a symlink. 
 	# Create a symlink to the target specified as the first parameter, at the path specified by the second parameter.
 	# Note that the target is interpreted verbatim; it needs to either specify a relative path or an absolute path including ${EPREFIX}. 
-	dosym "15.9" "$(MSBuildExtensionsPath)/15.0" 
+	dosym "$(MSBuildExtensionsPath)/15.9" "$(MSBuildBinPath)/15.0" 
+        # this symlink to the same directory allows proper calculations in Microsoft.Managed.Core.targets file
+	# 	when it tries to load "Microsoft.Common.props" file from the 15.0 toolset
 
 	einfo "Deploying props into $(MSBuildExtensionsPath)/$(MSBuildToolsVersion)"
 	insinto "$(MSBuildExtensionsPath)/$(MSBuildToolsVersion)"
@@ -119,6 +123,7 @@ src_install() {
 
 	einfo "Deploying targets into $(MSBuildBinPath)"
 	insinto "$(MSBuildBinPath)"
+
 	newins "${PROJ2_DIR}/bin/$(usedebug_tostring)/${PROJ2}.exe" MSBuild.exe
 
 #	doins "${FILESDIR}/${PV}/MSBuild.exe.config"

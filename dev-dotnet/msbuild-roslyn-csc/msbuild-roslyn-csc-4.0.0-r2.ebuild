@@ -1,10 +1,10 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="7"
+EAPI="8"
 SLOT="0"
 
-KEYWORDS="amd64 ~arm64"
+KEYWORDS="amd64 arm64"
 RESTRICT="mirror"
 
 USE_DOTNET="net45"
@@ -50,6 +50,7 @@ src_prepare() {
 	fi
 #	eapply "${FILESDIR}/99-CopyRefAssemblyFix.patch"
 	eapply "${FILESDIR}/csc-name.patch"
+	eapply "${FILESDIR}/remove-analyzers.patch"
 	cd ${S}/src/Compilers/Core/MSBuildTask || die
 	eres2cs "ErrorString.resx" "ErrorString.resx.cs" "ErrorString" "Microsoft.CodeAnalysis.BuildTasks"
 	cd ${S} || die
@@ -125,8 +126,10 @@ src_install_one_target()
 {
 	local OUTPUT_FILENAME="$(bin_dir)/${MSBUILD_TARGET}/Microsoft.Build.Tasks.CodeAnalysis.dll"
 	insinto "$(RoslynTargetsPath)"
+	doins "${S}/src/Compilers/Core/MSBuildTask/Microsoft.Managed.Core.targets"
 	doins "${S}/src/Compilers/Core/MSBuildTask/Microsoft.CSharp.Core.targets"
 	doins "${S}/src/Compilers/Core/MSBuildTask/Microsoft.VisualBasic.Core.targets"
+        doins "${FILESDIR}/Microsoft.Managed.Core.CurrentVersions.targets"
 	doins "${OUTPUT_FILENAME}"
 
 	# Create a symlink to the target specified as the first parameter, at the path specified by the second parameter.

@@ -3,9 +3,11 @@
 
 EAPI="8" # valid EAPI assignment must occur on or before line: 5
 
-KEYWORDS="amd64"
+KEYWORDS="amd64 arm64"
 RESTRICT+=" mirror"
 
+# No need to specify slot, because there are no incompatible versions known
+#SLOT="1.9.71.2"
 SLOT="0"
 
 GITHUB_ACCOUNT="commandlineparser"
@@ -37,6 +39,7 @@ S="${WORKDIR}/${GITHUB_REPONAME}-${EGIT_COMMIT}"
 RESTRICT+=" test"
 
 src_prepare() {
+	eapply "${FILESDIR}/remove-signing.patch"
 	eapply_user
 }
 
@@ -44,6 +47,25 @@ src_compile() {
 	emsbuild src/libcmdline/CommandLine.csproj
 }
 
+function bin_dir ( ) {
+	echo "bin/$(usedebug_tostring)"
+}
+
+ASSEMBLY_NAME=CommandLine
+
+function output_filename ( ) {
+	echo "${S}/src/libcmdline/$(bin_dir)/${ASSEMBLY_NAME}.dll"
+}
+
 src_install() {
-	:;
+	local INSTALL_DIR="$(anycpu_current_assembly_dir)"
+	einfo "\${INSTALL_DIR}=${INSTALL_DIR}"
+
+	insinto "${INSTALL_DIR}"
+	elib "${INSTALL_DIR}" "$(output_filename)" 
+	# elib also calls einstall_pc_file
+	## einstall_pc_file "${CATEGORY}/${PN}"
+	## einstall_pc_file "${ASSEMBLY_NAME}" "${VERSION}" /usr/share/mono/assemblies/${PN}${APPENDIX}/${ASSEMBLY_NAME}.dll
+
+	dosym "${INSTALL_DIR}/${ASSEMBLY_NAME}.dll" "$(anycpu_current_symlink_dir)/${ASSEMBLY_NAME}.dll"
 }
