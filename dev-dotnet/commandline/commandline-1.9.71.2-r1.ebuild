@@ -64,8 +64,8 @@ src_install() {
 	insinto "${INSTALL_DIR}"
 	elib "${INSTALL_DIR}" "$(output_filename)" 
 	# elib also calls einstall_pc_file
-	## einstall_pc_file "${CATEGORY}/${PN}"
-	## einstall_pc_file "${ASSEMBLY_NAME}" "${VERSION}" /usr/share/mono/assemblies/${PN}${APPENDIX}/${ASSEMBLY_NAME}.dll
+	#  But this is an alias with another name
+	einstall_pc_file "CommandLineParser" "1.9.71" /usr/share/mono/assemblies/${PN}${APPENDIX}/${ASSEMBLY_NAME}.dll
 
 	dosym "${INSTALL_DIR}/${ASSEMBLY_NAME}.dll" "$(anycpu_current_symlink_dir)/${ASSEMBLY_NAME}.dll"
 }
