@@ -1,10 +1,9 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
-EAPI="6" # >=portage-2.2.25
+EAPI="8"
 
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="amd64"
 RESTRICT="mirror"
 
 SLOT="1"
@@ -19,7 +18,7 @@ HOMEPAGE="http://arsenshnurkov.github.io/mono-packaging-tools"
 
 REPOSITORY_URL="https://github.com/ArsenShnurkov/${NAME}"
 
-EGIT_COMMIT="44275b96b955e4587c76448e25a299ffabf28edb"
+EGIT_COMMIT="3eae8fb31b3ad36a12ae199995f2c0479e2fd393"
 SRC_URI="${REPOSITORY_URL}/archive/${EGIT_COMMIT}.tar.gz -> ${CATEGORY}-${PN}-${PV}.tar.gz"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 

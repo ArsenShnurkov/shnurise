@@ -1,7 +1,7 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="7"
+EAPI="8"
 SLOT="0"
 KEYWORDS="amd64 arm64"
 RESTRICT="mirror test"
@@ -37,7 +37,7 @@ HOMEPAGE="https://github.com/ArsenShnurkov/mono-packaging-tools"
 DESCRIPTION="Alternative build sequence with PkgConfig instead of NuGet"
 LICENSE="GPL-3"
 
-EGIT_COMMIT="47a4a4bdcff4c629df17ceb57fb790701cc83b52"
+EGIT_COMMIT="3eae8fb31b3ad36a12ae199995f2c0479e2fd393"
 GITHUB_PROJECTNAME="mono-packaging-tools"
 GITHUB_ACCOUNT="ArsenShnurkov"
 SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
