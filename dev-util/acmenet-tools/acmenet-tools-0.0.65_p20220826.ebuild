@@ -3,7 +3,7 @@
 
 EAPI="8"
 
-KEYWORDS="amd64"
+KEYWORDS="amd64 arm64"
 RESTRICT="mirror"
 
 SLOT="0"
@@ -19,7 +19,7 @@ inherit dotnet msbuild mono-pkg-config gentoo-net-sdk
 
 GITHUB_ACCOUNT="ArsenShnurkov"
 GITHUB_REPONAME="acme.net"
-EGIT_COMMIT="97e7b1a1c44b6b4505b7b56de9594e2709fe1fd0"
+EGIT_COMMIT="8e03587bc84a41d55b6a2466150ff04685a20df3"
 SRC_URI="https://codeload.github.com/${GITHUB_ACCOUNT}/${GITHUB_REPONAME}/tar.gz/${EGIT_COMMIT} -> ${CATEGORY}-${PN}-${PV}.tar.gz"
 S="${WORKDIR}/${GITHUB_REPONAME}-${EGIT_COMMIT}"
 
