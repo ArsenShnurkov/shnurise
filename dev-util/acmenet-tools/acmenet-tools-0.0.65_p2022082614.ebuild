@@ -32,7 +32,6 @@ DEPEND="${COMMON_DEPEND}
 
 src_prepare() {
 	gentoo-net-sdk_src_prepare
-	eapply "${FILESDIR}/references.patch"
 	default
 }
 
