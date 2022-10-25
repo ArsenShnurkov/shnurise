@@ -37,7 +37,7 @@ HOMEPAGE="https://github.com/ArsenShnurkov/mono-packaging-tools"
 DESCRIPTION="Alternative build sequence with PkgConfig instead of NuGet"
 LICENSE="GPL-3"
 
-EGIT_COMMIT="3eae8fb31b3ad36a12ae199995f2c0479e2fd393"
+EGIT_COMMIT="413603c17671a973f63ad94e37d8f308b63de727"
 GITHUB_PROJECTNAME="mono-packaging-tools"
 GITHUB_ACCOUNT="ArsenShnurkov"
 SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"

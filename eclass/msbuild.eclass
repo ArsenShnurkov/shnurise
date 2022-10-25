@@ -51,3 +51,10 @@ emsbuild() {
 
 	emsbuild_raw "${CARGS}" "${SARGS}" "$@"
 }
+
+msbuild_src_compile()
+{
+	emsbuild /p:BaseOutputPath="${T}"
+}
+
+EXPORT_FUNCTIONS src_compile
