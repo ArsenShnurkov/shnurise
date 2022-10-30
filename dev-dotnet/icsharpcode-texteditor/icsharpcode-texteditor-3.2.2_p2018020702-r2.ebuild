@@ -68,7 +68,7 @@ src_install() {
 	local INSTALL_DIR="$(anycpu_current_assembly_dir)"
 
 	insinto "${INSTALL_DIR}"
-	elib "${INSTALL_DIR}" "$(output_filename)"
+	elib2 "${INSTALL_DIR}" "$(output_filename)"
 
 	dosym "${INSTALL_DIR}/${ASSEMBLY_NAME}.dll" "$(anycpu_current_symlink_dir)/${ASSEMBLY_NAME}.dll"
 

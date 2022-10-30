@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="7"
@@ -48,7 +48,7 @@ src_install() {
 		local INSTALL_DIR="$(anycpu_current_assembly_dir)/dotnet-${FW_UPPER}.${FW_LOWER}"
 
 		insinto "${INSTALL_DIR}"
-		elib "${INSTALL_DIR}" $(output_dir)/network.dll
+		elib2 "${INSTALL_DIR}" $(output_dir)/network.dll
 
 #		einstall_pc_file "${PN}" "${PV}" network
 	done

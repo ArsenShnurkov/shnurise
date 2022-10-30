@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # @ECLASS: dotnet.eclass
@@ -295,6 +295,41 @@ function eres2cs() {
 function ecsc() {
 	einfo /usr/bin/csc $@
 	/usr/bin/csc $@ || die "Compilation failed"
+}
+
+# @FUNCTION: elib
+# @DESCRIPTION: installs .dll file into filesystem
+elib () {
+	elib2 $(anycpu_current_assembly_dir) $@
+}
+
+# @FUNCTION: elib2
+# @DESCRIPTION: installs .dll file into filesystem into specified location
+# $1 = path to install directory
+# $2 = myassembly1 # path and filename with extension of the first .dll
+# $3 = myassembly2 # path and filename with extension of the second .dll
+# $N = myassemblyN-1 # other names
+elib2 () {
+	local INSTALL_PATH="$1" # 
+	shift 1
+	einfo "installing into ${INSTALL_PATH}"
+	insinto "${INSTALL_PATH}"
+	# https://unix.stackexchange.com/questions/128204/what-does-while-test-gt-0-do/128207
+	while ${1+:} false ; do
+		# https://stackoverflow.com/questions/2664740/extract-file-basename-without-path-and-extension-in-bash
+		local ASSEMBLY_FILENAMEWEXT="${1##*/}"
+		local ASSEMBLY_FILENAME="${ASSEMBLY_FILENAMEWEXT%.*}"
+		einfo "ASSEMBLY_FILENAME=${ASSEMBLY_FILENAME}, ASSEMBLY_FILENAMEWEXT=${ASSEMBLY_FILENAMEWEXT}"
+		einfo "doins \"$1\""
+		doins "$1"
+		einfo "elib: $1 is installed as ${INSTALL_PATH}/${ASSEMBLY_FILENAMEWEXT}"
+
+#		einstall_pc_file "${ASSEMBLY_FILENAME}" "${PV}" "${INSTALL_PATH}/${ASSEMBLY_FILENAMEWEXT}"
+#		^^^ this should be moved into "doins.dll" function in msbuild.eclass
+
+		shift
+	done
+	einfo "elib finished"
 }
 
 EXPORT_FUNCTIONS pkg_setup

@@ -62,7 +62,7 @@ src_install() {
 	einfo "\${INSTALL_DIR}=${INSTALL_DIR}"
 
 	insinto "${INSTALL_DIR}"
-	elib "${INSTALL_DIR}" "$(output_filename)" 
+	elib2 "${INSTALL_DIR}" "$(output_filename)" 
 	# elib also calls einstall_pc_file
 	#  But this is an alias with another name
 	einstall_pc_file "CommandLineParser" "1.9.71" /usr/share/mono/assemblies/${PN}${APPENDIX}/${ASSEMBLY_NAME}.dll

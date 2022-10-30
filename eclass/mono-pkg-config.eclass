@@ -92,30 +92,3 @@ einstall_pc_file()
 	fi
 }
 
-# @FUNCTION: elib
-# @DESCRIPTION: installs .dll file into filesystem
-# $1 = path to install directory
-# $2 = myassembly1 # path and filename with extension of the first .dll
-# $3 = myassembly2 # path and filename with extension of the second .dll
-# $N = myassemblyN-1 # other names
-elib () {
-	local INSTALL_PATH="$1" # $(library_assembly_dir)
-	shift 1
-	einfo "installing into ${INSTALL_PATH}"
-	insinto "${INSTALL_PATH}"
-	# https://unix.stackexchange.com/questions/128204/what-does-while-test-gt-0-do/128207
-	while ${1+:} false ; do
-		# https://stackoverflow.com/questions/2664740/extract-file-basename-without-path-and-extension-in-bash
-		local ASSEMBLY_FILENAMEWEXT="${1##*/}"
-		local ASSEMBLY_FILENAME="${ASSEMBLY_FILENAMEWEXT%.*}"
-		einfo "ASSEMBLY_FILENAME=${ASSEMBLY_FILENAME}, ASSEMBLY_FILENAMEWEXT=${ASSEMBLY_FILENAMEWEXT}"
-		einfo "doins \"$1\""
-		doins "$1"
-		einfo "elib: $1 is installed as ${INSTALL_PATH}/${ASSEMBLY_FILENAMEWEXT}"
-
-		einstall_pc_file "${ASSEMBLY_FILENAME}" "${PV}" "${INSTALL_PATH}/${ASSEMBLY_FILENAMEWEXT}"
-
-		shift
-	done
-	einfo "elib finished"
-}

@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="7"
@@ -85,7 +85,7 @@ src_compile() {
 src_install() {
 	einfo "$(output_filename1)"
 	local INSTALL_DIR="$(anycpu_current_assembly_dir)"
-	elib ${INSTALL_DIR} "$(output_filename1)"
+	elib2 ${INSTALL_DIR} "$(output_filename1)"
 #	einstall_pc_file "Ionic.Zip.Reduced" ${PV} '$(libdir)'/mono/${PN}/Ionic.Zip.Reduced.dll
 	if use debug; then
 		insinto "${INSTALL_DIR}"

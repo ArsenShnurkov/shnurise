@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="7" # valid EAPI assignment must occur on or before line: 5
@@ -71,7 +71,7 @@ src_install() {
 
 	einfo "=== making .pc file ==="
 	einfo "$(anycpu_current_assembly_dir)" $(anycpu_dlls)
-	elib "$(anycpu_current_assembly_dir)" $(anycpu_dlls)
+	elib2 "$(anycpu_current_assembly_dir)" $(anycpu_dlls)
 
 	dosym "${INSTALL_DIR}/System.CommandLine.dll" "$(anycpu_current_symlink_dir)/System.CommandLine.dll"
 }

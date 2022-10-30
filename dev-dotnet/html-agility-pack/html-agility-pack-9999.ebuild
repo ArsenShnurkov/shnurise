@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -107,7 +107,7 @@ src_install() {
 
 	einfo "=== making .pc file for all libraries at once ==="
 	einfo "$(anycpu_current_assembly_dir)" $(anycpu_outputpaths)
-	elib "$(anycpu_current_assembly_dir)" $(anycpu_outputpaths)
+	elib2 "$(anycpu_current_assembly_dir)" $(anycpu_outputpaths)
 
 	einfo "=== symlink each output separately ==="
 	for OUTPUT_NAME in $(anycpu_outputnames)

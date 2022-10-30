@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # @ECLASS: msbuild.eclass
@@ -9,6 +9,17 @@
 
 inherit dotnet
 inherit msbuild-framework
+
+# the class "mono-pkg-config" is inherited to implement "doins.dll" function
+# doins.dll installs .pc files, which are used during src_compile
+inherit mono-pkg-config
+
+# the class "gac" is inherited to implement "doins.dll" function
+inherit gac
+
+# the class "make_wrapper" is inherited to implement "doins.exe" function
+# https://devmanual.gentoo.org/eclass-reference/wrapper.eclass/index.html
+inherit wrapper
 
 case ${EAPI:-0} in
 	0) die "this eclass doesn't support EAPI 0" ;;
@@ -55,6 +66,23 @@ emsbuild() {
 msbuild_src_compile()
 {
 	emsbuild /p:BaseOutputPath="${T}"
+}
+
+# @FUNCTION: doins.dll
+# @DESCRIPTION: installs an .dll file(s) and creates a wrapper for it
+doins.dll()
+{
+	einfo called "doins.dll $@"
+	elib $@
+	einstall_pc_file "${PN}" "${PV}" $@
+	egacinstall $@
+}
+
+# @FUNCTION: doins.exe
+# @DESCRIPTION: installs an .exe file and creates a wrapper for it
+doins.exe()
+{
+	einfo called "doins.exe $@"
 }
 
 EXPORT_FUNCTIONS src_compile
