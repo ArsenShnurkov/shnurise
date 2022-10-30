@@ -34,61 +34,76 @@ DEPEND+=" virtual/pkgconfig"
 # $N = myassemblyN-2 # see DLL_REFERENCES
 einstall_pc_file()
 {
-	if use pkg-config; then
-		local PC_NAME="$1"
-		local PC_VERSION="$2"
-		einfo "PC_NAME=${PC_NAME}, PC_VERSION=${PC_VERSION}"
-		shift 2
-
-		local PC_DESCRIPTION="${DESCRIPTION}"
-
-		# keep verbatim, do not change it to "/usr/$(get_libdir)/pkgconfig"
-		local PC_DIRECTORY="/usr/share/pkgconfig"
-
-		local PC_FILENAME="${PC_NAME}-${PC_VERSION}"
-		local PC_FILENAME_EXT="${PC_FILENAME}.pc"
-
-		if [ "$#" == "0" ]; then
-			die "no assembly names given"
-		fi
-		local DLL_REFERENCES=""
-		while (( "$#" )); do
-			DLL_REFERENCES+=" -r:${1}"
-			shift
-		done
-
-		dodir "${PC_DIRECTORY}"
-
-		ebegin "Installing ${PC_FILENAME_EXT} file"
-
-		# @Name@: A human-readable name for the library or package. This does not affect usage of the pkg-config tool,
-		# which uses the name of the .pc file.
-		# see https://people.freedesktop.org/~dbn/pkg-config-guide.html
-
-		# \${name} variables going directly into .pc file after unescaping $ sign
-		#
-		# other variables are not substituted to sed input directly
-		# to protect them from processing by bash
-		# (they only requires sed escaping for replacement path)
-		sed \
-			-e "s:@PC_VERSION@:${PC_VERSION}:" \
-			-e "s:@Name@:${PC_NAME}:" \
-			-e "s\\@DESCRIPTION@\\${PC_DESCRIPTION}\\" \
-			-e "s:@LIBDIR@:$(get_libdir):" \
-			-e "s*@LIBS@*${DLL_REFERENCES}*" \
-			<<-EOF >"${D}/${PC_DIRECTORY}/${PC_FILENAME_EXT}" || die
-				prefix=\${pcfiledir}/../..
-				exec_prefix=\${prefix}
-				libdir=\${exec_prefix}/@LIBDIR@
-				Version: @PC_VERSION@
-				Name: @Name@
-				Description: @DESCRIPTION@
-				Libs: @LIBS@
-			EOF
-
-		einfo PKG_CONFIG_PATH="${D}/${PC_DIRECTORY}" pkg-config --exists "${PC_FILENAME}"
-		PKG_CONFIG_PATH="${D}/${PC_DIRECTORY}" pkg-config --exists "${PC_FILENAME}" || die ".pc file failed to validate."
-		eend $?
+	# space between "!" and "use" is necessary (bash will say "!use: command not found" otherwise)
+	if ! use pkg-config; then
+		return 0;
 	fi
-}
 
+	if [ ! -v PC_DESCRIPTION ]; then
+		PC_DESCRIPTION="${DESCRIPTION}"
+	fi
+	local HASH='\\#'
+	local ESCAPED_DESCRIPTION="${PC_DESCRIPTION//#/${HASH}}"
+	PC_DESCRIPTION=${ESCAPED_DESCRIPTION}
+	einfo "PC_DESCRIPTION=${PC_DESCRIPTION}"
+
+	if [ ! -v PC_NAME ]; then
+		PC_NAME="$1"
+	fi
+	einfo "PC_NAME=${PC_NAME}"
+
+	if [  ! -v PC_VERSION ]; then
+		PC_VERSION="$2"
+	fi
+	einfo "PC_VERSION=${PC_VERSION}"
+
+	shift 2
+
+	# keep verbatim, do not change it to "/usr/$(get_libdir)/pkgconfig"
+	local PC_DIRECTORY="/usr/share/pkgconfig"
+
+	local PC_FILENAME="${PC_NAME}-${PC_VERSION}"
+	local PC_FILENAME_EXT="${PC_FILENAME}.pc"
+
+	if [ "$#" == "0" ]; then
+		die "no assembly names given"
+	fi
+	local DLL_REFERENCES=""
+	while (( "$#" )); do
+		DLL_REFERENCES+=" -r:${1}"
+		shift
+	done
+
+	dodir "${PC_DIRECTORY}"
+
+	ebegin "Installing ${PC_FILENAME_EXT} file"
+
+	# @Name@: A human-readable name for the library or package. This does not affect usage of the pkg-config tool,
+	# which uses the name of the .pc file.
+	# see https://people.freedesktop.org/~dbn/pkg-config-guide.html
+
+	# \${name} variables going directly into .pc file after unescaping $ sign
+	#
+	# other variables are not substituted to sed input directly
+	# to protect them from processing by bash
+	# (they only requires sed escaping for replacement path)
+	sed \
+		-e "s:@PC_VERSION@:${PC_VERSION}:" \
+		-e "s:@Name@:${PC_NAME}:" \
+		-e "s^@DESCRIPTION@^${PC_DESCRIPTION}^" \
+		-e "s:@LIBDIR@:$(get_libdir):" \
+		-e "s*@LIBS@*${DLL_REFERENCES}*" \
+		<<-EOF >"${D}/${PC_DIRECTORY}/${PC_FILENAME_EXT}" || die
+			prefix=\${pcfiledir}/../..
+			exec_prefix=\${prefix}
+			libdir=\${exec_prefix}/@LIBDIR@
+			Version: @PC_VERSION@
+			Name: @Name@
+			Description: @DESCRIPTION@
+			Libs: @LIBS@
+		EOF
+
+	einfo PKG_CONFIG_PATH="${D}/${PC_DIRECTORY}" pkg-config --exists "${PC_FILENAME}"
+	PKG_CONFIG_PATH="${D}/${PC_DIRECTORY}" pkg-config --exists "${PC_FILENAME}" || die ".pc file failed to validate."
+	eend $?
+}

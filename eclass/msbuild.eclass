@@ -74,8 +74,9 @@ doins.dll()
 {
 	einfo called "doins.dll $@"
 	elib $@
-	einstall_pc_file "${PN}" "${PV}" $@
-	egacinstall $@
+	einstall_pc_file "${PN}" "${PV}" $( get_destination_names $@ )
+# should be done in pkg_postinst / pkg_prerm
+#	egacinstall $@
 }
 
 # @FUNCTION: doins.exe

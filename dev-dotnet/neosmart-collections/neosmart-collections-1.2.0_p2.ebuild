@@ -26,5 +26,13 @@ S="${WORKDIR}/${EGIT_REPONAME}-${EGIT_COMMIT}/Collections"
 
 src_install()
 {
+	PC_NAME=NeoSmartCollections
+	PC_VERSION=$( ver_cut 1-3 "${PV}" )
 	doins.dll ${T}/$(usedebug_tostring)/*.dll
+	unset PC_NAME
+	unset PC_VERSION
+
+	# additional file
+	# for compatibility
+	einstall_pc_file "NeoSmart.Collections" "1.1.0" $( get_destination_names "${T}/$(usedebug_tostring)/*.dll" )
 }

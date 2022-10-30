@@ -297,6 +297,25 @@ function ecsc() {
 	/usr/bin/csc $@ || die "Compilation failed"
 }
 
+get_destination_names()
+{
+	echo $( get_destination_names2 $(anycpu_current_assembly_dir) $@ ) ;
+}
+
+get_destination_names2()
+{
+	local INSTALL_PATH="$1"
+	shift 1
+	RES=""
+	while ${1+:} false ; do
+		local ASSEMBLY_FILENAMEWEXT="${1##*/}";
+		local ASSEMBLY_FILENAME="${ASSEMBLY_FILENAMEWEXT%.*}";
+		RES="${RES} ${INSTALL_PATH}/${ASSEMBLY_FILENAMEWEXT}"
+		shift
+	done
+	echo "${RES}"
+}
+
 # @FUNCTION: elib
 # @DESCRIPTION: installs .dll file into filesystem
 elib () {
@@ -323,9 +342,6 @@ elib2 () {
 		einfo "doins \"$1\""
 		doins "$1"
 		einfo "elib: $1 is installed as ${INSTALL_PATH}/${ASSEMBLY_FILENAMEWEXT}"
-
-#		einstall_pc_file "${ASSEMBLY_FILENAME}" "${PV}" "${INSTALL_PATH}/${ASSEMBLY_FILENAMEWEXT}"
-#		^^^ this should be moved into "doins.dll" function in msbuild.eclass
 
 		shift
 	done
