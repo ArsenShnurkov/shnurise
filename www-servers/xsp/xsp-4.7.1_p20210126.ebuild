@@ -1,7 +1,7 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="7"
+EAPI=8
 KEYWORDS="amd64 arm64"
 RESTRICT="mirror test"
 
@@ -10,15 +10,20 @@ SLOT="0"
 USE_DOTNET="net45 net40 net35"
 PATCHDIR="${FILESDIR}/2.2/"
 
-inherit eutils systemd dotnet user autotools msbuild
+inherit vcs-snapshot
+inherit autotools 
+# msbuild.eclass inherits dotnet itself
+inherit msbuild
+inherit systemd 
 
 DESCRIPTION="XSP is a small web server that can host ASP.NET pages"
 LICENSE="MIT"
 HOMEPAGE="https://www.mono-project.com/docs/web/aspnet/"
 
-EGIT_COMMIT="b7190dd996b2c652630297ed9b1b9907602b0d4f"
+EGIT_COMMIT="3330ff0790eaa48b0b54174edc0736b9b6006841"
 SRC_URI="https://codeload.github.com/mono/xsp/tar.gz/${EGIT_COMMIT} -> ${PN}-${PV}.tar.gz"
-S="${WORKDIR}/xsp-${EGIT_COMMIT}"
+# setting S is not necessary with vcs-snapshot
+#S="${WORKDIR}/xsp-${EGIT_COMMIT}"
 
 IUSE="+${USE_DOTNET} systemd openrc +xsp +modmono fastcgi examples doc test debug developer"
 # systemd = install .service files
@@ -29,12 +34,15 @@ IUSE="+${USE_DOTNET} systemd openrc +xsp +modmono fastcgi examples doc test debu
 # examples = install test applications
 # test ~= ??? unit tests ???
 
-COMMON_DEPEND="dev-db/sqlite:3
-	!dev-dotnet/xsp
-	"
+# RESTRICT is going below IUSE because of "test" USE flag (but I don't know is order important or no)"
+RESTRICT="mirror  !test? ( test )"
 
-RDEPEND="${COMMON_DEPEND}"
-DEPEND="${COMMON_DEPEND}"
+DEPEND="dev-db/sqlite:3"
+RDEPEND="
+	${DEPEND}
+	acct-group/aspnet
+	acct-user/aspnet
+"
 
 SANDBOX_WRITE="${SANDBOX_WRITE}:/etc/mono/registry/:/etc/mono/registry/last-btime"
 
@@ -76,10 +84,10 @@ src_compile() {
 	emsbuild ${PROPERTIES[@]} xsp.sln
 }
 
-pkg_preinst() {
-	enewgroup aspnet
-	enewuser aspnet -1 -1 /tmp aspnet
-}
+#pkg_preinst() {
+#	enewgroup aspnet
+#	enewuser aspnet -1 -1 /tmp aspnet
+#}
 
 src_install() {
 	emake DESTDIR="${ED}" install

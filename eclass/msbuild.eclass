@@ -19,7 +19,7 @@ inherit gac
 
 # the class "make_wrapper" is inherited to implement "doins.exe" function
 # https://devmanual.gentoo.org/eclass-reference/wrapper.eclass/index.html
-inherit wrapper
+#inherit wrapper
 
 case ${EAPI:-0} in
 	0) die "this eclass doesn't support EAPI 0" ;;
