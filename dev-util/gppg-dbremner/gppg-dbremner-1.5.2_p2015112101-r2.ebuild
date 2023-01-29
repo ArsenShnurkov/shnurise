@@ -1,17 +1,18 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="8"
 
-KEYWORDS="amd64 ~ppc ~x86"
+KEYWORDS="amd64"
 RESTRICT="mirror"
 
 SLOT="0"
 
 USE_DOTNET="net45"
-IUSE="+${USE_DOTNET} debug"
+IUSE="+${USE_DOTNET} debug developer"
 
 inherit xbuild
+inherit wrapper
 
 NAME="gppg"
 HOMEPAGE="https://github.com/dbremner/${NAME}"
