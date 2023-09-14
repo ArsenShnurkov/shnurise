@@ -1,0 +1,22 @@
+dev-lang/mono dev-dotnet/xsp dev-util/intltool virtual/pkgconfig sys-devel/gettext x11-misc/shared-mime-info x11-terms/xterm
+dev-lang/mono dev-dotnet/xsp
+0
+https://github.com/ArsenShnurkov/aspnetwebstack/archive/aspnetwebstack-2014.10.27.tar.gz
+
+https://github.com/martinjt/aspnetwebstack
+Apache-2.0
+Mono copy of the Microsoft ASP.NET Web Stack (MVC, Razor etc)
+~amd64 ~x86
+
+dotnet dotnet-native mono-env
+
+
+
+
+8
+
+configure setup
+
+
+
+

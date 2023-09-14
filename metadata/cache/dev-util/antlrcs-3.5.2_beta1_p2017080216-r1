@@ -1,0 +1,22 @@
+>=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 >=dev-dotnet/antlr3-runtime-3.5.2_beta1_p2017080216-r2 dev-dotnet/msbuild-tasks-api dev-dotnet/msbuild-tasks-api virtual/pkgconfig dev-lang/mono dev-util/msbuild
+>=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 dev-lang/mono
+0
+https://github.com/ArsenShnurkov/shnurise-tarballs/raw/dev-util/antlrcs/antlrcs-3.5.2_beta1_p2017080216.tar.gz -> dev-util-antlrcs-3.5.2_beta1_p2017080216.tar.gz
+mirror
+https://github.com/antlr/antlrcs
+BSD
+The C# port of ANTLR 3
+amd64 ~x86
+
+dotbuildtask dotnet dotnet-native gac mono-env mono-pkg-config msbuild msbuild-framework multilib toolchain-funcs
++net45 debug developer doc net45 pkg-config gac pkg-config
+
+
+
+8
+
+compile install prepare setup
+
+
+
+

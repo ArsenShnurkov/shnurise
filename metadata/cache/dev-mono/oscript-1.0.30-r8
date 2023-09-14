@@ -1,0 +1,22 @@
+dev-dotnet/newtonsoft-json >=dev-dotnet/dotnetzip-semverd-1.9.3-r4
+dev-dotnet/newtonsoft-json >=dev-dotnet/dotnetzip-semverd-1.9.3-r4
+1.30
+https://codeload.github.com/EvilBeaver/OneScript/tar.gz/85b3088532a7c97574ea837945745622beba9f2c -> oscript-1.0.30.tar.gz
+mirror
+https://github.com/EvilBeaver/OneScript
+MPL-2.0
+scripting interpreter for 1C-like language (mono based)
+~amd64
+
+dotnet dotnet-native mono-env multilib toolchain-funcs
++net45 debug developer net45
+
+
+
+8
+
+compile install prepare setup
+
+
+
+

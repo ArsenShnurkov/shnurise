@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="8"
@@ -37,7 +37,7 @@ LICENSE="MIT" # https://github.com/Microsoft/msbuild/blob/master/LICENSE
 COMMON_DEPEND=">=dev-lang/mono-5.2.0.196
 	dev-dotnet/msbuild-tasks-api:${SLOT_OF_API} developer? ( dev-dotnet/msbuild-tasks-api:${SLOT_OF_API}[developer] )
 	dev-dotnet/msbuild-defaulttasks:${SLOT_OF_API} developer? ( dev-dotnet/msbuild-defaulttasks:${SLOT_OF_API}[developer] )
-	roslyn? ( dev-dotnet/msbuild-roslyn-csc )
+	roslyn? ( dev-mono/msbuild-roslyn-csc )
 "
 RDEPEND="${COMMON_DEPEND}
 "

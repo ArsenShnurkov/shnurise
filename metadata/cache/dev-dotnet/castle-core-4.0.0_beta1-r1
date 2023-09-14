@@ -1,0 +1,22 @@
+>=dev-lang/mono-4.0.2.5 dev-lang/mono
+>=dev-lang/mono-4.0.2.5 dev-lang/mono
+4
+https://github.com/castleproject/Core/archive/v4.0.0-beta001.tar.gz -> castle-core-4.0.0_beta1.tar.gz
+mirror
+http://www.castleproject.org/
+Apache-2.0
+including Castle DynamicProxy, Logging Services and DictionaryAdapter
+~amd64 ~ppc ~x86
+
+dotnet dotnet-native gac mono-env
++net45 +gac developer debug doc gac pkg-config net45
+
+
+
+8
+
+compile install prepare setup
+
+
+
+

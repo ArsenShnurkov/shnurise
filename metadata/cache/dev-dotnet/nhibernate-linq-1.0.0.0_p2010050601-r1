@@ -1,0 +1,22 @@
+|| ( >=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 ) dev-dotnet/nhibernate-core:3 dev-dotnet/msbuild-tasks-api virtual/pkgconfig dev-lang/mono dev-util/msbuild virtual/pkgconfig dev-lang/mono
+|| ( >=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 ) dev-dotnet/nhibernate-core:3 dev-lang/mono dev-lang/mono
+0
+https://github.com/pruiz/nhibernate-contrib-old/archive/eada73cce086a6457e5e64b0413b97a8f53863ac.tar.gz -> dev-dotnet-nhibernate-linq-1.0.0.0_p2010050601.tar.gz https://github.com/mono/mono/raw/master/mcs/class/mono.snk
+mirror
+https://github.com/pruiz/nhibernate-contrib-old
+LGPL-2.0
+Contributions to NHibernate
+amd64 ~x86
+
+dotnet dotnet-native gac mono-env mono-pkg-config msbuild msbuild-framework
++net45 net45 pkg-config gac pkg-config pkg-config gac pkg-config
+
+
+
+8
+
+compile install postinst preinst prepare prerm setup
+
+
+
+

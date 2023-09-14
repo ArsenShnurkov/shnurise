@@ -1,0 +1,22 @@
+>=dev-lang/mono-5.2.0.196 dev-dotnet/msbuild-tasks-api >=dev-dotnet/newtonsoft-json-6.0.8-r2[pkg-config] >=dev-dotnet/msbuildtasks-1.5.0.240 dev-lang/mono virtual/pkgconfig
+>=dev-lang/mono-5.2.0.196 dev-dotnet/msbuild-tasks-api >=dev-dotnet/newtonsoft-json-6.0.8-r2[pkg-config] dev-lang/mono
+0
+https://github.com/dotnet/buildtools/archive/a177c85d78799e6c2407ce88e857546e490d83c2.tar.gz -> buildtools-dotnet-1.0.27.tar.gz
+mirror
+https://github.com/dotnet/buildtools
+MIT
+Build tools that are necessary for building the .NET Core projects
+amd64 arm64
+
+dotnet dotnet-native gac mono-env mono-pkg-config xbuild
++net45 +gac developer debug doc +symlink net45 net45 gac pkg-config pkg-config
+
+
+
+7
+
+compile install prepare setup
+
+
+
+

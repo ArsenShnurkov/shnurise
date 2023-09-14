@@ -1,0 +1,22 @@
+dev-dotnet/msbuild-tasks-api:15.9 dev-dotnet/msbuild-tasks-api dev-dotnet/msbuild-tasks-api dev-dotnet/msbuild-tasks-api virtual/pkgconfig dev-lang/mono dev-util/msbuild
+dev-dotnet/msbuild-tasks-api:15.9 dev-lang/mono
+0
+https://github.com/ArsenShnurkov/mono-packaging-tools/archive/413603c17671a973f63ad94e37d8f308b63de727.tar.gz -> gentoo-net-sdk-1.5.0.tar.gz
+mirror test
+https://github.com/ArsenShnurkov/mono-packaging-tools
+GPL-3
+Alternative build sequence with PkgConfig instead of NuGet
+amd64 arm64
+
+dotbuildtask dotnet dotnet-native gac mono-env mono-pkg-config msbuild msbuild-framework multilib toolchain-funcs
++net45 + msbuild_targets_msbuild15-9 msbuild_targets_msbuild15-7 msbuild_targets_msbuild15-4 +msbuild debug developer net45 pkg-config gac pkg-config
+
+
+
+8
+
+compile install setup
+
+
+
+

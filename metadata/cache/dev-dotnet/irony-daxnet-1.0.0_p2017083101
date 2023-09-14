@@ -1,0 +1,22 @@
+|| ( >=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 ) >=dev-dotnet/msbuildtasks-1.5.0.240-r3 dev-dotnet/msbuild-tasks-api virtual/pkgconfig dev-lang/mono dev-util/msbuild dev-lang/mono
+|| ( >=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 ) dev-lang/mono dev-lang/mono
+0
+https://github.com/daxnet/irony/archive/ed2aa3ed74b53b1655a2b196d34a1bc20d4e6ce1.tar.gz -> irony-daxnet-1.0.0_p2017083101.tar.gz https://github.com/mono/mono/raw/master/mcs/class/mono.snk
+mirror
+https://github.com/daxnet/irony
+MIT
+parsing framework for C# on LALR(1)
+amd64 ~x86
+
+dotnet dotnet-native gac mono-env mono-pkg-config msbuild msbuild-framework
++net45 net45 pkg-config gac pkg-config gac pkg-config
+
+
+
+8
+
+compile install postinst preinst prepare prerm setup
+
+
+
+

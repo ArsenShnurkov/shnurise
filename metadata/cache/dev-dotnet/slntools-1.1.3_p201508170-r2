@@ -1,0 +1,22 @@
+sys-apps/sed virtual/pkgconfig
+
+1
+https://github.com/ArsenShnurkov/slntools/archive/705869e96a2f0e401be03f8e8478df3e1f2b9373.zip -> dev-dotnet-slntools-1.1.3_p201508170.zip
+mirror
+https://github.com/ArsenShnurkov/slntools
+MIT
+library for merging .sln files, and cli-tool
+amd64 ~x86
+
+dotnet dotnet-native mono-env mono-pkg-config xbuild
++net45 +pkg-config +symlink +cli debug developer net45 pkg-config
+
+
+
+8
+
+compile install prepare setup
+
+
+
+

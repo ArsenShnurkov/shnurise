@@ -1,0 +1,22 @@
+dev-db/sqlite:3 dev-dotnet/msbuild-tasks-api virtual/pkgconfig dev-lang/mono dev-util/msbuild
+dev-db/sqlite:3 acct-group/aspnet acct-user/aspnet dev-lang/mono
+0
+https://codeload.github.com/mono/xsp/tar.gz/3330ff0790eaa48b0b54174edc0736b9b6006841 -> xsp-4.7.1_p20210126.tar.gz
+mirror !test? ( test )
+https://www.mono-project.com/docs/web/aspnet/
+MIT
+XSP is a small web server that can host ASP.NET pages
+amd64 arm64
+
+autotools dotnet dotnet-native gac gnuconfig libtool mono-env mono-pkg-config msbuild msbuild-framework multilib systemd toolchain-funcs vcs-snapshot
++net45 net40 net35 systemd openrc +xsp +modmono fastcgi examples doc test debug developer net45 net40 net35 pkg-config gac pkg-config
+
+
+sys-devel/gnuconfig >=app-portage/elt-patches-20170815 || ( >=sys-devel/automake-1.16.5:1.16 ) >=sys-devel/autoconf-2.71-r5 >=sys-devel/libtool-2.4.7 virtual/pkgconfig
+8
+
+compile configure install prepare setup unpack
+
+
+
+

@@ -1,0 +1,22 @@
+>=dev-dotnet/gtk-sharp-2.12.21:2 >=dev-dotnet/nuget-2.8.7 dev-dotnet/referenceassemblies-pcl net-libs/libssh2 gnome? ( >=dev-dotnet/gnome-sharp-2.24.2-r1 ) dev-util/intltool virtual/pkgconfig sys-devel/gettext x11-misc/shared-mime-info x11-terms/xterm app-arch/unzip
+>=dev-dotnet/gtk-sharp-2.12.21:2 >=dev-dotnet/nuget-2.8.7 dev-dotnet/referenceassemblies-pcl net-libs/libssh2 gnome? ( >=dev-dotnet/gnome-sharp-2.24.2-r1 ) dev-util/ctags sys-apps/dbus[X] >=www-servers/xsp-2 doc? ( dev-util/mono-docbrowser ) git? ( dev-vcs/git ) subversion? ( dev-vcs/subversion ) !<dev-util/monodevelop-boo-6.0 !<dev-util/monodevelop-java-6.0 !<dev-util/monodevelop-database-6.0 !<dev-util/monodevelop-debugger-gdb-6.0 !<dev-util/monodevelop-debugger-mdb-6.0 !<dev-util/monodevelop-vala-6.0
+0
+https://download.mono-project.com/sources/monodevelop/monodevelop-6.0.0.4761.tar.bz2 https://github.com/mono/roslyn/archive/16e117c2400d0ab930e7d89512f9894a169a0e6e.zip -> roslyn-16e117c2400d0ab930e7d89512f9894a169a0e6e.zip https://launchpadlibrarian.net/68057829/NUnit-2.5.10.11092.zip
+
+https://www.monodevelop.com/
+GPL-2
+Integrated Development Environment for .NET
+amd64 ~x86
+
+dotnet dotnet-native gnome2-utils mono-env multilib toolchain-funcs xdg-utils
++subversion +git doc +gnome qtcurve
+
+
+
+8
+
+compile configure postinst postrm preinst prepare setup unpack
+
+
+
+

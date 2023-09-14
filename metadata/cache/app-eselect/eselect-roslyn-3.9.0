@@ -1,0 +1,22 @@
+
+app-admin/eselect
+0
+https://codeload.github.com/ArsenShnurkov/eselect-msbuild/tar.gz/8e36a710a1fc4f9839d952dc3ebcfd973661437a -> app-eselect-eselect-roslyn-3.9.0.tar.gz
+mirrortest
+https://github.com/ArsenShnurkov/shnurise
+GPL-2
+roslyn eselect module
+amd64 ~arm64
+
+vcs-snapshot
+
+
+
+
+8
+
+install unpack
+
+
+
+

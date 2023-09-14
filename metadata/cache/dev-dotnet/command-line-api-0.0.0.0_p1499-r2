@@ -1,0 +1,22 @@
+>=dev-lang/mono-6 virtual/pkgconfig
+>=dev-lang/mono-6
+0
+https://codeload.github.com/dotnet/command-line-api/tar.gz/0c8d7fea8bf5f3e8eefa1e1040accaf2a1117b2b -> dev-dotnet-command-line-api-0.0.0.0_p1499.tar.gz
+mirror test
+https://github.com/dotnet/command-line-api
+MIT
+Library for building command line applications with extensible middleware pipeline
+amd64
+
+dotnet dotnet-native mono-env mono-pkg-config
++net45 +pkg-config net45 pkg-config
+
+
+
+7
+
+compile install prepare setup
+
+
+
+

@@ -1,0 +1,22 @@
+virtual/pkgconfig dev-lang/mono nupkg? ( dev-dotnet/nuget )
+dev-lang/mono nupkg? ( dev-dotnet/nuget )
+0
+https://api.github.com/repos/jbevain/cecil/tarball/848c4d5b87f92e3fecd6e48c12270cd138536a83 -> dev-dotnet-cecil-0.10_beta7_p2018031901.tar.gz
+mirror test
+http://cecil.pe/
+MIT
+System.Reflection alternative to generate and inspect .NET executables/libraries
+~amd64 ~x86
+
+dotnet dotnet-native gac mono-env mono-pkg-config nupkg xbuild
++net45 +pkg-config +symlink debug developer net45 pkg-config gac pkg-config net45 nupkg
+
+
+
+8
+
+compile configure install prepare setup
+
+
+
+

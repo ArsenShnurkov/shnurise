@@ -1,0 +1,22 @@
+virtual/pkgconfig
+
+1
+https://github.com/psmacchia/NDepend.Path/archive/96008fcfbc137eac6fd327387b80b14909a581a1.tar.gz -> dev-dotnet-ndepend-path-0.0_p20151123.tar.gz
+mirror
+https://github.com/psmacchia/NDepend.Path
+MIT
+C# framework for paths operations: Absolute, Drive Letter, UNC, Relative, prefix
+amd64
+
+dotnet dotnet-native mono-env mono-pkg-config
+debug +net45 +pkg-config +symlink net45 pkg-config
+
+
+
+7
+
+compile install prepare setup
+
+
+
+

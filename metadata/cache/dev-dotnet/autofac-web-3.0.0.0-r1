@@ -1,0 +1,22 @@
+dev-dotnet/autofac:2 dev-dotnet/msbuild-tasks-api virtual/pkgconfig dev-lang/mono dev-util/msbuild virtual/pkgconfig
+dev-lang/mono
+3
+https://github.com/autofac/Autofac.Web/archive/f84b3369693ff9231ed48431b78d0f657ca9a81c.tar.gz -> dev-dotnet-autofac-web-3.0.0.0.tar.gz
+mirror
+https://github.com/autofac/Autofac.Web
+MIT
+An addictive .NET IoC container
+amd64 ~x86
+
+dotnet dotnet-native gac mono-env mono-pkg-config msbuild msbuild-framework
++net45 +debug developer doc net45 pkg-config gac pkg-config pkg-config
+
+
+
+8
+
+compile install prepare setup
+
+
+
+

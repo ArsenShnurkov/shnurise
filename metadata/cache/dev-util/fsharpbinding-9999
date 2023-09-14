@@ -1,0 +1,22 @@
+dev-lang/fsharp monodevelop? ( dev-util/monodevelop ) emacs? ( >=app-editors/emacs-25.3 app-emacs/s app-emacs/dash app-emacs/auto-complete )
+dev-lang/fsharp monodevelop? ( dev-util/monodevelop ) emacs? ( >=app-editors/emacs-25.3 app-emacs/s app-emacs/dash app-emacs/auto-complete )
+0
+
+
+https://github.com/fsharp/fsharpbinding
+Apache-2.0
+The F# Compiler
+
+
+autotools dotnet dotnet-native elisp-common git-r3 gnuconfig libtool mono-env multilib toolchain-funcs
+-emacs +monodevelop
+
+
+>=dev-vcs/git-1.8.2.1[curl] sys-devel/gnuconfig >=app-portage/elt-patches-20170815 || ( >=sys-devel/automake-1.16.5:1.16 ) >=sys-devel/autoconf-2.71-r5 >=sys-devel/libtool-2.4.7
+8
+live
+compile configure install postinst setup unpack
+
+
+
+

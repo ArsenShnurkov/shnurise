@@ -1,0 +1,22 @@
+>=dev-dotnet/mono-options-5.11.0.132 virtual/pkgconfig
+>=dev-dotnet/mono-options-5.11.0.132
+0
+https://github.com/mono/t4/archive/0a1424821b493704b4e8ecaee8f6378b8893c0c8.tar.gz -> dev-util-t4-1.3.1_p2018020903.tar.gz
+mirror
+https://github.com/mono/t4
+
+
+amd64 ~x86
+
+dotnet dotnet-native mono-env mono-pkg-config
++net45 net45 pkg-config
+
+
+
+8
+
+compile install prepare setup
+
+
+
+

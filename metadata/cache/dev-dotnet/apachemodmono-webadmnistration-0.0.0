@@ -1,0 +1,22 @@
+virtual/pkgconfig
+
+0
+https://github.com/ArsenShnurkov/ApacheModmono.Web.Administration/archive/82862af30f3a0134e38454fbd44c09b62f50a38c.zip -> dev-dotnet-apachemodmono-webadmnistration-0.0.0.zip
+mirror
+https://github.com/ArsenShnurkov/ApacheModmono.Web.Administration
+Apache-2.0
+API for managing Apache and mod-mono-server4
+amd64
+
+dotnet dotnet-native mono-env mono-pkg-config
++net45 pkg-config debug developer net45 pkg-config
+
+
+
+7
+
+compile install setup
+
+
+
+

@@ -1,0 +1,22 @@
+
+app-admin/eselect app-eselect/eselect-roslyn
+0
+https://codeload.github.com/mono/roslyn-binaries/tar.gz/1c6482470cd219dcc7503259a20f26a1723f20ec -> roslyn-msbin-3.9.0.tar.gz
+mirror
+https://github.com/mono/roslyn-binaries
+MIT
+Roslyn binary files compiled by Microsoft and repackaged by mono team
+amd64 arm64
+
+dotnet dotnet-native mono-env multilib toolchain-funcs vcs-snapshot
++net45 +symlink net45
+
+
+
+8
+
+install postinst prepare setup unpack
+
+
+
+

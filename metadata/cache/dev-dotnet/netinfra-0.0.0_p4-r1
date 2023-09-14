@@ -1,0 +1,22 @@
+dev-dotnet/msbuild-tasks-api virtual/pkgconfig dev-lang/mono dev-util/msbuild virtual/pkgconfig
+dev-lang/mono
+0
+https://codeload.github.com/ArsenShnurkov/netinfra/tar.gz/1e9db1f509a46d3cefa7c9c975fdf17a79cb08df -> dev-dotnet-netinfra-0.0.0_p4.tar.gz
+mirror test
+https://github.com/ArsenShnurkov/netinfra
+GPL-3
+classes to store configuration of computers
+amd64
+
+dotnet dotnet-native gac mono-env mono-pkg-config msbuild msbuild-framework
++net45 +pkg-config source debug developer net45 pkg-config gac pkg-config pkg-config
+
+
+
+7
+
+compile install setup
+
+
+
+

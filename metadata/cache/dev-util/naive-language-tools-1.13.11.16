@@ -1,0 +1,22 @@
+virtual/pkgconfig
+
+0
+https://github.com/macias/NaiveLanguageTools/archive/d40aadc15824361639b766a4bbe4b1f69a68d996.tar.gz -> dev-util-naive-language-tools-1.13.11.16.tar.gz
+mirror
+https://github.com/macias/NaiveLanguageTools
+MIT
+Free, open-source C# lexer and GLR parser suite
+amd64 ~x86
+
+dotnet dotnet-native mono-env mono-pkg-config xbuild
++net45 debug net45 pkg-config
+
+
+
+8
+
+compile install prepare setup
+
+
+
+

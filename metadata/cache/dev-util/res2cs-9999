@@ -1,0 +1,22 @@
+
+
+9999
+
+test mirror
+https://github.com/ArsenShnurkov/mono-packaging-tools
+GPL-2
+An utility to generate .cs from .resx
+~amd64 ~arm64
+
+dotnet dotnet-native git-r3 mono-env wrapper
+developer debug net45
+
+
+>=dev-vcs/git-1.8.2.1[curl]
+8
+live live
+compile install prepare setup unpack
+
+
+
+

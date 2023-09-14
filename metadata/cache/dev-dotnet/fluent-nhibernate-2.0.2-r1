@@ -1,0 +1,22 @@
+|| ( >=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 ) dev-dotnet/nhibernate-core dev-util/antlrcs >=dev-dotnet/msbuildtasks-1.5.0.240 dev-dotnet/msbuild-tasks-api virtual/pkgconfig dev-lang/mono dev-util/msbuild virtual/pkgconfig dev-lang/mono
+|| ( >=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 ) dev-dotnet/nhibernate-core dev-lang/mono dev-lang/mono
+0
+https://github.com/jagregory/fluent-nhibernate/archive/0ac6335d2068798f6b38b98aacade07bc702d68f.tar.gz -> dev-dotnet-fluent-nhibernate-2.0.2.tar.gz https://github.com/mono/mono/raw/master/mcs/class/mono.snk
+mirror
+http://www.fluentnhibernate.org/
+BSD
+XML-less, compile safe, automated, convention-based mappings for NHibernate
+amd64 ~x86
+
+dotnet dotnet-native gac mono-env mono-pkg-config msbuild msbuild-framework
++net45 net45 pkg-config gac pkg-config pkg-config gac pkg-config
+
+
+
+8
+
+compile install postinst preinst prepare prerm setup
+
+
+
+

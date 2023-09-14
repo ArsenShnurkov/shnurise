@@ -1,0 +1,22 @@
+|| ( >=dev-lang/mono-4.2 <dev-lang/mono-9999 ) dev-util/nunit2 dev-dotnet/msbuild-tasks-api virtual/pkgconfig dev-lang/mono dev-util/msbuild virtual/pkgconfig dev-lang/mono dev-lang/mono >=dev-util/mono-packaging-tools-0.1.2
+|| ( >=dev-lang/mono-4.2 <dev-lang/mono-9999 ) dev-lang/mono dev-lang/mono dev-lang/mono >=dev-util/mono-packaging-tools-0.1.2
+0
+https://github.com/npgsql/npgsql/archive/b38b71380def0299e79269b403116b7d72b9419d.tar.gz -> dev-dotnet-npgsql-3.1.6.tar.gz gac? ( https://github.com/mono/mono/raw/master/mcs/class/mono.snk )
+mirror
+https://github.com/npgsql/npgsql
+npgsql
+allows any program developed for .NET framework to access a PostgreSQL database
+amd64 ~x86
+
+dotnet dotnet-native gac machine mono-env mono-pkg-config msbuild msbuild-framework
+net45 +gac debug developer test +pkg-config net45 pkg-config gac pkg-config pkg-config gac pkg-config gac pkg-config +machine
+
+
+
+8
+
+compile install postinst prepare prerm setup test unpack
+
+
+
+

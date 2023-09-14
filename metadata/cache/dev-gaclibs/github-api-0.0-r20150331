@@ -1,0 +1,22 @@
+>=dev-lang/mono-3.0
+>=dev-lang/mono-3.0
+0
+https://github.com/gitextensions/Git.hub/archive/46304b521bb26414a9f1e998a315cd35039a4837.zip -> github-api-0.0-r20150331.zip
+
+https://github.com/gitextensions/Git.hub
+MIT
+C# API for github, based on RestSharp
+amd64 ~x86 ~ppc
+
+dotnet dotnet-native mono-env
+debug
+
+
+
+8
+
+compile configure install prepare setup
+
+
+
+

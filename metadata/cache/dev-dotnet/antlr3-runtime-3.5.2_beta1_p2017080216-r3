@@ -1,0 +1,22 @@
+>=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 >=dev-dotnet/msbuildtasks-1.5.0.240 dev-dotnet/msbuild-tasks-api virtual/pkgconfig dev-lang/mono dev-util/msbuild dev-lang/mono virtual/pkgconfig
+>=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 dev-lang/mono dev-lang/mono
+35
+https://github.com/ArsenShnurkov/shnurise-tarballs/raw/dev-util/antlrcs-35/antlrcs-3.5.2_beta1_p2017080216.tar.gz -> dev-dotnet-antlrcs-3.5.2_beta1_p2017080216.tar.gz https://github.com/mono/mono/raw/master/mcs/class/mono.snk
+mirror
+https://github.com/antlr/antlrcs
+BSD
+The C# port of ANTLR 3 (Rubtime library)
+~amd64 ~x86
+
+dotnet dotnet-native gac mono-env mono-pkg-config msbuild msbuild-framework
++net45 debug developer doc net45 net45 pkg-config gac pkg-config gac pkg-config pkg-config
+
+
+
+8
+
+compile install postinst preinst prepare prerm setup
+
+
+
+

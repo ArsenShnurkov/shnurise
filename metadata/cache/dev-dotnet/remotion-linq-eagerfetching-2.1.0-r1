@@ -1,0 +1,22 @@
+>=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 >=dev-dotnet/remotion-linq-2.1.2-r1 dev-dotnet/msbuild-tasks-api virtual/pkgconfig dev-lang/mono dev-util/msbuild dev-lang/mono virtual/pkgconfig
+>=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 >=dev-dotnet/remotion-linq-2.1.2-r1 dev-lang/mono dev-lang/mono
+0
+https://github.com/re-motion/Relinq-EagerFetching/archive/9c3fe22e35f3f66becc197829d8e3bdf8e3dd622.tar.gz -> Relinq-EagerFetching-2.1.0.tar.gz https://github.com/mono/mono/raw/master/mcs/class/mono.snk
+mirror
+https://github.com/re-motion/Relinq-EagerFetching
+LGPL-2.1
+Library to create full-featured LINQ providers (fetching).
+amd64 ~ppc ~x86
+
+dotnet dotnet-native gac mono-env mono-pkg-config msbuild msbuild-framework
++net45 +msbuild debug developer doc net45 net45 pkg-config gac pkg-config gac pkg-config pkg-config
+
+
+
+8
+
+compile install postinst preinst prepare prerm setup
+
+
+
+

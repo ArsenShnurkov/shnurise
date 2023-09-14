@@ -1,0 +1,22 @@
+>=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 dev-dotnet/microsoft-extensions-commandlineutils
+>=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 dev-dotnet/microsoft-extensions-commandlineutils
+0
+https://codeload.github.com/mikehadlow/AsmSpy/tar.gz/854751d9f624d1e054d658856aca67b49f82ed0f -> dev-util-asmspy-1.2.0.tar.gz
+mirror
+https://github.com/mikehadlow/AsmSpy
+MIT
+Simple command line assembly reference checker
+amd64 ~x86
+
+dotnet dotnet-native mono-env xbuild
++net45 debug developer net45
+
+
+
+8
+
+compile install prepare setup
+
+
+
+

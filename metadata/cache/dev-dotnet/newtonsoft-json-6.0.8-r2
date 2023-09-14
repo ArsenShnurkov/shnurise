@@ -1,0 +1,22 @@
+|| ( >=dev-lang/mono-4.2 <dev-lang/mono-9999 ) dev-lang/mono virtual/pkgconfig
+|| ( >=dev-lang/mono-4.2 <dev-lang/mono-9999 ) dev-lang/mono
+0
+https://github.com/JamesNK/Newtonsoft.Json/archive/1497343173a181d678b4c9bbf60250a12f783f1c.zip -> newtonsoft-json-6.0.8.zip gac? ( https://github.com/mono/mono/raw/main/mcs/class/mono.snk )
+mirror
+https://github.com/JamesNK/Newtonsoft.Json
+MIT
+Json.NET is a popular high-performance JSON framework for .NET
+amd64 arm64
+
+dotnet dotnet-native gac mono-env mono-pkg-config xbuild
+net45 debug developer +gac pkg-config nupkg test net45 net45 gac pkg-config pkg-config
+
+test? ( dev-dotnet/newtonsoft-json-test ) nupkg? ( dev-dotnet/newtonsoft-json-testdev-nupkg )
+
+7
+
+compile install prepare setup
+
+
+
+

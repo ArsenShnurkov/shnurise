@@ -1,0 +1,22 @@
+>=dev-lang/mono-4.5
+>=dev-lang/mono-4.5
+0
+https://api.github.com/repos/apache/logging-log4net/tarball/dbad144815221ffe4ed85efa73134583253dc75b -> log4net-2.0.12.tar.gz https://dev.gentoo.org/~pacho/dotnet/log4net.snk
+
+http://logging.apache.org/log4net/
+Apache-2.0
+tool to help the programmer output log statements to a variety of output targets
+amd64
+
+mono multilib toolchain-funcs vcs-snapshot
+
+
+
+>=dev-lang/mono-4.5
+7
+
+compile install unpack
+
+
+
+

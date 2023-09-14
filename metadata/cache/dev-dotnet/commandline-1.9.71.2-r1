@@ -1,0 +1,22 @@
+>=dev-lang/mono-6 dev-dotnet/msbuild-tasks-api virtual/pkgconfig dev-lang/mono dev-util/msbuild virtual/pkgconfig
+>=dev-lang/mono-6 dev-lang/mono
+0
+https://codeload.github.com/commandlineparser/commandline/tar.gz/205094c0c135ab5b6816f3eb0e6a84ddced5b0e2 -> dev-dotnet-commandline-1.9.71.2.tar.gz
+mirror test
+https://github.com/commandlineparser/commandline
+MIT
+C# (and F#) command line parser with standardized *nix getopt style
+amd64 arm64
+
+dotnet dotnet-native gac mono-env mono-pkg-config msbuild msbuild-framework
++net45 +pkg-config debug developer net45 pkg-config gac pkg-config pkg-config
+
+
+
+8
+
+compile install prepare setup
+
+
+
+

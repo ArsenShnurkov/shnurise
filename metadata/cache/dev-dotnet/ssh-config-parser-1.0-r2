@@ -1,0 +1,22 @@
+>=dev-lang/mono-6 virtual/pkgconfig
+>=dev-lang/mono-6
+0
+https://codeload.github.com/JeremySkinner/Ssh-Config-Parser/tar.gz/04152ebc42ff81b11497cdbacfeb7ab95e79b37f -> dev-dotnet-ssh-config-parser-1.0.tar.gz
+mirror test
+https://github.com/JeremySkinner/Ssh-Config-Parser
+MIT
+C#/.NET parser for OpenSSH config files
+amd64
+
+dotnet dotnet-native mono-env mono-pkg-config
++net45 +pkg-config debug net45 pkg-config
+
+
+
+7
+
+compile install prepare setup
+
+
+
+

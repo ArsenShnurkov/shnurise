@@ -1,0 +1,22 @@
+>=dev-lang/mono-4.0.2.5 dev-dotnet/msbuild-tasks-api dev-dotnet/msbuild-tasks-api dev-dotnet/msbuild-tasks-api virtual/pkgconfig dev-lang/mono dev-util/msbuild
+>=dev-lang/mono-4.0.2.5 dev-lang/mono
+0
+https://codeload.github.com/dotnet/sdk/tar.gz/4908e1f6d532cb823b6889816c49fb5134b0278c -> microsoft-net-sdk-2.1.300.tar.gz
+mirror
+https://github.com/dotnet/sdk/
+MIT
+'Microsoft.NET.Sdk' for msbuild
+amd64
+
+dotbuildtask dotnet dotnet-native gac mono-env mono-pkg-config msbuild msbuild-framework multilib toolchain-funcs
++net45 msbuild_targets_msbuild15-9 msbuild_targets_msbuild15-7 msbuild_targets_msbuild15-4 +msbuild debug developer net45 net45 pkg-config gac pkg-config
+
+
+
+7
+
+compile install prepare setup
+
+
+
+

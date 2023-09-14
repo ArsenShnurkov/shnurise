@@ -1,0 +1,22 @@
+>=dev-lang/mono-4.0.2.5 dev-util/nant[nupkg] dev-lang/mono nupkg? ( dev-dotnet/nuget )
+>=dev-lang/mono-4.0.2.5 dev-util/nant[nupkg] dev-lang/mono nupkg? ( dev-dotnet/nuget )
+2
+https://github.com/nunit/nunitv2/archive/1b549f4f8b067518c7b54a5b263679adb83ccda4.zip -> dev-util-nunit2-2.6.4_p2015011102.zip
+mirror
+https://github.com/nunit/nunitv2
+NUnit-License
+NUnit test suite for mono applications
+amd64 ~x86
+
+dotnet dotnet-native gac mono-env nupkg xbuild
++net45 developer debug +gac nupkg doc gac pkg-config nupkg
+
+
+
+8
+
+compile install prepare setup
+
+
+
+

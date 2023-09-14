@@ -1,0 +1,22 @@
+>=dev-lang/mono-5.2.0.196 >=dev-dotnet/msbuildtasks-1.5.0.240 virtual/pkgconfig dev-lang/mono
+>=dev-lang/mono-5.2.0.196 dev-lang/mono
+0
+https://github.com/nhibernate/iesi.collections/archive/3e183dd3316baedac508d0171b67c3dee05f6da0.tar.gz -> nhibernate-iesi-collections-4.0.2.tar.gz
+mirror
+https://www.codeproject.com/Articles/3190/Add-Support-for-quot-Set-quot-Collections-to-NET
+TODO
+C#, LinkedHashSet<T>, SynchronizedSet<T>, ReadOnlySet<T>
+amd64 ~ppc ~x86
+
+dotnet dotnet-native gac mono-env mono-pkg-config xbuild
++net45 +gac developer debug doc net45 pkg-config gac pkg-config
+
+
+
+8
+
+compile install prepare setup
+
+
+
+

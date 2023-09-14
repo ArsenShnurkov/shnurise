@@ -1,0 +1,22 @@
+>=dev-lang/mono-4.9.0 dev-dotnet/msbuildtasks dev-util/mono-packaging-tools
+>=dev-lang/mono-4.9.0
+0
+https://github.com/ArsenShnurkov/repository-analyser/archive/7423a3da82f5c5c874801fc85482ec89e03f74b8.tar.gz -> repository-analyser-1.0.0.0.tar.gz
+mirror
+https://github.com/ArsenShnurkov/repository-analyser
+GPLv3
+modified Earley parser in C# inspired by the Marpa Parser project
+amd64 ~x86
+
+dotnet dotnet-native mono-env
++net45 net45
+
+
+
+8
+
+compile install prepare setup
+
+
+
+

@@ -1,0 +1,22 @@
+>=dev-lang/mono-4.0.2.5 sys-apps/sed
+>=dev-lang/mono-4.0.2.5
+0
+https://github.com/jamietre/HtmlParserSharp/archive/2a450f49bb908d50461eae95dd4f74b872b5094e.zip -> htmlparsersharp-1.0.0.0-r20150614.zip
+
+https://github.com/jamietre/HtmlParserSharp
+MPL
+Validator.nu HTML Parser, a HTML5 parser, port from Java Version 1.4 to C#
+~amd64 ~x86
+
+autotools dotnet dotnet-native gnuconfig libtool mono-env multilib toolchain-funcs
+
+
+
+sys-devel/gnuconfig >=app-portage/elt-patches-20170815 || ( >=sys-devel/automake-1.16.5:1.16 ) >=sys-devel/autoconf-2.71-r5 >=sys-devel/libtool-2.4.7
+8
+
+compile configure install prepare setup unpack
+
+
+
+

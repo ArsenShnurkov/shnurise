@@ -1,0 +1,22 @@
+>=dev-lang/mono-5.2.0.196 dev-dotnet/msbuild-tasks-api:15.9 developer? ( dev-dotnet/msbuild-tasks-api:15.9[developer] ) dev-dotnet/msbuild-defaulttasks:15.9 developer? ( dev-dotnet/msbuild-defaulttasks:15.9[developer] ) roslyn? ( dev-mono/msbuild-roslyn-csc ) dev-dotnet/buildtools dev-lang/mono dev-dotnet/msbuild-tasks-api
+>=dev-lang/mono-5.2.0.196 dev-dotnet/msbuild-tasks-api:15.9 developer? ( dev-dotnet/msbuild-tasks-api:15.9[developer] ) dev-dotnet/msbuild-defaulttasks:15.9 developer? ( dev-dotnet/msbuild-defaulttasks:15.9[developer] ) roslyn? ( dev-mono/msbuild-roslyn-csc ) dev-lang/mono
+15.9
+https://github.com/Microsoft/msbuild/archive/88f5fadfbef809b7ed2689f72319b7d91792460e.tar.gz -> msbuild-Microsoft-15.9.20.62856.tar.gz mskey? ( https://github.com/Microsoft/msbuild/raw/master/src/MSFT.snk ) https://github.com/mono/mono/raw/master/mcs/class/mono.snk
+mirror
+https://github.com/Microsoft/msbuild
+MIT
+Microsoft Build Engine (MSBuild) is an XML-based platform for building applications
+amd64 arm64
+
+dotnet dotnet-native gac mono-env msbuild-framework wrapper xbuild
++net46 +gac +mskey developer debug +roslyn symlink gac pkg-config
+
+
+
+8
+
+compile install postinst prepare setup
+
+
+
+

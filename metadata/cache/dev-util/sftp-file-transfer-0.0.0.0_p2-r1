@@ -1,0 +1,22 @@
+>=dev-lang/mono-6 dev-dotnet/command-line-api dev-dotnet/ssh-config-parser dev-dotnet/ssh-net
+>=dev-lang/mono-6 dev-dotnet/command-line-api dev-dotnet/ssh-config-parser dev-dotnet/ssh-net
+0
+https://codeload.github.com/ArsenShnurkov/sftp-file-transfer/tar.gz/ec82dd2374a0d731b4c4ae29fee2476135ea4f00 -> dev-util-sftp-file-transfer-0.0.0.0_p2.tar.gz
+mirror test
+https://github.com/ArsenShnurkov/sftp-file-transfer
+GPL-3
+C# command line utility for uploading files to sftp
+amd64
+
+dotnet dotnet-native mono-env
++net45 +pkg-config debug net45
+
+
+
+7
+
+compile install prepare setup
+
+
+
+

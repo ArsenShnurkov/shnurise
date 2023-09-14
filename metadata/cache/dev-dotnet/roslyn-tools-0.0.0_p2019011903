@@ -1,0 +1,22 @@
+>=dev-lang/mono-4.0.2.5
+>=dev-lang/mono-4.0.2.5
+0
+https://codeload.github.com/dotnet/roslyn-tools/tar.gz/8a1c2507afd04904cfa34515509f264b87655494 -> roslyn-tools-0.0.0_p2019011903.tar.gz
+mirror
+https://github.com/dotnet/roslyn-tools
+Apache-2.0
+'Tools used in Roslyn based repos
+amd64 ~x86
+
+dotnet dotnet-native mono-env
++net45 net45
+
+
+
+8
+
+compile install prepare setup
+
+
+
+

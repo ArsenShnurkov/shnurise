@@ -1,0 +1,22 @@
+|| ( >=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 ) dev-dotnet/nhibernate-iesi-collections dev-dotnet/remotion-linq dev-dotnet/remotion-linq-eagerfetching >=dev-util/antlrcs-3.5.2_beta1_p2017080216-r1 >=dev-dotnet/msbuildtasks-1.5.0.240 >=dev-util/mono-packaging-tools-1.4.3 dev-dotnet/msbuild-tasks-api virtual/pkgconfig dev-lang/mono dev-util/msbuild virtual/pkgconfig dev-lang/mono
+|| ( >=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 ) dev-lang/mono dev-lang/mono
+5
+https://github.com/nhibernate/nhibernate-core/archive/c2c93d979611463b5a3fb12c4d27bb78d86de9d4.tar.gz -> dev-dotnet-nhibernate-core-5.0.0.tar.gz https://github.com/mono/mono/raw/master/mcs/class/mono.snk
+mirror
+http://nhibernate.info/
+LGPL-2.1
+NHibernate Object Relational Mapper
+amd64 ~x86
+
+dotnet dotnet-native gac mono-env mono-pkg-config mpt-r20150903 msbuild msbuild-framework
++net45 net45 pkg-config gac pkg-config pkg-config gac pkg-config
+
+
+
+8
+
+compile install postinst preinst prepare prerm setup
+
+
+
+

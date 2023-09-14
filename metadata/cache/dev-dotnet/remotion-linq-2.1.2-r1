@@ -1,0 +1,22 @@
+>=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 dev-dotnet/msbuild-tasks-api virtual/pkgconfig dev-lang/mono dev-util/msbuild virtual/pkgconfig dev-lang/mono
+>=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 dev-lang/mono dev-lang/mono
+0
+https://github.com/re-motion/Relinq/archive/88b1055e0a737faff26c9d5e2789f520ac73ca86.tar.gz -> Relinq-2.1.2.tar.gz https://github.com/mono/mono/raw/master/mcs/class/mono.snk
+mirror
+https://github.com/re-motion/Relinq
+Apache2.0
+Library to create full-featured LINQ providers.
+amd64 ~ppc ~x86
+
+dotnet dotnet-native gac mono-env mono-pkg-config msbuild msbuild-framework
++net46 +debug developer doc pkg-config gac pkg-config pkg-config gac pkg-config
+
+
+
+8
+
+compile install postinst preinst prepare prerm setup
+
+
+
+

@@ -1,0 +1,22 @@
+dev-dotnet/msbuild-tasks-api virtual/pkgconfig dev-lang/mono dev-util/msbuild
+dev-lang/mono
+0
+https://github.com/neosmart/collections/archive/53d3cd2a38a4a4dc7ebf1a28c9cadd95291be0de.zip -> dev-dotnet-neosmart-collections-1.2.0_p2.zip
+
+https://github.com/neosmart/collections
+MIT
+Collections in C# language for specific cases
+amd64 arm64
+
+dotnet dotnet-native gac gentoo-net-sdk mono-env mono-pkg-config msbuild msbuild-framework
++pkg-config debug developer pkg-config gac pkg-config
+
+
+
+8
+
+compile install prepare setup
+
+
+
+

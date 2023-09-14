@@ -1,0 +1,22 @@
+>=dev-util/mono-packaging-tools-1.4.2.2 dev-lang/mono virtual/pkgconfig
+dev-lang/mono
+1
+https://github.com/castleproject/Castle.Core-READONLY/archive/44859cac767ff02dfc43911c4ce4a571625648b0.tar.gz -> dev-dotnet-castle-core-1.2.0.tar.gz https://github.com/mono/mono/raw/master/mcs/class/mono.snk
+mirror
+http://www.castleproject.org/
+Apache-2.0
+including Castle DynamicProxy, Logging Services and DictionaryAdapter
+amd64 ~x86
+
+dotnet dotnet-native gac mono-env mono-pkg-config xbuild
++net45 +pkg-config net45 gac pkg-config pkg-config
+
+
+
+8
+
+compile install prepare setup
+
+
+
+

@@ -1,7 +1,7 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="7"
+EAPI="8"
 
 KEYWORDS="amd64 arm64"
 RESTRICT="mirror"
@@ -11,7 +11,8 @@ SLOT="0"
 USE_DOTNET="net45"
 IUSE="+${USE_DOTNET} +symlink"
 
-inherit multilib eutils vcs-snapshot
+inherit vcs-snapshot
+inherit multilib 
 inherit dotnet
 
 HOMEPAGE="https://github.com/mono/roslyn-binaries"

@@ -1,0 +1,22 @@
+dev-dotnet/neosmart-collections dev-dotnet/msbuild-tasks-api virtual/pkgconfig dev-lang/mono dev-util/msbuild
+dev-lang/mono
+0
+https://github.com/neosmart/unicode.net/archive/15ca8e5ee372ecf15aa60f2382d7481e53ae28ae.zip -> dev-dotnet-unicode-net-2.0_p6.zip
+
+https://github.com/neosmart/unicode.net
+MIT
+A Unicode library for .NET, supporting UTF8, UTF16, and UTF32, with emoji
+amd64 arm64
+
+dotnet dotnet-native gac gentoo-net-sdk mono-env mono-pkg-config msbuild msbuild-framework
++pkg-config debug developer pkg-config gac pkg-config
+
+
+
+8
+
+compile install prepare setup
+
+
+
+

@@ -1,0 +1,22 @@
+>=dev-lang/mono-4.0.2.5 >=dev-dotnet/dotnetzip-semverd-1.9.3-r4 dev-dotnet/msbuild-tasks-api dev-lang/mono
+>=dev-lang/mono-4.0.2.5 >=dev-dotnet/dotnetzip-semverd-1.9.3-r4 dev-dotnet/msbuild-tasks-api dev-lang/mono
+1
+https://github.com/loresoft/msbuildtasks/archive/abaab03d71fc07b020a860f6d407f6814cb0f6d5.tar.gz -> msbuildtasks-1.5.0.260.tar.gz https://github.com/mono/mono/raw/master/mcs/class/mono.snk
+mirror
+https://github.com/loresoft/msbuildtasks
+BSD
+The MSBuild Community Tasks Project is an open source project for MSBuild tasks.
+amd64 arm64
+
+dotnet dotnet-native gac mono-env xbuild
++net45 +debug developer +msbuild +xbuild +symlink net45 gac pkg-config
+
+
+
+7
+
+compile install prepare setup
+
+
+
+

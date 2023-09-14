@@ -1,0 +1,22 @@
+virtual/pkgconfig
+
+0
+https://github.com/ArsenShnurkov/ICSharpCode.TextEditor/archive/38c21a56f969047ef109b400ac5a57ca9df097fa.zip -> icsharpcode-texteditor-3.2.2_p2018020702.zip
+mirror
+https://github.com/ArsenShnurkov/ICSharpCode.TextEditor
+LGPL-2.1
+ICSharpCode.TextEditor library
+amd64
+
+dotnet dotnet-native mono-env mono-pkg-config
+debug +net45 +pkg-config net45 pkg-config
+
+
+
+8
+
+compile install setup
+
+
+
+

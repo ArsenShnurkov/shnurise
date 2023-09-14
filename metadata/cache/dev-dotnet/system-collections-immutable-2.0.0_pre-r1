@@ -1,0 +1,22 @@
+>=dev-lang/mono-5.2.0.196 dev-lang/mono virtual/pkgconfig
+>=dev-lang/mono-5.2.0.196 dev-lang/mono
+0
+https://github.com/dotnet/corefx/archive/247068fbd97c534dc13b3b9d037f67b03dbe57a5.tar.gz -> corefx-dotnet-2.0.0_pre.tar.gz
+mirror
+https://github.com/dotnet/corefx/tree/master/src/System.Collections.Immutable
+MIT
+part of CoreFX
+amd64 arm64
+
+dotnet dotnet-native gac mono-env mono-pkg-config xbuild
++net45 +gac pkg-config developer debug doc net45 gac pkg-config pkg-config
+
+
+
+7
+
+compile install prepare setup
+
+
+
+

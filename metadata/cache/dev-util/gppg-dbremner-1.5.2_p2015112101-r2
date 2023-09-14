@@ -1,0 +1,22 @@
+
+
+0
+https://github.com/ArsenShnurkov/shnurise-tarballs/archive/dev-util/gppg-dbremner/gppg-dbremner-1.5.2_p2015112101.tar.gz -> dev-util-gppg-dbremner-1.5.2_p2015112101.tar.gz
+mirror
+https://github.com/dbremner/gppg
+BSD
+C# version of lex (Garden Point Lex)
+amd64
+
+dotnet dotnet-native mono-env wrapper xbuild
++net45 debug developer net45
+
+
+
+8
+
+compile install prepare setup
+
+
+
+

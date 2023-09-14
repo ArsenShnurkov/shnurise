@@ -1,0 +1,22 @@
+>=dev-lang/mono-5.2.0.196 dev-dotnet/msbuild-tasks-api:15.9[pkg-config] developer? ( dev-dotnet/msbuild-tasks-api:15.9[pkg-config,developer] ) dev-dotnet/system-collections-immutable[pkg-config] developer? ( dev-dotnet/system-collections-immutable[pkg-config,developer] ) dev-dotnet/system-reflection-metadata[pkg-config] developer? ( dev-dotnet/system-reflection-metadata[pkg-config,developer] ) >=dev-dotnet/msbuildtasks-1.5.0.240-r1 dev-dotnet/msbuild-tasks-api dev-lang/mono virtual/pkgconfig
+>=dev-lang/mono-5.2.0.196 dev-dotnet/msbuild-tasks-api:15.9[pkg-config] developer? ( dev-dotnet/msbuild-tasks-api:15.9[pkg-config,developer] ) dev-dotnet/system-collections-immutable[pkg-config] developer? ( dev-dotnet/system-collections-immutable[pkg-config,developer] ) dev-dotnet/system-reflection-metadata[pkg-config] developer? ( dev-dotnet/system-reflection-metadata[pkg-config,developer] ) dev-lang/mono
+15.9
+https://github.com/Microsoft/msbuild/archive/88f5fadfbef809b7ed2689f72319b7d91792460e.tar.gz -> msbuild-Microsoft-15.9.20.62856.tar.gz
+mirror
+https://github.com/Microsoft/msbuild
+MIT
+default tasks for Microsoft Build Engine (MSBuild)
+amd64 arm64
+
+dotnet dotnet-native gac mono-env mono-pkg-config msbuild-framework xbuild
++net46 debug developer gac pkg-config pkg-config
+
+
+
+7
+
+compile install prepare setup
+
+
+
+

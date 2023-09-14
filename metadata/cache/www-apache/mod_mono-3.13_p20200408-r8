@@ -1,0 +1,22 @@
+=www-servers/apache-2* >=dev-lang/mono-3.13_p20200408 virtual/pkgconfig
+>=www-servers/xsp-4.4 =www-servers/apache-2* >=dev-lang/mono-3.13_p20200408
+0
+https://github.com/mono/mod_mono/archive/96a6b55d69da2807ed32a362e0d9b6f19e2a8a30.tar.gz -> mod_mono-3.13_p20200408.tar.gz
+mirror
+https://www.mono-project.com/Mod_mono
+Apache-2.0
+Apache module for Mono
+amd64 arm64
+
+apache-module-r8 autotools depend.apache gnuconfig go-mono libtool mono-env mono-r8 multilib toolchain-funcs
+debug
+
+
+sys-devel/gnuconfig >=app-portage/elt-patches-20170815 || ( >=sys-devel/automake-1.16.5:1.16 ) >=sys-devel/autoconf-2.71-r5 >=sys-devel/libtool-2.4.7
+8
+
+compile configure install postinst prepare setup unpack
+
+
+
+

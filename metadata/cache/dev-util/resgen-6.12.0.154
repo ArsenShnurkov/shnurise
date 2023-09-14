@@ -1,0 +1,22 @@
+
+
+6.12
+https://github.com/mono/mono/archive/0c979e6d769bda97bfba41c29324f727e72e27d8.tar.gz -> mono-6.12.0.154.tar.gz
+mirror
+https://github.com/mono/mono
+MIT
+Resource generator from mono
+amd64 arm64
+
+dotnet dotnet-native mono-env
++net46 +symlink developer debug
+
+
+
+7
+
+compile install prepare setup
+
+
+
+
