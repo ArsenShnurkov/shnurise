@@ -1,7 +1,7 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI="8"
 
 # for calling eautoreconf, which creates "autoconf" file from "autoconf.ac"
 inherit autotools
@@ -9,8 +9,6 @@ inherit autotools
 # https://devmanual.gentoo.org/eclass-reference/vcs-snapshot.eclass/index.html
 # for setting ${S} variable
 inherit vcs-snapshot
-
-inherit eutils
 
 inherit multilib-minimal
 
