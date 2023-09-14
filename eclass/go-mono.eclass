@@ -8,7 +8,7 @@
 # @DESCRIPTION:
 # Common functionality needed by all go-mono.org apps.
 
-inherit mono
+inherit mono-r8
 
 PRE_URI="http://mono.ximian.com/monobuild/preview/sources"
 
