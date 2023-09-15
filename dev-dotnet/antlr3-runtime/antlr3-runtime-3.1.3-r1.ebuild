@@ -19,7 +19,7 @@ GITHUB_REPOSITORY_NAME="antlr3"
 HOMEPAGE="https://github.com/antlr/${GITHUB_REPOSITORY_NAME}"
 EGIT_COMMIT="69f890e6433edfce316f09f9fa6b7ebf20551344"
 SRC_URI="https://github.com/${GITHUB_ACCOUNT_NAME}/${GITHUB_REPOSITORY_NAME}/archive/${EGIT_COMMIT}.tar.gz -> ${CATEGORY}-${PN}-${PV}.tar.gz
-	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+	https://github.com/mono/mono/raw/main/mcs/class/mono.snk"
 S="${WORKDIR}/${GITHUB_REPOSITORY_NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="The C# port of ANTLR 3 (Rubtime library)"

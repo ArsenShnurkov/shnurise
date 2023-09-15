@@ -24,7 +24,7 @@ HOMEPAGE="https://github.com/npgsql/${NAME}"
 #EGIT_COMMIT="a7e147759c3756b6d22f07f5602aacd21f93d48d"
 EGIT_COMMIT="b38b71380def0299e79269b403116b7d72b9419d"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${CATEGORY}-${PN}-${PV}.tar.gz
-	gac? ( https://github.com/mono/mono/raw/master/mcs/class/mono.snk )"
+	gac? ( https://github.com/mono/mono/raw/main/mcs/class/mono.snk )"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 SLOT="0"

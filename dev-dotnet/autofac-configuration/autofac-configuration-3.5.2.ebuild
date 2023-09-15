@@ -14,7 +14,7 @@ HOMEPAGE="https://github.com/Autofac/${NAME}"
 
 EGIT_COMMIT="ce3c12c67600a145ba31a21f3b3be27c4473f2f3"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz
-	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+	https://github.com/mono/mono/raw/main/mcs/class/mono.snk"
 RESTRICT="mirror"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 

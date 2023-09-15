@@ -1,8 +1,8 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="8"
-KEYWORDS="amd64 ~x86"
+KEYWORDS="amd64"
 
 inherit multilib java-pkg-2 dotnet
 
@@ -19,8 +19,8 @@ GITFILENAME=${GITHUBREPO}-${GITHUBACC}-${PV}-${EGIT_COMMIT}
 GITHUB_ZIP="https://api.github.com/repos/${GITHUBACC}/${GITHUBREPO}/zipball/${EGIT_COMMIT} -> ${GITFILENAME}.zip"
 S="${WORKDIR}/${GITFILENAME}"
 
-SRC_URI="https://www.frijters.net/openjdk-7u4-stripped.zip
-	mirror://gentoo/mono.snk.bz2
+SRC_URI="https://github.com/ArsenShnurkov/shnurise-tarballs/archive/refs/tags/dev-mono/ikvm/openjdk-7u4-stripped.tar.gz
+	https://raw.githubusercontent.com/mono/mono/main/mcs/class/mono.snk
 	${GITHUB_ZIP}"
 
 SLOT="0"

@@ -1,9 +1,9 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="8"
 
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64"
 RESTRICT="mirror"
 
 SLOT="35"
@@ -17,8 +17,9 @@ inherit dotnet msbuild gac mono-pkg-config
 NAME="antlrcs"
 HOMEPAGE="https://github.com/antlr/${NAME}"
 EGIT_COMMIT="ca331b7109e1faa5a6aa7336bb6281ce9363e62b"
-SRC_URI="https://github.com/ArsenShnurkov/shnurise-tarballs/raw/dev-util/${NAME}${APPENDIX}/${NAME}-${PV}.tar.gz -> ${CATEGORY}-${NAME}-${PV}.tar.gz
-	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+#SRC_URI="https://github.com/ArsenShnurkov/shnurise-tarballs/raw/dev-util/${NAME}${APPENDIX}/${NAME}-${PV}.tar.gz -> ${CATEGORY}-${NAME}-${PV}.tar.gz
+SRC_URI="https://codeload.github.com/ArsenShnurkov/shnurise-tarballs/tar.gz/refs/tags/dev-util/antlrcs -> ${CATEGORY}-${NAME}-${PV}.tar.gz
+	https://github.com/mono/mono/raw/main/mcs/class/mono.snk"
 S="${WORKDIR}"
 
 DESCRIPTION="The C# port of ANTLR 3 (Rubtime library)"

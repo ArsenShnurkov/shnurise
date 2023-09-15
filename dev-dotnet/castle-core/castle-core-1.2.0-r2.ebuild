@@ -17,7 +17,7 @@ inherit xbuild gac mono-pkg-config
 REPO_NAME="Castle.Core-READONLY"
 EGIT_COMMIT="44859cac767ff02dfc43911c4ce4a571625648b0"
 SRC_URI="https://github.com/castleproject/${REPO_NAME}/archive/${EGIT_COMMIT}.tar.gz -> ${CATEGORY}-${PN}-${PV}.tar.gz
-	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+	https://github.com/mono/mono/raw/main/mcs/class/mono.snk"
 S="${WORKDIR}/${REPO_NAME}-${EGIT_COMMIT}"
 
 HOMEPAGE="http://www.castleproject.org/"

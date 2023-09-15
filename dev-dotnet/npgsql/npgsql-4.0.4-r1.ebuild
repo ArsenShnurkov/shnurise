@@ -1,9 +1,9 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="8"
 
-KEYWORDS="amd64 ~arm64"
+KEYWORDS="amd64"
 RESTRICT="mirror"
 
 # debug = debug configuration (symbols and defines for debugging)
@@ -27,7 +27,7 @@ HOMEPAGE="https://github.com/npgsql/${NAME}"
 
 EGIT_COMMIT="ecfb8b2c4bc5108e40c990b83c2863c61f7ef8b4"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${CATEGORY}-${PN}-${PV}.tar.gz
-	gac? ( https://github.com/mono/mono/raw/master/mcs/class/mono.snk )"
+	gac? ( https://github.com/mono/mono/raw/main/mcs/class/mono.snk )"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 SLOT="0"

@@ -19,7 +19,7 @@ GITHUB_ACCOUNT_NAME="nhibernate"
 HOMEPAGE="https://github.com/${GITHUB_ACCOUNT_NAME}/${GITHUB_REPOSITORY_NAME}"
 EGIT_COMMIT="78ee78d7863300c791ff86df00f94072e83537dc"
 SRC_URI="https://github.com/${GITHUB_ACCOUNT_NAME}/${GITHUB_REPOSITORY_NAME}/archive/${EGIT_COMMIT}.tar.gz -> ${CATEGORY}-${PN}-${PV}.tar.gz
-	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+	https://github.com/mono/mono/raw/main/mcs/class/mono.snk"
 S="${WORKDIR}/${GITHUB_REPOSITORY_NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="NHibernate Object Relational Mapper"

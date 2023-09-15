@@ -1,9 +1,9 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="8"
 
-KEYWORDS="amd64 ~x86"
+KEYWORDS="amd64"
 RESTRICT="mirror"
 
 SLOT="4"
@@ -17,7 +17,7 @@ NAME="nhibernate-core"
 HOMEPAGE="https://github.com/nhibernate/${NAME}"
 EGIT_COMMIT="b64b6b74278a12a6a12e19e6a33f97fac6b6c910"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${NAME}-${PV}.tar.gz
-	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+	https://github.com/mono/mono/raw/main/mcs/class/mono.snk"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="NHibernate Object Relational Mapper"

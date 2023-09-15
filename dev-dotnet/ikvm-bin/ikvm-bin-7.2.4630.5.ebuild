@@ -11,7 +11,7 @@ MY_PN=${PN/-bin/}
 
 DESCRIPTION="Java VM for .NET"
 HOMEPAGE="https://www.ikvm.net/ http://weblog.ikvm.net/"
-SRC_URI="https://www.frijters.net/${MY_PN}bin-${PV}.zip"
+SRC_URI="https://github.com/ArsenShnurkov/shnurise-tarballs/archive/refs/tags/dev-mono/ikvm/ikvmbin.tar.gz"
 LICENSE="ZLIB GPL-2-with-linking-exception"
 
 SLOT="0"

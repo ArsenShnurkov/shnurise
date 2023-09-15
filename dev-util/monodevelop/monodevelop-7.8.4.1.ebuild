@@ -10,7 +10,7 @@ ROSLYN_COMMIT="16e117c2400d0ab930e7d89512f9894a169a0e6e"
 
 DESCRIPTION="Integrated Development Environment for .NET"
 HOMEPAGE="http://www.monodevelop.com/"
-SRC_URI="https://github.com/ArsenShnurkov/shnurise-tarballs/raw/master/monodevelop-6.1_p2016062206.tar.bz2
+SRC_URI="https://download.mono-project.com/sources/monodevelop/monodevelop-7.8.4.1.tar.bz2
 	https://github.com/mono/roslyn/archive/${ROSLYN_COMMIT}.zip -> roslyn-${ROSLYN_COMMIT}.zip
 	https://launchpadlibrarian.net/68057829/NUnit-2.5.10.11092.zip"
 LICENSE="GPL-2"

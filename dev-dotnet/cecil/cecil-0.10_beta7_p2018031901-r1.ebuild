@@ -34,8 +34,8 @@ EGIT_BRANCH="master"
 EGIT_COMMIT="848c4d5b87f92e3fecd6e48c12270cd138536a83"
 EGIT_SHORT_COMMIT=${EGIT_COMMIT:0:7}
 SRC_URI="https://api.github.com/repos/${REPO_OWNER}/${NAME}/tarball/${EGIT_COMMIT} -> ${CATEGORY}-${PN}-${PV}.tar.gz"
-#	https://github.com/mono/mono/raw/master/mcs/class/ecma.pub
-#	https://github.com/mono/mono/raw/master/mcs/class/mono.snk
+#	https://github.com/mono/mono/raw/main/mcs/class/ecma.pub
+#	https://github.com/mono/mono/raw/main/mcs/class/mono.snk
 RESTRICT+=" test"
 # jbevain-cecil-045b0f9
 S="${WORKDIR}/${REPO_OWNER}-${NAME}-${EGIT_SHORT_COMMIT}"
